@@ -10,11 +10,15 @@ write: generate-pdf
 generate-pdf:
     pandoc \
         --template ./thesis-template-2015/Thesis.tex \
+        --number-sections \
+        -M secnos-warning-level=1 \
+        --filter pandoc-secnos \
         --citeproc \
         src/prelude.md \
         {{SOURCES}} \
         src/appendix.md \
         {{APPENDIX}} \
+        src/references.md \
         -o {{FINAL_PDF}}
 
 debug-latex:
