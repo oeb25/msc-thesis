@@ -59,6 +59,32 @@ $endif$
 \newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{#1}\break}
 \newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
 
+% https://tex.stackexchange.com/a/160022
+% \usepackage{graphicx}
+% Redefine \includegraphics so that, unless explicit options are
+% given, the image width will not exceed the width or the height of the page.
+% Images get their normal width if they fit onto the page, but
+% are scaled down if they would overflow the margins.
+\makeatletter
+% \def\ScaleWidthIfNeeded{%
+%  \ifdim\Gin@nat@width>\linewidth
+%     \linewidth
+%   \else
+%     \Gin@nat@width
+%   \fi
+% }
+% \def\ScaleHeightIfNeeded{%
+%   \ifdim\Gin@nat@height>0.9\textheight
+%     0.9\textheight
+%   \else
+%     \Gin@nat@width
+%   \fi
+% }
+% \makeatother
+
+% \setkeys{Gin}{width=\ScaleWidthIfNeeded,height=\ScaleHeightIfNeeded,keepaspectratio}%
+\setkeys{Gin}{keepaspectratio}%
+
 %
 %==================================================================================================
 % THESIS PROPERTIES (Modifiy these fields with your details)
@@ -98,7 +124,7 @@ $endif$}  %PDF keywords
 % \markboth{}{}                                     %Set headings (left)(right)
 % \input{./thesis-template-2015/SummaryDK}          %Danish summary of Thesis
 % \markboth{}{}                                     %Set headings (left)(right)
-$if(acknowledgements)$
+$if(preface)$
 \chapter{Preface}
 $preface$                                  %Preface
 \markboth{}{}                                       %Set headings (left)(right)

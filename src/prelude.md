@@ -1,5 +1,5 @@
 ---
-title: My thesis
+title: Pandoc LaTeX Thesis Template
 author: Oliver Bøving
 toc: true
 date: 9th May
@@ -12,7 +12,6 @@ classoption:
 documentclass: book
 keywords: LaTeX, Pandoc
 header-includes:
-    - \usepackage{./thesis-template-2015/LukeThesis}
     - \usepackage{cleveref}
 preface: |
     This thesis was prepared at DTU Compute in fulfilment of the requirements for acquiring an M.Sc. in Engineering.
