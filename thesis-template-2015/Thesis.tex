@@ -22,20 +22,57 @@
 %==================================================================================================
 % PACKAGES
 %==================================================================================================
-\usepackage{LukeThesis}                             %Import Thesis base style
-%input{PhDMacros}                                   %Thesis specific macros
+\usepackage{./thesis-template-2015/LukeThesis}
+$for(header-includes)$
+$header-includes$
+$endfor$
+
+$if(highlighting-macros)$
+$highlighting-macros$
+$endif$
+
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+\newlength{\csllabelwidth}
+\setlength{\csllabelwidth}{3em}
+\newlength{\cslentryspacingunit} % times entry-spacing
+\setlength{\cslentryspacingunit}{\parskip}
+\newenvironment{CSLReferences}[2] % #1 hanging-ident, #2 entry spacing
+ {% don't indent paragraphs
+  \setlength{\parindent}{0pt}
+  % turn on hanging indent if param 1 is 1
+  \ifodd #1
+  \let\oldpar\par
+  \def\par{\hangindent=\cslhangindent\oldpar}
+  \fi
+  % set entry spacing
+  \setlength{\parskip}{#2\cslentryspacingunit}
+ }%
+ {}
+\usepackage{calc}
+\newcommand{\CSLBlock}[1]{#1\hfill\break}
+\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{#1}}
+\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{#1}\break}
+\newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
+
 %
 %==================================================================================================
 % THESIS PROPERTIES (Modifiy these fields with your details)
 %==================================================================================================
-\def\thesisauthor{Luke Herbert}                     %Author
-\def\thesistitle{Something something}               %Title
-\def\thesishandin{01-January}                       %Submission date (Day-Month}
-\def\thesisdegree{PhD}                              %Degree ('B.Eng', 'B.Sc.', 'M.Sc.' or 'PhD')
-\def\thesisyear{2015}                               %Submission year
+\def\thesisauthor{$author$}                     %Author
+\def\thesistitle{$title$}               %Title
+\def\thesishandin{$date$}                       %Submission date (Day-Month}
+\def\thesisdegree{M.Sc.}                              %Degree ('B.Eng', 'B.Sc.', 'M.Sc.' or 'PhD')
+\def\thesisyear{$year$}                               %Submission year
 \def\thesisnumber{????}                             %DTU-IMM Serial number (do not include year)
 \def\thesisISSN{0000-0000}                          %ISSN number
-\def\thesiskeywords{Keywords are, comma separated}  %PDF keywords
+\def\thesiskeywords{$if(keywords)$
+    $for(keywords)$$keywords$$sep$, $endfor$
+$endif$}  %PDF keywords
 \derivethesisprops                                  %Derive dependent properties
 %
 %==================================================================================================
@@ -57,14 +94,20 @@
 %--------------------
 \frontmatter
 \pagenumbering{roman}                               %Set frontmatter numbering style
-\input{SummaryUK}                                   %English summary of Thesis
+% \input{./thesis-template-2015/SummaryUK}          %English summary of Thesis
+% \markboth{}{}                                     %Set headings (left)(right)
+% \input{./thesis-template-2015/SummaryDK}          %Danish summary of Thesis
+% \markboth{}{}                                     %Set headings (left)(right)
+$if(acknowledgements)$
+\chapter{Preface}
+$preface$                                  %Preface
 \markboth{}{}                                       %Set headings (left)(right)
-\input{SummaryDK}                                   %Danish summary of Thesis
+$endif$
+$if(acknowledgements)$
+\chapter{Acknowledgements}
+$acknowledgements$                                  %Acknowledgements
 \markboth{}{}                                       %Set headings (left)(right)
-\input{Preface}                                     %Preface
-\markboth{}{}                                       %Set headings (left)(right)
-\input{Acknowledgements}                            %Acknowledgements
-\markboth{}{}                                       %Set headings (left)(right)
+$endif$
 %------------------
 % Table of contents
 %------------------
@@ -81,10 +124,7 @@
 % Main content
 %-------------
 \mainmatter
-\include{Chapter1}                                  %Chapter 1
-%\include{Chapter2}                                 %Chapter 2
-\appendix
-\include{Appendix1}                                 %Appendix A
+$body$
 %-----------
 % Backmatter
 %-----------
