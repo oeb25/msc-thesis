@@ -208,42 +208,42 @@ The folding tree data structure forms a lattice with the following properties:
 
 1. The bottom element $\bot$ is the tree where the maximal number of unfoldings are performed.
 2. The top element $\top$ is the tree where the root is folded.
-3. The ordering of the tree, given by $\T_1 \smaller \T_2$ satisfies the property that any leaf in $\T_2$ is in $\T_1$ but not necessarily folded:
+3. The ordering of the tree, given by $\T_1 \larger \T_2$ satisfies the property that any leaf in $\T_2$ is in $\T_1$ but not necessarily folded:
     $$
-    \T_1 \smaller \T_2 \Leftrightarrow \forall \leafin{\rho}{\T_2} : \rho \in \T_1
+    \T_1 \larger \T_2 \Leftrightarrow \forall \leafin{\rho}{\T_2} : \rho \in \T_1
     $$
     and is defined by standard set inclusion, that is:
     $$
-    \T_1 \smaller \T_2 = \T_1 \supseteq \T_2,
+    \T_1 \larger \T_2 = \T_1 \supseteq \T_2,
     $$
-4. The join $\join$ of $\T_1$ and $\T_2$ ensures that all leafs $\rho$ of $\T_1 \join \T_2$ are leafs in either $\T_1$ or $\T_2$ and at least present in the other. More formally, the following equations describe the property:
+4. The meet $\meet$ of $\T_1$ and $\T_2$ ensures that all leafs $\rho$ of $\T_1 \meet \T_2$ are leafs in either $\T_1$ or $\T_2$ and at least present in the other. More formally, the following equations describe the property:
     $$
     \begin{gathered}
-    \rho \in (\T_1 \join \T_2) = \rho \in \T_1 \land \rho \in \T_2 \\
-    \leafin{\rho}{\T_1 \join \T_2} = (\leafin{\rho}{\T_1} \land \rho \in \T_2) \lor (\leafin{\rho}{\T_2} \land \rho \in \T_1) \\
+    \rho \in (\T_1 \meet \T_2) = \rho \in \T_1 \land \rho \in \T_2 \\
+    \leafin{\rho}{\T_1 \meet \T_2} = (\leafin{\rho}{\T_1} \land \rho \in \T_2) \lor (\leafin{\rho}{\T_2} \land \rho \in \T_1) \\
     \end{gathered}
     $$
-    The tree given by $\T_1 \join \T_2$ is equal to $\T_1 \cap \T_2$.
-5. The meet $\meet$ of $\T_1$ and $\T_2$ contains all folded and unfolded places of both $\T_1$ and $\T_2$. It satisfies the following equations:
+    The tree given by $\T_1 \meet \T_2$ is equal to $\T_1 \cap \T_2$.
+5. The join $\join$ of $\T_1$ and $\T_2$ contains all folded and unfolded places of both $\T_1$ and $\T_2$. It satisfies the following equations:
     $$
     \begin{gathered}
-    \rho \in (\T_1 \meet \T_2) = \rho \in \T_1 \lor \rho \in \T_2 \\
+    \rho \in (\T_1 \join \T_2) = \rho \in \T_1 \lor \rho \in \T_2 \\
     \begin{aligned}
-    \leafin{\rho}{\T_1 \meet \T_2} =\;
+    \leafin{\rho}{\T_1 \join \T_2} =\;
         & (\leafin{\rho}{\T_1} \land (\leafin{\rho}{\T_2} \lor \rho \notin \T_2)) \\ \lor
         & (\leafin{\rho}{\T_2} \land (\leafin{\rho}{\T_1} \lor \rho \notin \T_1))
     \end{aligned}
     \end{gathered}
     $$
-    Opposite to to $\join$, the tree given by $\T_1 \meet \T_2$ is equal to $\T_1 \cup \T_2$.
+    Opposite to to $\meet$, the tree given by $\T_1 \join \T_2$ is equal to $\T_1 \cup \T_2$.
 
 :::
 
-::: {.figure #fig:folding-join-meet}
+::: {.figure #fig:folding-meet-join}
 
 :::: {.subfigure}
 
-```{.folding-tree root="$\\T_1 \\join \\T_2$"}
+```{.folding-tree root="$\\T_1 \\meet \\T_2$"}
 { x X y { a X b X } }
 ```
 
@@ -267,19 +267,19 @@ The folding tree data structure forms a lattice with the following properties:
 
 :::: {.subfigure}
 
-```{.folding-tree root="$\\T_1 \\meet \\T_2$"}
+```{.folding-tree root="$\\T_1 \\join \\T_2$"}
 { x { u X v X } y { a { f X g X h X } b X } }
 ```
 
 ::::
 
-\caption{A visualization of the lattice operations described in \cref{lemma:folding-tree-lattice}, showing the result of $\T_1 \join \T_2$ and  $\T_1 \meet \T_2$.}
+\caption{A visualization of the lattice operations described in \cref{lemma:folding-tree-lattice}, showing the result of $\T_1 \meet \T_2$ and  $\T_1 \join \T_2$.}
 
 :::
 
-More intuitively, the $\meet$ of two trees is the smallest unfolding that contains two trees, while $\join$ gives the largest tree that fits inside two trees.
+More intuitively, the $\join$ of two trees is the smallest unfolding that contains two trees, while $\meet$ gives the largest tree that fits inside two trees.
 
-To see a brief example of this in action, take $\T_1 \join \T_2$ and $\T_1 \meet \T_2$ shown in \cref{fig:folding-join-meet}, and let's consider the necessary foldings and unfoldings to arrive at both $\T_1$ and $\T_2$. For $\T_1 \join \T_2$ to become $\T_1$ it requires $\unfold\;.x$ and to become $\T_2$ requires $\unfold\;.y.a$. On the other hand, starting at $\T_1 \meet \T_2$ and arriving at $\T_1$ and $\T_2$ requires $\fold\;.x$ and $\fold\;.y.a$ respectively. As indicated by this example, $\meet$ leads to foldings while $\join$ leads to unfoldings.
+To see a brief example of this in action, take $\T_1 \meet \T_2$ and $\T_1 \join \T_2$ shown in \cref{fig:folding-meet-join}, and let's consider the necessary foldings and unfoldings to arrive at both $\T_1$ and $\T_2$. For $\T_1 \meet \T_2$ to become $\T_1$ it requires $\unfold\;.x$ and to become $\T_2$ requires $\unfold\;.y.a$. On the other hand, starting at $\T_1 \join \T_2$ and arriving at $\T_1$ and $\T_2$ requires $\fold\;.x$ and $\fold\;.y.a$ respectively. As indicated by this example, $\join$ leads to foldings while $\meet$ leads to unfoldings.
 
 This leads us to the final bit of notation for foldings trees, which is computing the minimal foldings and unfoldings required to transform one tree into another. We let $\tinto$ be the function that computes the composition of foldings and unfoldings satisfying the following equation:
 $$
@@ -292,13 +292,13 @@ Using the above example, we can compute the foldings by way of \tinto:
 $$
 \begin{gathered}
 \begin{aligned}
-    \tinto[\T_1 \join \T_2, \T_1] &= \unfold\;.x &
-    \tinto[\T_1 \join \T_2, \T_2] &= \unfold\;.y.a \\
-    \tinto[\T_1 \meet \T_2, \T_1] &= \fold\;.x &
-    \tinto[\T_1 \meet \T_2, \T_2] &= \fold\;.y.a \\
+    \tinto[\T_1 \meet \T_2, \T_1] &= \unfold\;.x &
+    \tinto[\T_1 \meet \T_2, \T_2] &= \unfold\;.y.a \\
+    \tinto[\T_1 \join \T_2, \T_1] &= \fold\;.x &
+    \tinto[\T_1 \join \T_2, \T_2] &= \fold\;.y.a \\
 \end{aligned} \\
 \begin{aligned}
-    \tinto[\T_1 \meet \T_2, \T_1 \join \T_2] &= \fold\;.x \circ \fold\;.y.a \\
+    \tinto[\T_1 \join \T_2, \T_1 \meet \T_2] &= \fold\;.x \circ \fold\;.y.a \\
     \tinto[\T_1, \T_2] &= \fold\;.x \circ \unfold\;.y.a \\
 \end{aligned}
 \end{gathered}
@@ -331,9 +331,9 @@ With folding trees defined, we can continue to look at how they relate to progra
 
 \vfill
 
-<!-- 2. $\tinto[\T_1 \join \T_2, \T_3] = \tinto[\T_1 \meet \T_2, \T_3]^{-1}$ -->
+<!-- 2. $\tinto[\T_1 \meet \T_2, \T_3] = \tinto[\T_1 \join \T_2, \T_3]^{-1}$ -->
 
-<!-- In particular, $\join$ is useful for minimizing the number of foldings, in turn minimizing the number of invariant assertions as described in the introduction of +@chap:folding.  -->
+<!-- In particular, $\meet$ is useful for minimizing the number of foldings, in turn minimizing the number of invariant assertions as described in the introduction of +@chap:folding.  -->
 
 <!-- $$
 \begin{array}{ccc}
@@ -370,11 +370,11 @@ $$
 $$ -->
 
 <!-- $$
-T_1 \smaller T_2 = \forall \rho \in T_1 : \prefixes(\rho) \cap T_2 \neq \varnothing
+T_1 \larger T_2 = \forall \rho \in T_1 : \prefixes(\rho) \cap T_2 \neq \varnothing
 $$
 $$
 \begin{aligned}
-T_1 \join T_2 =
+T_1 \meet T_2 =
     &\{ \rho \mid \rho \in T_1 \land \texttt{parents}(\rho) \cap T_2 = \varnothing \} \; \cup \\
     &\{ \rho \mid \rho \in T_2 \land \texttt{parents}(\rho) \cap T_1 = \varnothing \}
 \end{aligned}
@@ -454,7 +454,7 @@ $$
 <!-- ## Abstract interpretation approach
 
 $$
-\alpha(\sigma) \smaller \T \Leftrightarrow \sigma \smaller \gamma(\T)
+\alpha(\sigma) \larger \T \Leftrightarrow \sigma \larger \gamma(\T)
 $$
 
 $$
@@ -564,10 +564,10 @@ $$ -->
 
 $$
 \begin{aligned}
-    \A(\phi_1) &\larger \bsem{\omega_1}(\A(\phi_2)) \\
-    \A(\phi_2) &\larger \bsem{\omega_2}(\A(\phi_3)) \\
-    \A(\phi_2) &\larger \bsem{\omega_2}(\A(\phi_4)) \\
-    \A(\phi_3) &\larger \bsem{\omega_3}(\A(\phi_2)) \\
+    \A(\phi_1) &\smaller \bsem{\omega_1}(\A(\phi_2)) \\
+    \A(\phi_2) &\smaller \bsem{\omega_2}(\A(\phi_3)) \\
+    \A(\phi_2) &\smaller \bsem{\omega_2}(\A(\phi_4)) \\
+    \A(\phi_3) &\smaller \bsem{\omega_3}(\A(\phi_2)) \\
 \end{aligned}
 $$
 $$
