@@ -32,7 +32,9 @@ header-includes:
     # Common notation
     - \newcommand{\lineref}[1]{{\footnotesize (line {#1})}}
     - \newcommand{\Rho}{\mathrm{P}}
-    - \newcommand{\leafin}[2]{#1\;\varepsilon\;#2}
+    # - \newcommand{\leafin}[2]{#1\;\varepsilon\;#2}
+    - \newcommand{\leaves}{\mathcal{FP}os}
+    - \newcommand{\leafin}[2]{#1 \in \leaves(#2)}
     - \newcommand{\requires}{\reflectbox{$\mathrel{\leadsto}$}}
     # Function aliases
     - \newcommand{\fold}{\texttt{fold}}

@@ -1,12 +1,12 @@
 # Automatic folding of isorecursive structures {#chap:folding}
 
-In Mist, types such as `struct`s and `enum`s are named, allowing them to be referenced inside other types, in function arguments, and local variables. In addition to being a collection of fields, they can also carry logical properties with `invariant`s. From a programmers perspective, these fields and properties can be accessed at any point in the program, without need for any annotation as to when a field or invariant is required. Due to this, we say that the Mist source language has _transparent_ types.^[Todo: This might be nominal types. Investigate further.]
+In Mist, types such as `struct`s and `enum`s are named, allowing them to be referenced inside other types, in function arguments, and local variables. In addition to being a collection of fields, they can also carry logical properties with `invariant`s. From a programmer's perspective, these fields and properties can be accessed at any point in the program, without the need for any annotation as to when a field or invariant is required. Due to this, we say that the Mist source language has _transparent_ types.^[Todo: This might be nominal types. Investigate further.]
 
-The property of transparency, however, introduces an implicit guarantee about where the invariants of a type holds. This is tricky when you, for example, modify the internals of a struct in a sequence of operations, and part way through the mutation the invariants only partially hold. The lower layers of the compiler therefore works with _isorecursive_ types.
+The property of transparency, however, introduces an implicit guarantee about where the invariants of a type hold. This is tricky when you, for example, modify the internals of a struct in a sequence of operations, and part way through the mutation the invariants only partially hold. The lower layers of the compiler, therefore, work with _isorecursive_ types.
 
-With isorecursive types there is a distinction between having named type and having an unfolded type. To read or update a field of a named type, it must first be _unfolded_. In contrast, when referencing to a named type, it must be _folded_. Whenever a type is folded, its invariant is held internally, and when unfolded that invariant can be subsequently assumed. For unfolded types, their invariant may or may not hold, but when the type is folded, its invariant is asserted.
+With isorecursive types, there is a distinction between having a named type and having an unfolded type. To read or update a field of a named type, it must first be _unfolded_. In contrast, when referencing a named type, it must be _folded_. Whenever a type is folded, its invariant is held internally, and when unfolded that invariant can be subsequently assumed. For unfolded types, their invariant may or may not hold, but when the type is folded, its invariant is asserted.
 
-An example of folding in action, can be seen in \cref{fig:breaking-invariant}. One interesting detail to highlight, is the fact that the invariant on `A` establishes a relationship between `.x` and `.y` \lineref{2}, that after performing the increment of `a.x` \lineref{5} is broken until the increment of `a.y` \lineref{6} has occured. This is fine, since the invariant is first required to hold at the folding point \lineref{7}.
+An example of folding in action can be seen in \cref{fig:breaking-invariant}. One interesting detail to highlight is the fact that the invariant on `A` establishes a relationship between `.x` and `.y` \lineref{2}, that after performing the increment of `a.x` \lineref{5} is broken until the increment of `a.y` \lineref{6} has occurred. This is fine since the invariant is first required to hold at the folding point \lineref{7}.
 
 ::: {.figure #fig:breaking-invariant}
 
@@ -41,17 +41,17 @@ fn inc(a: &mut A) {
 
 ::::
 
-\caption{The left program is the input program, with implicit folding and unfolding. The right program is the same program, with with annotated foldings.}
+\caption{The left program is the input program, with implicit folding and unfolding. The right program is the same program, with annotated foldings.}
 
 :::
 
-To transform a program from its equirecursive form into its isorecursive form, we must compute the nessesary foldings and unfolding. This is done through a series of analysis, which are covered in this chapter, but as a foundation for these analysis, we introduce a data structure and notation to reason about foldings.
+To transform a program from its equirecursive form into its isorecursive form, we must compute the necessary foldings and unfolding. This is done through a series of analyses, which are covered in this chapter, but as a foundation for these analyses, we introduce a data structure and notation to reason about foldings.
 
 ## Folding tree structure
 
-A folding tree is a data structure, denoted by $\T$, that maintains the folding state of places. It works by representing data types as a tree, where nodes are fields of potentially nested `struct`s. The leafs of the tree are all the places that are _folded_, while the internal nodes are _unfolded_ places, both uniquely described by paths from the root.
+A folding tree is a data structure, denoted by $\T$, that maintains the folding state of places. It works by representing data types as a tree, where nodes are fields of potentially nested `struct`s. The leaves of the tree are all the places that are _folded_, while the internal nodes are _unfolded_ places, both uniquely described by paths from the root.
 
-The data structure fundamentally supports two operations: $\unfold : \Rho \times T \to T$ and $\fold : \Rho \times T \to T$. The first operation, $\unfold(\rho, \T) = \T'$, requires $\rho$ to be folded in $\T$ (i.e. a leaf), denoted by $\leafin{\rho}{\T}$, and ensures that $\rho$ is unfolded in $\T'$ and consequently that all the fields of $\rho$ are accessible in $\T'$. On the other hand, $\fold(\rho, \T) = \T'$ is the inverse of $\unfold$, requiring that all fields of $\rho$ are folded in $\T$, and that none of them are accessible in $\T'$ and $\rho$ is. A demonstration of these operations are visualized in \cref{fig:folding-tree-folding-sequence}. Additionally, we let $\mathcal{F}$ be the space of all foldings and foldings.
+The data structure fundamentally supports two operations: $\unfold : \Rho \times T \to T$ and $\fold : \Rho \times T \to T$. The first operation, $\unfold(\rho, \T) = \T'$, requires $\rho$ to be folded in $\T$ (i.e. a leaf), denoted by $\leafin{\rho}{\T}$, and ensures that $\rho$ is unfolded in $\T'$ and consequently that all the fields of $\rho$ are accessible in $\T'$.^[This notation is borrowed from @comonTreeAutomataTechniques2008.] On the other hand, $\fold(\rho, \T) = \T'$ is the inverse of $\unfold$, requiring that all fields of $\rho$ are folded in $\T$ and that none of them are accessible in $\T'$ and $\rho$ is. A demonstration of these operations is visualized in \cref{fig:folding-tree-folding-sequence}. Additionally, we let $\mathcal{F}$ be the space of all foldings and foldings.
 
 ::: {.figure #fig:folding-tree-folding-sequence}
 
@@ -99,7 +99,7 @@ The data structure fundamentally supports two operations: $\unfold : \Rho \times
 
 :::
 
-While the tree representation gives a good intution for the data structure, and will continue to be how folding trees are visualized, it is more convenient to encode them as a set of rooted-paths. With this, any place $\rho$ in the set $\T$ is a leaf and thus folded, if it is not a prefix of any other place in $\T$. This allows us to formally define the semantics of $\fold$ and $\unfold$:
+While the tree representation gives a good intuition for the data structure and will continue to be how folding trees are visualized, it is more convenient to encode them as a set of rooted paths. With this, any place $\rho$ in the set $\T$ is a leaf and thus folded, if it is not a prefix of any other place in $\T$. This allows us to formally define the semantics of $\fold$ and $\unfold$:
 $$
 \begin{gathered}
 \begin{prooftree}
@@ -119,7 +119,7 @@ $$
 \leafin{\rho}{\T} = \rho \in \T \land \forall \rho'.f_i \in \T : \rho \neq \rho'
 $$
 
-A common operation on folding trees is transforming an existing tree into a new one with a desired place folded. To do so, a sequence of foldings and unfoldings must be performed to arrive at the desired tree. We call this operation _requires_ and use notation $\T \requires \rho$ to say that we want the tree $\T$ but with the minimal number of foldings and unfoldings to have $\rho$ be folded. To get an idea of the operation, see \cref{fig:folding-tree-requires-sequence}. The operation can be defined recursively like so:
+A common operation on folding trees is transforming an existing tree into a new one with a desired place folded. To do so, a sequence of foldings and unfoldings must be performed to arrive at the desired tree. We call this operation _requires_ and use the notation $\T \requires \rho$ to say that we want the tree $\T$ but with the minimal number of foldings and unfoldings to have $\rho$ be folded. To get an idea of the operation, see \cref{fig:folding-tree-requires-sequence}. The operation can be defined recursively like so:
 $$
 \T \requires \rho = \begin{cases}
     \fold(\rho, \T \requires \rho.f_1 \requires \dots \requires \rho.f_n) & \text{if } \rho : (f_1, \dots, f_n) \land \rho.f_1, \dots, \rho.f_n \in \T \\
@@ -178,25 +178,25 @@ $$ -->
 
 ::::
 
-\caption{A sequence of folding trees showing how $\requires$ can perform the nessesary foldings for making fields accessible. Each successive tree operates on the previous one, where the operation performed is indicated by the root.}
+\caption{A sequence of folding trees showing how $\requires$ can perform the necessary foldings for making fields accessible. Each successive tree operates on the previous one, where the operation performed is indicated by the root.}
 
 :::
 
 ::: {.lemma}
 
-The tree produced by $\T \requires \rho$ will have $\rho$ folded, that is $\leafin{\rho}{(\T \requires \rho)}$.
+The tree produced by $\T \requires \rho$ will have $\rho$ folded, that is $\leafin{\rho}{\T \requires \rho}$.
 
 :::
 
 ::: {.proof}
 
-By definition of $\leafin{}{}$ the statement $\leafin{\rho}{(\T \requires \rho)}$ is equivilant to showing two properties: $\rho \in (\T \requires \rho)$ and $\forall \rho'.f_i \in (\T \requires \rho) : \rho \neq \rho'$. We do so by case distinction on $\T \requires \rho$:
+By definition of $\leaves$ the statement $\leafin{\rho}{\T \requires \rho}$ is equivilant to showing two properties: $\rho \in (\T \requires \rho)$ and $\forall \rho'.f_i \in (\T \requires \rho) : \rho \neq \rho'$. We do so by case distinction on $\T \requires \rho$:
 
-**Case 1** If $\rho : (f_1, \dots, f_n) \land \rho.f_1, \dots, \rho.f_n \in \T$ holds, then we know that $\T \requires \rho = \fold(\rho, \T \requires \rho.f_1 \requires \dots \requires \rho.f_n)$. Since we \fold $\rho$ as the last operation, we know that $\rho$ is folded in $\T \requires \rho$ and that $\rho \in (\T \requires \rho)$ holds. Additionally we know that the folding of $\rho$ removes $\rho.f_1, \dots, f_n$ from the tree, which means that the $\forall \rho'.f_i \in (\T \requires \rho) : \rho \neq \rho'$ holds.
+**Case 1** If $\rho : (f_1, \dots, f_n) \land \rho.f_1, \dots, \rho.f_n \in \T$ holds, then we know that $\T \requires \rho = \fold(\rho, \T \requires \rho.f_1 \requires \dots \requires \rho.f_n)$. Since we \fold $\rho$ as the last operation, we know that $\rho$ is folded in $\T \requires \rho$ and that $\rho \in (\T \requires \rho)$ holds. Additionally, we know that the folding of $\rho$ removes $\rho.f_1, \dots, f_n$ from the tree, which means that the $\forall \rho'.f_i \in (\T \requires \rho) : \rho \neq \rho'$ holds.
 
 **Case 2** If $\rho \notin \T \land \rho'.f_i = \rho$ then we have $\T \requires \rho = \unfold(\rho', \T \requires \rho')$. Given that we \unfold $\rho'$ and that $\rho$ is a field of $\rho'$, then $\rho$ must be in the new tree. Since $\rho \notin \T$, we know by the structure of $\T$ that any field of $\rho$ is not in $\T$, and since $\unfold$ of $\rho'$ only introduces fields of $\rho'$ and these fields are distinct from any field of $\rho$, we can conclude that $\forall \rho''.f_i \in (\T \requires \rho) : \rho \neq \rho''$.
 
-**Case 3** Lastly, if $\leafin{\rho}{\T}$, then we know that $\T \requires \rho = \T$, and given that equality we can derive $\leafin{\rho}{(\T \requires \rho)}$, which is exatly what we wanted to show.
+**Case 3** Lastly, if $\leafin{\rho}{\T}$, then we know that $\T \requires \rho = \T$, and given that equality we can derive $\leafin{\rho}{\T \requires \rho}$, which is exatly what we wanted to show.
 
 :::
 
@@ -220,7 +220,7 @@ The folding tree data structure forms a lattice with the following properties:
     $$
     \begin{gathered}
     \rho \in (\T_1 \join \T_2) = \rho \in \T_1 \land \rho \in \T_2 \\
-    \leafin{\rho}{(\T_1 \join \T_2)} = (\leafin{\rho}{\T_1} \land \rho \in \T_2) \lor (\leafin{\rho}{\T_2} \land \rho \in \T_1) \\
+    \leafin{\rho}{\T_1 \join \T_2} = (\leafin{\rho}{\T_1} \land \rho \in \T_2) \lor (\leafin{\rho}{\T_2} \land \rho \in \T_1) \\
     \end{gathered}
     $$
     The tree given by $\T_1 \join \T_2$ is equal to $\T_1 \cap \T_2$.
@@ -228,7 +228,11 @@ The folding tree data structure forms a lattice with the following properties:
     $$
     \begin{gathered}
     \rho \in (\T_1 \meet \T_2) = \rho \in \T_1 \lor \rho \in \T_2 \\
-    \leafin{\rho}{(\T_1 \meet \T_2)} = (\leafin{\rho}{\T_1} \land (\leafin{\rho}{\T_2} \lor \rho \notin \T_2)) \lor (\leafin{\rho}{\T_2} \land (\leafin{\rho}{\T_1} \lor \rho \notin \T_1))
+    \begin{aligned}
+    \leafin{\rho}{\T_1 \meet \T_2} =\;
+        & (\leafin{\rho}{\T_1} \land (\leafin{\rho}{\T_2} \lor \rho \notin \T_2)) \\ \lor
+        & (\leafin{\rho}{\T_2} \land (\leafin{\rho}{\T_1} \lor \rho \notin \T_1))
+    \end{aligned}
     \end{gathered}
     $$
     Opposite to to $\join$, the tree given by $\T_1 \meet \T_2$ is equal to $\T_1 \cup \T_2$.
@@ -275,7 +279,7 @@ The folding tree data structure forms a lattice with the following properties:
 
 More intuitively, the $\meet$ of two trees is the smallest unfolding that contains two trees, while $\join$ gives the largest tree that fits inside two trees.
 
-To see a breif example of this in action, take $\T_1 \join \T_2$ and $\T_1 \meet \T_2$ shown in \cref{fig:folding-join-meet}, and let's consider the nessesary foldings and unfoldings to arrive at both $\T_1$ and $\T_2$. For $\T_1 \join \T_2$ to become $\T_1$ it requires $\unfold\;.x$ and to become $\T_2$ requires $\unfold\;.y.a$. On the other hand, starting at $\T_1 \meet \T_2$ and arriving at $\T_1$ and $\T_2$ requires $\fold\;.x$ and $\fold\;.y.a$ respectively. As indicated by this example, $\meet$ leads to foldings while $\join$ leads to unfoldings.
+To see a brief example of this in action, take $\T_1 \join \T_2$ and $\T_1 \meet \T_2$ shown in \cref{fig:folding-join-meet}, and let's consider the necessary foldings and unfoldings to arrive at both $\T_1$ and $\T_2$. For $\T_1 \join \T_2$ to become $\T_1$ it requires $\unfold\;.x$ and to become $\T_2$ requires $\unfold\;.y.a$. On the other hand, starting at $\T_1 \meet \T_2$ and arriving at $\T_1$ and $\T_2$ requires $\fold\;.x$ and $\fold\;.y.a$ respectively. As indicated by this example, $\meet$ leads to foldings while $\join$ leads to unfoldings.
 
 This leads us to the final bit of notation for foldings trees, which is computing the minimal foldings and unfoldings required to transform one tree into another. We let $\tinto$ be the function that computes the composition of foldings and unfoldings satisfying the following equation:
 $$
@@ -378,68 +382,76 @@ $$ -->
 
 ## Operational language
 
-In +@chap:compiler we introduced the multi-stage structure of the Mist compiler, and specifically the MIR representation which is a CFG. In terms of computing foldings and unfoldings, this is the stage we are concerned with, but instead of considering the full set of instructions and terminators, we consider a smaller varient which focuses much more concretly on _how and what_ places are used, and omit the details for performing actual computation or verification.
+In +@chap:compiler we introduced the multi-stage structure of the Mist compiler, and specifically the MIR representation which is a CFG. In terms of computing foldings and unfoldings, this is the stage we are concerned with, but instead of considering the full set of instructions and terminators, we consider a smaller variant that focuses much more concretely on _how and what_ places are used and omit the details for performing actual computation or verification. The grammar for this smaller language is shown \cref{fig:minimal-language}.
 
 ```{.ungram #fig:minimal-language}
 // The grammar for the minimal language
 
 Instruction = Place ':=' Expr
-            | ('assert' | 'assume') Expr
+            | 'reference' Expr
+            | 'mention' Place
             | 'fold' Place
             | 'unfold' Place
-            | 'mention' Place
 
-Expr = Operand
+Expr = Operand*
      | BorrowKind Place
-     | BinaryOp_ Operand Operand
-     | UnaryOp_ Operand
 
 BorrowKind = '&' | '&mut'
 
-Operand = 'copy' Place | 'move' Place | Literal_
+Operand = 'copy' Place | 'move' Place
 
 Place = Slot_ Projection*
 
-Projection = '.' Field_ | '[' Slot_ ']'
+Projection = '.' Field_ // | '[' Slot_ ']'
 
 BinaryOp_ = '...'
 Field_ = '...'
-Literal_ = '...'
 Mutable_ = '...'
 Shared_ = '...'
 Slot_ = '...'
 UnaryOp_ = '...'
 ```
 
-## Typing rules with relation to access
+_**From this point down, it's mostly work in progress...**_
+
+## Typing rules in relation to access
 
 $$
 \begin{prooftree}
     \hypo{\rho \in \T}
-    \hypo{\texttt{read}(a) \subseteq \T}
+    \hypo{\texttt{read}(a) \subseteq \leaves(\T)}
     \infer2{\T \vdash \rho := a}
 \end{prooftree}
 $$
 $$
 \begin{array}{ccc}
 \begin{prooftree}
-    \hypo{\texttt{read}(a) \subseteq \T}
-    \infer1{\T \vdash \texttt{assert } a}
+    \hypo{\texttt{read}(a) \subseteq \leaves(\T)}
+    \infer1{\T \vdash \texttt{reference } a}
 \end{prooftree}
 &
 \begin{prooftree}
-    \hypo{\texttt{read}(a) \subseteq \T}
-    \infer1{\T \vdash \texttt{assume } a}
-\end{prooftree}
-&
-\begin{prooftree}
-    \hypo{\rho \in \T}
+    \hypo{\leafin{\rho}{\T}}
     \infer1{\T \vdash \texttt{mention } \rho}
 \end{prooftree}
 \end{array}
 $$
+$$
+\begin{array}{ccc}
+\begin{prooftree}
+    \hypo{\rho \in T}
+    \hypo{\forall \rho.f_i \in T : \leafin{\rho.f_i}{\T}}
+    \infer2{\T \vdash \fold\; \rho}
+\end{prooftree}
+&
+\begin{prooftree}
+    \hypo{\leafin{\rho}{\T}}
+    \infer1{\T \vdash \unfold\; \rho}
+\end{prooftree}
+\end{array}
+$$
 
-## Abstract interpretation approach
+<!-- ## Abstract interpretation approach
 
 $$
 \alpha(\sigma) \smaller \T \Leftrightarrow \sigma \smaller \gamma(\T)
@@ -447,64 +459,60 @@ $$
 
 $$
 \fsem{\omega}(\T) = \alpha(\sem{\omega}(\gamma(\T))) \text{ or } \fsem{\omega} = \alpha \circ \sem{\omega} \circ \gamma
-$$
+$$ -->
 
-## Semantics
+## Semantics {#sec:folding:semantics}
 
 $$
 \begin{prooftree}
     \hypo{\rho \in \dom(\sigma)}
     \hypo{\texttt{read}(a) \subseteq \dom(\sigma)}
-    \hypo{\alpha(\sigma) \smaller \T}
     \hypo{\T \vdash \rho := a}
-    \infer4{\sem{\rho := a}(\sigma) = \sigma[\rho \leftarrow a]}
+    \infer3{\sem{\rho := a}(\T, \sigma) = \langle \T, \sigma[\rho \leftarrow a] \rangle}
 \end{prooftree}
 $$
-
 $$
 \begin{prooftree}
     \hypo{\texttt{read}(a) \subseteq \dom(\sigma)}
-    \infer1{\sem{\texttt{assert } a}(\sigma) = \sigma}
+    \hypo{\T \vdash \texttt{reference } a}
+    \infer2{\sem{\texttt{reference } a}(\T, \sigma) = \langle \T, \sigma \rangle}
 \end{prooftree}
 $$
-
 $$
 \begin{prooftree}
     \hypo{\rho \in \dom(\sigma)}
-    \hypo{\alpha(\sigma) \smaller \T}
-    \hypo{\T \vdash \texttt{fold } \rho}
-    \hypo{\alpha(\sigma') \smaller \T'}
-    \hypo{\fold(\rho, \T) = \T'}
-    \infer5{\sem{\texttt{fold } \rho}(\sigma) = \sigma'}
+    \hypo{\T \vdash \fold\; \rho}
+    \infer2{\sem{\fold\; \rho}(\T, \sigma) = \langle \fold(\rho, \T), \sigma' \rangle}
 \end{prooftree}
 $$
-
 $$
 \begin{prooftree}
     \hypo{\rho \in \dom(\sigma)}
-    \hypo{\alpha(\sigma) \smaller \T}
-    \hypo{\T \vdash \texttt{unfold } \rho}
-    \hypo{\alpha(\sigma') \smaller \T'}
-    \hypo{\unfold(\rho, \T) = \T'}
-    \infer5{\sem{\texttt{unfold } \rho}(\sigma) = \sigma'}
+    \hypo{\T \vdash \unfold\; \rho}
+    \infer2{\sem{\unfold\; \rho}(\T, \sigma) = \langle \unfold(\rho, \T), \sigma' \rangle}
 \end{prooftree}
 $$
 
 ## Abstract semantics
 
+- Forward analysis function:
 $$
 \fsem{\omega} : T \to T
 $$
-
+- Backward analysis function:
+$$
+\bsem{\omega} : T \to T
+$$
+- Analysis for exit locations are computed using $\fsem{\omega}$:
 $$
 \fsem{\omega}(\A(\phi)) = \A(\phi')
 $$
-
+- Performing one step of forward analysis, should be reversible by one step of the backward semantics:
 $$
 \bsem{\omega}(\fsem{\omega}(\T)) = \T
 $$
 
-$$
+<!-- $$
 \begin{aligned}
 \fsem{\omega_1; \omega_2}(\A(\phi_1))
     &= \fsem{\omega_2}(\tinto[\A(\phi_1'),\A(\phi_2)]\fsem{\omega_1}(\A(\phi_1))) \\
@@ -512,7 +520,7 @@ $$
     &= \fsem{\omega_2}(\A(\phi_2)) \\
     &= \A(\phi_2') \\
 \end{aligned}
-$$
+$$ -->
 
 ::::: {.figure #fig:analysis-cfg}
 
@@ -571,7 +579,7 @@ $$
 
 ::::::
 
-\caption{An abstract CFG with annotated program positions and constraints.}
+\caption{An abstract CFG with annotated program locations and constraints.}
 
 :::::
 
@@ -579,14 +587,7 @@ $$
 \fsem{\delta(\phi_i, \phi_j)}(\A(\phi_i)) = \tinto[\A(\phi_i), \A(\phi_j)](\A(\phi_i))
 $$ -->
 
-$$
-\begin{prooftree}
-    % \hypo{\A(\phi_i) \smaller \alpha(\sigma)}
-    \infer0{\A(\phi_i) \vdash \sem{\omega_i}(\sigma)}
-\end{prooftree}
-$$
-
-### Properties of semantics
+<!-- ### Properties of semantics
 
 $$
 \begin{prooftree}
@@ -692,6 +693,20 @@ fn f(x: &T) {
     let y = x;
     assert x.f == y.f;
 }
-```
+``` -->
 
 ## The folding analysis {#sec:folding:folding-analysis}
+
+## The resulting program
+
+::: {.lemma}
+
+A CFG annotated with foldings as described in +@sec:folding:folding-analysis will never get stuck in accordance with the semantics described in +@sec:folding:semantics.
+
+:::
+
+::: {.proof}
+
+Left as an exercise to the reader.
+
+:::
