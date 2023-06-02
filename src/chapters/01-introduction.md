@@ -1,13 +1,19 @@
-# Introduction {#sec:implementation}
+# Introduction {#chap:intro}
 
-This will be a reference @Hoare78, which works just with @. Currently we still need `\cref` to reference LaTeX stuff \cref{sec:implementation}...
+@dardinierVerificationPreservingInliningAutomatic2023
 
-Also works with \cref{app:more-stuff}.
+@schwerhoffLightweightSuppoertMagic2015
 
-![Some image](figures/image.png){width=70%}
+Contributions:
 
-## This is a section
+- We present in +@chap:mist a new programming language, Mist, which supports
+  formal verification constructs with a high emphisis on usability.
+- We present in +@chap:compiler an implementation of the compilination infrastructure for Mist
+  based on incremental compilation and verification, with an accompanying
+  implementation of the Lanuage Server Protocol.
+<!-- - Process for lowering a CFG into and imparative and expression oriented form. -->
+- In +@chap:folding we formalize an algorithm for computing folding- and
+  unfolding-points for isorecursive structures, and give a formally verified
+  implementation of the algorithm in Mist.
 
-- This,
-- is a list.
-- Yes it is.
+We conclude with related and future work in +@chap:conclusion.

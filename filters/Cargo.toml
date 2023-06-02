@@ -1,0 +1,18 @@
+[package]
+name = "thesis-filters"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+miette = { version = "5.8.0", features = ["fancy"] }
+pandoc_types = "0.5.0"
+serde = "1.0.158"
+serde_json = "1.0.94"
+ungrammar = "1.16.1"
+mist-syntax = { path = "../../mist/crates/syntax", package = "mist-syntax" }
+folding-tree = { path = "../../mist/crates/folding-tree", package = "folding-tree" }
+syntect = "5.0.0"
+heck = "0.4.1"
+itertools = "0.10.5"

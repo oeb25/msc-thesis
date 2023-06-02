@@ -1,4 +1,4 @@
-# DTU Thesis Pandoc Template
+# Oliver Bøvings Master Thesis
 
 This is a template based on the LaTeX template provided by DTU Compute.
 

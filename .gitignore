@@ -1,2 +1,7 @@
 thesis.pdf
 debug.tex
+
+# Devenv
+.devenv*
+devenv.local.nix
+
