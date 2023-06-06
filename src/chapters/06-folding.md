@@ -1,5 +1,28 @@
 # Automatic folding of isorecursive structures {#chap:folding}
 
+::: {.figure}
+
+:::: {.subfigure width=0.49}
+
+```{.mist}
+struct S { x: X, y: Y }
+struct X { u: int, v: int }
+struct Y { a: A, b: int }
+struct A { f: int, g: int, h: int }
+```
+
+::::
+
+:::: {.subfigure width=0.49}
+
+```{.folding-tree}
+{ x { u X v X } y { a { f X g X h X } b X } }
+```
+
+::::
+
+:::
+
 In Mist, types such as `struct`s and `enum`s are named, allowing them to be referenced inside other types, in function arguments, and local variables. In addition to being a collection of fields, they can also carry logical properties with `invariant`s. From a programmer's perspective, these fields and properties can be accessed at any point in the program, without the need for any annotation as to when a field or invariant is required. Due to this, we say that the Mist source language has _transparent_ types.^[Todo: This might be nominal types. Investigate further.]
 
 The property of transparency, however, introduces an implicit guarantee about where the invariants of a type hold. This is tricky when you, for example, modify the internals of a struct in a sequence of operations, and part way through the mutation the invariants only partially hold. The lower layers of the compiler, therefore, work with _isorecursive_ types.
@@ -118,6 +141,14 @@ In this notation, $\rho : (f_1,\dots,f_n)$ says that $\rho$ has the fields $f_1,
 $$
 \leafin{\rho}{\T} = \rho \in \T \land \forall \rho'.f_i \in \T : \rho \neq \rho'
 $$
+
+::: {.definition}
+
+$$
+\leaves(\T) = \{ \rho \mid \rho \in \T \land \forall \rho'.f_i \in \T : \rho \neq \rho' \}
+$$
+
+:::
 
 A common operation on folding trees is transforming an existing tree into a new one with a desired place folded. To do so, a sequence of foldings and unfoldings must be performed to arrive at the desired tree. We call this operation _requires_ and use the notation $\T \requires \rho$ to say that we want the tree $\T$ but with the minimal number of foldings and unfoldings to have $\rho$ be folded. To get an idea of the operation, see \cref{fig:folding-tree-requires-sequence}. The operation can be defined recursively like so:
 $$
@@ -412,7 +443,7 @@ Slot_ = '...'
 UnaryOp_ = '...'
 ```
 
-_**From this point down, it's mostly work in progress...**_
+_**From this point down, it's mostly a work in progress...**_
 
 ## Typing rules in relation to access
 
@@ -507,7 +538,7 @@ $$
 $$
 \fsem{\omega}(\A(\phi)) = \A(\phi')
 $$
-- Performing one step of forward analysis, should be reversible by one step of the backward semantics:
+- Performing one step of the forward analysis, should be reversible by one step of the backward semantics:
 $$
 \bsem{\omega}(\fsem{\omega}(\T)) = \T
 $$
@@ -707,6 +738,6 @@ A CFG annotated with foldings as described in +@sec:folding:folding-analysis wil
 
 ::: {.proof}
 
-Left as an exercise to the reader.
+Left as an exercise for the reader.
 
 :::

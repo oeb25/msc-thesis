@@ -102,9 +102,10 @@ fn walk_block(b: &mut Block) -> Result<Vec<Event>, miette::ErrReport> {
     match b {
         Block::CodeBlock(attr, src) => {
             if attr.classes.iter().any(|s| s == "ungram") {
+                let show_names = !attr.classes.iter().any(|s| s == "noNames");
                 let (label, src) = extract_label_and_id(attr, src);
                 let lines = wrap_latex_in_figure(
-                    &fmt_ungrammar(src).wrap_err("formatting ungrammar")?,
+                    &fmt_ungrammar(src, show_names).wrap_err("formatting ungrammar")?,
                     label,
                 );
                 *b = Block::latex(lines)
@@ -185,6 +186,16 @@ fn walk_block(b: &mut Block) -> Result<Vec<Event>, miette::ErrReport> {
                 append_to_end(content.last_mut().unwrap(), r"\phantom{}\qed");
 
                 content.push(Block::latex(r"\end{proof}"));
+            } else if attr.classes.iter().any(|s| s == "definition") {
+                content.insert(0, Block::latex(r"\begin{definition}"));
+
+                let label = if !attr.identifier.is_empty() {
+                    format!(r"\label{{{}}}", attr.identifier)
+                } else {
+                    String::new()
+                };
+
+                content.push(raw_latex!(r"{label}\end{{definition}}"));
             } else if attr.classes.iter().any(|s| s == "focus") {
                 let mut new_b = content[0].clone();
                 walk_block(&mut new_b)?;
@@ -237,7 +248,7 @@ fn extract_label_and_id<'a>(attr: &'a Attr, src: &'a str) -> (Option<(&'a str, &
     }
 }
 
-fn fmt_ungrammar(src: &str) -> Result<String> {
+fn fmt_ungrammar(src: &str, show_names: bool) -> Result<String> {
     let mut buf = String::new();
 
     let grammar = ungrammar::Grammar::from_str(src)
@@ -266,63 +277,83 @@ fn fmt_ungrammar(src: &str) -> Result<String> {
         }
 
         writeln!(buf, r"<{}> ::= ", name.trim_end_matches('_')).into_diagnostic()?;
-        fmt_rule(&grammar, &mut buf, rule, false).into_diagnostic()?;
+
+        let mut fmtr = Formatter {
+            grammar: &grammar,
+            buf: &mut buf,
+            show_names,
+        };
+        fmtr.fmt_rule(rule, false).into_diagnostic()?;
+
         writeln!(buf).into_diagnostic()?;
         writeln!(buf).into_diagnostic()?;
     }
     writeln!(buf, r"\end{{grammar}}").into_diagnostic()?;
 
-    fn fmt_rule(
-        grammar: &ungrammar::Grammar,
-        buf: &mut String,
-        r: &ungrammar::Rule,
-        nested: bool,
-    ) -> fmt::Result {
-        match r {
-            ungrammar::Rule::Labeled { label, rule } => {
-                write!(buf, "{label}:")?;
-                fmt_rule(grammar, buf, rule, true)?;
-            }
-            ungrammar::Rule::Node(n) => {
-                write!(buf, "<{}>", grammar[*n].name.trim_end_matches('_'))?
-            }
-            ungrammar::Rule::Token(t) => write!(buf, "`{}'", grammar[*t].name)?,
-            ungrammar::Rule::Seq(rs) => {
-                for r in rs {
-                    write!(buf, " ")?;
-                    fmt_rule(grammar, buf, r, true)?;
-                }
-            }
-            ungrammar::Rule::Alt(alts) => {
-                if nested {
-                    write!(buf, "(")?;
-                }
-                let mut first = true;
-                for r in alts {
-                    if !first {
-                        if nested || alts.len() <= 2 {
-                            write!(buf, r" | ")?;
-                        } else {
-                            write!(buf, r" \alt ")?;
-                        }
+    struct Formatter<'a> {
+        grammar: &'a ungrammar::Grammar,
+        buf: &'a mut String,
+        show_names: bool,
+    }
+
+    impl Formatter<'_> {
+        fn fmt_rule(&mut self, r: &ungrammar::Rule, nested: bool) -> fmt::Result {
+            match r {
+                ungrammar::Rule::Labeled { label, rule } => {
+                    if self.show_names {
+                        write!(self.buf, "{label}:")?;
                     }
-                    first = false;
-                    fmt_rule(grammar, buf, r, true)?;
+                    self.fmt_rule(rule, true)?;
                 }
-                if nested {
-                    write!(buf, ")")?;
+                ungrammar::Rule::Node(n) => write!(
+                    self.buf,
+                    "<{}>",
+                    self.grammar[*n].name.trim_end_matches('_')
+                )?,
+                ungrammar::Rule::Token(t) => write!(self.buf, "`{}'", self.grammar[*t].name)?,
+                ungrammar::Rule::Seq(rs) => {
+                    if nested {
+                        write!(self.buf, "(")?;
+                    }
+                    for r in rs {
+                        write!(self.buf, " ")?;
+                        self.fmt_rule(r, true)?;
+                    }
+                    if nested {
+                        write!(self.buf, ")")?;
+                    }
+                }
+                ungrammar::Rule::Alt(alts) => {
+                    if nested {
+                        write!(self.buf, "(")?;
+                    }
+                    let mut first = true;
+                    for r in alts {
+                        if !first {
+                            if nested || alts.len() <= 2 {
+                                write!(self.buf, r" | ")?;
+                            } else {
+                                write!(self.buf, r" \alt ")?;
+                            }
+                        }
+                        first = false;
+                        self.fmt_rule(r, true)?;
+                    }
+                    if nested {
+                        write!(self.buf, ")")?;
+                    }
+                }
+                ungrammar::Rule::Opt(r) => {
+                    self.fmt_rule(r, true)?;
+                    write!(self.buf, "?")?
+                }
+                ungrammar::Rule::Rep(r) => {
+                    self.fmt_rule(r, true)?;
+                    write!(self.buf, "*")?
                 }
             }
-            ungrammar::Rule::Opt(r) => {
-                fmt_rule(grammar, buf, r, true)?;
-                write!(buf, "?")?
-            }
-            ungrammar::Rule::Rep(r) => {
-                fmt_rule(grammar, buf, r, true)?;
-                write!(buf, "*")?
-            }
+            Ok(())
         }
-        Ok(())
     }
 
     Ok(buf)
