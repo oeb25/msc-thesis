@@ -1,0 +1,73 @@
+{
+  "callouts": {
+    "custom": [
+      "figure",
+      "subfigure",
+      "lemma",
+      "proof",
+      "remark"
+    ],
+    "settings": {
+      "figure": [
+        {
+          "changes": {
+            "icon": "lucide-image"
+          }
+        },
+        {
+          "condition": {
+            "colorScheme": "light"
+          },
+          "changes": {
+            "color": "92, 218, 170"
+          }
+        },
+        {
+          "condition": {
+            "colorScheme": "dark"
+          },
+          "changes": {
+            "color": "93, 218, 170"
+          }
+        }
+      ],
+      "subfigure": [
+        {
+          "changes": {
+            "icon": "lucide-file-image",
+            "color": "96, 199, 210"
+          }
+        }
+      ],
+      "lemma": [
+        {
+          "changes": {
+            "icon": "lucide-carrot",
+            "color": "253, 186, 116"
+          }
+        }
+      ],
+      "proof": [
+        {
+          "changes": {
+            "icon": "lucide-book-open-check",
+            "color": "226, 232, 240"
+          }
+        }
+      ],
+      "remark": [
+        {
+          "changes": {
+            "color": "135, 239, 172"
+          }
+        }
+      ]
+    }
+  },
+  "calloutDetection": {
+    "obsidianFallbackForced": false,
+    "obsidian": true,
+    "theme": true,
+    "snippet": true
+  }
+}

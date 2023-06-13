@@ -1,0 +1,65 @@
+{
+  "collapse-filter": false,
+  "search": "",
+  "showTags": false,
+  "showAttachments": true,
+  "hideUnresolved": false,
+  "showOrphans": false,
+  "collapse-color-groups": false,
+  "colorGroups": [
+    {
+      "query": "tag:definition",
+      "color": {
+        "a": 1,
+        "rgb": 14048348
+      }
+    },
+    {
+      "query": "tag:figure",
+      "color": {
+        "a": 1,
+        "rgb": 2939689
+      }
+    },
+    {
+      "query": "tag:section",
+      "color": {
+        "a": 1,
+        "rgb": 10064095
+      }
+    },
+    {
+      "query": "tag:subsection",
+      "color": {
+        "a": 1,
+        "rgb": 4950508
+      }
+    },
+    {
+      "query": "tag:chapter",
+      "color": {
+        "a": 1,
+        "rgb": 1835355
+      }
+    },
+    {
+      "query": "tag:lemma",
+      "color": {
+        "a": 1,
+        "rgb": 16628340
+      }
+    }
+  ],
+  "collapse-display": true,
+  "showArrow": true,
+  "textFadeMultiplier": 0.1,
+  "nodeSizeMultiplier": 1,
+  "lineSizeMultiplier": 1,
+  "collapse-forces": true,
+  "centerStrength": 0.512532552083333,
+  "repelStrength": 9.67936197916667,
+  "linkStrength": 1,
+  "linkDistance": 131,
+  "scale": 0.522701787788743,
+  "close": true
+}

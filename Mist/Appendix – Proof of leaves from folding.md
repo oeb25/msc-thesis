@@ -1,0 +1,11 @@
+---
+tags: appendix
+---
+
+## Proof of [[Lemma – Leaves from folding]]
+
+![[Proof – Leaves from folding]]
+
+## Proof of [[Lemma – Requires properties]]
+
+![[Proof – Requires properties]]

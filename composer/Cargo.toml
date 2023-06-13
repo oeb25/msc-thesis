@@ -1,0 +1,21 @@
+[package]
+name = "composer"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+miette.workspace = true
+pandoc_types.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+heck.workspace = true
+itertools.workspace = true
+camino.workspace = true
+clap = { version = "4.3.2", features = ["derive"] }
+la-arena = "0.3.0"
+regex = "1.8.4"
+petgraph = "0.6.3"
+walkdir = "2.3.3"
+serde_yaml = "0.9.21"

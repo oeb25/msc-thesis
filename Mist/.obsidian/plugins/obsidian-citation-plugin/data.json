@@ -1,0 +1,9 @@
+{
+  "citationExportFormat": "biblatex",
+  "literatureNoteTitleTemplate": "@{{citekey}}",
+  "literatureNoteFolder": "Reading notes",
+  "literatureNoteContentTemplate": "---\ntags: citation\ntitle: {{title}}\nauthors: {{authorString}}\nyear: {{year}}\ndoi: {{DOI}}\n---\n\n- [URL]({{URL}})\n- [Zotero]({{zoteroSelectURI}})\n\n## Notes\n\n",
+  "markdownCitationTemplate": "[@{{citekey}}]",
+  "alternativeMarkdownCitationTemplate": "@{{citekey}}",
+  "citationExportPath": "../ZoteroLib.bib"
+}

@@ -1,0 +1,21 @@
+{
+	"nodes":[
+		{"type":"file","file":"Introduction.md","id":"4810971e98cedafc","x":-240,"y":-440,"width":600,"height":240},
+		{"type":"file","file":"The Mist Compiler.md","id":"557df97b41d70ba3","x":-240,"y":120,"width":600,"height":160},
+		{"type":"file","file":"The Mist Programming Language.md","id":"3a957f01f8b2f6cd","x":-240,"y":-120,"width":600,"height":160},
+		{"type":"file","file":"Folding tree structure.md","id":"ad90733c607d6bce","x":-240,"y":660,"width":600,"height":640},
+		{"type":"file","file":"Folding analysis.md","id":"6f61f0e638693032","x":-240,"y":1400,"width":600,"height":112},
+		{"type":"file","file":"Conclusion.md","id":"7c8180c0a6bbdee2","x":-240,"y":1600,"width":600,"height":220},
+		{"type":"file","file":"Automatic folding of isorecursive structures.md","id":"5f456c4910f6d02b","x":-240,"y":360,"width":600,"height":200},
+		{"id":"88b2a0bed3580fa3","x":-240,"y":1960,"width":600,"height":400,"type":"file","file":"Appendix.md"}
+	],
+	"edges":[
+		{"id":"e91ceb129ba1cc9f","fromNode":"5f456c4910f6d02b","fromSide":"bottom","toNode":"ad90733c607d6bce","toSide":"top"},
+		{"id":"f41755caf08c13e6","fromNode":"6f61f0e638693032","fromSide":"bottom","toNode":"7c8180c0a6bbdee2","toSide":"top"},
+		{"id":"d5084207a820a43b","fromNode":"ad90733c607d6bce","fromSide":"bottom","toNode":"6f61f0e638693032","toSide":"top"},
+		{"id":"d3f567c670b8e0fa","fromNode":"4810971e98cedafc","fromSide":"bottom","toNode":"3a957f01f8b2f6cd","toSide":"top"},
+		{"id":"b3d52e610fc083e4","fromNode":"3a957f01f8b2f6cd","fromSide":"bottom","toNode":"557df97b41d70ba3","toSide":"top"},
+		{"id":"fa9d3c3da6ddeafb","fromNode":"557df97b41d70ba3","fromSide":"bottom","toNode":"5f456c4910f6d02b","toSide":"top"},
+		{"id":"6fc01ebf8ca5784d","fromNode":"7c8180c0a6bbdee2","fromSide":"bottom","toNode":"88b2a0bed3580fa3","toSide":"top"}
+	]
+}

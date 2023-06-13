@@ -1,0 +1,11 @@
+{
+  "accentColor": "#15b8a6",
+  "cssTheme": "",
+  "theme": "moonstone",
+  "monospaceFontFamily": "FiraCode Nerd Font Mono",
+  "textFontFamily": "SF Pro",
+  "interfaceFontFamily": "SF Pro",
+  "showViewHeader": true,
+  "nativeMenus": true,
+  "translucency": false
+}

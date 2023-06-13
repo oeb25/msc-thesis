@@ -23,7 +23,9 @@
 \usepackage{hyperref}                               %References package
 \usepackage{amsmath,amssymb,latexsym}               %AMS and other symbols
 \usepackage{epic,eepic,epsfig,graphics,psfrag}      %Figure/picture packages
-\usepackage{theorem}                                %Allows creation of custom enviroments
+% \usepackage{theorem}                                %Allows creation of custom enviroments
+\usepackage{amsthm}
+\usepackage{cleveref}
 %
 %==================================================================================================
 % PAGE GEOMETRY
@@ -117,14 +119,26 @@
 %==================================================================================================
 % ENVIROMENTS SETUP
 %==================================================================================================
-\newtheorem{lemma}{Lemma}[chapter]
-\newtheorem{proposition}[lemma]{Proposition}
-\newtheorem{theorem}[lemma]{Theorem}
-\newtheorem{corollary}[lemma]{Corollary}{\theorembodyfont{\rmfamily}
-\newtheorem{definition}[lemma]{Definition}}\theoremheaderfont{\scshape\bfseries}
-\newenvironment{proof}{{\scshape Proof.}}{}
-\newcommand{\qed}{\hfill $\square$ \vspace{5mm}}
-\newtheorem{example}{Example}[chapter]
+\newtheorem{ilemma}{Lemma}[chapter]
+\newtheorem{proposition}[ilemma]{Proposition}
+\newtheorem{itheorem}[ilemma]{Theorem}
+% \newtheorem{corollary}[ilemma]{Corollary}{\theorembodyfont{\rmfamily}}
+\newtheorem{idefinition}[ilemma]{Definition}
+% \newtheorem{idefinition}[ilemma]{Definition}\theoremheaderfont{\scshape\bfseries}
+\newenvironment{iproof}{{\scshape Proof.}}{}
+% \newcommand{\qed}{\hfill $\square$ \vspace{5mm}}
+\newtheorem{iexample}{Example}[chapter]
+\newtheorem*{iremark}{Remark}
+
+\crefname{itheorem}{theorem}{theorems}
+\crefname{idefinition}{definition}{definitions}
+\crefname{ilemma}{lemma}{lemmas} % or 'lemmata'?
+% \crefname{cor}{corollary}{corollaries}
+% \crefname{conj}{conjecture}{conjectures}
+% \crefname{prop}{proposition}{propositions}
+% \crefname{alg}{algoirithm}{algorithms}
+\crefname{iexample}{example}{examples}
+\crefname{figure}{figure}{figures}
 %
 %==================================================================================================
 % CHAPTER AND APPENDIX STYLING SETUP

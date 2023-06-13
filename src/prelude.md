@@ -4,7 +4,7 @@ author: Oliver Bøving
 toc: true
 date: 15th July
 year: 2023
-bibliography: [References.bib]
+bibliography: [ZoteroLib.bib]
 citeproc: true
 classoption:
     - 10pt
@@ -12,8 +12,10 @@ classoption:
 documentclass: book
 keywords: LaTeX, Pandoc
 header-includes:
-    - \usepackage{cleveref}
-    - \usepackage{ebproof}
+    - \usepackage{standalone}
+    - \usepackage{pdfpages}
+    - \usepackage{chngpage}
+    - \usepackage{bussproofs}
     - \usepackage{syntax}
     - \usepackage{mathabx}
     - \usepackage{stmaryrd}
@@ -33,15 +35,20 @@ header-includes:
     - \newcommand{\lineref}[1]{{\footnotesize (line {#1})}}
     - \newcommand{\Rho}{\mathrm{P}}
     # - \newcommand{\leafin}[2]{#1\;\varepsilon\;#2}
-    - \newcommand{\leaves}{\mathcal{FP}os}
+    - \newcommand{\leaves}{\mathcal{L}}
     - \newcommand{\leafin}[2]{#1 \in \leaves(#2)}
     - \newcommand{\requires}{\reflectbox{$\mathrel{\leadsto}$}}
     # Function aliases
     - \newcommand{\fold}{\texttt{fold}}
     - \newcommand{\unfold}{\texttt{unfold}}
-    - \newcommand{\prefixes}{\texttt{prefixes}}
+    - \newcommand{\prefix}{\texttt{prefix}}
     - \newcommand{\parents}{\texttt{parents}}
+    - \newcommand{\fields}{\texttt{fields}}
+    - \newcommand{\cut}{\texttt{cut}}
     - \newcommand{\T}{\mathcal{T}}
+    - \newcommand{\Ts}{\mathbf{T}}
+    - \newcommand{\slots}{\mathbf{Slots}}
+    - \newcommand{\places}{\mathbf{Places}}
     - \newcommand{\A}{\mathbf{A}}
     # - \newcommand{\tinto}{\texttt{transitionInto}}
     - \newcommand{\tinto}{\ensuremath{\Delta}}
@@ -56,6 +63,19 @@ header-includes:
     - \newcommand{\bsem}[1]{\widehat{\mathcal{S}}\llbracket#1 \rrbracket}
     - \newcommand{\ssem}[1]{\overline{\mathcal{S}}\llbracket#1 \rrbracket}
     - \newcommand{\dom}{\texttt{dom}}
+    - \usepackage{varwidth}
+    - \renewenvironment{prooftree}{\varwidth{.9\textwidth}\centering\leavevmode}{\DisplayProof\endvarwidth}
+
+    - \usepackage{framed}
+
+    - \renewenvironment{leftbar}[2][\hsize] { \def\FrameCommand { {\color{#2}\vrule width 3pt} \hspace{0pt} } \MakeFramed{\hsize#1\advance\hsize-\width\FrameRestore} } {\endMakeFramed}
+
+    - \newenvironment{lemma}{\begin{leftbar}{Orange300}\begin{ilemma}}{\end{ilemma}\end{leftbar}}
+    - \newenvironment{theorem}{\begin{leftbar}{Emerald500}\begin{itheorem}}{\end{itheorem}\end{leftbar}}
+    - \newenvironment{definition}{\begin{leftbar}{Teal500}\begin{idefinition}}{\end{idefinition}\end{leftbar}}
+    - \renewenvironment{proof}{\begin{leftbar}{Slate200}\begin{iproof}}{\end{iproof}\end{leftbar}}
+    - \newenvironment{example}{\begin{leftbar}{Slate600}\begin{iexample}\normalfont}{\end{iexample}\end{leftbar}}
+    - \newenvironment{remark}{\begin{leftbar}{Green300}\begin{iremark}\normalfont}{\end{iremark}\end{leftbar}}
 # preface: |
 #     This thesis was prepared at DTU Compute in fulfilment of the requirements for acquiring an M.Sc. in Engineering.
 

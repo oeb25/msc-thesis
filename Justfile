@@ -1,5 +1,7 @@
 # Replace this with a specific order if you want, like: "src/00-prelude.md src/02-introduction.md"
-SOURCES := "src/chapters/*.md"
+SOURCES := "full.md"
+# SOURCES := "/Users/oeb25/Projects/thesis/obsidian/Mist/Folding\\ tree\\ structure.md"
+# SOURCES := "src/chapters/*.md"
 APPENDIX := "src/appendix/*.md"
 FINAL_PDF := "thesis.pdf"
 
@@ -10,7 +12,7 @@ FINAL_PDF := "thesis.pdf"
 
 write: generate-pdf
     open -a skim {{FINAL_PDF}} || open {{FINAL_PDF}}
-    @watchexec -rc -e md,tex,sty,bib,rs -- just generate-pdf
+    @watchexec -d 200 -rc -i full.md -e md,tex,sty,bib,rs -- just generate-pdf
 
 zotero:
     curl -fs 'http://127.0.0.1:23119/better-bibtex/export/library?/1/library.biblatex' -o References.bib
@@ -24,6 +26,7 @@ generate-pdf:
     @just pandoc
 
 pandoc: compile-filters
+    cargo run --bin composer -- build Mist/Thesis\ layout.canvas > full.md
     pandoc \
         --template ./thesis-template-2015/Thesis.tex \
         --number-sections \
