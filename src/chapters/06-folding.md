@@ -1,28 +1,5 @@
 # Automatic folding of isorecursive structures {#chap:folding}
 
-::: {.figure}
-
-:::: {.subfigure width=0.49}
-
-```{.mist}
-struct S { x: X, y: Y }
-struct X { u: int, v: int }
-struct Y { a: A, b: int }
-struct A { f: int, g: int, h: int }
-```
-
-::::
-
-:::: {.subfigure width=0.49}
-
-```{.folding-tree}
-{ x { u X v X } y { a { f X g X h X } b X } }
-```
-
-::::
-
-:::
-
 In Mist, types such as `struct`s and `enum`s are named, allowing them to be referenced inside other types, in function arguments, and local variables. In addition to being a collection of fields, they can also carry logical properties with `invariant`s. From a programmer's perspective, these fields and properties can be accessed at any point in the program, without the need for any annotation as to when a field or invariant is required. Due to this, we say that the Mist source language has _transparent_ types.^[Todo: This might be nominal types. Investigate further.]
 
 The property of transparency, however, introduces an implicit guarantee about where the invariants of a type hold. This is tricky when you, for example, modify the internals of a struct in a sequence of operations, and part way through the mutation the invariants only partially hold. The lower layers of the compiler, therefore, work with _isorecursive_ types.
@@ -30,6 +7,38 @@ The property of transparency, however, introduces an implicit guarantee about wh
 With isorecursive types, there is a distinction between having a named type and having an unfolded type. To read or update a field of a named type, it must first be _unfolded_. In contrast, when referencing a named type, it must be _folded_. Whenever a type is folded, its invariant is held internally, and when unfolded that invariant can be subsequently assumed. For unfolded types, their invariant may or may not hold, but when the type is folded, its invariant is asserted.
 
 An example of folding in action can be seen in \cref{fig:breaking-invariant}. One interesting detail to highlight is the fact that the invariant on `A` establishes a relationship between `.x` and `.y` \lineref{2}, that after performing the increment of `a.x` \lineref{5} is broken until the increment of `a.y` \lineref{6} has occurred. This is fine since the invariant is first required to hold at the folding point \lineref{7}.
+
+::: {.figure}
+
+:::: {.subfigure width=0.49 align=b}
+
+```{.mist .numberLines .ignoreErrors}
+struct S { x: X, y: Y }   struct X { u: int, v: int }
+struct Y { a: A, b: int } struct A { f: int, g: int, h: int }
+
+invariant X { self.u == -self.v }
+
+fn inc(s: &mut S) -> int {
+    s.x.v += 1;
+    s.x.u -= 1;
+
+    s.y.a.g
+}
+```
+
+::::
+
+:::: {.subfigure width=0.3 align=b}
+
+```{.folding-tree root="$\\T$"}
+{ x { u X v X } y { a { f X g X h X } b X } }
+```
+
+::::
+
+\caption{Program}
+
+:::
 
 ::: {.figure #fig:breaking-invariant}
 
@@ -73,6 +82,29 @@ To transform a program from its equirecursive form into its isorecursive form, w
 ## Folding tree structure
 
 A folding tree is a data structure, denoted by $\T$, that maintains the folding state of places. It works by representing data types as a tree, where nodes are fields of potentially nested `struct`s. The leaves of the tree are all the places that are _folded_, while the internal nodes are _unfolded_ places, both uniquely described by paths from the root.
+
+::: {.figure}
+
+:::: {.subfigure width=0.49}
+
+```{.mist}
+struct S { x: X, y: Y }
+struct X { u: int, v: int }
+struct Y { a: A, b: int }
+struct A { f: int, g: int, h: int }
+```
+
+::::
+
+:::: {.subfigure width=0.49}
+
+```{.folding-tree}
+{ x { u X v X } y { a { f X g X h X } b X } }
+```
+
+::::
+
+:::
 
 The data structure fundamentally supports two operations: $\unfold : \Rho \times T \to T$ and $\fold : \Rho \times T \to T$. The first operation, $\unfold(\rho, \T) = \T'$, requires $\rho$ to be folded in $\T$ (i.e. a leaf), denoted by $\leafin{\rho}{\T}$, and ensures that $\rho$ is unfolded in $\T'$ and consequently that all the fields of $\rho$ are accessible in $\T'$.^[This notation is borrowed from @comonTreeAutomataTechniques2008.] On the other hand, $\fold(\rho, \T) = \T'$ is the inverse of $\unfold$, requiring that all fields of $\rho$ are folded in $\T$ and that none of them are accessible in $\T'$ and $\rho$ is. A demonstration of these operations is visualized in \cref{fig:folding-tree-folding-sequence}. Additionally, we let $\mathcal{F}$ be the space of all foldings and foldings.
 
@@ -232,6 +264,18 @@ By definition of $\leaves$ the statement $\leafin{\rho}{\T \requires \rho}$ is e
 :::
 
 Another property, which is useful for computing _greatest solutions_ discussed in +@sec:folding:folding-analysis, is the fact that the folding tree forms a lattice.
+
+For this, we first need to define the principle of ordering for folding trees.
+
+::: {.definition}
+
+Let $\T_1$ and $\T_2$ be folding trees, then we say that $\T_1$ is _smaller
+than_ $\T_2$ iff every leaf of $\T_1$ is contained in $\T_2$, that is
+$$
+\T_1 \smaller \T_2 = \leaves(\T_1) \subseteq \T_2.
+$$
+
+:::
 
 ::: {.lemma #lemma:folding-tree-lattice}
 

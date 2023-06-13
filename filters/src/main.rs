@@ -148,6 +148,7 @@ fn walk_block(b: &mut Block) -> Result<Vec<Event>, miette::ErrReport> {
                 events.push(Event::Subfigure);
 
                 let atributes = attr_map(&attr.attributes);
+                let alignment = atributes.get("align").unwrap_or(&"t");
                 let subfigure_attrs = atributes.get("width").unwrap_or(&"0.2");
 
                 let tail = if atributes.get("newline") == Some(&"true") {
@@ -160,7 +161,7 @@ fn walk_block(b: &mut Block) -> Result<Vec<Event>, miette::ErrReport> {
                     0,
                     raw_latex!(
                         r"
-                            \begin{{subfigure}}[t]{{{subfigure_attrs}\textwidth}}
+                            \begin{{subfigure}}[{alignment}]{{{subfigure_attrs}\textwidth}}
                                 \vskip 0pt
                                 \centering
                             "
