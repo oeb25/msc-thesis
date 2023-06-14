@@ -1,7 +1,7 @@
 use mist_syntax::ast::SyntaxKind;
 use syntect::{highlighting::Style, util::as_latex_escaped};
 
-use crate::colors::PALLETE;
+use crate::colors::PALETTE;
 
 struct Theme {
     kw: Style,
@@ -10,9 +10,9 @@ struct Theme {
 }
 
 const DEFAULT_THEME: Theme = Theme {
-    kw: PALLETE.teal_600,
-    literal: PALLETE.teal_500,
-    punct: PALLETE.gray_500,
+    kw: PALETTE.teal_600,
+    literal: PALETTE.teal_500,
+    punct: PALETTE.gray_500,
 };
 
 pub fn highlight_mist(code: &str, ignore_errors: bool) -> String {

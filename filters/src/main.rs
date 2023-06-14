@@ -16,7 +16,7 @@ use miette::{Context, IntoDiagnostic, Result};
 use pandoc_types::definition::{Attr, Block, Format, Inline};
 use ungrammar::NodeData;
 
-use crate::{colors::Pallete, highlight::highlight_mist};
+use crate::{colors::Palette, highlight::highlight_mist};
 
 fn main() -> Result<()> {
     miette::set_panic_hook();
@@ -48,7 +48,7 @@ fn main() -> Result<()> {
     doc.blocks.insert(
         0,
         Block::latex(
-            Pallete::iter()
+            Palette::iter()
                 .map(|(name, style)| {
                     let r = (style.foreground.r as f32) / (u8::MAX as f32);
                     let g = (style.foreground.g as f32) / (u8::MAX as f32);
