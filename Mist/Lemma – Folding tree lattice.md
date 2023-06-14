@@ -2,7 +2,9 @@
 tags: lemma
 ---
 
-The folding tree data structure forms a lattice with the following properties:
+The set of folding trees $\Ts$ equipped with $\smaller$ forms a lattice.
+
+%%The folding tree data structure forms a lattice with the following properties:
 
 1. The bottom element $\bot$ is the tree where the maximal number of unfoldings are performed.
 2. The top element $\top$ is the tree where the root is folded.
@@ -33,4 +35,4 @@ The folding tree data structure forms a lattice with the following properties:
     \end{aligned}
     \end{gathered}
     $$
-    Opposite to to $\meet$, the tree given by $\T_1 \join \T_2$ is equal to $\T_1 \cup \T_2$.
+    Opposite to to $\meet$, the tree given by $\T_1 \join \T_2$ is equal to $\T_1 \cup \T_2$.%%

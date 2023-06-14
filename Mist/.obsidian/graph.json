@@ -5,7 +5,7 @@
   "showAttachments": true,
   "hideUnresolved": false,
   "showOrphans": false,
-  "collapse-color-groups": false,
+  "collapse-color-groups": true,
   "colorGroups": [
     {
       "query": "tag:definition",
@@ -47,6 +47,13 @@
       "color": {
         "a": 1,
         "rgb": 16628340
+      }
+    },
+    {
+      "query": "tag:citation",
+      "color": {
+        "a": 1,
+        "rgb": 13098269
       }
     }
   ],

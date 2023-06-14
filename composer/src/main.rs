@@ -83,7 +83,7 @@ enum ProcessedFileContent {
     Markdown(String),
     Embed(Utf8PathBuf),
     Reference(Utf8PathBuf),
-    Cite(String),
+    Cite { key: String, pages: Option<String> },
 }
 
 impl Database {
@@ -323,9 +323,10 @@ impl Database {
                                         FileKindKind::Markdown | FileKindKind::Canvas => {
                                             ProcessedFileContent::Reference(path)
                                         }
-                                        FileKindKind::Citation => ProcessedFileContent::Cite(
-                                            path.file_stem().unwrap().to_string(),
-                                        ),
+                                        FileKindKind::Citation => ProcessedFileContent::Cite {
+                                            key: path.file_stem().unwrap().to_string(),
+                                            pages: heading.map(|h| h.to_string()),
+                                        },
                                     })
                                 }
                             }
@@ -411,8 +412,13 @@ impl Database {
                         let label = heck::AsKebabCase(p.file_stem().unwrap());
                         write!(buf, r"\cref{{{label}}}").into_diagnostic()?;
                     }
-                    ProcessedFileContent::Cite(p) => {
-                        write!(buf, r"{p}").into_diagnostic()?;
+                    ProcessedFileContent::Cite { key, pages } => {
+                        if let Some(pages) = pages {
+                            write!(buf, r"[see {key} {pages}]")
+                        } else {
+                            write!(buf, r"{key}")
+                        }
+                        .into_diagnostic()?;
                     }
                 }
             }

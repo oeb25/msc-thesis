@@ -2,7 +2,6 @@
 SOURCES := "full.md"
 # SOURCES := "/Users/oeb25/Projects/thesis/obsidian/Mist/Folding\\ tree\\ structure.md"
 # SOURCES := "src/chapters/*.md"
-APPENDIX := "src/appendix/*.md"
 FINAL_PDF := "thesis.pdf"
 
 [private]
@@ -37,8 +36,6 @@ pandoc: compile-filters
         --pdf-engine xelatex \
         src/prelude.md \
         {{SOURCES}} \
-        src/appendix.md \
-        {{APPENDIX}} \
         src/references.md \
         -o {{FINAL_PDF}}
 

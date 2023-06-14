@@ -536,6 +536,11 @@ A folding tree is a data structure, denoted by $\T$, that maintains the folding 
 
 Let $\T$ be a folding tree represented as a set of places, where every prefix of a place in $\T$ is also in $\T$. Nodes in the tree can either be _folded_ or _unfolded_, where folded nodes are leaves and unfolded nodes are internal nodes. All places have a set of associated fields, and unfolded nodes will have all of their fields as children.
 
+Formally, we say that the any folding tree is a _prefix-closed set of places_, that is
+$$
+\forall \rho \in \T : \prefix(\rho) \subseteq \T.
+$$
+
 Additionally, let $\Ts$ represent the set of all trees.
 
 ```{=tex}
@@ -712,6 +717,34 @@ The next property, is that the two functions, $\fold$ and $\unfold$, allow us to
 > \end{aligned}
 > $$
 
+Another neat property, is that $\fold$ and $\unfold$ commutes under the inverse, allowing us to undo chains of foldings by reversing the chain and inverting^[Todo: Which is more correct here, "inverting" or "inversing"?] every folding.
+
+
+
+```{=tex}
+\begin{lemma}\label{lemma-fold-and-unfold-are-anticommutative} \@ifnextchar\par{\@gobble}{}
+```
+
+Let $\T_1,\T_2$ be a folding trees and let $\mathcal{F}_1, \mathcal{F}_2$ be foldings such that $\mathcal{F}_1(\mathcal{F}_2(\T_1)) = \T_2$ then we say that the composition of foldings is anticommutative [see @bourbakiElementsMathematicsChapters2009 pp. 482], that is
+$$
+\mathcal{F}_1 \circ \mathcal{F}_2 = (\mathcal{F}_2^{-1} \circ \mathcal{F}_1^{-1})^{-1}.
+$$
+
+```{=tex}
+\end{lemma}
+```
+
+
+> [!proof]
+> Assuming function composition "$\circ$" is associative, then
+> $$
+> \begin{aligned}
+> (\mathcal{F}_1 \circ \mathcal{F}_2) \circ (\mathcal{F}_2^{-1} \circ \mathcal{F}_1^{-1})
+> &= \mathcal{F}_1 \circ (\mathcal{F}_2 \circ \mathcal{F}_2^{-1}) \circ \mathcal{F}_1^{-1} \\
+> &= \mathcal{F}_1 \circ \mathcal{F}_1^{-1} = \text{\normalfont{id}}.
+> \end{aligned}
+> $$
+
 A common operation on folding trees is transforming an existing tree into a new one with a desired place folded. To do so, a sequence of foldings and unfoldings must be performed to arrive at the desired tree. We call this operation _requires_ and use the notation $\T \requires \rho$ to say that we want the tree $\T$ but with the minimal number of foldings and unfoldings performed to have $\rho$ be folded.
 
 
@@ -834,7 +867,7 @@ $$
 > \end{aligned}
 > $$
 
-Intuitively, the $\cut$ can be thought of as removing all leaves leading up to $\rho$, and all leaves which are children of $\rho$. This also means that if we cut a field, it wont remove as much as cutting its parent. In the extreme case, cutting the root of the tree always _removes all leaves_, while cutting anywhere else, does not necessarily do so.
+Intuitively, the $\cut$ can be thought of as removing all leaves leading up to $\rho$, and all leaves which are children of $\rho$. This also means that if we cut a field, it wont remove as more than cutting its parent will. In the extreme case, cutting the root of the tree always _removes all leaves_, while cutting anywhere else, does not necessarily do so.
 
 
 
@@ -882,9 +915,16 @@ $$
 
 The proof for this is deferred to \cref{appendix-proof-of-leaves-from-folding}.
 
+With \cref{lemma-requires-properties} we can ensure that requiring some place in one subtree does not alter the folded places of any unrelated subtree.
+
+> [!example]
+> Consider `struct S` from \cref{figure-breaking-invariant} once again. If we require some (potentially nested) field of `s.y`, then it will never fold nor unfold the fields of `s.x`.
+> 
+> This ensures that folding stays isolated to the parts of a structure for which it is relevant.
+
 ## Ordering of folding trees
 
-The goal of folding trees is to formalise the state of foldings at specific program points, and thus it is crucial that we not only have ways to mutate them, but also have a way of relating one folding tree to another.
+The goal of folding trees is to formalise the state of foldings at specific program points, and thus it is crucial that we not only have ways to mutate them, but also have a ways of relating one folding tree to another.
 
 The first step for doing so, is defining a _partial order_ for folding trees.
 
@@ -898,39 +938,7 @@ Let $\T_1$ and $\T_2$ be folding trees, then we say that $\T_1$ is _smaller than
 $$
 \T_1 \smaller \T_2 = \leaves(\T_1) \subseteq \T_2,
 $$
-or equivalently, since $\leaves(\T_1) \subseteq \T_1$
-$$
-\T_1 \smaller \T_2 = \T_1 \subseteq \T_2.
-$$
-
-```{=tex}
-\end{definition}
-```
-
-
-> [!lemma]
-> The operator $\smaller$ defines a partial order for $\Ts$.
-
-> [!proof]
-> To show this, we use the fact that $\smaller$ is defined in terms of $\subseteq$ which forms a partial order.
-
----
-
-Another property, which is useful for computing _greatest solutions_ discussed in \cref{folding-analysis}, is the fact that the folding tree forms a lattice.
-
-For this, we first need to define the principle of ordering for folding trees.
-
-
-
-```{=tex}
-\begin{definition}\label{definition-folding-tree-order} \@ifnextchar\par{\@gobble}{}
-```
-
-Let $\T_1$ and $\T_2$ be folding trees, then we say that $\T_1$ is _smaller than_ $\T_2$ iff every leaf of $\T_1$ is contained in $\T_2$, that is
-$$
-\T_1 \smaller \T_2 = \leaves(\T_1) \subseteq \T_2,
-$$
-or equivalently, since $\leaves(\T_1) \subseteq \T_1$
+or equivalently, since $\leaves(\T_1) \subseteq \T_1$ and $\T_1$ is prefix closed
 $$
 \T_1 \smaller \T_2 = \T_1 \subseteq \T_2.
 $$
@@ -943,46 +951,54 @@ $$
 
 
 ```{=tex}
-\begin{lemma}\label{lemma-folding-tree-lattice} \@ifnextchar\par{\@gobble}{}
+\begin{lemma}\label{lemma-folding-tree-partial-order} \@ifnextchar\par{\@gobble}{}
 ```
 
-The folding tree data structure forms a lattice with the following properties:
-
-1. The bottom element $\bot$ is the tree where the maximal number of unfoldings are performed.
-2. The top element $\top$ is the tree where the root is folded.
-3. The ordering of the tree, given by $\T_1 \larger \T_2$ satisfies the property that any leaf in $\T_2$ is in $\T_1$ but not necessarily folded:
-    $$
-    \T_1 \larger \T_2 \Leftrightarrow \forall \leafin{\rho}{\T_2} : \rho \in \T_1
-    $$
-    and is defined by standard set inclusion, that is:
-    $$
-    \T_1 \larger \T_2 = \T_1 \supseteq \T_2,
-    $$
-4. The meet $\meet$ of $\T_1$ and $\T_2$ ensures that all leafs $\rho$ of $\T_1 \meet \T_2$ are leafs in either $\T_1$ or $\T_2$ and at least present in the other. More formally, the following equations describe the property:
-    $$
-    \begin{gathered}
-    \rho \in (\T_1 \meet \T_2) = \rho \in \T_1 \land \rho \in \T_2 \\
-    \leafin{\rho}{\T_1 \meet \T_2} = (\leafin{\rho}{\T_1} \land \rho \in \T_2) \lor (\leafin{\rho}{\T_2} \land \rho \in \T_1) \\
-    \end{gathered}
-    $$
-    The tree given by $\T_1 \meet \T_2$ is equal to $\T_1 \cap \T_2$.
-5. The join $\join$ of $\T_1$ and $\T_2$ contains all folded and unfolded places of both $\T_1$ and $\T_2$. It satisfies the following equations:
-    $$
-    \begin{gathered}
-    \rho \in (\T_1 \join \T_2) = \rho \in \T_1 \lor \rho \in \T_2 \\
-    \begin{aligned}
-    \leafin{\rho}{\T_1 \join \T_2} =\;
-        & (\leafin{\rho}{\T_1} \land (\leafin{\rho}{\T_2} \lor \rho \notin \T_2)) \\ \lor
-        & (\leafin{\rho}{\T_2} \land (\leafin{\rho}{\T_1} \lor \rho \notin \T_1))
-    \end{aligned}
-    \end{gathered}
-    $$
-    Opposite to to $\meet$, the tree given by $\T_1 \join \T_2$ is equal to $\T_1 \cup \T_2$.
-
+The operator $\smaller$ defines a partial order for $\Ts$.
 ```{=tex}
 \end{lemma}
 ```
 
+
+> [!proof]
+> To show this, we refer the fact that $\smaller$ is defined in terms of $\subseteq$ which forms a partial order.
+
+With an ordering established, we define how to combine two trees, either by creating a new tree which fits within both, or one which contains both trees. This is especially useful for talking about the most unfolded tree, which does not unfold more than either of two other trees.
+
+
+
+```{=tex}
+\begin{definition}\label{definition-folding-tree-join-and-meet} \@ifnextchar\par{\@gobble}{}
+```
+
+The _join_ of two folding trees $\T_1$ and $\T_2$ is defined by
+$$
+\T_1 \join \T_2 = \T_1 \cup \T_2.
+$$
+Similarly, the _meet_ of two folding trees $\T_1$ and $\T_2$ is defined by
+$$
+\T_1 \meet \T_2 = \T_1 \cap \T_2.
+$$
+
+```{=tex}
+\end{definition}
+```
+
+
+
+
+```{=tex}
+\begin{lemma}\label{lemma-folding-tree-join-and-meet-are-least-upper-bound-and-greatest-upper-bound} \@ifnextchar\par{\@gobble}{}
+```
+
+For folding trees, $\join$ and $\meet$ compute the _least upper bound_ and _greatest lower bound_ respectively, with respect to $\smaller$.
+```{=tex}
+\end{lemma}
+```
+
+
+> [!proof]
+> The operators are defined in terms of $\cup$ and $\cap$, which compute the least upper bound and greatest lower bound w.r.t. $\subseteq$, and thus so will $\join$ and $\meet$.
 
 
 
@@ -1009,15 +1025,85 @@ The folding tree data structure forms a lattice with the following properties:
 > ```
 
 > [!caption]
-> A visualization of the lattice operations described in \cref{lemma-folding-tree-lattice}, showing the result of $\T_1 \meet \T_2$ and  $\T_1 \join \T_2$.
+> A visualization of the lattice operations described in \cref{definition-folding-tree-join-and-meet}, showing the result of $\T_1 \meet \T_2$ and  $\T_1 \join \T_2$.
 
 
 :::
 
 
-More intuitively, the $\join$ of two trees is the smallest unfolding that contains two trees, while $\meet$ gives the largest tree that fits inside two trees.
+> [!example]
 
-To see a brief example of this in action, take $\T_1 \meet \T_2$ and $\T_1 \join \T_2$ shown in \cref{fig:folding-meet-join}, and let's consider the necessary foldings and unfoldings to arrive at both $\T_1$ and $\T_2$. For $\T_1 \meet \T_2$ to become $\T_1$ it requires $\unfold\;.x$ and to become $\T_2$ requires $\unfold\;.y.a$. On the other hand, starting at $\T_1 \join \T_2$ and arriving at $\T_1$ and $\T_2$ requires $\fold\;.x$ and $\fold\;.y.a$ respectively. As indicated by this example, $\join$ leads to foldings while $\meet$ leads to unfoldings.
+The operators allows us to construct new trees, but when doing so, it is crucial that the resulting trees are still folding trees.
+
+
+
+```{=tex}
+\begin{lemma}\label{lemma-folding-tree-join-and-meet-are-closed} \@ifnextchar\par{\@gobble}{}
+```
+
+$\Ts$ is closed under both $\join$ and $\meet$, which is to say that the set produced by either, satisfies the properties of being a folding tree.
+```{=tex}
+\end{lemma}
+```
+
+
+> [!proof]
+> The condition for being a folding tree, is that the set must be closed under prefix in accordance to \cref{definition-folding-tree}. To show this, let $\T_1$ and $\T_2$ be arbitrary folding trees, then we can assume that
+> $$
+> \forall \rho \in \T_1 : \prefix(\rho) \subseteq \T_1, \;\text{ and, }\; \forall \rho \in \T_2 : \prefix(\rho) \subseteq \T_2.
+> $$
+> What we need to show is that
+>  $$
+> \forall \rho \in \T_1 \join \T_2 : \prefix(\rho) \subseteq \T_1 \join \T_2, \;\text{ and, }\; \forall \rho \in \T_1 \meet \T_2 : \prefix(\rho) \subseteq \T_1 \meet \T_2.
+> $$
+> For the first let $\rho_1$ be an element of $\T_1 \join \T_2$, then we know that $\rho_1$ is an element of $\T_1$ or $\T_2$. With out loss of generality assume $\rho_1 \in \T_1$, and we have $\prefix(\rho_1) \subseteq \T_1$ by the initial assumption. Then with the fact that $\T_1 \smaller \T_1 \join \T_2$, we can say that $\prefix(\rho_1) \subseteq \T_1 \join \T_2$ by transitivity.
+> 
+> Next, let $\rho_2$ be an element of $\T_1 \meet \T_2$, which means that $\rho_2$ must be an element of both $\T_1$ and $\T_2$, thus giving us $\prefix(\rho_2) \subseteq \T_1$ and $\prefix(\rho_2) \subseteq \T_2$. Combining these two, we get that $\prefix(\rho_2) \subseteq \T_1 \cap \T_2$, which by \cref{definition-folding-tree-join-and-meet} shows $\prefix(\rho_2) \subseteq \T_1 \meet \T_2$.
+
+
+
+```{=tex}
+\begin{definition}\label{definition-folding-tree-top-and-bottom} \@ifnextchar\par{\@gobble}{}
+```
+
+Let $\bot \in \Ts$ be the _least element_ with respect to $\smaller$, which is the tree with the root folded, or the set $\emptyset$.
+
+Additionally, let $\top \in \Ts$ be the _greatest element_ with respect to $\smaller$, which is the maximally unfolded tree, which is given by $\places$.
+
+```{=tex}
+\end{definition}
+```
+
+
+> [!remark]
+> Remember from \cref{definition-place} that $\places$ is potentially infinite, which would make $\top$ an infinite set, meaning that it is impractical to represent fully in practice. Luckily, it satisfies two algebraic properties which makes it simple to use in most cases:
+> $$
+> \begin{array}{ccc}
+> \;\;\;\;&\top \join \T = \top, \text{ and, } \top \meet \T = \T & \forall \T \in \Ts.
+> \end{array}
+> $$
+
+Having defined the ordering, upper and lower bounds, $\bot$ and $\top$, we have the necessary requirements to put it all together.
+
+
+
+```{=tex}
+\begin{lemma}\label{lemma-folding-tree-lattice} \@ifnextchar\par{\@gobble}{}
+```
+
+The set of folding trees $\Ts$ equipped with $\smaller$ forms a lattice.
+
+
+
+```{=tex}
+\end{lemma}
+```
+
+
+> [!proof]
+> The requirements are showed in \cref{lemma-folding-tree-partial-order}, \cref{lemma-folding-tree-join-and-meet-are-least-upper-bound-and-greatest-upper-bound}, and, \cref{lemma-folding-tree-join-and-meet-are-closed}.
+
+
 
 This leads us to the final bit of notation for foldings trees, which is computing the minimal foldings and unfoldings required to transform one tree into another. We let $\tinto$ be the function that computes the composition of foldings and unfoldings satisfying the following equation:
 $$
@@ -1033,7 +1119,7 @@ $$
 \begin{definition}\label{definition-folding-tree-transition} \@ifnextchar\par{\@gobble}{}
 ```
 
-Let $\T_1, \T_2$ be folding trees, then $\tinto(\T_1, \T_2)$ computes the foldings and unfoldings nessesary to transfrom $\T_1$ into $\T_2$, that is
+Let $\T_1, \T_2$ be folding trees, then $\tinto(\T_1, \T_2)$ computes the foldings and unfoldings necessary to transform $\T_1$ into $\T_2$, that is
 $$
 \begin{aligned}
 \tinto[\T_1, \T_2] = \;& \mathcal{F}_n \circ \dots \circ \mathcal{F}_1 \\
@@ -1046,28 +1132,29 @@ $$
 ```
 
 
-Using the above example, we can compute the foldings by way of $\tinto$:
-$$
-\begin{gathered}
-\begin{aligned}
-    \tinto[\T_1 \meet \T_2, \T_1] &= \unfold\;.x &
-    \tinto[\T_1 \meet \T_2, \T_2] &= \unfold\;.y.a \\
-    \tinto[\T_1 \join \T_2, \T_1] &= \fold\;.x &
-    \tinto[\T_1 \join \T_2, \T_2] &= \fold\;.y.a \\
-\end{aligned} \\
-\begin{aligned}
-    \tinto[\T_1 \join \T_2, \T_1 \meet \T_2] &= \fold\;.x \circ \fold\;.y.a \\
-    \tinto[\T_1, \T_2] &= \fold\;.x \circ \unfold\;.y.a \\
-\end{aligned}
-\end{gathered}
-$$
+> [!example]
+> Using the trees from \cref{figure-folding-meet-join}, we can compute the foldings by way of $\tinto$:
+> $$
+> \begin{gathered}
+> \begin{aligned}
+>     \tinto[\T_1 \meet \T_2, \T_1] &= \unfold\;.x &
+>     \tinto[\T_1 \meet \T_2, \T_2] &= \unfold\;.y.a \\
+>     \tinto[\T_1 \join \T_2, \T_1] &= \fold\;.x &
+>     \tinto[\T_1 \join \T_2, \T_2] &= \fold\;.y.a \\
+> \end{aligned} \\
+> \begin{aligned}
+>     \tinto[\T_1 \join \T_2, \T_1 \meet \T_2] &= \fold\;.x \circ \fold\;.y.a \\
+>     \tinto[\T_1, \T_2] &= \fold\;.x \circ \unfold\;.y.a \\
+> \end{aligned}
+> \end{gathered}
+> $$
 
 > [!lemma]
 > The function $\tinto$ is _anticommutative_:
 > $$\tinto[\T_1, \T_2] = \tinto[\T_2, \T_1]^{-1}$$
 
 > [!proof]
-> Let $\T_1$ and $\T_2$ be arbitrary folding trees, and recall that $\mathcal{F}_1 \circ \mathcal{F}_2 = (\mathcal{F}_2^{-1} \circ \mathcal{F}_1^{-1})^{-1}$, then:
+> Let $\T_1$ and $\T_2$ be arbitrary folding trees, and recall that $\mathcal{F}_1 \circ \mathcal{F}_2 = (\mathcal{F}_2^{-1} \circ \mathcal{F}_1^{-1})^{-1}$ from \cref{lemma-fold-and-unfold-are-anticommutative}, then:
 > $$
 > \begin{aligned}
 >   \T_1 &= \tinto[\T_1, \T_2]^{-1}(\tinto[\T_1, \T_2](\T_1)) \\

@@ -15,7 +15,7 @@
               "state": {
                 "file": "Folding tree structure.md",
                 "mode": "source",
-                "backlinks": true,
+                "backlinks": false,
                 "source": false
               }
             }
@@ -128,15 +128,54 @@
                 "state": {
                   "type": "markdown",
                   "state": {
-                    "file": "Lemma – Folding tree weaken cut.md",
+                    "file": "Definition – Folding tree.md",
                     "mode": "source",
                     "backlinks": true,
                     "source": false
                   }
                 }
+              },
+              {
+                "id": "5dc38a7d1cf0f787",
+                "type": "leaf",
+                "state": {
+                  "type": "markdown",
+                  "state": {
+                    "file": "Lemma – Folding tree partial order.md",
+                    "mode": "source",
+                    "backlinks": false,
+                    "source": false
+                  }
+                }
+              },
+              {
+                "id": "bf14909786b5f935",
+                "type": "leaf",
+                "state": {
+                  "type": "markdown",
+                  "state": {
+                    "file": "Lemma – Folding tree join and meet are least upper bound and greatest upper bound.md",
+                    "mode": "source",
+                    "backlinks": false,
+                    "source": false
+                  }
+                }
+              },
+              {
+                "id": "4581f48db8c2f117",
+                "type": "leaf",
+                "state": {
+                  "type": "markdown",
+                  "state": {
+                    "file": "Reading notes/@bourbakiElementsMathematicsChapters2009.md",
+                    "mode": "source",
+                    "backlinks": false,
+                    "source": false
+                  }
+                }
               }
             ],
-            "currentTab": 4
+            "currentTab": 7
           },
           {
             "id": "fe4d071dffe79003",
@@ -163,6 +202,19 @@
                   "type": "markdown",
                   "state": {
                     "file": "Lemma – Requires properties.md",
+                    "mode": "source",
+                    "backlinks": false,
+                    "source": false
+                  }
+                }
+              },
+              {
+                "id": "4fbb37b36210e92f",
+                "type": "leaf",
+                "state": {
+                  "type": "markdown",
+                  "state": {
+                    "file": "Figures/Figure – Folding meet join.md",
                     "mode": "source",
                     "backlinks": false,
                     "source": false
@@ -222,7 +274,7 @@
                 }
               }
             ],
-            "currentTab": 1
+            "currentTab": 2
           },
           {
             "id": "c2de1b3cc3e6bdb9",
@@ -254,9 +306,35 @@
                     "source": false
                   }
                 }
+              },
+              {
+                "id": "3885976ae7c8a4df",
+                "type": "leaf",
+                "state": {
+                  "type": "markdown",
+                  "state": {
+                    "file": "Lemma – Folding tree lattice.md",
+                    "mode": "source",
+                    "backlinks": false,
+                    "source": false
+                  }
+                }
+              },
+              {
+                "id": "3986c7fc73db24e8",
+                "type": "leaf",
+                "state": {
+                  "type": "markdown",
+                  "state": {
+                    "file": "Definition – Folding tree transition.md",
+                    "mode": "source",
+                    "backlinks": false,
+                    "source": false
+                  }
+                }
               }
             ],
-            "currentTab": 1
+            "currentTab": 3
           }
         ],
         "direction": "horizontal"
@@ -288,21 +366,13 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "\"and that is subset\"",
+                "query": "nesse",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical"
               }
-            }
-          },
-          {
-            "id": "3634defb99626b93",
-            "type": "leaf",
-            "state": {
-              "type": "starred",
-              "state": {}
             }
           },
           {
@@ -378,7 +448,8 @@
               }
             }
           }
-        ]
+        ],
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
@@ -398,33 +469,33 @@
   },
   "active": "233e298ed49d2ff6",
   "lastOpenFiles": [
-    "Definition – Folding tree order.md",
+    "Definition – Folding tree transition.md",
+    "Lemma – Fold and unfold are anticommutative.md",
     "Folding tree structure.md",
-    "Lemma – Requires properties.md",
+    "Figures/Figure – Folding meet join.md",
+    "Definition – Folding tree top and bottom.md",
+    "Definition – Folding.md",
+    "Reading notes/@bourbakiElementsMathematicsChapters2009.md",
+    "Lemma – Folding tree join and meet are closed.md",
+    "Definition – Folding tree join and meet.md",
+    "Lemma – Folding tree lattice.md",
+    "Definition – Folding tree order.md",
+    "Lemma – Folding tree join and meet are least upper bound and greatest upper bound.md",
+    "Figure – CFG with annotated analysis.md",
+    "Lemma – Folding tree partial order.md",
     "Definition – Folding tree.md",
+    "Reading notes/@gratzerGeneralLatticeTheory2003.md",
+    "Lemma – Folding tree weaken cut.md",
+    "Lemma – Requires properties.md",
     "Definition – Cut.md",
     "Appendix – Proof of leaves from folding.md",
-    "Lemma – Folding tree weaken cut.md",
     "Definition – Place Prefix.md",
     "Definition – Place.md",
     "Mid-level IR (MIR).md",
     "Proof – Requires properties.md",
     "Lemma – Leaves from folding.md",
     "Definition – Requires.md",
-    "Proof – Leaves from folding.md",
-    "Definition – Leaves.md",
     "Thesis layout.canvas",
-    "Appendix – The Mist Grammar.md",
-    "Appendix.md",
-    "Definition – Folding.md",
-    "Automatic folding of isorecursive structures.md",
-    "Figures/Figure – Folding tree folding sequence.md",
-    "Definition – Place Fields.md",
-    "Example – Folding tree.md",
-    "Figures/Figure – A visualization of the maximally unfolded tree given by `S`.md",
-    "Figure – Breaking invariant.md",
-    "Reading notes/@comonTreeAutomataTechniques1997.md",
-    "Figure – CFG with annotated analysis.md",
     "Reading notes",
     "Untitled.canvas",
     "preamble.sty",

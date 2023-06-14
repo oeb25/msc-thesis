@@ -23,4 +23,4 @@ tags: figure
 > ```
 
 > [!caption]
-> A visualization of the lattice operations described in [[Lemma – Folding tree lattice]], showing the result of $\T_1 \meet \T_2$ and  $\T_1 \join \T_2$.
+> A visualization of the lattice operations described in [[Definition – Folding tree join and meet]], showing the result of $\T_1 \meet \T_2$ and  $\T_1 \join \T_2$.
