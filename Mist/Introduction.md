@@ -2,4 +2,3 @@
 tags: chapter
 ---
 
-![[Contributions]]

@@ -8,20 +8,16 @@
 
 We conclude with related and future work in \cref{conclusion}.
 
-
 # The Mist Programming Language {#the-mist-programming-language}
-- Mist is a Rust deriviative with Viper concepts, which is to say that it looks like Rust, but without many features including life-times and traits, and with additional annotations to specify logical properties and invariants.
+- Mist is a Rust derivative with Viper concepts, which is to say that it looks like Rust, but without many features including life-times and traits, and with additional annotations to specify logical properties and invariants.
 - The grammar for the language is in \cref{appendix-the-mist-grammar}.
 - Supports limited type inference, requiring method signatures to be annotated, but with full inference inside of method bodies.
 - It has an ownership system, which is checked using quantifiable permissions in Viper.
-- Mist uses a _norminal type system_ [see @pierceTypesProgrammingLanguages2002, pp. 251-54].
-
+- Mist uses a _nominal type system_ [see @pierceTypesProgrammingLanguages2002, pp. 251-54].
 
 ## Types in Mist {#types-in-mist}
-
 # The Mist Compiler {#the-mist-compiler}
 The compiler for Mist is written in Rust and is heavily inspired by the architecture of both `rustc` and `rust-analyzer`.
-
 
 ## Compilation stages {#compilation-stages}
 
@@ -207,12 +203,10 @@ The compiler for Mist is written in Rust and is heavily inspired by the architec
 
 During compilation of a Mist program, it goes through many stages, each with their own representation and unique properties. Each stage is computed based on information gathered in the previous stages.
 
-
 ### Syntax trees {#syntax-trees}
 All Mist programs start with the source code, the language described in \cref{the-mist-programming-language}, which then gets parsed using a hand-written recursive descent parser. For reasons further explained in \cref{language-server-integration}, it is important that the parser retains all information in the source code when constructing the next stage of compilation.
 
 The first few stages of compilation, the ones revolving around the syntax, uses a _red-green tree_ approach to representation of the syntax-tree, which was first introduced in the Roslyn C# compiler (see @ericlippertPersistenceFacadesRoslyn2012). It splits the syntax tree into two stages: one called the _green tree_ (also referred to as the _concrete-syntax tree_, see \cref{concrete-syntax-tree-cst}) and one called the _red tree_ (also referred to as the _astract-syntax tree_, see \cref{abstract-syntax-tree-ast}).
-
 
 #### Concrete-syntax tree (CST) {#concrete-syntax-tree-cst}
 The concrete-syntax tree is a full-fidelity representation over source code, meaning no information about the original code is lost. Conceptually, the goal of a CST is to provide a semi-structured view into the source code, by storing a hierarchy of syntax-nodes and tokens, which maintains a complete mapping back to the original source code.
@@ -341,12 +335,10 @@ This means that all queries performed on the CST must account of the partial nat
 :::
 
 
-
-
 #### Abstract-syntax tree (AST) {#abstract-syntax-tree-ast}
 The _abstract-syntax tree_ layer provides a fully type safe way to traverse syntax. Contrary to how AST’s are often implemented, that is using in-memory data types with concrete fields for children, the AST in Mist is only a projection over the CST. This allows high reuse of the underlying data, and minimizes overall memory usage.
 
-Each node in the AST contains a pointer into the CST, and provides type safe accessors for children and even parents. These accessors are generated directly from the grammar (see \cref{appendix-the-mist-grammar}) resulting in a about 3500 lines for highly repetitive code. Additionally, AST nodes also maintain the current span in the source file, allowing referencing back to to the original source code for providing diagnostics and semantic highlighting.
+Each node in the AST contains a pointer into the CST, and provides type safe accessors for children and even parents. These accessors are generated directly from the grammar (see \cref{appendix-the-mist-grammar}) resulting in a about 3500 lines for highly repetitive code. Additionally, AST nodes also maintain the current span in the source file, allowing referencing back to the original source code for providing diagnostics and semantic highlighting.
 
 ```rust
 enum Item {
@@ -370,11 +362,7 @@ impl Fn {
   fn semicolon_token(&self) -> Option<SyntaxToken> { .. }
 }
 ```
-
-
 ### High-level IR (HIR) {#high-level-ir-hir}
-
-
 ### Mid-level IR (MIR) {#mid-level-ir-mir}
 The MIR representation is a control-flow graph (CFG) with branchless basic blocks and branching terminators. Every construct in the HIR is lowered into MIR.
 
@@ -429,19 +417,13 @@ $$
 ```
 
 
-
-
-
 ## Incremental recompilation model {#incremental-recompilation-model}
 The compiler is built in a way to allow incremental recompilation.
 
 Salsa is an incremental computation engine. Read more [here](https://salsa-rs.netlify.app/).
 
-
-
 ## Language server integration {#language-server-integration}
 To provide a good editor experience,
-
 
 # Automatic folding of isorecursive structures {#automatic-folding-of-isorecursive-structures}
 In Mist, types such as `struct`s and `enum`s are named, allowing them to be referenced inside other types, in function arguments, and local variables (see \cref{types-in-mist}). In addition to being a collection of fields, they can also carry logical properties with `invariant`s. From a programmer's perspective, these fields and properties can be accessed at any point in the program, and the invariants can for the most part be assumed to hold, without the need for any additional annotation.^[Note: Due to this, we say that the Mist source language has _transparent_ types, but it's not important.]
@@ -562,7 +544,7 @@ $$\T_s = \{ s,\; s.x,\; s.x.u,\; s.x.v,\; s.y,\; s.y.a,\; s.y.a.f,\; s.y.a.g,\; 
 ```
 
 
-When working with folding trees, it is useful to be able to refer to the set of folded places. For this we introduce a function $\leaves$ which computes this.
+When working with folding trees, it is useful to be able to refer to the set of folded places. For this, we introduce a function $\leaves$ which computes this.
 
 
 
@@ -583,11 +565,8 @@ $$
 > Consider again `struct S` from \cref{figure-breaking-invariant} and $\T_s$ from \cref{example-folding-tree}, then we can compute the folded places in $\T_s$ as:
 > $$\leaves(\T_s) = \{ s.x.u,\; s.x.v\;, s.y.a.f,\; s.y.a.g,\; s.y.a.h,\; s.y.b \}.$$
 
-## Operations on folding trees
-
-Fundamentally a folding tree has two operations: $\unfold$ and $\fold$, which both take a place and a folding tree, and either unfolds or folds that place in the tree. The requirements for folding, is that the given place is unfolded and that all of it's fields are folded. Conversely, the requirements for unfolding is that the given place is folded.
-
-
+### Operations on folding trees {#operations-on-folding-trees}
+Fundamentally, a folding tree has two operations: $\unfold$ and $\fold$, which both take a place and a folding tree, and either unfolds or folds that place in the tree. The requirements for folding are that the given place is unfolded  and that all of its fields are folded. Conversely, the requirement for unfolding is that the given place is folded.
 
 
 
@@ -680,7 +659,7 @@ Additionally, we allow $\fold$ and $\unfold$ to be _partially applied_, which is
 >
 > We see that unfolding $.y$ makes all of the fields of $.y$ available and folded, while the last fold of $.y$  removes the fields to have $.y$ folded. A similar thing happens for the unfolding and folding of $.y.a$.
 
-As $\fold$ and $\unfold$ are the building blocks for further analysis, it is helpful to formalise some of the properties they have, the first of which might seem trivial, but is perhaps the most important one.
+As $\fold$ and $\unfold$ are the building blocks for further analysis, it is helpful to formalize some of the properties they have, the first of which might seem trivial, but is perhaps the most important one.
 
 
 
@@ -701,7 +680,7 @@ Similarly, if $\rho \in \leaves(\T)$, then unfolding $\rho$ will give
 
 A detailed proof for this lemma is found in \cref{appendix-proof-of-leaves-from-folding}.
 
-The next property, is that the two functions, $\fold$ and $\unfold$, allow us to undo the actions of the other.
+The next property is that the two functions, $\fold$ and $\unfold$, allow us to undo the actions of the other.
 
 > [!lemma]
 > The operations $\fold$ and $\unfold$ are inverse functions.^[Todo: Do we need to say that $\rho$ has to be the same, since they are binary, or is that implied?]
@@ -711,9 +690,9 @@ The next property, is that the two functions, $\fold$ and $\unfold$, allow us to
 > $$
 > \begin{aligned}
 > \fold(\rho, \unfold(\rho, \T))
-> 	&= \fold(\rho, \T \cup \{ \rho.f_1, \dots, \rho.f_2 \}) \\
-> 	&= (\T \cup \{ \rho.f_1, \dots, \rho.f_2 \}) \setminus \{ \rho.f_1, \dots, \rho.f_2 \} \\
-> 	&= \T \\
+>   &= \fold(\rho, \T \cup \{ \rho.f_1, \dots, \rho.f_2 \}) \\
+>   &= (\T \cup \{ \rho.f_1, \dots, \rho.f_2 \}) \setminus \{ \rho.f_1, \dots, \rho.f_2 \} \\
+>   &= \T \\
 > \end{aligned}
 > $$
 
@@ -840,7 +819,7 @@ $$
 >
 > The last two transitions show the folding up to make $.x$ and $.y$ folded.
 
-For $\requires$ to be useful, we need to show some properties that it satisfies, but first, we need to establish way to talk about the remaining leaves after requiring a place.
+For $\requires$ to be useful, we need to show some properties that it satisfies, but first, we need to establish a way to talk about the remaining leaves after requiring a place.
 
 
 
@@ -857,7 +836,7 @@ $$
 
 
 > [!example]
-> Consider again \cref{figure-folding-tree-requires-sequence} and lets look at cutting places in the trees:
+> Consider again \cref{figure-folding-tree-requires-sequence} and let us look at cutting places in the trees:
 > $$
 > \begin{aligned}
 > \cut(s.x,     \T_2) &= \{s.y\}, \\
@@ -867,7 +846,7 @@ $$
 > \end{aligned}
 > $$
 
-Intuitively, the $\cut$ can be thought of as removing all leaves leading up to $\rho$, and all leaves which are children of $\rho$. This also means that if we cut a field, it wont remove as more than cutting its parent will. In the extreme case, cutting the root of the tree always _removes all leaves_, while cutting anywhere else, does not necessarily do so.
+Intuitively, the $\cut$ can be thought of as removing all leaves leading up to $\rho$, and all leaves which are children of $\rho$. This also means that if we cut a field, it won't remove as more than cutting its parent will. In the extreme case, cutting the root of the tree always _removes all leaves_, while cutting anywhere else, does not necessarily do so.
 
 
 
@@ -889,14 +868,14 @@ $$
 
 > [!proof]
 > Let $\rho'$ be an element of $\leaves(T)$, then assume $\prefix(\rho) \not\subseteq \prefix(\rho')$, and, $\prefix(\rho') \not\subseteq \prefix(\rho)$, and recall that $\prefix(\rho) \subset \prefix(\rho.f_i)$ since $\prefix(\rho.f_i) = \prefix(\rho) \cup \{\rho.f_i\}$.
-> 
+>
 > Since $\prefix(\rho')$ is not contained in $\prefix(\rho)$, and that it is a subset of $\prefix(\rho.f_i)$, we can say that $\prefix(\rho') \not\subseteq \prefix(\rho.f_i)$.
-> 
+>
 > By a similar argument, we know that $\prefix(\rho.f_i)$ is larger than $\prefix(\rho)$, and since $\prefix(\rho) \not\subseteq \prefix(\rho')$, then $\prefix(\rho.f_i) \not\subseteq \prefix(\rho')$.
-> 
+>
 > Since $\rho'$ was taken from $\leaves(\T)$ and the properties assumed were the conditions necessary to be in $\cut(\rho, \T)$, and we showed the conditions for being in $\cut(\rho.f_i, \T)$, we can conclude that the subset inclusion holds.
 
-One point of interest regarding $\cut$, is that the set of places it produces _does not contain the provided $\rho$_, and thus does not form the leaves of a valid folding tree. It, however, does remove everything that would be in violation of having $\rho$ be a leaf, and thus is quite useful in specifying the perhaps the most important the property of $\requires$.
+One point of interest regarding $\cut$ is that the set of places it produces _does not contain the provided $\rho$_, and thus does not form the leaves of a valid folding tree. It, however, does remove everything that would violate having $\rho$ be a leaf, and thus is quite useful in specifying perhaps the most important property of $\requires$.
 
 
 
@@ -919,14 +898,13 @@ With \cref{lemma-requires-properties} we can ensure that requiring some place in
 
 > [!example]
 > Consider `struct S` from \cref{figure-breaking-invariant} once again. If we require some (potentially nested) field of `s.y`, then it will never fold nor unfold the fields of `s.x`.
-> 
+>
 > This ensures that folding stays isolated to the parts of a structure for which it is relevant.
 
-## Ordering of folding trees
+### Ordering of folding trees {#ordering-of-folding-trees}
+The goal of folding trees is to formalize the state of foldings at specific program points, and thus it is crucial that we not only have ways to mutate them but also have ways of relating one folding tree to another.
 
-The goal of folding trees is to formalise the state of foldings at specific program points, and thus it is crucial that we not only have ways to mutate them, but also have a ways of relating one folding tree to another.
-
-The first step for doing so, is defining a _partial order_ for folding trees.
+The first step for doing so is defining a _partial order_ for folding trees.
 
 
 
@@ -938,7 +916,7 @@ Let $\T_1$ and $\T_2$ be folding trees, then we say that $\T_1$ is _smaller than
 $$
 \T_1 \smaller \T_2 = \leaves(\T_1) \subseteq \T_2,
 $$
-or equivalently, since $\leaves(\T_1) \subseteq \T_1$ and $\T_1$ is prefix closed
+or equivalently, since $\T_1$ is prefix closed by $\leaves(\T_1)$
 $$
 \T_1 \smaller \T_2 = \T_1 \subseteq \T_2.
 $$
@@ -963,7 +941,7 @@ The operator $\smaller$ defines a partial order for $\Ts$.
 > [!proof]
 > To show this, we refer the fact that $\smaller$ is defined in terms of $\subseteq$ which forms a partial order.
 
-With an ordering established, we define how to combine two trees, either by creating a new tree which fits within both, or one which contains both trees. This is especially useful for talking about the most unfolded tree, which does not unfold more than either of two other trees.
+With an ordering established, we define how to combine two trees, either by creating a new tree that fits within both, or one which contains both trees. This is especially useful for talking about the most unfolded tree, which does not unfold more than either of the two other trees.
 
 
 
@@ -1033,7 +1011,7 @@ For folding trees, $\join$ and $\meet$ compute the _least upper bound_ and _grea
 
 > [!example]
 
-The operators allows us to construct new trees, but when doing so, it is crucial that the resulting trees are still folding trees.
+The operators allow us to construct new trees, but when doing so, it is crucial that the resulting trees are still folding trees.
 
 
 
@@ -1056,8 +1034,8 @@ $\Ts$ is closed under both $\join$ and $\meet$, which is to say that the set pro
 >  $$
 > \forall \rho \in \T_1 \join \T_2 : \prefix(\rho) \subseteq \T_1 \join \T_2, \;\text{ and, }\; \forall \rho \in \T_1 \meet \T_2 : \prefix(\rho) \subseteq \T_1 \meet \T_2.
 > $$
-> For the first let $\rho_1$ be an element of $\T_1 \join \T_2$, then we know that $\rho_1$ is an element of $\T_1$ or $\T_2$. With out loss of generality assume $\rho_1 \in \T_1$, and we have $\prefix(\rho_1) \subseteq \T_1$ by the initial assumption. Then with the fact that $\T_1 \smaller \T_1 \join \T_2$, we can say that $\prefix(\rho_1) \subseteq \T_1 \join \T_2$ by transitivity.
-> 
+> For the first let $\rho_1$ be an element of $\T_1 \join \T_2$, then we know that $\rho_1$ is an element of $\T_1$ or $\T_2$. Without loss of generality assume $\rho_1 \in \T_1$, and we have $\prefix(\rho_1) \subseteq \T_1$ by the initial assumption. Then with the fact that $\T_1 \smaller \T_1 \join \T_2$, we can say that $\prefix(\rho_1) \subseteq \T_1 \join \T_2$ by transitivity.
+>
 > Next, let $\rho_2$ be an element of $\T_1 \meet \T_2$, which means that $\rho_2$ must be an element of both $\T_1$ and $\T_2$, thus giving us $\prefix(\rho_2) \subseteq \T_1$ and $\prefix(\rho_2) \subseteq \T_2$. Combining these two, we get that $\prefix(\rho_2) \subseteq \T_1 \cap \T_2$, which by \cref{definition-folding-tree-join-and-meet} shows $\prefix(\rho_2) \subseteq \T_1 \meet \T_2$.
 
 
@@ -1076,7 +1054,7 @@ Additionally, let $\top \in \Ts$ be the _greatest element_ with respect to $\sma
 
 
 > [!remark]
-> Remember from \cref{definition-place} that $\places$ is potentially infinite, which would make $\top$ an infinite set, meaning that it is impractical to represent fully in practice. Luckily, it satisfies two algebraic properties which makes it simple to use in most cases:
+> Remember from \cref{definition-place} that $\places$ is potentially infinite, which would make $\top$ an infinite set, meaning that it is impractical to represent fully in practice. Luckily, it satisfies two algebraic properties which make it simple to use in most cases:
 > $$
 > \begin{array}{ccc}
 > \;\;\;\;&\top \join \T = \top, \text{ and, } \top \meet \T = \T & \forall \T \in \Ts.
@@ -1093,8 +1071,6 @@ Having defined the ordering, upper and lower bounds, $\bot$ and $\top$, we have 
 
 The set of folding trees $\Ts$ equipped with $\smaller$ forms a lattice.
 
-
-
 ```{=tex}
 \end{lemma}
 ```
@@ -1105,13 +1081,7 @@ The set of folding trees $\Ts$ equipped with $\smaller$ forms a lattice.
 
 
 
-This leads us to the final bit of notation for foldings trees, which is computing the minimal foldings and unfoldings required to transform one tree into another. We let $\tinto$ be the function that computes the composition of foldings and unfoldings satisfying the following equation:
-$$
-\begin{aligned}
-\tinto[\T_1, \T_2] = \;& \mathcal{F}_n \circ \dots \circ \mathcal{F}_1 \\
-\text{such that } [&\mathcal{F}_n \circ \dots \circ \mathcal{F}_1](\T_1) = \T_2
-\end{aligned}
-$$
+This leads us to the final bit of notation for foldings trees, which is computing the minimal foldings and unfoldings required to transform one tree into another.
 
 
 
@@ -1119,14 +1089,14 @@ $$
 \begin{definition}\label{definition-folding-tree-transition} \@ifnextchar\par{\@gobble}{}
 ```
 
-Let $\T_1, \T_2$ be folding trees, then $\tinto(\T_1, \T_2)$ computes the foldings and unfoldings necessary to transform $\T_1$ into $\T_2$, that is
+Let $\T_1, \T_2$ be folding trees, then $\tinto(\T_1, \T_2)$ computes $\mathcal{F}_1,\dots,\mathcal{F}_n$ being the foldings and unfoldings necessary to transform $\T_1$ into $\T_2$, that is
 $$
 \begin{aligned}
 \tinto[\T_1, \T_2] = \;& \mathcal{F}_n \circ \dots \circ \mathcal{F}_1 \\
 \text{such that } [&\mathcal{F}_n \circ \dots \circ \mathcal{F}_1](\T_1) = \T_2.
 \end{aligned}
 $$
-
+Formally $\tinto : \Ts \to \Ts \to \Ts \to \Ts$, but it use useful to think of as a sequence of foldings.
 ```{=tex}
 \end{definition}
 ```
@@ -1149,6 +1119,8 @@ $$
 > \end{gathered}
 > $$
 
+This allows us to transition foldings from one program point into those of another, but it also allows us to go backwards, due to the invertible property of $\fold$ and $\unfold$.
+
 > [!lemma]
 > The function $\tinto$ is _anticommutative_:
 > $$\tinto[\T_1, \T_2] = \tinto[\T_2, \T_1]^{-1}$$
@@ -1166,10 +1138,7 @@ $$
 > $$
 > From this we get that $\T_1 = \tinto[\T_2, \T_1](\tinto[\T_1, \T_2](\T_1))$, showing that $\tinto[\T_2, \T_1]$ is the inverse of $\tinto[\T_1, \T_2]$.
 
-With folding trees defined, we can continue to look at how they relate to programs written in Mist.
-
 ## Folding analysis {#folding-analysis}
-
 ### Folding-level IR (FIR) {#folding-level-ir-fir}
 In \cref{compilation-stages} we introduced the multi-stage structure of the Mist compiler, and specifically the MIR representation which is a CFG. In terms of computing foldings and unfoldings, this is the stage we are concerned with, but instead of considering the full set of instructions and terminators, we consider a smaller variant that focuses much more concretely on _how and what_ places are used and omit the details for performing actual computation or verification. The grammar for this smaller language is shown in \cref{figure-fir-grammar}.
 
@@ -1209,17 +1178,13 @@ UnaryOp_ = '...'
 :::
 
 
-
-
 ### Semantics {#semantics}
-
-
 ### Abstract semantics {#abstract-semantics}
 
 
 ::: {.figure #figure-cfg-with-annotated-analysis}
 
-> [!subfigure|width=0.35]
+> [!subfigure|width=0.25]
 > ```tikz
 > \usetikzlibrary{positioning}
 >
@@ -1258,7 +1223,7 @@ UnaryOp_ = '...'
 > \end{document}
 > ```
 
-> [!subfigure|width=0.55]
+> [!subfigure|width=0.25]
 > $$
 > \begin{aligned}
 >     \A(\phi_1) &\smaller \bsem{\alpha_1}(\A(\phi_2)) \\
@@ -1281,12 +1246,10 @@ UnaryOp_ = '...'
 :::
 
 
-
 # Conclusion {#conclusion}
 ```{=tex}
 \appendix
 ```
-
 
 # The Mist Grammar {#appendix-the-mist-grammar}
 ```{.ungram .noNames}
@@ -1530,8 +1493,6 @@ Literal =
     'int_number'
   | 'true' | 'false'
 ```
-
-
 
 # Proof of leaves from folding {#appendix-proof-of-leaves-from-folding}
 ## Proof of \cref{lemma-leaves-from-folding}

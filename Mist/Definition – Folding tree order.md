@@ -6,7 +6,7 @@ Let $\T_1$ and $\T_2$ be folding trees, then we say that $\T_1$ is _smaller than
 $$
 \T_1 \smaller \T_2 = \leaves(\T_1) \subseteq \T_2,
 $$
-or equivalently, since $\leaves(\T_1) \subseteq \T_1$ and $\T_1$ is prefix closed
+or equivalently, since $\T_1$ is prefix closed by $\leaves(\T_1)$
 $$
 \T_1 \smaller \T_2 = \T_1 \subseteq \T_2.
 $$

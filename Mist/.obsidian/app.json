@@ -3,5 +3,9 @@
   "vimMode": false,
   "promptDelete": false,
   "showInlineTitle": true,
-  "spellcheck": true
+  "spellcheck": true,
+  "spellcheckDictionary": [
+    "foldings",
+    "unfoldings"
+  ]
 }

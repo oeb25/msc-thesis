@@ -1,7 +1,7 @@
 [
   "obsidian-latex",
-  "obsidian-pandoc",
   "callout-manager",
   "obsidian-tikzjax",
-  "obsidian-citation-plugin"
+  "obsidian-citation-plugin",
+  "obsidian-languagetool-plugin"
 ]

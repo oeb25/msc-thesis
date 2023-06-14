@@ -1,0 +1,8 @@
+accessor
+anticommutative
+equirecursive
+foldings
+iff
+isorecursive
+subtree
+unfoldings

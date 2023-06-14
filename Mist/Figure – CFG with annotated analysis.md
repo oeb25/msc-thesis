@@ -2,7 +2,7 @@
 tags: figure
 ---
 
-> [!subfigure|width=0.35]
+> [!subfigure|width=0.25]
 > ```tikz
 > \usetikzlibrary{positioning}
 >
@@ -41,7 +41,7 @@ tags: figure
 > \end{document}
 > ```
 
-> [!subfigure|width=0.55]
+> [!subfigure|width=0.25]
 > $$
 > \begin{aligned}
 >     \A(\phi_1) &\smaller \bsem{\alpha_1}(\A(\phi_2)) \\

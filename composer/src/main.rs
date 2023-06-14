@@ -136,11 +136,11 @@ impl Database {
                 } else {
                     (None, content)
                 };
-                let kind_kind = frontmatter
-                    .as_ref()
-                    .is_some_and(|f| f.ty == "citation")
-                    .then_some(FileKindKind::Citation)
-                    .unwrap_or(FileKindKind::Markdown);
+                let kind_kind = if frontmatter.as_ref().is_some_and(|f| f.ty == "citation") {
+                    FileKindKind::Citation
+                } else {
+                    FileKindKind::Markdown
+                };
                 (
                     FileKind::Markdown {
                         frontmatter,
@@ -204,6 +204,35 @@ impl Database {
             }
 
             let pf = match self.files[&f].0.kind.clone() {
+                FileKind::Markdown {
+                    frontmatter: Some(Frontmatter { ty, .. }),
+                    content,
+                } if ty == "outline" => {
+                    let outline = content
+                        .trim()
+                        .lines()
+                        .map(|l| {
+                            if let Some((tabs, link)) = l.split_once("- ") {
+                                let indentation = tabs.len();
+                                let name = link.trim_matches(|c| "[]".contains(c));
+                                let path = self.resolve(name)?;
+                                let (_, kind_kind) = self.ingest(None, &path)?;
+
+                                Ok(ProcessedFileContent::Embed(path))
+
+                                // todo!(
+                                //     "{} {name} {:?}",
+                                //     "#".repeat(1 + indentation),
+                                //     (path, kind_kind)
+                                // )
+                            } else {
+                                todo!("{l}")
+                            }
+                        })
+                        .collect::<Result<_>>()?;
+
+                    ProcessedFile { content: outline }
+                }
                 FileKind::Markdown {
                     frontmatter,
                     content,
@@ -398,7 +427,10 @@ impl Database {
 
             for (idx, c) in pf.content.iter().enumerate().skip(pos) {
                 match c {
-                    ProcessedFileContent::Markdown(md) => write!(buf, "{md}").into_diagnostic()?,
+                    ProcessedFileContent::Markdown(md) => {
+                        let md = md.replace("#todo", "Todo");
+                        write!(buf, "{md}").into_diagnostic()?
+                    }
                     ProcessedFileContent::RawLatex(tex) => {
                         writeln!(buf, "\n```{{=tex}}\n{tex}\n```").into_diagnostic()?
                     }

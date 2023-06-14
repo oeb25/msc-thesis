@@ -25,7 +25,7 @@ generate-pdf:
     @just pandoc
 
 pandoc: compile-filters
-    cargo run --bin composer -- build Mist/Thesis\ layout.canvas > full.md
+    cargo run --bin composer -- build Mist/Outline.md > full.md
     pandoc \
         --template ./thesis-template-2015/Thesis.tex \
         --number-sections \
