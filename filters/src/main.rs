@@ -429,7 +429,7 @@ fn fmt_ungrammar(src: &str, show_names: bool) -> Result<String> {
             buf: &mut buf,
             show_names,
         };
-        fmtr.fmt_rule(rule, false).into_diagnostic()?;
+        fmtr.fmt_rule(rule, Nest::Top).into_diagnostic()?;
 
         writeln!(buf).into_diagnostic()?;
         writeln!(buf).into_diagnostic()?;
@@ -442,14 +442,23 @@ fn fmt_ungrammar(src: &str, show_names: bool) -> Result<String> {
         show_names: bool,
     }
 
+    #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord)]
+    enum Nest {
+        Top,
+        Alt,
+        Seq,
+        /// Covers label, opt, and, rep
+        Mod,
+    }
+
     impl Formatter<'_> {
-        fn fmt_rule(&mut self, r: &ungrammar::Rule, nested: bool) -> fmt::Result {
+        fn fmt_rule(&mut self, r: &ungrammar::Rule, nest: Nest) -> fmt::Result {
             match r {
                 ungrammar::Rule::Labeled { label, rule } => {
                     if self.show_names {
                         write!(self.buf, "{label}:")?;
                     }
-                    self.fmt_rule(rule, true)?;
+                    self.fmt_rule(rule, Nest::Mod)?;
                 }
                 ungrammar::Rule::Node(n) => write!(
                     self.buf,
@@ -458,43 +467,43 @@ fn fmt_ungrammar(src: &str, show_names: bool) -> Result<String> {
                 )?,
                 ungrammar::Rule::Token(t) => write!(self.buf, "`{}'", self.grammar[*t].name)?,
                 ungrammar::Rule::Seq(rs) => {
-                    if nested {
+                    if nest > Nest::Seq {
                         write!(self.buf, "(")?;
                     }
                     for r in rs {
                         write!(self.buf, " ")?;
-                        self.fmt_rule(r, true)?;
+                        self.fmt_rule(r, Nest::Seq)?;
                     }
-                    if nested {
+                    if nest > Nest::Seq {
                         write!(self.buf, ")")?;
                     }
                 }
                 ungrammar::Rule::Alt(alts) => {
-                    if nested {
+                    if nest > Nest::Alt {
                         write!(self.buf, "(")?;
                     }
                     let mut first = true;
                     for r in alts {
                         if !first {
-                            if nested || alts.len() <= 2 {
+                            if nest > Nest::Alt || alts.len() <= 2 {
                                 write!(self.buf, r" | ")?;
                             } else {
                                 write!(self.buf, r" \alt ")?;
                             }
                         }
                         first = false;
-                        self.fmt_rule(r, true)?;
+                        self.fmt_rule(r, Nest::Alt)?;
                     }
-                    if nested {
+                    if nest > Nest::Alt {
                         write!(self.buf, ")")?;
                     }
                 }
                 ungrammar::Rule::Opt(r) => {
-                    self.fmt_rule(r, true)?;
+                    self.fmt_rule(r, Nest::Mod)?;
                     write!(self.buf, "?")?
                 }
                 ungrammar::Rule::Rep(r) => {
-                    self.fmt_rule(r, true)?;
+                    self.fmt_rule(r, Nest::Mod)?;
                     write!(self.buf, "*")?
                 }
             }

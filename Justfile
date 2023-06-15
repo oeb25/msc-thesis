@@ -23,6 +23,8 @@ generate-pdf:
     @just FINAL_PDF="debug.tex" pandoc
     clear
     @just pandoc
+    @echo
+    @echo "📝 Done!"
 
 pandoc: compile-filters
     cargo run --bin composer -- build Mist/Outline.md > full.md

@@ -2,7 +2,7 @@
 tags: figure
 ---
 
-> [!subfigure|width=0.25]
+> [!subfigure|width=0.2]
 > ```tikz
 > \usetikzlibrary{positioning}
 >
@@ -41,17 +41,15 @@ tags: figure
 > \end{document}
 > ```
 
-> [!subfigure|width=0.25]
+> [!subfigure|width=0.3]
 > $$
+> \begin{gathered}
 > \begin{aligned}
 >     \A(\phi_1) &\smaller \bsem{\alpha_1}(\A(\phi_2)) \\
 >     \A(\phi_2) &\smaller \bsem{\alpha_2}(\A(\phi_3)) \\
 >     \A(\phi_2) &\smaller \bsem{\alpha_2}(\A(\phi_4)) \\
 >     \A(\phi_3) &\smaller \bsem{\alpha_3}(\A(\phi_2)) \\
-> \end{aligned}
-> $$
-> $$
-> \begin{gathered}
+> \end{aligned} \\[1em]
 > \bsem{{\color{Teal900} \delta(\phi_i, \phi_j)}}(\A(\phi_j)) = \tinto[\A(\phi_j), \A(\phi_i)](\A(\phi_j)) \\
 > \bsem{\alpha_i}(\A(\phi_i')) = \A(\phi_i)
 > \end{gathered}

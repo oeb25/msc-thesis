@@ -213,18 +213,12 @@ impl Database {
                         .lines()
                         .map(|l| {
                             if let Some((tabs, link)) = l.split_once("- ") {
-                                let indentation = tabs.len();
+                                let _indentation = tabs.len();
                                 let name = link.trim_matches(|c| "[]".contains(c));
                                 let path = self.resolve(name)?;
-                                let (_, kind_kind) = self.ingest(None, &path)?;
+                                let (_, _kind_kind) = self.ingest(None, &path)?;
 
                                 Ok(ProcessedFileContent::Embed(path))
-
-                                // todo!(
-                                //     "{} {name} {:?}",
-                                //     "#".repeat(1 + indentation),
-                                //     (path, kind_kind)
-                                // )
                             } else {
                                 todo!("{l}")
                             }

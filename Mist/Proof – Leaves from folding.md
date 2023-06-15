@@ -39,3 +39,4 @@ $$
 	&(\leaves(\T) \setminus \{\rho\}) \cup \fields(\rho) \\
 \end{aligned}
 $$
+\qed

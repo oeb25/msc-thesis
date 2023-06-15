@@ -1,11 +1,11 @@
 {
-  "collapse-filter": false,
+  "collapse-filter": true,
   "search": "",
   "showTags": false,
   "showAttachments": true,
   "hideUnresolved": false,
   "showOrphans": false,
-  "collapse-color-groups": false,
+  "collapse-color-groups": true,
   "colorGroups": [
     {
       "query": "tag:definition",
@@ -55,18 +55,25 @@
         "a": 1,
         "rgb": 13098269
       }
+    },
+    {
+      "query": "tag:#proof",
+      "color": {
+        "a": 1,
+        "rgb": 12822992
+      }
     }
   ],
-  "collapse-display": false,
+  "collapse-display": true,
   "showArrow": true,
   "textFadeMultiplier": 0.1,
   "nodeSizeMultiplier": 1,
   "lineSizeMultiplier": 1,
-  "collapse-forces": true,
+  "collapse-forces": false,
   "centerStrength": 0.512532552083333,
-  "repelStrength": 9.67936197916667,
+  "repelStrength": 9.97233072916667,
   "linkStrength": 1,
   "linkDistance": 131,
-  "scale": 0.522701787788743,
-  "close": true
+  "scale": 0.4325915825682402,
+  "close": false
 }

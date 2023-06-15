@@ -4,7 +4,7 @@
 ## Contributions {#contributions}
 - We present in \cref{the-mist-programming-language} a new programming language, Mist, which supports formal verification constructs with a high emphasis on usability.
 - We present in \cref{the-mist-compiler} an implementation of the compilation infrastructure for Mist based on incremental compilation and verification, with an accompanying implementation of the Language Server Protocol.
-- In \cref{automatic-folding-of-isorecursive-structures} we formalize an algorithm for computing folding- and unfolding-points for isorecursive structures, and give a formally verified implementation of the algorithm in Mist.
+- In \cref{automatic-folding-of-isorecursive-structures}, we formalize an algorithm for computing folding- and unfolding-points for isorecursive structures and give a formally verified implementation of the algorithm in Mist.
 
 We conclude with related and future work in \cref{conclusion}.
 
@@ -211,18 +211,18 @@ The first few stages of compilation, the ones revolving around the syntax, uses 
 #### Concrete-syntax tree (CST) {#concrete-syntax-tree-cst}
 The concrete-syntax tree is a full-fidelity representation over source code, meaning no information about the original code is lost. Conceptually, the goal of a CST is to provide a semi-structured view into the source code, by storing a hierarchy of syntax-nodes and tokens, which maintains a complete mapping back to the original source code.
 
-The job of the parser is to construct such a CST, by consuming tokens are adding nodes to the tree. Internally the CST maintains the _kind_ of syntax-nodes and tokens inserted by the parser, but does nothing to prevent the parser from emitting malformed language constructs. This is by design, as we want the CST to be able to contain partial or invalid syntax. Doing so, allows the compiler to optimistically continue its compilation process, even when the source program contains syntax errors and/or is actively being written.
+The parser's job is to construct such a CST by consuming tokens and adding nodes to the tree. Internally the CST maintains the _kind_ of syntax-nodes and tokens inserted by the parser but does nothing to prevent the parser from emitting malformed language constructs. This is by design, as we want the CST to be able to contain partial or invalid syntax. Doing so allows the compiler to optimistically continue its compilation process, even when the source program contains syntax errors and when being actively written.
 
-Relating the CST to the grammar (see \cref{appendix-the-mist-grammar}) node kinds represent productions and terminals for syntax-nodes and tokens respectively. For all syntactically valid programs, the corresponding CST will have a structure conforming the to the hierarchy described in the grammar. But for invalid programs, children of nodes might have a mixture of allowed and disallowed syntax kinds.
+Relating the CST to the grammar (see \cref{appendix-the-mist-grammar}), node kinds represent productions and terminals for syntax-nodes and tokens, respectively. For all syntactically valid programs, the corresponding CST will have a structure conforming to the hierarchy described in the grammar. However, for invalid programs, children of nodes might have a mixture of allowed and disallowed syntax kinds.
 
-This means that all queries performed on the CST must account of the partial nature of the tree, and thus the caller must consider both cases where the expected node exists, and where it does not.
+This means that all queries performed on the CST must account for the tree's partial nature, and thus the caller must consider both cases where the expected node exists and where it does not.
 
 
 
 ::: {.figure #figure-cst-example}
 
 > [!subfigure|width=0.4]
-> ```mist
+> ```{.mist .ignoreErrors}
 > fn main() -> { let x = 5 }
 > ```
 
@@ -336,9 +336,9 @@ This means that all queries performed on the CST must account of the partial nat
 
 
 #### Abstract-syntax tree (AST) {#abstract-syntax-tree-ast}
-The _abstract-syntax tree_ layer provides a fully type safe way to traverse syntax. Contrary to how AST’s are often implemented, that is using in-memory data types with concrete fields for children, the AST in Mist is only a projection over the CST. This allows high reuse of the underlying data, and minimizes overall memory usage.
+The _abstract-syntax tree_ layer provides a fully type-safe way to traverse syntax. Contrary to how ASTs are often implemented, that is, using in-memory data types with concrete fields for children, the AST in Mist is only a projection over the CST. This allows high reuse of the underlying data and minimizes overall memory usage.
 
-Each node in the AST contains a pointer into the CST, and provides type safe accessors for children and even parents. These accessors are generated directly from the grammar (see \cref{appendix-the-mist-grammar}) resulting in a about 3500 lines for highly repetitive code. Additionally, AST nodes also maintain the current span in the source file, allowing referencing back to the original source code for providing diagnostics and semantic highlighting.
+Each node in the AST contains a pointer into the CST and provides type-safe accessors for children and even parents. These accessors are generated directly from the grammar (see \cref{appendix-the-mist-grammar}), resulting in about 3500 lines of highly repetitive code. AST nodes also maintain the current span in the source file, allowing referencing back to the original source code for providing diagnostics and semantic highlighting.
 
 ```rust
 enum Item {
@@ -417,6 +417,7 @@ $$
 ```
 
 
+### Verification code generation {#verification-code-generation}
 ## Incremental recompilation model {#incremental-recompilation-model}
 The compiler is built in a way to allow incremental recompilation.
 
@@ -426,9 +427,9 @@ Salsa is an incremental computation engine. Read more [here](https://salsa-rs.ne
 To provide a good editor experience,
 
 # Automatic folding of isorecursive structures {#automatic-folding-of-isorecursive-structures}
-In Mist, types such as `struct`s and `enum`s are named, allowing them to be referenced inside other types, in function arguments, and local variables (see \cref{types-in-mist}). In addition to being a collection of fields, they can also carry logical properties with `invariant`s. From a programmer's perspective, these fields and properties can be accessed at any point in the program, and the invariants can for the most part be assumed to hold, without the need for any additional annotation.^[Note: Due to this, we say that the Mist source language has _transparent_ types, but it's not important.]
+In Mist, types such as `struct`s and `enum`s are named, allowing them to be referenced inside other types, in function arguments, and local variables (see \cref{types-in-mist}). In addition to being a collection of fields, they can also carry logical properties with `invariant`s. From a programmer's perspective, these fields and properties can be accessed at any point in the program, and the invariants can usually be assumed to hold without the need for any additional annotation.^[Note: Due to this, we say that the Mist source language has _transparent_ types, but it's not important.]
 
-This property, however, introduces an implicit guarantee about where and when the invariants of a type holds. This is tricky when we, for example, modify the internals of a struct in a sequence of operations, and part way through the mutation the invariants only partially hold.
+This property, however, introduces an implicit guarantee about where and when the invariants of a type hold. This is tricky when we, for example, modify the internals of a struct in a sequence of operations, and part way through the mutation, the invariants only partially hold.
 
 
 
@@ -461,38 +462,36 @@ This property, however, introduces an implicit guarantee about where and when th
 > [!example]
 > Consider the program in \cref{figure-breaking-invariant}. The `struct X` has an `invariant` \lineref{4} establishing a relationship between `.u` and `.v`.
 >
-> With this, the programmer can assume that when given a reference to type `S` \lineref{6} then it's field `.x` of type `X` satisfies the invariant of `X`. Thus the assertion \lineref{7} must hold.
+> With this, the programmer can assume that when given a reference to type `S` \lineref{6}, its field `.x` of type `X` satisfies the invariant of `X`. Thus the assertion \lineref{7} must hold.
 >
 > The invariant, however, is temporarily broken when `s.x.u` is incremented \lineref{9} only to be restored again when `s.x.v` is decremented \lineref{10}.
 
-In Mist, we want _temporary invalidation_ of invariants to be allowed, and we want the compiler to figure out^[Authors note: I don't use "infer" here on purpose, since we will use it in a more formal sense later] when invariants must hold and when it's okay for them not to.
+In Mist, we want _temporary invalidation_ of invariants to be allowed, and we want the compiler to figure out^[Authors note: I do not use "infer" here on purpose since we will use it in a more formal sense later] when invariants must hold and when it is okay for them not to.
 
-The goal is thus for the compiler to infer what we call _folding points_, which are locations in a function were we either can assume the properties of an invariant (an _unfold_), or where we must assert that an invariant holds (a _fold_).
+The goal is thus for the compiler to infer what we call _folding points_, which are locations in a function where we either can assume the properties of an invariant (an _unfold_) or where we must assert that an invariant holds (a _fold_).
 
-Each folding is associated with a place (as a reminder, a place is a slot and sequence of fields, see \cref{definition-place}). We say that when we unfold a place, that place becomes unfolded and so is its type, and conversely the same is true for fold. Additionally, only folded places can be unfolded and only unfolded places can be folded.
+Each folding is associated with a place (as a reminder, a place is a slot and sequence of fields, see \cref{definition-place}). We say that when we unfold a place, it becomes unfolded and so becomes its type; conversely, the same is true for fold. Additionally, only folded places can be unfolded, and only unfolded places can be folded.
 
 Conceptually, this means that all places and types have two states, folded and unfolded, and such types are called _isorecursive types_.
 
 > [!remark]
-> For the most part, languages has _equirecursive types_ as opposed to _isorecursive types_. With equirecursive types there's no difference between having a named type, and having access to its fields (they are equivalent), but with isorecursive types these two states are distinct. Going between the two states we refer to as _fold_ and _unfold_, but common terminology is also _roll_ and _unroll_.
+> For the most part, languages has _equirecursive types_ as opposed to _isorecursive types_. With equirecursive types, there is no difference between having a named type and having access to its fields (they are equivalent), but with isorecursive types, these two states are distinct. Going between the two states, we refer to as _fold_ and _unfold_, but common terminology is also _roll_ and _unroll_.
 
-In addition to controlling invariants, folding also limits field access such that a place must be unfolded for its fields to be accessible, and this exactly what the compiler uses to determine folding places.
+In addition to controlling invariants, folding also limits field access such that a place must be unfolded for its fields to be accessible, and this is exactly what the compiler uses to determine folding places.
 
 > [!example]
-> Consider again the program in \cref{figure-breaking-invariant}. In the first assertion (repeated below) the nested field `.x.v` needs to be accessible on `s`.
+> Consider again the program in \cref{figure-breaking-invariant}. In the first assertion (repeated below), the nested field `.x.v` needs to be accessible on `s`.
 > ```{.mist .ignoreErrors}
 > assert s.x.v + s.x.u == 0;
 > ```
-> This means that not only does `s` need to be unfolded, but also `s.x`. Incidentally, `.x.u` is also accessed, which requires the same unfolded places.
+> This means that not only do `s` need to be unfolded, but also `s.x`. Incidentally, `.x.u` is also accessed, which requires the same unfolded places.
 > 
-> Moreover, the argument `s: &mut S` requires that upon returning, `s` and anything it might contain, will be folded. This makes sure that invariants of `s`, and any nested invariants, hold when the function exits.
+> Moreover, the argument `s: &mut S` requires that upon returning, `s` and anything it might contain will be folded. This ensures that invariants of `s`, and any nested invariants hold when the function exits.
 
 To reason about these foldings more formally, we need a data structure to lay a foundation precisely describing folding requirements.
 
-
-
 ## Folding tree structure {#folding-tree-structure}
-A folding tree is a data structure, denoted by $\T$, that maintains the folding state of places. It works by representing data types as a tree, where nodes are fields of potentially nested `struct`s. The leaves of the tree are all the places that are _folded_, while the internal nodes are _unfolded_ places, both uniquely described by paths from the root.
+A _folding tree_ is a data structure, denoted by $\T$, that maintains the folding state of places. It works by representing data types as a tree, where nodes are fields of potentially nested `struct`s. The leaves of the tree are all the places that are _folded_, while the internal nodes are _unfolded_ places, both uniquely described by paths from the root.
 
 
 
@@ -544,7 +543,7 @@ $$\T_s = \{ s,\; s.x,\; s.x.u,\; s.x.v,\; s.y,\; s.y.a,\; s.y.a.f,\; s.y.a.g,\; 
 ```
 
 
-When working with folding trees, it is useful to be able to refer to the set of folded places. For this, we introduce a function $\leaves$ which computes this.
+When working with folding trees, it is useful to be able to refer to the set of folded places. We introduce a function $\leaves$, which computes this.
 
 
 
@@ -566,7 +565,7 @@ $$
 > $$\leaves(\T_s) = \{ s.x.u,\; s.x.v\;, s.y.a.f,\; s.y.a.g,\; s.y.a.h,\; s.y.b \}.$$
 
 ### Operations on folding trees {#operations-on-folding-trees}
-Fundamentally, a folding tree has two operations: $\unfold$ and $\fold$, which both take a place and a folding tree, and either unfolds or folds that place in the tree. The requirements for folding are that the given place is unfolded  and that all of its fields are folded. Conversely, the requirement for unfolding is that the given place is folded.
+Fundamentally, a folding tree has two operations: $\unfold$ and $\fold$, which both take a place and a folding tree, and either unfold or fold that place in the tree. The requirements for folding are that the given place is unfolded, and all of its fields are folded. Conversely, the requirement for unfolding is that the given place is folded.
 
 
 
@@ -659,7 +658,7 @@ Additionally, we allow $\fold$ and $\unfold$ to be _partially applied_, which is
 >
 > We see that unfolding $.y$ makes all of the fields of $.y$ available and folded, while the last fold of $.y$  removes the fields to have $.y$ folded. A similar thing happens for the unfolding and folding of $.y.a$.
 
-As $\fold$ and $\unfold$ are the building blocks for further analysis, it is helpful to formalize some of the properties they have, the first of which might seem trivial, but is perhaps the most important one.
+As $\fold$ and $\unfold$ are the building blocks for further analysis, it is helpful to formalize some of their properties, the first of which might seem trivial but perhaps the most important.
 
 
 
@@ -680,10 +679,19 @@ Similarly, if $\rho \in \leaves(\T)$, then unfolding $\rho$ will give
 
 A detailed proof for this lemma is found in \cref{appendix-proof-of-leaves-from-folding}.
 
-The next property is that the two functions, $\fold$ and $\unfold$, allow us to undo the actions of the other.
+The following property is that the two functions, $\fold$ and $\unfold$, allow us to undo the actions of the other.
 
-> [!lemma]
-> The operations $\fold$ and $\unfold$ are inverse functions.^[Todo: Do we need to say that $\rho$ has to be the same, since they are binary, or is that implied?]
+
+
+```{=tex}
+\begin{lemma}\label{lemma-fold-and-unfold-are-inverse} \@ifnextchar\par{\@gobble}{}
+```
+
+The operations $\fold$ and $\unfold$ are inverse functions.^[Todo: Do we need to say that $\rho$ has to be the same, since they are binary, or is that implied?]
+```{=tex}
+\end{lemma}
+```
+
 
 > [!proof]
 > Let $\rho$ be a place and $\T$ be a folding tree such that $\rho : (f_1, \dots, f_n) \in \leaves(\T)$. By definition of $\unfold$, $\leaves(\unfold(\rho, \T))$ will contain $\{f_1, \dots, f_n\}$, thus have the conditions met for folding $\rho$. Sequentially this means,
@@ -696,15 +704,15 @@ The next property is that the two functions, $\fold$ and $\unfold$, allow us to 
 > \end{aligned}
 > $$
 
-Another neat property, is that $\fold$ and $\unfold$ commutes under the inverse, allowing us to undo chains of foldings by reversing the chain and inverting^[Todo: Which is more correct here, "inverting" or "inversing"?] every folding.
+Another neat property is that $\fold$ and $\unfold$ commutes under the inverse, allowing us to undo chains of foldings by reversing the chain and inverting^[Todo: Which is more correct here, "inverting" or "inversing"?] every folding.
 
 
 
 ```{=tex}
-\begin{lemma}\label{lemma-fold-and-unfold-are-anticommutative} \@ifnextchar\par{\@gobble}{}
+\begin{lemma}\label{lemma-fold-and-unfold-commute-under-inverse} \@ifnextchar\par{\@gobble}{}
 ```
 
-Let $\T_1,\T_2$ be a folding trees and let $\mathcal{F}_1, \mathcal{F}_2$ be foldings such that $\mathcal{F}_1(\mathcal{F}_2(\T_1)) = \T_2$ then we say that the composition of foldings is anticommutative [see @bourbakiElementsMathematicsChapters2009 pp. 482], that is
+Let $\T_1,\T_2$ be a folding trees and let $\mathcal{F}_1, \mathcal{F}_2$ be foldings such that $\mathcal{F}_1(\mathcal{F}_2(\T_1)) = \T_2$ then we say that the composition of foldings commutes under the inverse, that is
 $$
 \mathcal{F}_1 \circ \mathcal{F}_2 = (\mathcal{F}_2^{-1} \circ \mathcal{F}_1^{-1})^{-1}.
 $$
@@ -724,7 +732,7 @@ $$
 > \end{aligned}
 > $$
 
-A common operation on folding trees is transforming an existing tree into a new one with a desired place folded. To do so, a sequence of foldings and unfoldings must be performed to arrive at the desired tree. We call this operation _requires_ and use the notation $\T \requires \rho$ to say that we want the tree $\T$ but with the minimal number of foldings and unfoldings performed to have $\rho$ be folded.
+A typical operation on folding trees is transforming an existing tree into a new one with a desired place folded. To do so, a sequence of foldings and unfoldings must be performed to arrive at the desired tree. We call this operation _requires_ and use the notation $\T \requires \rho$ to say that we want the tree $\T$ but with minimal foldings and unfoldings performed to have $\rho$ folded.
 
 
 
@@ -815,11 +823,11 @@ $$
 > [!example]
 > To get an idea of the operation, see \cref{figure-folding-tree-requires-sequence}, which again works on `struct S` from \cref{figure-breaking-invariant}.
 >
-> The first transition shows how a single unfolding of $.x$ is performed, to make $.x.u$ available, while the second transition shows the two unfoldings necessary to make $.y.a.g$ available.
+> The first transition shows how performing an unfolding of $.x$ makes $.x.u$ available, while the second transition shows the two unfoldings necessary to make $.y.a.g$ available.
 >
 > The last two transitions show the folding up to make $.x$ and $.y$ folded.
 
-For $\requires$ to be useful, we need to show some properties that it satisfies, but first, we need to establish a way to talk about the remaining leaves after requiring a place.
+For $\requires$ to be helpful, we need to show some properties that it satisfies, but first, we need to establish a way to talk about the remaining leaves after requiring a place.
 
 
 
@@ -846,7 +854,7 @@ $$
 > \end{aligned}
 > $$
 
-Intuitively, the $\cut$ can be thought of as removing all leaves leading up to $\rho$, and all leaves which are children of $\rho$. This also means that if we cut a field, it won't remove as more than cutting its parent will. In the extreme case, cutting the root of the tree always _removes all leaves_, while cutting anywhere else, does not necessarily do so.
+Intuitively, the $\cut$ can be thought of as removing all leaves leading up to $\rho$ and all leaves which are children of $\rho$. This also means that if we cut a field, it will not remove as more than cutting its parent will. In the extreme case, cutting the root of the tree always _removes all leaves_, while cutting anywhere else does not necessarily do so.
 
 
 
@@ -875,7 +883,7 @@ $$
 >
 > Since $\rho'$ was taken from $\leaves(\T)$ and the properties assumed were the conditions necessary to be in $\cut(\rho, \T)$, and we showed the conditions for being in $\cut(\rho.f_i, \T)$, we can conclude that the subset inclusion holds.
 
-One point of interest regarding $\cut$ is that the set of places it produces _does not contain the provided $\rho$_, and thus does not form the leaves of a valid folding tree. It, however, does remove everything that would violate having $\rho$ be a leaf, and thus is quite useful in specifying perhaps the most important property of $\requires$.
+One point of interest regarding $\cut$ is that the set of places it produces _does not contain the provided $\rho$_, thus not forming the leaves of a valid folding tree. It, however, does remove everything that would violate having $\rho$ be a leaf and thus is quite valuable for specifying an essential property of $\requires$.
 
 
 
@@ -897,14 +905,14 @@ The proof for this is deferred to \cref{appendix-proof-of-leaves-from-folding}.
 With \cref{lemma-requires-properties} we can ensure that requiring some place in one subtree does not alter the folded places of any unrelated subtree.
 
 > [!example]
-> Consider `struct S` from \cref{figure-breaking-invariant} once again. If we require some (potentially nested) field of `s.y`, then it will never fold nor unfold the fields of `s.x`.
+> Consider `struct S` from \cref{figure-breaking-invariant} once again. If we require some (potentially nested) field of `s.y,` then it will never fold nor unfold the fields of `s.x`.
 >
 > This ensures that folding stays isolated to the parts of a structure for which it is relevant.
 
 ### Ordering of folding trees {#ordering-of-folding-trees}
-The goal of folding trees is to formalize the state of foldings at specific program points, and thus it is crucial that we not only have ways to mutate them but also have ways of relating one folding tree to another.
+The goal of folding trees is to formalize the state of foldings at specific program points, and thus, we must not only have ways to mutate them but also have ways of relating one folding tree to another.
 
-The first step for doing so is defining a _partial order_ for folding trees.
+The first step is defining a _partial order_ for folding trees.
 
 
 
@@ -941,7 +949,7 @@ The operator $\smaller$ defines a partial order for $\Ts$.
 > [!proof]
 > To show this, we refer the fact that $\smaller$ is defined in terms of $\subseteq$ which forms a partial order.
 
-With an ordering established, we define how to combine two trees, either by creating a new tree that fits within both, or one which contains both trees. This is especially useful for talking about the most unfolded tree, which does not unfold more than either of the two other trees.
+With an ordering established, we define how to combine two trees by creating a new tree that fits within both or one that contains both trees. Such trees are especially useful for reasoning about the most unfolded tree, which does not unfold more than the two other trees.
 
 
 
@@ -1010,8 +1018,9 @@ For folding trees, $\join$ and $\meet$ compute the _least upper bound_ and _grea
 
 
 > [!example]
+> Consider the trees in \cref{figure-folding-meet-join}. The tree $\T_1$ is more unfolded than $\T_2$ on $.x$ while being more folded on $.y.a$. On the left side, $\T_1 \meet \T_2$ is the most unfolded tree, which is still less unfolded than both $\T_1$ and $\T_2$. Similarly, on the right side, $\T_1 \join \T_2$ is the most folded tree, which does not fold any unfolded places of either $\T_1$ or $\T_2$.
 
-The operators allow us to construct new trees, but when doing so, it is crucial that the resulting trees are still folding trees.
+The operators allow us to construct new trees, but when doing so, the resulting trees must still be folding trees.
 
 
 
@@ -1026,7 +1035,7 @@ $\Ts$ is closed under both $\join$ and $\meet$, which is to say that the set pro
 
 
 > [!proof]
-> The condition for being a folding tree, is that the set must be closed under prefix in accordance to \cref{definition-folding-tree}. To show this, let $\T_1$ and $\T_2$ be arbitrary folding trees, then we can assume that
+> The condition for being a folding tree is that the set must be closed under prefix in accordance to \cref{definition-folding-tree}. To show this, let $\T_1$ and $\T_2$ be arbitrary folding trees, then we can assume that
 > $$
 > \forall \rho \in \T_1 : \prefix(\rho) \subseteq \T_1, \;\text{ and, }\; \forall \rho \in \T_2 : \prefix(\rho) \subseteq \T_2.
 > $$
@@ -1037,6 +1046,8 @@ $\Ts$ is closed under both $\join$ and $\meet$, which is to say that the set pro
 > For the first let $\rho_1$ be an element of $\T_1 \join \T_2$, then we know that $\rho_1$ is an element of $\T_1$ or $\T_2$. Without loss of generality assume $\rho_1 \in \T_1$, and we have $\prefix(\rho_1) \subseteq \T_1$ by the initial assumption. Then with the fact that $\T_1 \smaller \T_1 \join \T_2$, we can say that $\prefix(\rho_1) \subseteq \T_1 \join \T_2$ by transitivity.
 >
 > Next, let $\rho_2$ be an element of $\T_1 \meet \T_2$, which means that $\rho_2$ must be an element of both $\T_1$ and $\T_2$, thus giving us $\prefix(\rho_2) \subseteq \T_1$ and $\prefix(\rho_2) \subseteq \T_2$. Combining these two, we get that $\prefix(\rho_2) \subseteq \T_1 \cap \T_2$, which by \cref{definition-folding-tree-join-and-meet} shows $\prefix(\rho_2) \subseteq \T_1 \meet \T_2$.
+
+When working with these operators, it is helpful to be able to refer to _the most and the least folded tree_.
 
 
 
@@ -1079,9 +1090,11 @@ The set of folding trees $\Ts$ equipped with $\smaller$ forms a lattice.
 > [!proof]
 > The requirements are showed in \cref{lemma-folding-tree-partial-order}, \cref{lemma-folding-tree-join-and-meet-are-least-upper-bound-and-greatest-upper-bound}, and, \cref{lemma-folding-tree-join-and-meet-are-closed}.
 
+Folding trees forming a lattice makes using the structure as the analysis domain possible, explored later in \cref{computing-solutions}.
 
 
-This leads us to the final bit of notation for foldings trees, which is computing the minimal foldings and unfoldings required to transform one tree into another.
+
+This leads us to the final bit of notation for folding trees: computing the minimal foldings and unfoldings required to transform one tree into another.
 
 
 
@@ -1119,14 +1132,14 @@ Formally $\tinto : \Ts \to \Ts \to \Ts \to \Ts$, but it use useful to think of a
 > \end{gathered}
 > $$
 
-This allows us to transition foldings from one program point into those of another, but it also allows us to go backwards, due to the invertible property of $\fold$ and $\unfold$.
+This allows us to transition foldings from one program point into those of another, but it also allows us to go backward due to the invertible property of $\fold$ and $\unfold$.
 
 > [!lemma]
-> The function $\tinto$ is _anticommutative_:
+> The function $\tinto$ is _anticommutative_ [see @bourbakiElementsMathematicsChapters2009 pp. 482]:
 > $$\tinto[\T_1, \T_2] = \tinto[\T_2, \T_1]^{-1}$$
 
 > [!proof]
-> Let $\T_1$ and $\T_2$ be arbitrary folding trees, and recall that $\mathcal{F}_1 \circ \mathcal{F}_2 = (\mathcal{F}_2^{-1} \circ \mathcal{F}_1^{-1})^{-1}$ from \cref{lemma-fold-and-unfold-are-anticommutative}, then:
+> Let $\T_1$ and $\T_2$ be arbitrary folding trees, and recall that $\mathcal{F}_1 \circ \mathcal{F}_2 = (\mathcal{F}_2^{-1} \circ \mathcal{F}_1^{-1})^{-1}$ from \cref{lemma-fold-and-unfold-commute-under-inverse}, then:
 > $$
 > \begin{aligned}
 >   \T_1 &= \tinto[\T_1, \T_2]^{-1}(\tinto[\T_1, \T_2](\T_1)) \\
@@ -1139,8 +1152,14 @@ This allows us to transition foldings from one program point into those of anoth
 > From this we get that $\T_1 = \tinto[\T_2, \T_1](\tinto[\T_1, \T_2](\T_1))$, showing that $\tinto[\T_2, \T_1]$ is the inverse of $\tinto[\T_1, \T_2]$.
 
 ## Folding analysis {#folding-analysis}
+Having defined folding trees along with its operators and properties, we can begin to apply them in the context of programs.
+
+The objective of the analysis, is to look at programs through a series of analysis, potentially perform some mutations through annotations, and end up with a new program which is _sound in terms of access described by foldings_.
+
+To do so, we start by defining the language and semantics in which folding occurs.
+
 ### Folding-level IR (FIR) {#folding-level-ir-fir}
-In \cref{compilation-stages} we introduced the multi-stage structure of the Mist compiler, and specifically the MIR representation which is a CFG. In terms of computing foldings and unfoldings, this is the stage we are concerned with, but instead of considering the full set of instructions and terminators, we consider a smaller variant that focuses much more concretely on _how and what_ places are used and omit the details for performing actual computation or verification. The grammar for this smaller language is shown in \cref{figure-fir-grammar}.
+In \cref{compilation-stages}, we introduced the multi-stage structure of the Mist compiler, and specifically the MIR representation (see \cref{mid-level-ir-mir}). In terms of computing foldings and unfoldings, this is the stage we are considering. However, instead of considering the complete set of instructions and terminators, we consider a smaller variant that focuses much more concretely on _how and what_ places are used and omit the details for performing actual computation or verification.
 
 
 
@@ -1178,13 +1197,133 @@ UnaryOp_ = '...'
 :::
 
 
+
+
+```{=tex}
+\begin{definition}\label{definition-fir} \@ifnextchar\par{\@gobble}{}
+```
+
+We define a Folding-level IR (FIR) to be a projection of MIR which encodes places written to and places read, into a sequence of instructions.
+
+FIR is composed of blocks of FIR instructions, which are connected by unconditional (potentially branching and cyclic) jumps terminating the blocks.
+
+The grammar for FIR is defined in \cref{figure-fir-grammar}.
+
+```{=tex}
+\end{definition}
+```
+
+
+Although FIR is defined as a separate set of constructs from MIR, it is, in fact, entirely derivable from MIR, leading it to be a projection. The details from MIR that folding analysis is concerned with are read and written places in instructions and terminators.
+
+FIR consists of five abstracts instructions, the first three instructions being $:=$, `reference`, and `mention`. 
+
+The remaining two instructions, `fold` and `unfold`, serve a similar purpose as those defined in \cref{definition-folding} but has _no impact on the execution of the program_ and are used solely during folding analysis.
+
+### Well-defined access {#well-defined-access}
+It may not always be the case that an instruction can be executed, such as if it refers to a place that does not exist or is not well-typed. Additionally, there might be cases where execution is possible, but doing so would result in a panic or crash, such as division by zero.
+
+Folding analysis, however, only considers well-typed programs with fully resolved places. It is allowed to do so since the previous stages of the compiler (specifically during HIR construction and type-checking, see \cref{types-in-mist} and \cref{high-level-ir-hir}) prevents malformed programs from reaching this point.
+
+Thus, we need a separate notion of a _well-defined execution_ for FIR instructions to specify which executions are valid in relation to specific folding trees.
+
+
+
+```{=tex}
+\begin{definition}\label{definition-fir-well-defined-access-rules} \@ifnextchar\par{\@gobble}{}
+```
+
+Let $\T$ be a folding tree, and $\inst$ an FIR instruction, then we say that _$\inst$ is well-defined in terms of folding access for $\T$_, denoted by $\T \vdash \inst$, iff it is derivable from the following inference rules.
+$$
+\begin{gathered}
+\begin{array}{ccc}
+\begin{prooftree}
+    \AXC{$\rho \in \T$}
+    \AXC{$\texttt{read}(a) \subseteq \leaves(\T)$}
+    \BIC{$\T \vdash \rho := a$}
+\end{prooftree}
+&
+\begin{prooftree}
+    \AXC{$\texttt{read}(a) \subseteq \leaves(\T)$}
+    \UIC{$\T \vdash \texttt{reference } a$}
+\end{prooftree}
+&
+\begin{prooftree}
+    \AXC{$\leafin{\rho}{\T}$}
+    \UIC{$\T \vdash \texttt{mention } \rho$}
+\end{prooftree}
+\end{array}
+\\[1em]
+\begin{array}{cc}
+\begin{prooftree}
+    \AXC{$\fields(\rho) \subseteq \leaves(\T)$}
+    \UIC{$\T \vdash \fold\; \rho$}
+\end{prooftree}
+&
+\begin{prooftree}
+    \AXC{$\leafin{\rho}{\T}$}
+    \UIC{$\T \vdash \unfold\; \rho$}
+\end{prooftree}
+\end{array}
+\end{gathered}
+$$
+
+```{=tex}
+\end{definition}
+```
+
+
 ### Semantics {#semantics}
+
+
+```{=tex}
+\begin{definition}\label{definition-semantics-inference-rules} \@ifnextchar\par{\@gobble}{}
+```
+
+We define the semantics of all FIR instruction (see \cref{definition-fir}) in terms of inference rules, using
+
+$$
+\begin{prooftree}
+    \AXC{$\rho \in \dom(\sigma)$}
+    \AXC{$\texttt{read}(a) \subseteq \dom(\sigma)$}
+    \AXC{$\T \vdash \rho := a$}
+    \TIC{$\sem{\rho := a}(\T, \sigma) = \langle \T \requires \rho, \sigma[\rho \leftarrow a] \rangle$}
+\end{prooftree}
+$$
+$$
+\begin{prooftree}
+    \AXC{$\texttt{read}(a) \subseteq \dom(\sigma)$}
+    \AXC{$\T \vdash \texttt{reference } a$}
+    \BIC{$\sem{\texttt{reference } a}(\T, \sigma) = \langle \T, \sigma \rangle$}
+\end{prooftree}
+$$
+$$
+\begin{prooftree}
+    \AXC{$\rho \in \dom(\sigma)$}
+    \AXC{$\T \vdash \fold\; \rho$}
+    \BIC{$\sem{\fold\; \rho}(\T, \sigma) = \langle \fold(\rho, \T), \sigma' \rangle$}
+\end{prooftree}
+$$
+$$
+\begin{prooftree}
+    \AXC{$\rho \in \dom(\sigma)$}
+    \AXC{$\T \vdash \unfold\; \rho$}
+    \BIC{$\sem{\unfold\; \rho}(\T, \sigma) = \langle \unfold(\rho, \T), \sigma' \rangle$}
+\end{prooftree}
+$$
+
+```{=tex}
+\end{definition}
+```
+
 ### Abstract semantics {#abstract-semantics}
+
+### Computing solutions {#computing-solutions}
 
 
 ::: {.figure #figure-cfg-with-annotated-analysis}
 
-> [!subfigure|width=0.25]
+> [!subfigure|width=0.2]
 > ```tikz
 > \usetikzlibrary{positioning}
 >
@@ -1223,17 +1362,15 @@ UnaryOp_ = '...'
 > \end{document}
 > ```
 
-> [!subfigure|width=0.25]
+> [!subfigure|width=0.3]
 > $$
+> \begin{gathered}
 > \begin{aligned}
 >     \A(\phi_1) &\smaller \bsem{\alpha_1}(\A(\phi_2)) \\
 >     \A(\phi_2) &\smaller \bsem{\alpha_2}(\A(\phi_3)) \\
 >     \A(\phi_2) &\smaller \bsem{\alpha_2}(\A(\phi_4)) \\
 >     \A(\phi_3) &\smaller \bsem{\alpha_3}(\A(\phi_2)) \\
-> \end{aligned}
-> $$
-> $$
-> \begin{gathered}
+> \end{aligned} \\[1em]
 > \bsem{{\color{Teal900} \delta(\phi_i, \phi_j)}}(\A(\phi_j)) = \tinto[\A(\phi_j), \A(\phi_i)](\A(\phi_j)) \\
 > \bsem{\alpha_i}(\A(\phi_i')) = \A(\phi_i)
 > \end{gathered}
@@ -1540,7 +1677,7 @@ $$
 	&(\leaves(\T) \setminus \{\rho\}) \cup \fields(\rho) \\
 \end{aligned}
 $$
-
+\qed
 ```{=tex}
 \end{proof}
 ```
@@ -1558,79 +1695,78 @@ We split the proof goal to show these two properties:
 $$
 \begin{aligned}
 \rho &\in \leaves(\T) & (1) \\
-\{ \rho' \mid \rho' \in \leaves(\T) \land \prefix(\rho) \not\subseteq \prefix(\rho') &\land \prefix(\rho') \not\subseteq \prefix(\rho) \} \subseteq \leaves(\T) & (2) \\
+\cut(\T, \rho) &\subseteq \leaves(\T) & (2) \\
 \end{aligned}
 $$
 We do the proof by case distinction on $\T \requires \rho$, and induction on $\rho$:
 
 **Case 1**: Assume $\rho \in \leaves(\T)$, and, $\rho \in \T$, then $\leaves(\T \requires \rho) = \leaves(\T)$. Goal $(1)$ immediately follows, so what we need to show is
 $$
-\{ \rho' \mid \rho' \in \leaves(\T) \land \prefix(\rho) \not\subseteq \prefix(\rho') \land \prefix(\rho') \not\subseteq \prefix(\rho) \} \subseteq \leaves(\T).
+\cut(\T, \rho) \subseteq \leaves(\T).
 $$
-Since $\rho'$ is limited to leaves in $\T$, we know that the set will never contain elements outside of $\leaves(\T)$, concluding goal $(2)$.
+Since $\cut(\T,\rho)$ is limited to leaves in $\T$, we know that the set will never contain elements outside of $\leaves(\T)$, concluding goal $(2)$.
 
 **Case 2**: Assume $\rho \notin \leaves(\T)$, $\rho \in \T$, and, $\fields(\rho) \subseteq \T$, and let $\T_i = \T \requires \rho.f_1 \requires \dots \requires \rho.f_i$, then we need to show
 $$
-\{ \rho' \mid \rho' \in \leaves(\T) \land \prefix(\rho) \not\subseteq \prefix(\rho') \land \prefix(\rho') \not\subseteq \prefix(\rho) \} \cup \{ \rho \} \subseteq \leaves(\fold(\rho, \T_n)).
+\cut(\T, \rho) \cup \{ \rho \} \subseteq \leaves(\fold(\rho, \T_n)).
 $$
 Now compute $\T_1 = \T \requires \rho.f_1$, which by induction gives us
 $$
 \begin{aligned}
 \rho.f_1 &\in \leaves(\T_1) & (3) \\
-\{ \rho' \mid \rho' \in \leaves(\T) \land \prefix(\rho.f_1) \not\subseteq \prefix(\rho') &\land \prefix(\rho') \not\subseteq \prefix(\rho.f_1) \} \subseteq \leaves(\T_1) & (4) \\
+\cut(\T, \rho.f_1) &\subseteq \leaves(\T_1) & (4) \\
 \end{aligned}
 $$
 By \cref{lemma-folding-tree-weaken-cut} we can weaken $(4)$ to get
 $$
-\{ \rho' \mid \rho' \in \leaves(\T) \land \prefix(\rho) \not\subseteq \prefix(\rho') \land \prefix(\rho') \not\subseteq \prefix(\rho) \} \subseteq \leaves(\T_1)
+\cut(\T, \rho) \subseteq \leaves(\T_1)
 $$
-Now we perform induction on the fields, where the previous case was the base case, and thus we assume
+Now we perform induction on the rest of the fields, where the previous case was the base case, and thus we assume that the following holds for field $i \geq 1$
 $$
 \begin{aligned}
 \{\rho.f_1, \dots, \rho.f_i \} &\subseteq \leaves(\T_i) & (5) \\
-\{ \rho' \mid \rho' \in \leaves(\T) \land \prefix(\rho) \not\subseteq \prefix(\rho') &\land \prefix(\rho') \not\subseteq \prefix(\rho) \} \subseteq \leaves(\T_i) & (6) \\
+\cut(\T, \rho) &\subseteq \leaves(\T_i) & (6) \\
 \end{aligned}
 $$
 Then we compute $\T_{i+1} = \T_i \requires \rho.f_{i+1}$, which by induction says that
 $$
 \begin{aligned}
 \rho.f_{i+1} &\in \leaves(\T_{i+1}) & (7) \\
-\{ \rho' \mid \rho' \in \leaves(\T) \land \prefix(\rho.f_{i+1}) \not\subseteq \prefix(\rho') &\land \prefix(\rho') \not\subseteq \prefix(\rho.f_{i+1}) \} \subseteq \leaves(\T_{i+1}) & (8) \\
+\cut(\T, \rho.f_{i+1}) &\subseteq \leaves(\T_{i+1}) & (8) \\
 \end{aligned}
 $$
-By $(7,8)$ we can derive that all prior fields of $\rho$ will still be in $\leaves(\T_{i+1})$, since $\prefix(\rho.f_u)$ will never be contained in $\prefix(\rho.f_v)$, and vice versa, for all $u,v$, and thus $\{\rho.f_1,\dots,\rho.f_i,\rho.f_{i+1}\} \subseteq \leaves(\T_{i+1})$. And again we can apply \cref{lemma-folding-tree-weaken-cut} on $(8)$ to weaken the property.
+By $(7,8)$ we can derive that all prior fields of $\rho$ will still be in $\leaves(\T_{i+1})$, since $\prefix(\rho.f_u)$ will never be contained in $\prefix(\rho.f_v)$, and vice versa, for all $u,v$, and thus $\{\rho.f_1,\dots,\rho.f_i,\rho.f_{i+1}\} \subseteq \leaves(\T_{i+1})$. And again we can apply \cref{lemma-folding-tree-weaken-cut} on $(8)$ to weaken the property to get $\cut(\T, \rho) \subseteq \leaves(\T_{i+1})$.
 
 By completing the induction on the fields, we end up with
 $$
 \begin{aligned}
 \fields(\rho) &\subseteq \leaves(\T_n) & (9) \\
-\{ \rho' \mid \rho' \in \leaves(\T) \land \prefix(\rho) \not\subseteq \prefix(\rho') &\land \prefix(\rho') \not\subseteq \prefix(\rho) \} \subseteq \leaves(\T_n) & (10) \\
+\cut(\T, \rho) &\subseteq \leaves(\T_n) & (10) \\
 \end{aligned}
 $$
-Using \cref{lemma-leaves-from-folding}, with $(9)$ giving us the necessary conditions to perform $\fold\;\rho$ on $\T'$, we show $(1)$. What remains to be shown $(2)$, which after applying \cref{lemma-leaves-from-folding} is
+Using \cref{lemma-leaves-from-folding}, with $(9)$ giving us the necessary conditions to perform $\fold\;\rho$ on $\T_n$, we show $(1)$. What remains to be shown is $(2)$, which after applying \cref{lemma-leaves-from-folding} is
 $$
-\{ \rho' \mid \rho' \in \leaves(\T) \land \prefix(\rho) \not\subseteq \prefix(\rho') \land \prefix(\rho') \not\subseteq \prefix(\rho) \} \subseteq (\leaves(\T_n) \setminus \fields(\rho)) \cup \{\rho\}
+\cut(\T, \rho) \subseteq (\leaves(\T_n) \setminus \fields(\rho)) \cup \{\rho\}
 $$
-From $(10)$ we know that the left-hand side is contained in $\leaves(\T_n)$, and since fields of $\rho$ will not satisfy $\prefix(\rho) \not\subseteq \prefix(\rho')$, no entries from $\fields(\rho)$ will be in the left-hand side, thus showing $(2)$.
+From $(10)$ we know that the left-hand side is contained in $\leaves(\T_n)$, and since fields of $\rho$ will not satisfy $\prefix(\rho) \not\subseteq \prefix(\rho')$, no entries from $\fields(\rho)$ will be in $\cut(\T, \rho)$, thus showing $(2)$.
 
 **Case 3:** Assume $\rho \notin \leaves(\T)$, $\rho \notin \T$, and, $\rho = \rho^*.f_i$ (that is, $\rho^*$ is the parent of $\rho$), and let $\T' = \T \requires \rho^*$, then we need to show
 $$
-\{ \rho' \mid \rho' \in \leaves(\T) \land \prefix(\rho) \not\subseteq \prefix(\rho') \land \prefix(\rho') \not\subseteq \prefix(\rho) \} \cup \{ \rho \} \subseteq \leaves(\unfold(\rho^*, \T')).
+\cut(\T, \rho) \cup \{ \rho \} \subseteq \leaves(\unfold(\rho^*, \T')).
 $$
 By induction on $\rho^*$, we know that
 $$
 \begin{aligned}
 \rho^* &\in \leaves(\T') & (11) \\
-\{ \rho' \mid \rho' \in \leaves(\T) \land \prefix(\rho^*) \not\subseteq \prefix(\rho') &\land \prefix(\rho') \not\subseteq \prefix(\rho^*) \} \subseteq \leaves(\T') & (12) \\
+\cut(\T, \rho^*) &\subseteq \leaves(\T') & (12) \\
 \end{aligned}
 $$
 By $(11)$ we have the necessary condition met to perform $\unfold\;\rho^*$, and can by apply \cref{lemma-leaves-from-folding} to alter the goal to
 $$
-\begin{aligned}
-\{ \rho' \mid \rho' \in \leaves(\T) \land \prefix(\rho) \not\subseteq \prefix(\rho') \land \prefix(\rho') \not\subseteq \prefix(\rho) \} \cup \{\rho\} \\ \subseteq (\leaves(\T') \setminus \{\rho^*\})\cup\fields(\rho^*).
-\end{aligned}
+\cut(\T, \rho) \cup \{\rho\} \subseteq (\leaves(\T') \setminus \{\rho^*\})\cup\fields(\rho^*).
 $$
-Since $\rho \in \fields(\rho^*)$ we get $(1)$. Next, we look two cases of $\rho'$: If $\rho' = \rho^*$, then it will be excluded since $\prefix(\rho^*) \subseteq \prefix(\rho)$, satisfying the $\subseteq$ of the right-hand side. Otherwise, $\rho' \neq \rho^*$, then we can use $(12)$ to show that it is included in $\leaves(\T')$. Thus showing $(2)$.
+Since $\rho \in \fields(\rho^*)$ we get $(1)$. Next, we look at the two cases of elements $\rho' \in \cut(\T, \rho)$: If $\rho' = \rho^*$, then it will be excluded since $\prefix(\rho^*) \subseteq \prefix(\rho)$, satisfying $\subseteq$ in the right-hand side. Otherwise, $\rho' \neq \rho^*$, then we can use $(12)$ to show that it is included in $\leaves(\T')$. Thus showing $(2)$. \qed
+
 
 
 ```{=tex}

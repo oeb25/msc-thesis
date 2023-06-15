@@ -6,79 +6,77 @@ We split the proof goal to show these two properties:
 $$
 \begin{aligned}
 \rho &\in \leaves(\T) & (1) \\
-\{ \rho' \mid \rho' \in \leaves(\T) \land \prefix(\rho) \not\subseteq \prefix(\rho') &\land \prefix(\rho') \not\subseteq \prefix(\rho) \} \subseteq \leaves(\T) & (2) \\
+\cut(\T, \rho) &\subseteq \leaves(\T) & (2) \\
 \end{aligned}
 $$
 We do the proof by case distinction on $\T \requires \rho$, and induction on $\rho$:
 
 **Case 1**: Assume $\rho \in \leaves(\T)$, and, $\rho \in \T$, then $\leaves(\T \requires \rho) = \leaves(\T)$. Goal $(1)$ immediately follows, so what we need to show is
 $$
-\{ \rho' \mid \rho' \in \leaves(\T) \land \prefix(\rho) \not\subseteq \prefix(\rho') \land \prefix(\rho') \not\subseteq \prefix(\rho) \} \subseteq \leaves(\T).
+\cut(\T, \rho) \subseteq \leaves(\T).
 $$
-Since $\rho'$ is limited to leaves in $\T$, we know that the set will never contain elements outside of $\leaves(\T)$, concluding goal $(2)$.
+Since $\cut(\T,\rho)$ is limited to leaves in $\T$, we know that the set will never contain elements outside of $\leaves(\T)$, concluding goal $(2)$.
 
 **Case 2**: Assume $\rho \notin \leaves(\T)$, $\rho \in \T$, and, $\fields(\rho) \subseteq \T$, and let $\T_i = \T \requires \rho.f_1 \requires \dots \requires \rho.f_i$, then we need to show
 $$
-\{ \rho' \mid \rho' \in \leaves(\T) \land \prefix(\rho) \not\subseteq \prefix(\rho') \land \prefix(\rho') \not\subseteq \prefix(\rho) \} \cup \{ \rho \} \subseteq \leaves(\fold(\rho, \T_n)).
+\cut(\T, \rho) \cup \{ \rho \} \subseteq \leaves(\fold(\rho, \T_n)).
 $$
 Now compute $\T_1 = \T \requires \rho.f_1$, which by induction gives us
 $$
 \begin{aligned}
 \rho.f_1 &\in \leaves(\T_1) & (3) \\
-\{ \rho' \mid \rho' \in \leaves(\T) \land \prefix(\rho.f_1) \not\subseteq \prefix(\rho') &\land \prefix(\rho') \not\subseteq \prefix(\rho.f_1) \} \subseteq \leaves(\T_1) & (4) \\
+\cut(\T, \rho.f_1) &\subseteq \leaves(\T_1) & (4) \\
 \end{aligned}
 $$
 By [[Lemma – Folding tree weaken cut]] we can weaken $(4)$ to get
 $$
-\{ \rho' \mid \rho' \in \leaves(\T) \land \prefix(\rho) \not\subseteq \prefix(\rho') \land \prefix(\rho') \not\subseteq \prefix(\rho) \} \subseteq \leaves(\T_1)
+\cut(\T, \rho) \subseteq \leaves(\T_1)
 $$
-Now we perform induction on the fields, where the previous case was the base case, and thus we assume
+Now we perform induction on the rest of the fields, where the previous case was the base case, and thus we assume that the following holds for field $i \geq 1$
 $$
 \begin{aligned}
 \{\rho.f_1, \dots, \rho.f_i \} &\subseteq \leaves(\T_i) & (5) \\
-\{ \rho' \mid \rho' \in \leaves(\T) \land \prefix(\rho) \not\subseteq \prefix(\rho') &\land \prefix(\rho') \not\subseteq \prefix(\rho) \} \subseteq \leaves(\T_i) & (6) \\
+\cut(\T, \rho) &\subseteq \leaves(\T_i) & (6) \\
 \end{aligned}
 $$
 Then we compute $\T_{i+1} = \T_i \requires \rho.f_{i+1}$, which by induction says that
 $$
 \begin{aligned}
 \rho.f_{i+1} &\in \leaves(\T_{i+1}) & (7) \\
-\{ \rho' \mid \rho' \in \leaves(\T) \land \prefix(\rho.f_{i+1}) \not\subseteq \prefix(\rho') &\land \prefix(\rho') \not\subseteq \prefix(\rho.f_{i+1}) \} \subseteq \leaves(\T_{i+1}) & (8) \\
+\cut(\T, \rho.f_{i+1}) &\subseteq \leaves(\T_{i+1}) & (8) \\
 \end{aligned}
 $$
-By $(7,8)$ we can derive that all prior fields of $\rho$ will still be in $\leaves(\T_{i+1})$, since $\prefix(\rho.f_u)$ will never be contained in $\prefix(\rho.f_v)$, and vice versa, for all $u,v$, and thus $\{\rho.f_1,\dots,\rho.f_i,\rho.f_{i+1}\} \subseteq \leaves(\T_{i+1})$. And again we can apply [[Lemma – Folding tree weaken cut]] on $(8)$ to weaken the property.
+By $(7,8)$ we can derive that all prior fields of $\rho$ will still be in $\leaves(\T_{i+1})$, since $\prefix(\rho.f_u)$ will never be contained in $\prefix(\rho.f_v)$, and vice versa, for all $u,v$, and thus $\{\rho.f_1,\dots,\rho.f_i,\rho.f_{i+1}\} \subseteq \leaves(\T_{i+1})$. And again we can apply [[Lemma – Folding tree weaken cut]] on $(8)$ to weaken the property to get $\cut(\T, \rho) \subseteq \leaves(\T_{i+1})$.
 
 By completing the induction on the fields, we end up with
 $$
 \begin{aligned}
 \fields(\rho) &\subseteq \leaves(\T_n) & (9) \\
-\{ \rho' \mid \rho' \in \leaves(\T) \land \prefix(\rho) \not\subseteq \prefix(\rho') &\land \prefix(\rho') \not\subseteq \prefix(\rho) \} \subseteq \leaves(\T_n) & (10) \\
+\cut(\T, \rho) &\subseteq \leaves(\T_n) & (10) \\
 \end{aligned}
 $$
-Using [[Lemma – Leaves from folding]], with $(9)$ giving us the necessary conditions to perform $\fold\;\rho$ on $\T'$, we show $(1)$. What remains to be shown $(2)$, which after applying [[Lemma – Leaves from folding]] is
+Using [[Lemma – Leaves from folding]], with $(9)$ giving us the necessary conditions to perform $\fold\;\rho$ on $\T_n$, we show $(1)$. What remains to be shown is $(2)$, which after applying [[Lemma – Leaves from folding]] is
 $$
-\{ \rho' \mid \rho' \in \leaves(\T) \land \prefix(\rho) \not\subseteq \prefix(\rho') \land \prefix(\rho') \not\subseteq \prefix(\rho) \} \subseteq (\leaves(\T_n) \setminus \fields(\rho)) \cup \{\rho\}
+\cut(\T, \rho) \subseteq (\leaves(\T_n) \setminus \fields(\rho)) \cup \{\rho\}
 $$
-From $(10)$ we know that the left-hand side is contained in $\leaves(\T_n)$, and since fields of $\rho$ will not satisfy $\prefix(\rho) \not\subseteq \prefix(\rho')$, no entries from $\fields(\rho)$ will be in the left-hand side, thus showing $(2)$.
+From $(10)$ we know that the left-hand side is contained in $\leaves(\T_n)$, and since fields of $\rho$ will not satisfy $\prefix(\rho) \not\subseteq \prefix(\rho')$, no entries from $\fields(\rho)$ will be in $\cut(\T, \rho)$, thus showing $(2)$.
 
 **Case 3:** Assume $\rho \notin \leaves(\T)$, $\rho \notin \T$, and, $\rho = \rho^*.f_i$ (that is, $\rho^*$ is the parent of $\rho$), and let $\T' = \T \requires \rho^*$, then we need to show
 $$
-\{ \rho' \mid \rho' \in \leaves(\T) \land \prefix(\rho) \not\subseteq \prefix(\rho') \land \prefix(\rho') \not\subseteq \prefix(\rho) \} \cup \{ \rho \} \subseteq \leaves(\unfold(\rho^*, \T')).
+\cut(\T, \rho) \cup \{ \rho \} \subseteq \leaves(\unfold(\rho^*, \T')).
 $$
 By induction on $\rho^*$, we know that
 $$
 \begin{aligned}
 \rho^* &\in \leaves(\T') & (11) \\
-\{ \rho' \mid \rho' \in \leaves(\T) \land \prefix(\rho^*) \not\subseteq \prefix(\rho') &\land \prefix(\rho') \not\subseteq \prefix(\rho^*) \} \subseteq \leaves(\T') & (12) \\
+\cut(\T, \rho^*) &\subseteq \leaves(\T') & (12) \\
 \end{aligned}
 $$
 By $(11)$ we have the necessary condition met to perform $\unfold\;\rho^*$, and can by apply [[Lemma – Leaves from folding]] to alter the goal to
 $$
-\begin{aligned}
-\{ \rho' \mid \rho' \in \leaves(\T) \land \prefix(\rho) \not\subseteq \prefix(\rho') \land \prefix(\rho') \not\subseteq \prefix(\rho) \} \cup \{\rho\} \\ \subseteq (\leaves(\T') \setminus \{\rho^*\})\cup\fields(\rho^*).
-\end{aligned}
+\cut(\T, \rho) \cup \{\rho\} \subseteq (\leaves(\T') \setminus \{\rho^*\})\cup\fields(\rho^*).
 $$
-Since $\rho \in \fields(\rho^*)$ we get $(1)$. Next, we look two cases of $\rho'$: If $\rho' = \rho^*$, then it will be excluded since $\prefix(\rho^*) \subseteq \prefix(\rho)$, satisfying the $\subseteq$ of the right-hand side. Otherwise, $\rho' \neq \rho^*$, then we can use $(12)$ to show that it is included in $\leaves(\T')$. Thus showing $(2)$.
+Since $\rho \in \fields(\rho^*)$ we get $(1)$. Next, we look at the two cases of elements $\rho' \in \cut(\T, \rho)$: If $\rho' = \rho^*$, then it will be excluded since $\prefix(\rho^*) \subseteq \prefix(\rho)$, satisfying $\subseteq$ in the right-hand side. Otherwise, $\rho' \neq \rho^*$, then we can use $(12)$ to show that it is included in $\leaves(\T')$. Thus showing $(2)$. \qed
 
 %%---
 
@@ -102,7 +100,7 @@ which makes $\T'$ satisfy the requirements for $\fold\;\rho$, and since the last
 $$
 \{ \rho' \mid \rho' \in \leaves(\T) \land \rho \notin \prefix(\rho') \} \subseteq \leaves(\T') \setminus \fields(\rho).
 $$
-If we use $\{ \rho' \mid \rho' \in \leaves(\T) \land \rho.f_i \notin \prefix(\rho') \} \subseteq \leaves(\T')$, then we can get: 
+If we use $\{ \rho' \mid \rho' \in \leaves(\T) \land \rho.f_i \notin \prefix(\rho') \} \subseteq \leaves(\T')$, then we can get:
 $$
 \{ \rho' \mid \rho' \in \leaves(\T) \land \rho \notin \prefix(\rho') \} \subseteq \{ \rho' \mid \rho' \in \leaves(\T) \land \rho.f_i \notin \prefix(\rho') \} \setminus \fields(\rho).
 $$

@@ -2,7 +2,7 @@
 tags: section
 ---
 
-A folding tree is a data structure, denoted by $\T$, that maintains the folding state of places. It works by representing data types as a tree, where nodes are fields of potentially nested `struct`s. The leaves of the tree are all the places that are _folded_, while the internal nodes are _unfolded_ places, both uniquely described by paths from the root.
+A _folding tree_ is a data structure, denoted by $\T$, that maintains the folding state of places. It works by representing data types as a tree, where nodes are fields of potentially nested `struct`s. The leaves of the tree are all the places that are _folded_, while the internal nodes are _unfolded_ places, both uniquely described by paths from the root.
 
 ![[Figure – A visualization of the maximally unfolded tree given by `S`]]
 
@@ -10,7 +10,7 @@ A folding tree is a data structure, denoted by $\T$, that maintains the folding 
 
 ![[Example – Folding tree]]
 
-When working with folding trees, it is useful to be able to refer to the set of folded places. For this, we introduce a function $\leaves$ which computes this.
+When working with folding trees, it is useful to be able to refer to the set of folded places. We introduce a function $\leaves$, which computes this.
 
 ![[Definition – Leaves]]
 

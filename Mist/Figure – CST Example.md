@@ -3,7 +3,7 @@ tags: figure
 ---
 
 > [!subfigure|width=0.4]
-> ```mist
+> ```{.mist .ignoreErrors}
 > fn main() -> { let x = 5 }
 > ```
 

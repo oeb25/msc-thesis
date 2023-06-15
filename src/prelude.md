@@ -16,6 +16,10 @@ header-includes:
     - \usepackage{pdfpages}
     - \usepackage{chngpage}
     - \usepackage{bussproofs}
+    - \newcommand{\AXC}[1]{\AxiomC{#1}}
+    - \newcommand{\UIC}[1]{\UnaryInfC{#1}}
+    - \newcommand{\BIC}[1]{\BinaryInfC{#1}}
+    - \newcommand{\TIC}[1]{\TrinaryInfC{#1}}
     - \usepackage{syntax}
     - \usepackage{mathabx}
     - \usepackage{stmaryrd}
@@ -50,6 +54,7 @@ header-includes:
     - \newcommand{\slots}{\mathbf{Slots}}
     - \newcommand{\places}{\mathbf{Places}}
     - \newcommand{\A}{\mathbf{A}}
+    - \newcommand{\inst}{\iota}
     # - \newcommand{\tinto}{\texttt{transitionInto}}
     - \newcommand{\tinto}{\ensuremath{\Delta}}
     # Lattice operators
