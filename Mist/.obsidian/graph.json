@@ -5,13 +5,13 @@
   "showAttachments": true,
   "hideUnresolved": false,
   "showOrphans": false,
-  "collapse-color-groups": true,
+  "collapse-color-groups": false,
   "colorGroups": [
     {
       "query": "tag:definition",
       "color": {
         "a": 1,
-        "rgb": 14048348
+        "rgb": 1423526
       }
     },
     {
@@ -39,7 +39,7 @@
       "query": "tag:chapter",
       "color": {
         "a": 1,
-        "rgb": 1835355
+        "rgb": 14095532
       }
     },
     {
@@ -62,6 +62,13 @@
         "a": 1,
         "rgb": 12822992
       }
+    },
+    {
+      "query": "tag:#example",
+      "color": {
+        "a": 1,
+        "rgb": 4740201
+      }
     }
   ],
   "collapse-display": true,
@@ -74,6 +81,6 @@
   "repelStrength": 9.97233072916667,
   "linkStrength": 1,
   "linkDistance": 131,
-  "scale": 0.4325915825682402,
-  "close": false
+  "scale": 0.25108588088073597,
+  "close": true
 }

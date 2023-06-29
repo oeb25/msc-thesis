@@ -2,4 +2,7 @@
 tags: lemma
 ---
 
-The operations $\fold$ and $\unfold$ are inverse functions.^[#todo: Do we need to say that $\rho$ has to be the same, since they are binary, or is that implied?]
+The operations $\fold$ and $\unfold$ are inverse functions, i.e.
+$$
+\forall \rho \in \places : \unfold\;\rho \circ \fold\;\rho = \fold\;\rho \circ \unfold\;\rho = \text{\normalfont{id}}.
+$$

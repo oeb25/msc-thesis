@@ -3,58 +3,61 @@ tags: figure
 ---
 
 > [!subfigure|width=0.13]
-> ```{.folding-tree root="$\\T_1$"}
+> ```{.folding-tree root="$s$"}
 > { x X y X }
 > ```
 
 > [!subfigure|width=0.1,align=t]
 > $$
 > \begin{gathered}
-> \text{\footnotesize \unfold\;$.y$} \\[-5pt]
+> \text{\footnotesize \unfold\;$s.y$} \\[-5pt]
 > \longrightarrow
 > \end{gathered}
 > $$
 
 > [!subfigure|width=0.13]
-> ```{.folding-tree root="$\\T_2$"}
+> ```{.folding-tree root="$s$"}
 > { x X y { a X b X } }
 > ```
 
 > [!subfigure|width=0.1,align=t]
 > $$
 > \begin{gathered}
-> \text{\footnotesize \unfold\;$.y.a$} \\[-5pt]
+> \text{\footnotesize \unfold\;$s.y.a$} \\[-5pt]
 > \longrightarrow
 > \end{gathered}
 > $$
 
 > [!subfigure|width=0.13]
-> ```{.folding-tree root="$\\T_3$"}
+> ```{.folding-tree root="$s$"}
 > { x X y { a { f X g X h X } b X } }
 > ```
 
 > [!subfigure|width=0.1,align=t]
 > $$
-> \overset{\text{\footnotesize \fold\;$.y.a$}}{\longrightarrow}
+> \begin{gathered}
+> \text{\footnotesize \fold\;$s.y.a$} \\[-5pt]
+> \longrightarrow
+> \end{gathered}
 > $$
 
 > [!subfigure|width=0.13]
-> ```{.folding-tree root="$\\T_4$"}
+> ```{.folding-tree root="$s$"}
 > { x X y { a X b X } }
 > ```
 
 > [!subfigure|width=0.1,align=t]
 > $$
 > \begin{gathered}
-> \text{\footnotesize \fold\;$.y$} \\[-5pt]
+> \text{\footnotesize \fold\;$s.y$} \\[-5pt]
 > \longrightarrow
 > \end{gathered}
 > $$
 
 > [!subfigure|width=0.13]
-> ```{.folding-tree root="$\\T_5$"}
+> ```{.folding-tree root="$s$"}
 > { x X y X }
 > ```
 
 > [!caption]
-> A sequence of unfoldings and foldings. Each successive tree operates on the previous one, where the operation performed is indicated by the arrow between them.
+> A sequence of unfolds and folds. Each successive tree operates on the previous one, where the operation performed is indicated by the arrow between them.

@@ -2,6 +2,15 @@
 tags: chapter
 ---
 
+**Chapter status:**
+
+- Almost completely rewritten since last time.
+- The foundation [[Folding tree structure]] should be mostly complete. Contains a lot of definitions, lemmas, proof, and examples. I tried to motivate everything, and not just be a list of "this and then this and then ...", so any comment on flow would be appreciated.
+- The analysis [[Folding analysis]] is started and written up until [[Semantics]] which for the moment contains a definition without explanation; this is the next step.
+
+---
+
+
 In Mist, types such as `struct`s and `enum`s are named, allowing them to be referenced inside other types, in function arguments, and local variables (see [[Types in Mist]]). In addition to being a collection of fields, they can also carry logical properties with `invariant`s. From a programmer's perspective, these fields and properties can be accessed at any point in the program, and the invariants can usually be assumed to hold without the need for any additional annotation.^[Note: Due to this, we say that the Mist source language has _transparent_ types, but it's not important.]
 
 This property, however, introduces an implicit guarantee about where and when the invariants of a type hold. This is tricky when we, for example, modify the internals of a struct in a sequence of operations, and part way through the mutation, the invariants only partially hold.
@@ -15,7 +24,7 @@ This property, however, introduces an implicit guarantee about where and when th
 >
 > The invariant, however, is temporarily broken when `s.x.u` is incremented \lineref{9} only to be restored again when `s.x.v` is decremented \lineref{10}.
 
-In Mist, we want _temporary invalidation_ of invariants to be allowed, and we want the compiler to figure out^[Authors note: I do not use "infer" here on purpose since we will use it in a more formal sense later] when invariants must hold and when it is okay for them not to.
+In Mist, _temporary invalidation_ of invariants is allowed, and we let the compiler figure out when invariants must hold and when they may temporarily be broken.
 
 The goal is thus for the compiler to infer what we call _folding points_, which are locations in a function where we either can assume the properties of an invariant (an _unfold_) or where we must assert that an invariant holds (a _fold_).
 
@@ -37,4 +46,4 @@ In addition to controlling invariants, folding also limits field access such tha
 > 
 > Moreover, the argument `s: &mut S` requires that upon returning, `s` and anything it might contain will be folded. This ensures that invariants of `s`, and any nested invariants hold when the function exits.
 
-To reason about these foldings more formally, we need a data structure to lay a foundation precisely describing folding requirements.
+In this chapter we will introduce a formal definition of _folding trees_ in [[Folding tree structure]] as the foundation for precisely describing folding requirements, then go on to describe the semantics of the language with respect to foldings and an analysis for computing sufficient foldings in [[Folding analysis]], and finish with a proof that we can augment any program to be sound in terms of foldings in [[Folding augmented programs]].

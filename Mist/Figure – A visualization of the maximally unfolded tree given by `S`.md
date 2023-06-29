@@ -3,7 +3,7 @@ tags: figure
 ---
 
 > [!subfigure|width=0.30]
-> ```{.folding-tree root="$\\T_s$"}
+> ```{.folding-tree title="$\\T_s$" root="$s$"}
 > { x { u X v X } y { a { f X g X h X } b X } }
 > ```
 

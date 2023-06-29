@@ -21,6 +21,7 @@ header-includes:
     - \newcommand{\BIC}[1]{\BinaryInfC{#1}}
     - \newcommand{\TIC}[1]{\TrinaryInfC{#1}}
     - \usepackage{syntax}
+    - \usepackage{footnote}
     - \usepackage{mathabx}
     - \usepackage{stmaryrd}
     - \usepackage{fancyvrb,fontspec,xcolor}
@@ -38,13 +39,26 @@ header-includes:
     # Common notation
     - \newcommand{\lineref}[1]{{\footnotesize (line {#1})}}
     - \newcommand{\Rho}{\mathrm{P}}
+    - \newcommand{\F}{\mathcal{F}}
     # - \newcommand{\leafin}[2]{#1\;\varepsilon\;#2}
     - \newcommand{\leaves}{\mathcal{L}}
     - \newcommand{\leafin}[2]{#1 \in \leaves(#2)}
     - \newcommand{\requires}{\reflectbox{$\mathrel{\leadsto}$}}
+    - \newcommand{\Requires}{\:{\tiny\substack{\requires\\[-3pt]\requires}}\:}
+    # - \newcommand{\compat}{\textcolor{red}\heartsuit}
+    # - \newcommand{\incompat}{\heartsuit}
+    - \newcommand{\compat}{\sim}
+    - \newcommand{\incompat}{\not\sim}
+    - \newcommand{\Compat}{\text{$\compat$}}
     # Function aliases
+    - \newcommand{\PowerSet}{\text{\normalfont PowerSet}}
     - \newcommand{\fold}{\texttt{fold}}
     - \newcommand{\unfold}{\texttt{unfold}}
+    - \newcommand{\ifold}{\textcolor{Teal600}{\texttt{fold}}}
+    - \newcommand{\iunfold}{\textcolor{Teal600}{\texttt{unfold}}}
+    - \newcommand{\iuse}{\textcolor{Teal600}{\texttt{use}}}
+    - \newcommand{\foldable}{\texttt{foldable}}
+    - \newcommand{\unfoldable}{\texttt{unfoldable}}
     - \newcommand{\prefix}{\texttt{prefix}}
     - \newcommand{\parents}{\texttt{parents}}
     - \newcommand{\fields}{\texttt{fields}}
@@ -54,7 +68,6 @@ header-includes:
     - \newcommand{\slots}{\mathbf{Slots}}
     - \newcommand{\places}{\mathbf{Places}}
     - \newcommand{\A}{\mathbf{A}}
-    - \newcommand{\inst}{\iota}
     # - \newcommand{\tinto}{\texttt{transitionInto}}
     - \newcommand{\tinto}{\ensuremath{\Delta}}
     # Lattice operators
@@ -63,11 +76,25 @@ header-includes:
     - \newcommand{\join}{\sqcup}
     - \newcommand{\meet}{\sqcap}
     # Semantics
-    - \newcommand{\sem}[1]{\mathcal{S}\llbracket#1 \rrbracket}
-    - \newcommand{\fsem}[1]{\widecheck{\mathcal{S}}\llbracket#1 \rrbracket}
-    - \newcommand{\bsem}[1]{\widehat{\mathcal{S}}\llbracket#1 \rrbracket}
-    - \newcommand{\ssem}[1]{\overline{\mathcal{S}}\llbracket#1 \rrbracket}
+    - \newcommand{\inst}{\iota}
+    - \newcommand{\Inst}{\mathbf{Inst}}
+    - \newcommand{\sems}{\mathcal{S}}
+    - \newcommand{\fsems}{\widecheck{\sems}}
+    - \newcommand{\bsems}{\widehat{\sems}}
+    - \newcommand{\sem}[1]{\sems\llbracket#1 \rrbracket}
+    - \newcommand{\fsem}[1]{\bsem\llbracket#1 \rrbracket}
+    - \newcommand{\bsem}[1]{\bsems\llbracket#1 \rrbracket}
     - \newcommand{\dom}{\texttt{dom}}
+    - \newcommand{\pread}{\texttt{read}}
+    - \newcommand{\eval}{\texttt{eval}}
+    - \newcommand{\Mem}{\mathbf{Mem}}
+    - \newcommand{\Expr}{\mathbf{Expr}}
+    - \newcommand{\expr}{\texttt{expr}}
+    - \newcommand{\Value}{\mathbf{Value}}
+    - \newcommand{\State}{\mathbf{State}}
+
+    - \newcommand{\lookmarker}[1]{\text{$^{_{#1}}$}}
+
     - \usepackage{varwidth}
     - \renewenvironment{prooftree}{\varwidth{.9\textwidth}\centering\leavevmode}{\DisplayProof\endvarwidth}
 
@@ -76,6 +103,7 @@ header-includes:
     - \renewenvironment{leftbar}[2][\hsize] { \def\FrameCommand { {\color{#2}\vrule width 3pt} \hspace{0pt} } \MakeFramed{\hsize#1\advance\hsize-\width\FrameRestore} } {\endMakeFramed}
 
     - \newenvironment{lemma}{\begin{leftbar}{Orange300}\begin{ilemma}}{\end{ilemma}\end{leftbar}}
+    - \newenvironment{proposition}{\begin{leftbar}{Purple300}\begin{iproposition}}{\end{iproposition}\end{leftbar}}
     - \newenvironment{theorem}{\begin{leftbar}{Emerald500}\begin{itheorem}}{\end{itheorem}\end{leftbar}}
     - \newenvironment{definition}{\begin{leftbar}{Teal500}\begin{idefinition}}{\end{idefinition}\end{leftbar}}
     - \renewenvironment{proof}{\begin{leftbar}{Slate200}\begin{iproof}}{\end{iproof}\end{leftbar}}

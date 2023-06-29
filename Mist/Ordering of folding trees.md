@@ -13,9 +13,26 @@ The first step is defining a _partial order_ for folding trees.
 > [!proof]
 > To show this, we refer the fact that $\smaller$ is defined in terms of $\subseteq$ which forms a partial order.
 
+When ordering folding trees, it is helpful to be able to refer to _the most and the least folded tree_.
+
+![[Definition – Folding tree top and bottom]]
+
+> [!remark]
+> Remember from [[Definition – Place]] that $\places$ is potentially infinite, which would make $\top$ an infinite set.
+
 With an ordering established, we define how to combine two trees by creating a new tree that fits within both or one that contains both trees. Such trees are especially useful for reasoning about the most unfolded tree, which does not unfold more than the two other trees.
 
 ![[Definition – Folding tree join and meet]]
+
+> [!remark]
+> $\meet$ and $\join$ can also be applied to potentially infinite sets, and thus potentially produce infinite folding trees.
+> 
+> It is impractical to represent such trees in memory completely. Luckily, $\meet$ and $\join$ satisfies two algebraic properties which make feasable to in most cases:
+> $$
+> \begin{array}{ccc}
+> \;\;\;\;&\top \join \T = \top, \text{ and, } \top \meet \T = \T & \forall \T \in \Ts.
+> \end{array}
+> $$
 
 ![[Lemma – Folding tree join and meet are least upper bound and greatest upper bound]]
 
@@ -32,7 +49,7 @@ The operators allow us to construct new trees, but when doing so, the resulting 
 ![[Lemma – Folding tree join and meet are closed]]
 
 > [!proof]
-> The condition for being a folding tree is that the set must be closed under prefix in accordance to [[Definition – Folding tree]]. To show this, let $\T_1$ and $\T_2$ be arbitrary folding trees, then we can assume that
+> The condition for being a folding tree is that the set must be prefix closed in accordance to [[Definition – Folding tree]]. To show this, let $\T_1$ and $\T_2$ be arbitrary folding trees, then we can assume that
 > $$
 > \forall \rho \in \T_1 : \prefix(\rho) \subseteq \T_1, \;\text{ and, }\; \forall \rho \in \T_2 : \prefix(\rho) \subseteq \T_2.
 > $$
@@ -44,18 +61,6 @@ The operators allow us to construct new trees, but when doing so, the resulting 
 >
 > Next, let $\rho_2$ be an element of $\T_1 \meet \T_2$, which means that $\rho_2$ must be an element of both $\T_1$ and $\T_2$, thus giving us $\prefix(\rho_2) \subseteq \T_1$ and $\prefix(\rho_2) \subseteq \T_2$. Combining these two, we get that $\prefix(\rho_2) \subseteq \T_1 \cap \T_2$, which by [[Definition – Folding tree join and meet]] shows $\prefix(\rho_2) \subseteq \T_1 \meet \T_2$.
 
-When working with these operators, it is helpful to be able to refer to _the most and the least folded tree_.
-
-![[Definition – Folding tree top and bottom]]
-
-> [!remark]
-> Remember from [[Definition – Place]] that $\places$ is potentially infinite, which would make $\top$ an infinite set, meaning that it is impractical to represent fully in practice. Luckily, it satisfies two algebraic properties which make it simple to use in most cases:
-> $$
-> \begin{array}{ccc}
-> \;\;\;\;&\top \join \T = \top, \text{ and, } \top \meet \T = \T & \forall \T \in \Ts.
-> \end{array}
-> $$
-
 Having defined the ordering, upper and lower bounds, $\bot$ and $\top$, we have the necessary requirements to put it all together.
 
 ![[Lemma – Folding tree lattice]]
@@ -63,16 +68,16 @@ Having defined the ordering, upper and lower bounds, $\bot$ and $\top$, we have 
 > [!proof]
 > The requirements are showed in [[Lemma – Folding tree partial order]], [[Lemma – Folding tree join and meet are least upper bound and greatest upper bound]], and, [[Lemma – Folding tree join and meet are closed]].
 
-Folding trees forming a lattice makes using the structure as the analysis domain possible, explored later in [[Computing solutions]].
+As we will see in [[Computing solutions]], folding trees forming a lattice makes them a suitable analysis domain.
 
 %%
 
 > [!example]
-> To see a brief example of this in action, take $\T_1 \meet \T_2$ and $\T_1 \join \T_2$ shown in [[Figure – Folding meet join]], and let us consider the necessary foldings and unfoldings to arrive at both $\T_1$ and $\T_2$. For $\T_1 \meet \T_2$ to become $\T_1$ it requires $\unfold\;.x$ and to become $\T_2$ requires $\unfold\;.y.a$. On the other hand, starting at $\T_1 \join \T_2$ and arriving at $\T_1$ and $\T_2$ requires $\fold\;.x$ and $\fold\;.y.a$ respectively. This example indicates that $\join$ leads to foldings while $\meet$ leads to unfoldings.
+> To see a brief example of this in action, take $\T_1 \meet \T_2$ and $\T_1 \join \T_2$ shown in [[Figure – Folding meet join]], and let us consider the necessary folds and unfolds to arrive at both $\T_1$ and $\T_2$. For $\T_1 \meet \T_2$ to become $\T_1$ it requires $\unfold\;.x$ and to become $\T_2$ requires $\unfold\;.y.a$. On the other hand, starting at $\T_1 \join \T_2$ and arriving at $\T_1$ and $\T_2$ requires $\fold\;.x$ and $\fold\;.y.a$ respectively. This example indicates that $\join$ leads to folds while $\meet$ leads to unfolds.
 
 %%
 
-This leads us to the final bit of notation for folding trees: computing the minimal foldings and unfoldings required to transform one tree into another.
+This leads us to the final bit of notation for folding trees: computing the minimal folds and unfolds required to transform one tree into another.
 
 ![[Definition – Folding tree transition]]
 
@@ -93,7 +98,7 @@ This leads us to the final bit of notation for folding trees: computing the mini
 > \end{gathered}
 > $$
 
-This allows us to transition foldings from one program point into those of another, but it also allows us to go backward due to the invertible property of $\fold$ and $\unfold$.
+With $\tinto$ we can reason about transitioning foldings from one program point into those at another, but it also allows us to go backward due to the invertible property of $\fold$ and $\unfold$.
 
 > [!lemma]
 > The function $\tinto$ is _anticommutative_ [[@bourbakiElementsMathematicsChapters2009#pp. 482]]:

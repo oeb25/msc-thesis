@@ -4,141 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "e1573551b5b8acaa",
-        "type": "tabs",
-        "dimension": 30.643879173290934,
-        "children": [
-          {
-            "id": "c78e0cce54a0749f",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Folding-level IR (FIR).md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "e92cff82457e2124",
-            "type": "leaf",
-            "state": {
-              "type": "graph",
-              "state": {}
-            }
-          },
-          {
-            "id": "3afbd9c3e407a5bf",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Appendix – Proof of leaves from folding.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "e59fe8fc87029a1c",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Proof – Leaves from folding.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "bc12e66ad6e2e2b8",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Proof – Requires properties.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "ba58d63fcf9766f4",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Figure – A visualization of the maximally unfolded tree given by `S`.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
-            }
-          }
-        ],
-        "currentTab": 1
-      },
-      {
-        "id": "be08f91d12caef19",
+        "id": "c6b35e29c406e1e2",
         "type": "split",
-        "dimension": 69.35612082670906,
+        "dimension": 40.377588306942755,
         "children": [
           {
-            "id": "be4281dea51aaff0",
+            "id": "747837a12481c403",
             "type": "tabs",
             "children": [
               {
-                "id": "07ecd2a23b621bb3",
+                "id": "b7f196c2fd8828bd",
                 "type": "leaf",
                 "state": {
                   "type": "markdown",
                   "state": {
-                    "file": "Figure – CFG with annotated analysis.md",
-                    "mode": "source",
-                    "backlinks": false,
-                    "source": false
-                  }
-                }
-              },
-              {
-                "id": "10f8623c955226f3",
-                "type": "leaf",
-                "state": {
-                  "type": "markdown",
-                  "state": {
-                    "file": "Definition – Folding.md",
-                    "mode": "source",
-                    "backlinks": false,
-                    "source": false
-                  }
-                }
-              },
-              {
-                "id": "ced297b8675e35b0",
-                "type": "leaf",
-                "state": {
-                  "type": "markdown",
-                  "state": {
-                    "file": "Appendix – The Mist Grammar.md",
-                    "mode": "source",
-                    "backlinks": false,
-                    "source": false
-                  }
-                }
-              },
-              {
-                "id": "6dbc43aeb53af886",
-                "type": "leaf",
-                "state": {
-                  "type": "markdown",
-                  "state": {
-                    "file": "Definition – Leaves.md",
+                    "file": "Automatic folding of isorecursive structures.md",
                     "mode": "source",
                     "backlinks": true,
                     "source": false
@@ -146,12 +26,12 @@
                 }
               },
               {
-                "id": "5b722b91c964eb55",
+                "id": "f302d91b0562886f",
                 "type": "leaf",
                 "state": {
                   "type": "markdown",
                   "state": {
-                    "file": "Definition – Folding tree.md",
+                    "file": "Figure – Complication pipeline.md",
                     "mode": "source",
                     "backlinks": true,
                     "source": false
@@ -159,164 +39,190 @@
                 }
               },
               {
-                "id": "28541329d4b9af5f",
+                "id": "d024a73535c36f92",
                 "type": "leaf",
                 "state": {
                   "type": "markdown",
                   "state": {
-                    "file": "Appendix – Proof of leaves from folding.md",
+                    "file": "Folding analysis.md",
                     "mode": "source",
-                    "backlinks": false,
+                    "backlinks": true,
                     "source": false
                   }
                 }
               },
               {
-                "id": "4d546ae29df59e27",
+                "id": "99c64d7e4e0ee92d",
                 "type": "leaf",
                 "state": {
                   "type": "markdown",
                   "state": {
-                    "file": "Operations on folding trees.md",
+                    "file": "Folding analysis.md",
                     "mode": "source",
-                    "backlinks": false,
+                    "backlinks": true,
                     "source": false
                   }
                 }
               },
               {
-                "id": "60bfe24131f9fe61",
+                "id": "a0a51769620ea0ed",
                 "type": "leaf",
                 "state": {
                   "type": "markdown",
                   "state": {
-                    "file": "Folding-level IR (FIR).md",
+                    "file": "Definition – Compatible.md",
                     "mode": "source",
-                    "backlinks": false,
+                    "backlinks": true,
                     "source": false
                   }
                 }
               },
               {
-                "id": "5dc38a7d1cf0f787",
-                "type": "leaf",
-                "state": {
-                  "type": "markdown",
-                  "state": {
-                    "file": "Lemma – Folding tree partial order.md",
-                    "mode": "source",
-                    "backlinks": false,
-                    "source": false
-                  }
-                }
-              },
-              {
-                "id": "bf14909786b5f935",
-                "type": "leaf",
-                "state": {
-                  "type": "markdown",
-                  "state": {
-                    "file": "Lemma – Folding tree join and meet are least upper bound and greatest upper bound.md",
-                    "mode": "source",
-                    "backlinks": false,
-                    "source": false
-                  }
-                }
-              },
-              {
-                "id": "4581f48db8c2f117",
+                "id": "12c6f2fcc0c9cc36",
                 "type": "leaf",
                 "state": {
                   "type": "markdown",
                   "state": {
                     "file": "Well-defined access.md",
                     "mode": "source",
-                    "backlinks": false,
+                    "backlinks": true,
                     "source": false
                   }
                 }
               },
               {
-                "id": "af22fdc20ba7cb8a",
+                "id": "93001282b9974561",
                 "type": "leaf",
                 "state": {
                   "type": "markdown",
                   "state": {
                     "file": "Definition – FIR well-defined access rules.md",
                     "mode": "source",
-                    "backlinks": false,
+                    "backlinks": true,
+                    "source": false
+                  }
+                }
+              },
+              {
+                "id": "5ec9e7ebcb0c35f9",
+                "type": "leaf",
+                "state": {
+                  "type": "markdown",
+                  "state": {
+                    "file": "Definition – FIR well-defined access rules.md",
+                    "mode": "source",
+                    "backlinks": true,
+                    "source": false
+                  }
+                }
+              },
+              {
+                "id": "0d723603de169eab",
+                "type": "leaf",
+                "state": {
+                  "type": "markdown",
+                  "state": {
+                    "file": "Definition – FIR Program State.md",
+                    "mode": "source",
+                    "backlinks": true,
                     "source": false
                   }
                 }
               }
             ],
-            "currentTab": 7
+            "currentTab": 4
           },
           {
-            "id": "e2a01040ed542a1e",
+            "id": "a47391081dbc003b",
             "type": "tabs",
             "children": [
               {
-                "id": "fcad289643261118",
+                "id": "191470c71cdf836a",
                 "type": "leaf",
                 "state": {
                   "type": "markdown",
                   "state": {
-                    "file": "Ordering of folding trees.md",
+                    "file": "Definition – FIR Semantics inference rules.md",
                     "mode": "source",
-                    "backlinks": false,
+                    "backlinks": true,
                     "source": false
                   }
                 }
               },
               {
-                "id": "3288a66884af9e52",
+                "id": "b31736a65ad480ae",
                 "type": "leaf",
                 "state": {
                   "type": "markdown",
                   "state": {
-                    "file": "Definition – FIR.md",
+                    "file": "Appendix – Proof of leaves from folding.md",
                     "mode": "source",
-                    "backlinks": false,
+                    "backlinks": true,
                     "source": false
                   }
                 }
               },
               {
-                "id": "9463d3331bbe8d43",
+                "id": "52e848790e06fee0",
                 "type": "leaf",
                 "state": {
                   "type": "markdown",
                   "state": {
-                    "file": "Compilation stages.md",
+                    "file": "Proof – Requires properties.md",
                     "mode": "source",
-                    "backlinks": false,
+                    "backlinks": true,
                     "source": false
                   }
                 }
               },
               {
-                "id": "0b0c6e4da428da05",
+                "id": "56790d282988f55b",
                 "type": "leaf",
                 "state": {
                   "type": "markdown",
                   "state": {
-                    "file": "Computing solutions.md",
+                    "file": "Mid-level IR (MIR).md",
                     "mode": "source",
-                    "backlinks": false,
+                    "backlinks": true,
                     "source": false
                   }
                 }
               },
               {
-                "id": "b7b9433e6d4dc322",
+                "id": "863ef7038a558a2f",
                 "type": "leaf",
                 "state": {
                   "type": "markdown",
                   "state": {
-                    "file": "Well-defined access.md",
+                    "file": "Definition –Place Partial-order.md",
                     "mode": "source",
-                    "backlinks": false,
+                    "backlinks": true,
+                    "source": false
+                  }
+                }
+              },
+              {
+                "id": "59b2a8fdb661f0b1",
+                "type": "leaf",
+                "state": {
+                  "type": "markdown",
+                  "state": {
+                    "file": "Definition – Folding tree transition.md",
+                    "mode": "source",
+                    "backlinks": true,
+                    "source": false
+                  }
+                }
+              },
+              {
+                "id": "df091ed46f44f3a8",
+                "type": "leaf",
+                "state": {
+                  "type": "markdown",
+                  "state": {
+                    "file": "Definition – Compatible.md",
+                    "mode": "source",
+                    "backlinks": true,
                     "source": false
                   }
                 }
@@ -325,7 +231,67 @@
             "currentTab": 4
           }
         ],
-        "direction": "vertical"
+        "direction": "horizontal"
+      },
+      {
+        "id": "a2a59f877c459313",
+        "type": "tabs",
+        "dimension": 59.622411693057245,
+        "children": [
+          {
+            "id": "f11fd85150f720ac",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Definition – FIR Memory.md",
+                "mode": "source",
+                "backlinks": true,
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "acf5c7e33a6a82c2",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Well-defined access.md",
+                "mode": "source",
+                "backlinks": true,
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "f132bf34c5550389",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Folding tree structure.md",
+                "mode": "source",
+                "backlinks": true,
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "dd024d9677028819",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Semantics.md",
+                "mode": "source",
+                "backlinks": true,
+                "source": false
+              }
+            }
+          }
+        ],
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -354,7 +320,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "tag:todo",
+                "query": "\"\\\\newcommand{\\semstep}[3]{&\\langle \\sigma_0, \\T_0\\rangle & \\\\&\\;\\;\\Rightarrow \\sem{r := \\texttt{SumFac \\{ $\\dots$ \\}}} \\\\}\\semstep{a}{b}{c}{x}\"",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -408,6 +374,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "Definition – Compatible.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -424,6 +391,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "Definition – Compatible.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -445,14 +413,16 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "Definition – Compatible.md"
+              }
             }
           }
         ]
       }
     ],
     "direction": "horizontal",
-    "width": 382.5
+    "width": 343.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -465,34 +435,34 @@
       "command-palette:Open command palette": true
     }
   },
-  "active": "e92cff82457e2124",
+  "active": "a0a51769620ea0ed",
   "lastOpenFiles": [
-    "Folding-level IR (FIR).md",
-    "Well-defined access.md",
-    "Outline.md",
-    "Ordering of folding trees.md",
-    "Definition – FIR.md",
-    "Lemma – Fold and unfold commute under inverse.md",
-    "Lemma – Fold and unfold are inverse.md",
-    "Operations on folding trees.md",
-    "Proof – Requires properties.md",
-    "Definition – Cut.md",
-    "Lemma – Requires properties.md",
-    "Definition – FIR well-defined access rules.md",
-    "Appendix – Proof of leaves from folding.md",
-    "Semantics.md",
-    "Definition – Semantics inference rules.md",
-    "The Mist Compiler.md",
-    "Contributions.md",
-    "Conclusion.md",
-    "The Mist Programming Language.md",
-    "Types in Mist.md",
-    "Compilation stages.md",
-    "Abstract-syntax tree (AST).md",
-    "Concrete-syntax tree (CST).md",
+    "Lemma – Requires commutative over compatible.md",
+    "Definition –Place Partial-order.md",
+    "Folding tree structure.md",
     "Mid-level IR (MIR).md",
-    "High-level IR (HIR).md",
-    "Automatic folding of isorecursive structures.md",
+    "Definition – Place Prefix.md",
+    "Definition – Compatible.md",
+    "Proposition – Leaves are compatible.md",
+    "Definition – FIR well-defined access rules.md",
+    "Definition – Cut.md",
+    "Well-defined access.md",
+    "Semantics.md",
+    "Outline.md",
+    "Definition – FIR Memory.md",
+    "Definition – FIR Semantics.md",
+    "Folding analysis.md",
+    "Example – SubFib Semantics.md",
+    "Operations on folding trees.md",
+    "Ordering of folding trees.md",
+    "Folding-level IR (FIR).md",
+    "Lemma – Requires properties.md",
+    "Lemma – Folding tree weaken cut.md",
+    "Proof – Requires properties.md",
+    "Proof – Requires commutes over compatible.md",
+    "Appendix – Proof of leaves from folding.md",
+    "Lemma – Fold and unfold commute over compatible.md",
+    "Definition – Folding tree transition.md",
     "Templates",
     "Daily notes",
     "Thesis layout.canvas",

@@ -17,12 +17,25 @@
 
 % \require{bussproofs}
 \newcommand{\Rho}{\mathrm{P}}
+\newcommand{\F}{\mathcal{F}}
 \newcommand{\leaves}{\mathcal{L}}
 \newcommand{\leafin}[2]{#1 \in \leaves(#2)}
 \newcommand{\requires}{\mathrel{\leadsto}}
+\newcommand{\Requires}{\:{\tiny\substack{\requires\\[-3pt]\requires}}\:}
+% \newcommand{\compat}{\textcolor{red}\heartsuit}
+% \newcommand{\incompat}{\heartsuit}
+\newcommand{\compat}{\sim}
+\newcommand{\Compat}{\text{$\compat$}}
+\newcommand{\incompat}{\not\sim}
 % Function aliases
+\newcommand{\PowerSet}{\text{\normalfont PowerSet}}
 \newcommand{\fold}{\texttt{fold}}
 \newcommand{\unfold}{\texttt{unfold}}
+\newcommand{\ifold}{\textcolor{Teal600}{\texttt{fold}}}
+\newcommand{\iunfold}{\textcolor{Teal600}{\texttt{unfold}}}
+\newcommand{\iuse}{\textcolor{Teal600}{\texttt{use}}}
+\newcommand{\foldable}{\texttt{foldable}}
+\newcommand{\unfoldable}{\texttt{unfoldable}}
 \newcommand{\prefix}{\texttt{prefix}}
 \newcommand{\parents}{\texttt{parents}}
 \newcommand{\fields}{\texttt{fields}}
@@ -32,7 +45,6 @@
 \newcommand{\slots}{\mathbf{Slots}}
 \newcommand{\places}{\mathbf{Places}}
 \newcommand{\A}{\mathbf{A}}
-\newcommand{\inst}{\iota}
 \newcommand{\tinto}{\Delta}
 % Lattice operators
 \newcommand{\smaller}{\sqsubseteq}
@@ -43,12 +55,30 @@
 \newcommand{\llbracket}{[{\kern-0.13em[}}
 \newcommand{\rrbracket}{]{\kern-0.13em]}}
 
-\newcommand{\sem}[1]{\mathcal{S}\llbracket#1 \rrbracket}
-\newcommand{\fsem}[1]{\widecheck{\mathcal{S}}\llbracket#1 \rrbracket}
-\newcommand{\bsem}[1]{\widehat{\mathcal{S}}\llbracket#1 \rrbracket}
-\newcommand{\ssem}[1]{\overline{\mathcal{S}}\llbracket#1 \rrbracket}
+\newcommand{\inst}{\iota}
+\newcommand{\Inst}{\mathbf{Inst}}
+\newcommand{\sems}{\mathcal{S}}
+\newcommand{\fsems}{\widecheck{\sems}}
+\newcommand{\bsems}{\widehat{\sems}}
+\newcommand{\sem}[1]{\sems\llbracket#1 \rrbracket}
+\newcommand{\fsem}[1]{\fsems\llbracket#1 \rrbracket}
+\newcommand{\bsem}[1]{\bsems\llbracket#1 \rrbracket}
+\newcommand{\ssem}[1]{\overline{\sems}\llbracket#1 \rrbracket}
+% \newcommand{\sem}[1]{\mathcal{S}\llbracket#1 \rrbracket}
+% % \newcommand{\fsem}[1]{\widecheck{\mathcal{S}}\llbracket#1 \rrbracket}
+% \newcommand{\fsem}[1]{\check{\mathcal{S}}\llbracket#1 \rrbracket}
+% \newcommand{\bsem}[1]{\widehat{\mathcal{S}}\llbracket#1 \rrbracket}
+% \newcommand{\ssem}[1]{\overline{\mathcal{S}}\llbracket#1 \rrbracket}
 \newcommand{\dom}{\texttt{dom}}
+\newcommand{\pread}{\texttt{read}}
+\newcommand{\eval}{\texttt{eval}}
+\newcommand{\Mem}{\mathbf{Mem}}
+\newcommand{\Expr}{\mathbf{Expr}}
+\newcommand{\expr}{\texttt{expr}}
+\newcommand{\Value}{\mathbf{Value}}
+\newcommand{\State}{\mathbf{State}}
 
+\newcommand{\lookmarker}[1]{\text{$^{_{#1}}$}}
 
 \definecolor{Slate50}{rgb} {0.972549,0.98039216,0.9882353}
 \definecolor{Slate100}{rgb} {0.94509804,0.9607843,0.9764706}

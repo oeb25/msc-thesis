@@ -3,7 +3,7 @@ tags: figure
 ---
 
 > [!subfigure|width=0.1]
-> ```{.folding-tree root="$\\T_1$"}
+> ```{.folding-tree title="$\\T_1$" root="$s$"}
 > { x X y X }
 > ```
 
@@ -16,7 +16,7 @@ tags: figure
 > $$
 
 > [!subfigure|width=0.125]
-> ```{.folding-tree root="$\\T_2$"}
+> ```{.folding-tree title="$\\T_2$" root="$s$"}
 > { x { u X v X } y X }
 > ```
 
@@ -29,7 +29,7 @@ tags: figure
 > $$
 
 > [!subfigure|width=0.19]
-> ```{.folding-tree root="$\\T_3$"}
+> ```{.folding-tree title="$\\T_3$" root="$s$"}
 > { x { u X v X } y { a { f X g X h X } b X } }
 > ```
 
@@ -42,7 +42,7 @@ tags: figure
 > $$
 
 > [!subfigure|width=0.13]
-> ```{.folding-tree root="$\\T_4$"}
+> ```{.folding-tree title="$\\T_4$" root="$s$"}
 > { x X y { a { f X g X h X } b X } }
 > ```
 
@@ -55,7 +55,7 @@ tags: figure
 > $$
 
 > [!subfigure|width=0.1]
-> ```{.folding-tree root="$\\T_5$"}
+> ```{.folding-tree title="$\\T_5$" root="$s$"}
 > { x X y X }
 > ```
 

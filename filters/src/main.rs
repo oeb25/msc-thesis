@@ -133,22 +133,14 @@ fn walk_block(b: &mut Block) -> Result<Vec<Event>, miette::ErrReport> {
             } else if attr.classes.iter().any(|s| s == "mist") {
                 let ignore_errors = attr.classes.iter().any(|s| s == "ignoreErrors");
                 let number_lines = attr.classes.iter().any(|s| s == "numberLines");
-                let first_number = attr
-                    .attributes
-                    .iter()
-                    .find_map(|(k, v)| (k == "firstNumber").then_some(format!("firstnumber={v}")));
                 let (label, src) = extract_label_and_id(attr, src);
-                let lines = highlight_mist(src, ignore_errors);
-                *b = Block::latex(generate_latex_code_block(
-                    &lines,
-                    number_lines,
-                    first_number.as_deref(),
-                    label,
-                ))
+                let lines = highlight_mist(src, ignore_errors, number_lines);
+                *b = Block::latex(generate_latex_code_block(&lines, label))
             } else if attr.classes.iter().any(|s| s == "folding-tree") {
+                let title = attr_map(&attr.attributes).get("title").copied();
                 let root = attr_map(&attr.attributes).get("root").copied();
                 let (label, src) = extract_label_and_id(attr, src);
-                let latex = wrap_latex_in_figure(&fmt_folding_tree(root, src)?, label);
+                let latex = wrap_latex_in_figure(&fmt_folding_tree(title, root, src)?, label);
                 *b = Block::latex(latex)
             } else if attr.classes.iter().any(|s| s == "tikz") {
                 let (label, src) = extract_label_and_id(attr, src);
@@ -156,9 +148,23 @@ fn walk_block(b: &mut Block) -> Result<Vec<Event>, miette::ErrReport> {
                 *b = Block::latex(latex)
             }
         }
-        Block::Plain(_) => {}
-        Block::Para(_) => {}
-        Block::LineBlock(_) => {}
+        Block::Plain(inlines) => {
+            for inline in inlines {
+                walk_inline(inline)?;
+            }
+        }
+        Block::Para(para) => {
+            for inline in para {
+                walk_inline(inline)?;
+            }
+        }
+        Block::LineBlock(items) => {
+            for item in items {
+                for inline in item {
+                    walk_inline(inline)?;
+                }
+            }
+        }
         Block::RawBlock(_, _) => {}
         Block::BlockQuote(q) => {
             if let [Block::Para(p), ..] = &mut q[..] {
@@ -205,21 +211,9 @@ fn walk_block(b: &mut Block) -> Result<Vec<Event>, miette::ErrReport> {
 
                                 content.push(Block::latex(r"\end{proof}"));
                             }
-                            "definition" => {
-                                content.insert(0, Block::latex(r"\begin{definition}"));
-                                content.push(raw_latex!(r"\end{{definition}}"));
-                            }
-                            "lemma" => {
-                                content.insert(0, Block::latex(r"\begin{lemma}"));
-                                content.push(raw_latex!(r"\end{{lemma}}"));
-                            }
-                            "example" => {
-                                content.insert(0, Block::latex(r"\begin{example}"));
-                                content.push(raw_latex!(r"\end{{example}}"));
-                            }
-                            "remark" => {
-                                content.insert(0, Block::latex(r"\begin{remark}"));
-                                content.push(raw_latex!(r"\end{{remark}}"));
+                            "definition" | "lemma" | "proposition" | "example" | "remark" => {
+                                content.insert(0, raw_latex!(r"\begin{{{kind}}}"));
+                                content.push(raw_latex!(r"\end{{{kind}}}"));
                             }
                             "caption" => {
                                 append_to_start(content.first_mut().unwrap(), r"\caption{");
@@ -266,8 +260,13 @@ fn walk_block(b: &mut Block) -> Result<Vec<Event>, miette::ErrReport> {
                 }
             }
         }
-        Block::OrderedList(_, _) => {}
-        Block::BulletList(_) => {}
+        Block::OrderedList(_, items) | Block::BulletList(items) => {
+            for blocks in items {
+                for block in blocks {
+                    walk_block(block)?;
+                }
+            }
+        }
         Block::DefinitionList(_) => {}
         Block::Header(_, _, _) => {}
         Block::HorizontalRule => {}
@@ -367,6 +366,36 @@ fn walk_block(b: &mut Block) -> Result<Vec<Event>, miette::ErrReport> {
     Ok(events)
 }
 
+fn walk_inline(inline: &mut Inline) -> Result<(), miette::Report> {
+    match inline {
+        Inline::Str(_) => {}
+        Inline::Emph(_) => {}
+        Inline::Underline(_) => {}
+        Inline::Strong(_) => {}
+        Inline::Strikeout(_) => {}
+        Inline::Superscript(_) => {}
+        Inline::Subscript(_) => {}
+        Inline::SmallCaps(_) => {}
+        Inline::Quoted(_, _) => {}
+        Inline::Cite(_, _) => {}
+        Inline::Code(_, code) => {
+            let latex = highlight_mist(code, true, false).replace('&', r"\&");
+            *inline = Inline::latex(format!(r"\texttt{{{latex}}}"));
+        }
+        Inline::Space => {}
+        Inline::SoftBreak => {}
+        Inline::LineBreak => {}
+        Inline::Math(_, _) => {}
+        Inline::RawInline(_, _) => {}
+        Inline::Link(_, _, _) => {}
+        Inline::Image(_, _, _) => {}
+        Inline::Note(_) => {}
+        Inline::Span(_, _) => {}
+    }
+
+    Ok(())
+}
+
 fn append_to_start(b: &mut Block, content: impl fmt::Display) {
     match b {
         Block::Para(xs) => xs.insert(0, raw_latex!("{content}")),
@@ -376,6 +405,18 @@ fn append_to_start(b: &mut Block, content: impl fmt::Display) {
 fn append_to_end(b: &mut Block, content: impl fmt::Display) {
     match b {
         Block::Para(xs) => xs.push(raw_latex!("{content}")),
+        Block::Plain(xs) => xs.push(raw_latex!("{content}")),
+        Block::BulletList(items) => {
+            if let Some(blocks) = items.last_mut() {
+                if let Some(b) = blocks.last_mut() {
+                    append_to_end(b, content);
+                } else {
+                    blocks.push(raw_latex!("{content}"))
+                }
+            } else {
+                todo!("append_to_end of empty list")
+            }
+        }
         b => todo!("append_to_end of {b:?}"),
     }
 }
@@ -465,7 +506,17 @@ fn fmt_ungrammar(src: &str, show_names: bool) -> Result<String> {
                     "<{}>",
                     self.grammar[*n].name.trim_end_matches('_')
                 )?,
-                ungrammar::Rule::Token(t) => write!(self.buf, "`{}'", self.grammar[*t].name)?,
+                ungrammar::Rule::Token(t) => {
+                    let name = &self.grammar[*t].name;
+                    if name.chars().all(|c: char| c.is_alphabetic()) {
+                        write!(
+                            self.buf,
+                            r"\textcolor[RGB]{{13,148,136}}{{\texttt{{{name}}}}}",
+                        )?
+                    } else if !name.is_empty() {
+                        write!(self.buf, r"`{name}'")?
+                    }
+                }
                 ungrammar::Rule::Seq(rs) => {
                     if nest > Nest::Seq {
                         write!(self.buf, "(")?;
@@ -504,7 +555,7 @@ fn fmt_ungrammar(src: &str, show_names: bool) -> Result<String> {
                 }
                 ungrammar::Rule::Rep(r) => {
                     self.fmt_rule(r, Nest::Mod)?;
-                    write!(self.buf, "*")?
+                    write!(self.buf, "$^*$")?
                 }
             }
             Ok(())
@@ -514,7 +565,7 @@ fn fmt_ungrammar(src: &str, show_names: bool) -> Result<String> {
     Ok(buf)
 }
 
-fn fmt_folding_tree(root: Option<&str>, src: &str) -> Result<String> {
+fn fmt_folding_tree(title: Option<&str>, root: Option<&str>, src: &str) -> Result<String> {
     let ft = folding_tree::FoldingTree::try_from(src).into_diagnostic()?;
 
     // eprintln!("{src} => {ft}");
@@ -541,13 +592,28 @@ fn fmt_folding_tree(root: Option<&str>, src: &str) -> Result<String> {
             },
         }
     }
+    let title = title.map(|x| format!(r"{x} \\")).unwrap_or_default();
 
     Ok(format!(
         r#"
+        \begin{{center}}
+        {title}
         \begin{{forest}}
             forked edges,
+            for tree={{
+                parent anchor=south,
+                child anchor=north,
+                align=center,
+                l=1cm,
+                if level=0{{
+                  minimum width=\linewidth,
+                  inner xsep=0pt,
+                  outer xsep=0pt,
+                }}{{}},
+            }},
             {buf}
         \end{{forest}}
+        \end{{center}}
         "#
     ))
 }
@@ -569,9 +635,9 @@ fn fmt_tikz(src: &str) -> Result<String> {
 
     let output = format!(
         r#"
-        \begin{{adjustwidth}}{{-.5in}}{{-.5in}}
+        \begin{{adjustbox}}{{center}}
         \includegraphics{{{pdf_path}}}
-        \end{{adjustwidth}}
+        \end{{adjustbox}}
         "#
     );
 
@@ -610,25 +676,17 @@ fn fmt_tikz(src: &str) -> Result<String> {
     Ok(output)
 }
 
-fn generate_latex_code_block(
-    lines: &str,
-    numbers: bool,
-    first_number: Option<&str>,
-    label_and_caption: Option<(&str, &str)>,
-) -> String {
+fn generate_latex_code_block(lines: &str, label_and_caption: Option<(&str, &str)>) -> String {
     let latex = format!(
         r"\makeatletter
 \def\verbatim@nolig@list{{\do\`\do\<\do\>\do\'\do\-}}
 \makeatother
-% ...
-\begin{{Verbatim}}[commandchars=\\\{{\}},{}]
+\vspace{{-1ex}}
+\begin{{Verbatim}}[commandchars=\\\{{\}}]
 {lines}
 \end{{Verbatim}}
-",
-        [numbers.then_some("numbers=left"), first_number]
-            .into_iter()
-            .flatten()
-            .format(", ")
+\vspace{{-1ex}}
+"
     );
     wrap_latex_in_figure(&latex, label_and_caption)
 }

@@ -7,5 +7,7 @@
   "interfaceFontFamily": "SF Pro",
   "showViewHeader": false,
   "nativeMenus": true,
-  "translucency": false
+  "translucency": false,
+  "baseFontSize": 16,
+  "baseFontSizeAction": false
 }

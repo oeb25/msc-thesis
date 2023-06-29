@@ -3,29 +3,21 @@ tags: figure
 ---
 
 ```ungram
-Instruction = Place ':=' Expr
-            | 'reference' Expr
-            | 'mention' Place
+Block = BlockId_ (Instruction ';')* 'branch' BlockId_*
+
+Instruction = Place ':=' Expr_
+			| 'use' Place*
             | 'fold' Place
             | 'unfold' Place
-
-Expr = Operand*
-     | BorrowKind Place
-
-BorrowKind = '&' | '&mut'
-
-Operand = 'copy' Place | 'move' Place
 
 Place = Slot_ Projection*
 
 Projection = '.' Field_ // | '[' Slot_ ']'
 
-BinaryOp_ = '...'
+BlockId_ = '...'
+Expr_ = '...'
 Field_ = '...'
-Mutable_ = '...'
-Shared_ = '...'
 Slot_ = '...'
-UnaryOp_ = '...'
 ```
 
 > [!caption] BNF style grammar for FIR.

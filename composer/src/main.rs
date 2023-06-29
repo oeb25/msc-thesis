@@ -291,7 +291,7 @@ impl Database {
                             p_content.clear();
                         }
                         Some(Frontmatter { ty, .. })
-                            if ["definition", "lemma", "proof", "example"]
+                            if ["definition", "lemma", "proposition", "proof", "example"]
                                 .contains(&ty.as_str()) =>
                         {
                             p_content.push(ProcessedFileContent::RawLatex(format!(

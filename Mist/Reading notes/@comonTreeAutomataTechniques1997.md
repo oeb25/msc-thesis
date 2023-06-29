@@ -11,3 +11,6 @@ doi:
 
 ## Notes
 
+## pp. 14
+
+Definition of _frontier position_.

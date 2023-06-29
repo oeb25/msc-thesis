@@ -51,9 +51,10 @@ tags: figure
 >     \A(\phi_3) &\smaller \bsem{\alpha_3}(\A(\phi_2)) \\
 > \end{aligned} \\[1em]
 > \bsem{{\color{Teal900} \delta(\phi_i, \phi_j)}}(\A(\phi_j)) = \tinto[\A(\phi_j), \A(\phi_i)](\A(\phi_j)) \\
-> \bsem{\alpha_i}(\A(\phi_i')) = \A(\phi_i)
+> \bsem{\alpha_i}(\A(\phi_i')) = \A(\phi_i) \\
+> \fsem{\alpha_i}(\A(\phi_i)) = \A(\phi_i')
 > \end{gathered}
 > $$
 
 > [!caption]
-> An abstract CFG with annotated program locations and constraints.
+> An abstract CFG with annotated program points and constraints.

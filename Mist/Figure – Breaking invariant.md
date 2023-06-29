@@ -3,7 +3,7 @@ tags: figure
 ---
 
 > [!subfigure|width=0.9,align=b]
-> ```{.mist .numberLines .ignoreErrors}
+> ```{.mist .ignoreErrors}
 > struct S { x: X, y: Y }     struct X { u: int, v: int }
 > struct Y { a: A, b: int }   struct A { f: int, g: int, h: int }
 >
