@@ -20,7 +20,7 @@ As $\fold$ and $\unfold$ are the building blocks for further analysis, it is hel
 
 ![[Lemma – Leaves from folding]]
 
-A detailed proof for this lemma is found in [[Proof – Leaves from folding]].
+A detailed proof for [[Lemma – Leaves from folding]] is found in [[Proof – Leaves from folding]].
 
 The following property is that the two functions, $\fold$ and $\unfold$, allow us to undo the actions of the other.
 
@@ -31,8 +31,8 @@ The following property is that the two functions, $\fold$ and $\unfold$, allow u
 > $$
 > \begin{aligned}
 > \fold(\rho, \unfold(\rho, \T))
->   &= \fold(\rho, \T \cup \{ \rho.f_1, \dots, \rho.f_2 \}) \\
->   &= (\T \cup \{ \rho.f_1, \dots, \rho.f_2 \}) \setminus \{ \rho.f_1, \dots, \rho.f_2 \} \\
+>   &= \fold(\rho, \T \cup \fields(\rho)) \\
+>   &= (\T \cup \fields(\rho)) \setminus \fields(\rho) \\
 >   &= \T. \\
 > \end{aligned}
 > $$
@@ -40,15 +40,15 @@ The following property is that the two functions, $\fold$ and $\unfold$, allow u
 > $$
 > \begin{aligned}
 > \unfold(\rho, \fold(\rho, \T))
->   &= \unfold(\rho, \T \setminus \{ \rho.f_1, \dots, \rho.f_2 \}) \\
->   &= (\T \setminus \{ \rho.f_1, \dots, \rho.f_2 \}) \cup \{ \rho.f_1, \dots, \rho.f_2 \} \\
+>   &= \unfold(\rho, \T \setminus \fields(\rho)) \\
+>   &= (\T \setminus \fields(\rho)) \cup \fields(\rho) \\
 >   &= \T. \\
 > \end{aligned}
 > $$
 
 Another neat property is that $\fold$ and $\unfold$ commutes under the inverse, allowing us to undo chains of foldings by reversing the chain and inverting every folding.
 
-![[Lemma – Fold and unfold commute under inverse]]
+![[Proposition – Fold and unfold commute under inverse]]
 
 > [!proof]
 > Since function composition "$\circ$" is associative, then
@@ -64,8 +64,7 @@ As well as commuting under the inverse, they also commute when folding or unfold
 
 ![[Lemma – Fold and unfold commute over compatible]]
 
-> [!proof]
-> Let $\rho_1 \compat \rho_2$, **todo**.
+The proof of this [[Lemma – Fold and unfold commute over compatible]] is deferred to [[Proof – Fold and unfold commute over compatible]].
 
 A typical operation on folding trees is transforming an existing tree into a new one with a desired place folded. To do so, a sequence of folds and unfolds must be performed to arrive at the desired tree. We call this operation _requires_ and use the notation $\T \requires \rho$ to say that we want the tree $\T$ but with minimal folds and unfolds performed to have $\rho$ folded.
 
@@ -117,12 +116,7 @@ Intuitively, $\cut$ can be thought of as removing all leaves leading up to $\rho
 > $$
 > \{ \rho' \in \T \mid \rho \incompat \rho' \} \supseteq \{ \rho' \in \T \mid \rho.f_i \incompat \rho' \}.
 > $$
-> From here, let $\rho' \in \T$ be arbitrarily chosen (as a reminder $\rho' \neq \rho$,) then we must show $\rho' \incompat \rho.f_i \implies \rho' \incompat \rho$. By assuming $\rho' \incompat \rho.f_i$ we get that $\rho' \in \prefix(\rho.f_i)$ or $\rho.f_i \in \prefix(\rho')$ from [[Definition – Compatible]]:
->
-> - If $\rho' \in \prefix(\rho.f_i)$, then either $\rho' = \rho.f_i$ in which case $\rho \in \prefix(\rho')$, or $\rho' \neq \rho.f_i$ in which case $\rho' \in \prefix(\rho)$.
-> - Otherwise, $\rho.f_i \in \prefix(\rho')$, and thus $\rho \in \prefix(\rho')$
->
-> Since we have shown that either $\rho \in \prefix(\rho')$ or $\rho' \in \prefix(\rho)$, we have that $\rho \incompat \rho'$, which concludes the proof.
+> From here, let $\rho' \in \T$ be arbitrarily chosen (as a reminder $\rho' \neq \rho$,) then we must show $\rho' \incompat \rho.f_i \implies \rho' \incompat \rho$. By assuming $\rho' \incompat \rho.f_i$ we get that $\rho' < \rho.f_i$ or $\rho.f_i < \rho'$ from [[Definition – Compatible]]. By transitivity we get that $\rho' < \rho$ from the first case, or $\rho < \rho'$ from the second. These give us $\rho \incompat \rho'$, which concludes the proof.
 
 One point of interest regarding $\cut$ is that the set of places it produces removes everything that would violate having $\rho$ be a leaf and thus is quite valuable for specifying an essential property of $\requires$.
 

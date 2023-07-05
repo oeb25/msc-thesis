@@ -31,47 +31,54 @@ const DEFAULT_THEME: Theme = Theme {
     },
 };
 
-pub fn highlight_mist(code: &str, ignore_errors: bool, show_numbers: bool) -> String {
-    highlight_mist_inner(code, 0, ignore_errors, show_numbers)
+#[derive(Debug, Default, Clone)]
+pub struct HighlightingOptions {
+    pub ignore_errors: bool,
+    pub show_numbers: bool,
+    pub viper_compat: bool,
 }
-pub fn highlight_mist_inner(
-    code: &str,
-    line_offset: usize,
-    ignore_errors: bool,
-    show_numbers: bool,
-) -> String {
+
+impl HighlightingOptions {
+    pub fn highlight(&self, code: &str) -> String {
+        highlight_mist(code, self)
+    }
+}
+
+fn highlight_mist(code: &str, opts: &HighlightingOptions) -> String {
+    let s = highlight_mist_inner(code, 0, opts);
+    if opts.viper_compat {
+        s.replace("int", "Int")
+            .replace("bool", "Bool")
+            .replace("invariant", "predicate")
+            .replace("{fn}", "{method}")
+            .replace("{let}", "{var}")
+    } else {
+        s
+    }
+}
+fn highlight_mist_inner(code: &str, line_offset: usize, opts: &HighlightingOptions) -> String {
     if let Some((fst, snd)) = code.split_once("\n//@ break\n") {
-        if !show_numbers {
+        if !opts.show_numbers {
             eprintln!("fst: {fst:?}");
             eprintln!("snd: {snd:?}");
         }
 
-        let fst_latex = highlight_mist_inner(fst, line_offset, ignore_errors, show_numbers);
-        let snd_latex = highlight_mist_inner(
-            snd,
-            line_offset + fst.lines().count() - 1,
-            ignore_errors,
-            show_numbers,
-        );
+        let fst_latex = highlight_mist_inner(fst, line_offset, opts);
+        let snd_latex = highlight_mist_inner(snd, line_offset + fst.lines().count() - 1, opts);
         format!("{fst_latex}\n\n{snd_latex}")
     } else if let Some((fst, snd)) = code.split_once("\n//@ align\n") {
         let l_max = fst.lines().map(|l| l.len()).max().unwrap_or_default();
         let r_max = snd.lines().map(|l| l.len()).max().unwrap_or_default();
 
-        let target = if show_numbers { 60 - 7 } else { 60 };
+        let target = if opts.show_numbers { 60 - 7 } else { 60 };
         let max = if l_max + r_max > target {
             l_max
         } else {
             l_max + (target - (l_max + r_max)) / 2
         };
 
-        let fst_latex = highlight_actual_mist(fst, line_offset, ignore_errors, show_numbers);
-        let snd_latex = highlight_actual_mist(
-            snd,
-            line_offset + fst.lines().count(),
-            ignore_errors,
-            show_numbers,
-        );
+        let fst_latex = highlight_actual_mist(fst, line_offset, opts);
+        let snd_latex = highlight_actual_mist(snd, line_offset + fst.lines().count(), opts);
 
         let n_max_lines = fst
             .lines()
@@ -85,24 +92,19 @@ pub fn highlight_mist_inner(
                 let snd_latex = snd_latex.lines().nth(idx).unwrap_or_default();
 
                 let lgap = " ".repeat(max - fst_line.len() + 1);
-                let rgap = if show_numbers { "" } else { " " };
+                let rgap = if opts.show_numbers { "" } else { " " };
 
                 format!(r"{fst_latex}{lgap}\textcolor{{Gray200}}{{|}}{rgap}{snd_latex}")
             })
             .join("\n")
     } else {
-        highlight_actual_mist(code, line_offset, ignore_errors, show_numbers)
+        highlight_actual_mist(code, line_offset, opts)
     }
 }
 
-fn highlight_actual_mist(
-    code: &str,
-    line_offset: usize,
-    ignore_errors: bool,
-    show_numbers: bool,
-) -> String {
+fn highlight_actual_mist(code: &str, line_offset: usize, opts: &HighlightingOptions) -> String {
     let parse = mist_syntax::parse(code);
-    if !ignore_errors {
+    if !opts.ignore_errors {
         for err in parse.errors() {
             eprintln!("{:?}", miette::Error::new(err.clone()));
         }
@@ -179,7 +181,7 @@ fn highlight_actual_mist(
                         SyntaxKind::WHITESPACE => return Some(s),
                         kind if kind.is_trivia() => {
                             let latex = as_latex_escaped(&[(DEFAULT_THEME.trivia, &s)]);
-                            return Some(latex + "\n");
+                            return Some(latex);
                         }
                         _ if ["fold", "unfold", "branch"].contains(&&*s) => DEFAULT_THEME.kw,
                         _ => Style::default(),
@@ -189,8 +191,9 @@ fn highlight_actual_mist(
             })
         })
         .collect();
+    let s = s.replace("\n}", "}\n");
 
-    if show_numbers {
+    if opts.show_numbers {
         let line =
             |ln| format!(r"\textcolor{{Gray300}}{{\raisebox{{.1ex}}{{\footnotesize {ln:>2}}}}}");
 

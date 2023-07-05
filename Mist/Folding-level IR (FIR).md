@@ -2,7 +2,7 @@
 tags: subsection
 ---
 
-In [[Compilation stages]], we introduced the multi-stage structure of the Mist compiler, and specifically the MIR representation (see [[Mid-level IR (MIR)]]). In terms of computing folds and unfolds, this is the stage we are considering. However, instead of considering the complete set of instructions and terminators, we consider a smaller variant that focuses on _how and what_ places are used and omit the details for performing actual computation or verification.
+In [[Compilation structure]], we introduced the multi-stage structure of the Mist compiler, and specifically the MIR representation (see [[Mid-level IR (MIR)]]). In terms of computing folds and unfolds, this is the stage we are considering. However, instead of considering the complete set of instructions and terminators, we consider a smaller variant that focuses on _how and what_ places are used and omit the details for performing actual computation or verification.
 
 ![[Definition – FIR]]
 

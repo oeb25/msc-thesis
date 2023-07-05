@@ -10,7 +10,6 @@ tags: chapter
 
 ---
 
-
 In Mist, types such as `struct`s and `enum`s are named, allowing them to be referenced inside other types, in function arguments, and local variables (see [[Types in Mist]]). In addition to being a collection of fields, they can also carry logical properties with `invariant`s. From a programmer's perspective, these fields and properties can be accessed at any point in the program, and the invariants can usually be assumed to hold without the need for any additional annotation.^[Note: Due to this, we say that the Mist source language has _transparent_ types, but it's not important.]
 
 This property, however, introduces an implicit guarantee about where and when the invariants of a type hold. This is tricky when we, for example, modify the internals of a struct in a sequence of operations, and part way through the mutation, the invariants only partially hold.

@@ -10,9 +10,23 @@ Thus, we need a separate notion of a _well-defined execution_ for FIR instructio
 
 ![[Definition – FIR well-defined access rules]]
 
-The rules for the `fold` and `unfold` FIR instructions exactly mirror those of performing $\fold(\rho, \T)$ and $\unfold(\rho, \T)$ defined in [[Definition – Folding]]. The two others state that places being read has to be folded in $\T$, while any place written to has to be accessible in $\T$ but not necessarily folded.
+The rules for the `fold` and `unfold` FIR instructions mirror those of performing $\fold(\rho, \T)$ and $\unfold(\rho, \T)$ defined in [[Definition – Folding]]. The two others state that places being read has to be folded in $\T$, while any place written to has to be accessible in $\T$ but not necessarily folded.
 
 > [!remark]
-> Not requiring written places to be folded might seem strange, but it comes from overwriting it, thus making it inaccessible. This drops any field it might have had and makes its invariants irrelevant. It is, however, important that the place is _accessible_, or in other words, that its parent is unfolded, as performing the assignment needs access to the fields of the parent.
+> The assignment instruction contains some details which are not immediately apparent, meriting exploration.
+>
+> Firstly, not requiring written places to be folded might seem strange, but it comes from overwriting it, thus making it inaccessible. This drops any field it might have had and makes their invariants irrelevant. It is, however, important that the place is _accessible_, or in other words, that its parent is unfolded, as performing the assignment needs access to the fields of the parent.
+>
+> Secondly, since $\pread(a) \subseteq \leaves(\T)$ and $\leaves(\T)$ is a compatible set by [[Proposition – Leaves are compatible]], then so is $\pread(a)$. This has certain limitations of which expressions are allowed, further explored in [[Limitations of current folding analysis]]. The same holds for $\Rho$ in $\iuse\;\Rho$.
+>
+> Lastly, is an interaction between the two requirements. For $\rho \in \T$, it means that $\rho$ cannot be a descendant of anything $\pread(a)$. This prevents spurious statements such as `x.f = x`, where the ownership of `x` becomes ill-defined. The limitations of this interaction is discussed further in [[Limitations of current folding analysis]].
+
+If an instruction is well-defined for multiple folding trees, then a neat property is that the instruction will also be well-defined for the $\meet$ of those trees.
+
+![[Lemma – Meet of well-defined is well-defined]]
+
+![[Proof – Meet of well-defined is well-defined]]
 
 Notice that nothing in [[Definition – FIR well-defined access rules]] folds or unfolds. The access rules only describe _when an instruction is well-typed_ not what it _produces_, which is the described by semantics.
+
+

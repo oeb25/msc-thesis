@@ -1,3 +1,33 @@
+@book{ahoCompilersPrinciplesTechniques1986,
+  title = {Compilers, Principles, Techniques, and Tools},
+  author = {Aho, Alfred V. and Sethi, Ravi and Ullman, Jeffrey D.},
+  date = {1986},
+  publisher = {{Addison-Wesley Pub. Co}},
+  location = {{Reading, Mass}},
+  isbn = {978-0-201-10088-4},
+  pagetotal = {796},
+  keywords = {Compilers (Computer programs)},
+  file = {/Users/oeb25/Zotero/storage/45G2MX6E/Aho et al. - 1986 - Compilers, principles, techniques, and tools.pdf}
+}
+
+@article{astrauskasLeveragingRustTypes2019,
+  title = {Leveraging Rust Types for Modular Specification and Verification},
+  author = {Astrauskas, Vytautas and Müller, Peter and Poli, Federico and Summers, Alexander J.},
+  date = {2019-10-10},
+  journaltitle = {Proceedings of the ACM on Programming Languages},
+  shortjournal = {Proc. ACM Program. Lang.},
+  volume = {3},
+  pages = {1--30},
+  issn = {2475-1421},
+  doi = {10.1145/3360573},
+  url = {https://dl.acm.org/doi/10.1145/3360573},
+  urldate = {2023-06-30},
+  abstract = {Rust's type system ensures memory safety: well-typed Rust programs are guaranteed to not exhibit problems such as dangling pointers, data races, and unexpected side effects through aliased references. Ensuring correctness properties beyond memory safety, for instance, the guaranteed absence of assertion failures or more-general functional correctness, requires static program verification. For traditional system programming languages, formal verification is notoriously difficult and requires complex specifications and logics to reason about pointers, aliasing, and side effects on mutable state. This complexity is a major obstacle to the more-widespread verification of system software.                            In this paper, we present a novel verification technique that leverages Rust's type system to greatly simplify the specification and verification of system software written in Rust. We analyse information from the Rust compiler and synthesise a corresponding               core proof               for the program in a flavour of separation logic tailored to automation. To verify correctness properties beyond memory safety, users can annotate Rust programs with specifications at the abstraction level of Rust expressions; our technique weaves them into the core proof to verify modularly whether these specifications hold. Crucially, our proofs are constructed and checked automatically without exposing the underlying formal logic, allowing users to work exclusively at the level of abstraction of the programming language. As such, our work enables a new kind of verification tool, with the potential to impact a wide audience and allow the Rust community to benefit from state-of-the-art verification techniques. We have implemented our techniques for a subset of Rust; our evaluation on several thousand functions from widely-used Rust crates demonstrates its effectiveness.},
+  issue = {OOPSLA},
+  langid = {english},
+  file = {/Users/oeb25/Zotero/storage/KCWD944A/Astrauskas et al. - 2019 - Leveraging rust types for modular specification an.pdf;/Users/oeb25/Zotero/storage/WY547PCC/astrauskas2019.pdf.pdf}
+}
+
 @inproceedings{birrellImplementingRemoteProcedure1983,
   title = {Implementing {{Remote}} Procedure Calls},
   booktitle = {Proceedings of the Ninth {{ACM}} Symposium on {{Operating}} Systems Principles  - {{SOSP}} '83},

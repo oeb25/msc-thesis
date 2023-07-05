@@ -2,6 +2,8 @@
 tags: proof
 ---
 
+%%Proof of [[Lemma – Requires properties]]%%
+
 We split the proof goal to show these two properties:
 $$
 \begin{aligned}

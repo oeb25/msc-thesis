@@ -29,10 +29,10 @@ Something we can derive from the definition of $\leaves$, is that the places in 
 ![[Proposition – Leaves are compatible]]
 
 > [!proof]
-> Let $\T$ be any folding tree, and $\rho_1, \rho_2 \in \leaves(\T)$ be arbitrary leaves from $\T$.
-> 
-> We prove by contradiction that $\rho_1 \notin \prefix(\rho_2)$, by assuming that $\rho_1 \neq \rho_2$ and $\rho_1 \in \prefix(\rho_2)$. Since $\rho_1$ is in the prefix of $\rho_2$, and $\rho_1 \neq \rho_2$, then a field of $\rho_1$ must be in $\prefix(\rho_2)$, call this $\rho_1.f_i$, and thus $\rho_1.f_i \in \T$ since $\T$ is prefix closed. However, since $\rho_1 \in \leaves(\T)$, then we know that $\rho_1.f_i \notin \T$, resulting in a contradiction.
-> 
-> Since $\rho_1, \rho_2$ were chosen arbitrarily, and we showed, without loss of generality, that $\rho_1 \notin \prefix(\rho_2)$ when $\rho_1 \neq \rho_2$, then $\Compat\leaves(\T)$.
+> Let $\T$ be any folding tree, and $\rho_1, \rho_2 \in \leaves(\T)$ be arbitrary leaves from $\T$. We need to show that $\rho_1 \compat \rho_2$, which amounts to showing $\rho_1 \not< \rho_2$ and $\rho_2 \not< \rho_1$. Without loss of generality, we will show $\rho_1 \not< \rho_2$ by contradiction.
+>
+> We start by assuming that $\rho_1 < \rho_2$, then a field, $\rho_1.f_i$, must satisfy $\rho_1.f_i \leq \rho_2$, and thus $\rho_1.f_i \in \T$ since $\T$ is prefix closed. However, since $\rho_1 \in \leaves(\T)$, then we know that $\rho_1.f_i \notin \T$, resulting in a contradiction.
+>
+> Since $\rho_1, \rho_2$ were chosen arbitrarily, and we showed, without loss of generality, that $\rho_1 \not< \rho_2$, then $\Compat\leaves(\T)$.
 
 This property comes up in many places when working with folding trees. Other prominent instances of compatible sets are $\fields(\rho)$  for any place $\rho$.

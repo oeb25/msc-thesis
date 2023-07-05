@@ -34,7 +34,6 @@ fn compute(m: int) -> SumFac req n > 1, ens result.n == m {
 
   r
 }
-
 ```
 
 > [!caption]

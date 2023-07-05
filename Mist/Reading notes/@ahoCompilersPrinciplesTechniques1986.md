@@ -11,6 +11,10 @@ doi:
 
 ## Notes
 
-## pp. 608
+## p. 5
+
+Standard compilation model
+
+## p. 608
 
 Live-Variable analysis

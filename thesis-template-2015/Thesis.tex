@@ -31,6 +31,15 @@ $if(highlighting-macros)$
 $highlighting-macros$
 $endif$
 
+% \usepackage[square,numbers]{natbib}
+\usepackage[%
+  backend=biber,
+  style=alphabetic,
+  backref=true,
+  natbib=true,
+]{biblatex}
+\addbibresource{ZoteroLib.bib}
+
 \setlength{\emergencystretch}{3em} % prevent overfull lines
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}

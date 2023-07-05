@@ -2,12 +2,4 @@
 tags: chapter
 ---
 
-**Chapter status:**
-
-- Very much in-progress.
-- Text in [[Syntax trees]] is mostly written, but examples are not incorporated yet. Don't spend too much time reading this.
-- There are some important definitions in [[Mid-level IR (MIR)]], but they are not yet described.
-
----
-
-The Mist compiler is written in Rust and is heavily inspired by the architecture of both `rustc` and `rust-analyzer`.
+The Mist compiler is written in Rust and is heavily inspired by the architecture of both `rustc` [[@RustCompilerDevelopment2018]]  and `rust-analyzer` [[@RustAnalyzerArchitecture2023]]. Similar to both is that it uses an incremental query-based model at every compilation step, discussed in detail in [[Compilation structure]]. However, conceptually, it follows a standard compilation model [[@ahoCompilersPrinciplesTechniques1986#p. 5]], but with modifications to support interactive editing feedback, discussed in detail in [[Language server integration]]. We outline the architecture of the compilation structure in [[Compilation stages]], where the concrete objects used during compilation, and their purposes, are only referenced briefly and later described in more detail in [[Compilation stages]].

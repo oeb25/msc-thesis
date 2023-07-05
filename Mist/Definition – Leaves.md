@@ -12,4 +12,4 @@ $$
 \leaves(\T) = \{ \rho \mid \rho \in \T \land \forall f_i \in \fields(\rho) : \rho.f_i\notin \T \}.
 $$
 
-This is analogous to the definition of _frontier positions_ [[@comonTreeAutomataTechniques1997#pp. 14]].
+This is analogous to the definition of _frontier positions_ [[@comonTreeAutomataTechniques1997#p. 14]].

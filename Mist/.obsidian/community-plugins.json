@@ -3,5 +3,6 @@
   "callout-manager",
   "obsidian-tikzjax",
   "obsidian-citation-plugin",
-  "obsidian-languagetool-plugin"
+  "obsidian-languagetool-plugin",
+  "pane-relief"
 ]

@@ -61,6 +61,8 @@ enum FileKind {
 struct Frontmatter {
     #[serde(rename = "tags")]
     ty: String,
+    #[serde(default)]
+    attrs: HashMap<String, serde_json::Value>,
     #[serde(flatten)]
     rest: HashMap<String, serde_json::Value>,
 }
@@ -253,29 +255,32 @@ impl Database {
                             let tail = "\n\n:::\n".to_string();
                             tail_content.push(ProcessedFileContent::Markdown(tail));
                         }
-                        Some(Frontmatter { ty, .. }) if ty == "chapter" => {
-                            p_content.push(ProcessedFileContent::Markdown(format!(
-                                "# {file_name} {{#{file_label}}}"
-                            )));
+                        Some(Frontmatter { ty, attrs, .. }) if ty == "subfigure" => {
+                            let attrs = attrs.iter().map(|(k, v)| format!("{k}={v}")).format(" ");
+                            let head = format!("\n::::: {{.subfigure #{file_label} {attrs}}}\n");
+                            p_content.push(ProcessedFileContent::Markdown(head));
+
+                            let tail = "\n\n:::::\n".to_string();
+                            tail_content.push(ProcessedFileContent::Markdown(tail));
                         }
                         Some(Frontmatter { ty, .. }) if ty == "chapter" => {
                             p_content.push(ProcessedFileContent::Markdown(format!(
-                                "# {file_name} {{#{file_label}}}"
+                                "\n# {file_name} {{#{file_label}}}"
                             )));
                         }
                         Some(Frontmatter { ty, .. }) if ty == "section" => {
                             p_content.push(ProcessedFileContent::Markdown(format!(
-                                "## {file_name} {{#{file_label}}}"
+                                "\n## {file_name} {{#{file_label}}}"
                             )));
                         }
                         Some(Frontmatter { ty, .. }) if ty == "subsection" => {
                             p_content.push(ProcessedFileContent::Markdown(format!(
-                                "### {file_name} {{#{file_label}}}"
+                                "\n### {file_name} {{#{file_label}}}"
                             )));
                         }
                         Some(Frontmatter { ty, .. }) if ty == "subsubsection" => {
                             p_content.push(ProcessedFileContent::Markdown(format!(
-                                "#### {file_name} {{#{file_label}}}"
+                                "\n#### {file_name} {{#{file_label}}}"
                             )));
                         }
                         Some(Frontmatter { ty, .. }) if ty == "appendix" => {
@@ -284,15 +289,22 @@ impl Database {
                                 .map(|(_, n)| n)
                                 .unwrap_or(file_name);
                             p_content.push(ProcessedFileContent::Markdown(format!(
-                                "# {stripped_file_name} {{#{file_label}}}"
+                                "\n# {stripped_file_name} {{#{file_label}}}"
                             )));
                         }
                         Some(Frontmatter { ty, .. }) if ty == "citation" => {
                             p_content.clear();
                         }
                         Some(Frontmatter { ty, .. })
-                            if ["definition", "lemma", "proposition", "proof", "example"]
-                                .contains(&ty.as_str()) =>
+                            if [
+                                "definition",
+                                "lemma",
+                                "proposition",
+                                "theorem",
+                                "proof",
+                                "example",
+                            ]
+                            .contains(&ty.as_str()) =>
                         {
                             p_content.push(ProcessedFileContent::RawLatex(format!(
                                 r"\begin{{{ty}}}\label{{{file_label}}} \@ifnextchar\par{{\@gobble}}{{}}"
@@ -439,12 +451,15 @@ impl Database {
                         write!(buf, r"\cref{{{label}}}").into_diagnostic()?;
                     }
                     ProcessedFileContent::Cite { key, pages } => {
-                        if let Some(pages) = pages {
-                            write!(buf, r"[see {key} {pages}]")
-                        } else {
-                            write!(buf, r"{key}")
-                        }
-                        .into_diagnostic()?;
+                        let key = key.trim_start_matches('@');
+                        let pages = pages.as_ref().map(|s| s.as_str()).unwrap_or_default();
+                        write!(buf, r"\cite[{pages}]{{{key}}}").into_diagnostic()?;
+                        // if let Some(pages) = pages {
+                        //     write!(buf, r"[see {key} {pages}]")
+                        // } else {
+                        //     write!(buf, r"{key}")
+                        // }
+                        // .into_diagnostic()?;
                     }
                 }
             }

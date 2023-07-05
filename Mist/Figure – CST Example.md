@@ -93,9 +93,9 @@ tags: figure
 ```
 
 > [!caption]
-> A simple Mist program, with its CST displayed below where upper case words refer to the syntax kind, the numbers separated by `..` indicate the span in the source code, and syntax-nodes have their children indented while terminals have the string they span in double-quotes.
+> A simple Mist program, with its CST displayed below where uppercase words refer to the syntax kind, the numbers separated by `..` indicate the span in the source code, and syntax-nodes have their children indented while terminals have the string they span in double-quotes.
 
-```
+%%```
   × parse error: specify the type here
    ╭────
  1 │ fn main() -> { let x = 5 }
@@ -111,3 +111,4 @@ tags: figure
    ·                        ╰── help: add ';' here
    ╰────
 ```
+%%

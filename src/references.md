@@ -3,5 +3,6 @@
 \renewcommand{\sectionmark}[1]{\markright{#1}}
 \sectionmark{Bibliography}
 \addcontentsline{toc}{chapter}{Bibliography}
-\bibliographystyle{alpha}
-\bibliography{References}
+<!-- \bibliographystyle{abbrvnat}
+\bibliography{ZoteroLib} -->
+\printbibliography

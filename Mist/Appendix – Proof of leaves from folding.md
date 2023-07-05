@@ -6,6 +6,10 @@ tags: appendix
 
 ![[Proof – Leaves from folding]]
 
+## Proof of [[Lemma – Fold and unfold commute over compatible]]
+
+![[Proof – Fold and unfold commute over compatible]]
+
 ## Proof of [[Lemma – Requires commutative over compatible]]
 
 ![[Proof – Requires commutes over compatible]]

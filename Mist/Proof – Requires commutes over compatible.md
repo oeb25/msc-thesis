@@ -2,8 +2,10 @@
 tags: proof
 ---
 
-Let $\rho_1 \compat \rho_2$ and let $\rho_3$ be the maximal place in both $\prefix(\rho_1)$ and $\prefix(\rho_2)$, that is
-$$\forall \rho_i : \rho_i \in \prefix(\rho_1) \land \rho_i \in \prefix(\rho_2) \implies |\prefix(\rho_3)| \geq |\prefix(\rho_i)|.$$
+%%Proof of [[Lemma – Requires commutative over compatible]]%%
+
+Let $\rho_1 \compat \rho_2$ and let $\rho_3$ be the maximal place smaller than both $\rho_1$ and $\rho_2$, that is
+$$\forall \rho_i : \rho_i \leq \rho_1 \land \rho_i \leq \rho_2 \implies |\prefix(\rho_i)| \leq |\prefix(\rho_3)|.$$
 Now, let $\F^1 = \F^1_1\circ\F^1_2\circ\dots\F^1_n$ be the sequence of foldings satisfying $\F^1(\T) = \T \requires \rho_1$, and $\F^2 = \F^2_1\circ\F^2_2\circ\dots\F^2_m$ be the sequence of foldings satisfying $\F^2(\T) = \T \requires \rho_2$. Then the sequence of foldings $\F^3 = \F^3_1\circ\F^3_2\circ\dots\F^3_q$ satisfying $\F^3(\T) = \T \requires \rho_3$ must be a prefix of both $\F^1$ and $\F^2$ such that
 $$
 \begin{aligned}

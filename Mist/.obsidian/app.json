@@ -7,5 +7,7 @@
   "spellcheckDictionary": [
     "foldings",
     "unfoldings"
-  ]
+  ],
+  "useTab": false,
+  "tabSize": 2
 }

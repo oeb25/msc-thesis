@@ -11,12 +11,13 @@ use std::{
 };
 
 use camino::Utf8PathBuf;
+use highlight::HighlightingOptions;
 use itertools::Itertools;
 use miette::{Context, IntoDiagnostic, Result};
 use pandoc_types::definition::{Attr, Block, Format, Inline};
 use ungrammar::NodeData;
 
-use crate::{colors::Palette, highlight::highlight_mist};
+use crate::colors::Palette;
 
 fn main() -> Result<()> {
     miette::set_panic_hook();
@@ -133,8 +134,14 @@ fn walk_block(b: &mut Block) -> Result<Vec<Event>, miette::ErrReport> {
             } else if attr.classes.iter().any(|s| s == "mist") {
                 let ignore_errors = attr.classes.iter().any(|s| s == "ignoreErrors");
                 let number_lines = attr.classes.iter().any(|s| s == "numberLines");
+                let viper_compat = attr.classes.iter().any(|s| s == "viperCompat");
                 let (label, src) = extract_label_and_id(attr, src);
-                let lines = highlight_mist(src, ignore_errors, number_lines);
+                let lines = HighlightingOptions {
+                    ignore_errors,
+                    show_numbers: number_lines,
+                    viper_compat,
+                }
+                .highlight(src);
                 *b = Block::latex(generate_latex_code_block(&lines, label))
             } else if attr.classes.iter().any(|s| s == "folding-tree") {
                 let title = attr_map(&attr.attributes).get("title").copied();
@@ -211,7 +218,8 @@ fn walk_block(b: &mut Block) -> Result<Vec<Event>, miette::ErrReport> {
 
                                 content.push(Block::latex(r"\end{proof}"));
                             }
-                            "definition" | "lemma" | "proposition" | "example" | "remark" => {
+                            "definition" | "lemma" | "proposition" | "theorem" | "example"
+                            | "remark" => {
                                 content.insert(0, raw_latex!(r"\begin{{{kind}}}"));
                                 content.push(raw_latex!(r"\end{{{kind}}}"));
                             }
@@ -379,7 +387,20 @@ fn walk_inline(inline: &mut Inline) -> Result<(), miette::Report> {
         Inline::Quoted(_, _) => {}
         Inline::Cite(_, _) => {}
         Inline::Code(_, code) => {
-            let latex = highlight_mist(code, true, false).replace('&', r"\&");
+            let (code, viper_compat) = if let Some(code) = code.strip_prefix("@vpr ") {
+                (code, true)
+            } else {
+                (code.as_str(), false)
+            };
+
+            let latex = HighlightingOptions {
+                ignore_errors: true,
+                viper_compat,
+                ..Default::default()
+            }
+            .highlight(code)
+            .replace('&', r"\&")
+            .replace('#', r"\#");
             *inline = Inline::latex(format!(r"\texttt{{{latex}}}"));
         }
         Inline::Space => {}
@@ -650,7 +671,7 @@ fn fmt_tikz(src: &str) -> Result<String> {
     let mut cmd = std::process::Command::new("xelatex")
         .current_dir(temp_dir.path())
         .stdin(std::process::Stdio::piped())
-        .stdout(std::process::Stdio::null())
+        .stdout(std::process::Stdio::piped())
         .spawn()
         .into_diagnostic()?;
 
@@ -668,7 +689,11 @@ fn fmt_tikz(src: &str) -> Result<String> {
     writeln!(stdin, "{src}").unwrap();
     drop(stdin);
 
-    dbg!(cmd.wait_with_output()).unwrap();
+    let cmd_output = cmd.wait_with_output().unwrap();
+
+    if !cmd_output.status.success() {
+        panic!("{}", std::str::from_utf8(&cmd_output.stdout).unwrap());
+    }
 
     fs::create_dir_all(&build_dir).into_diagnostic()?;
     fs::copy(temp_dir.path().join("texput.pdf"), &pdf_path).into_diagnostic()?;

@@ -5,7 +5,9 @@ toc: true
 date: 15th July
 year: 2023
 bibliography: [ZoteroLib.bib]
-citeproc: true
+natbib: true
+# citeproc: true
+# csl: https://www.zotero.org/styles/acm-siggraph?source=1
 classoption:
     - 10pt
     - twoside
@@ -34,6 +36,7 @@ header-includes:
     - \usepackage{caption}
     - \usepackage{subcaption}
     - \usepackage{tabularx}
+    # - \usepackage[verbose]{backref}
     # Custom envs
     - \newtheorem{case}{Case}
     # Common notation
@@ -82,7 +85,7 @@ header-includes:
     - \newcommand{\fsems}{\widecheck{\sems}}
     - \newcommand{\bsems}{\widehat{\sems}}
     - \newcommand{\sem}[1]{\sems\llbracket#1 \rrbracket}
-    - \newcommand{\fsem}[1]{\bsem\llbracket#1 \rrbracket}
+    - \newcommand{\fsem}[1]{\fsems\llbracket#1 \rrbracket}
     - \newcommand{\bsem}[1]{\bsems\llbracket#1 \rrbracket}
     - \newcommand{\dom}{\texttt{dom}}
     - \newcommand{\pread}{\texttt{read}}
@@ -92,6 +95,8 @@ header-includes:
     - \newcommand{\expr}{\texttt{expr}}
     - \newcommand{\Value}{\mathbf{Value}}
     - \newcommand{\State}{\mathbf{State}}
+    - \newcommand{\pp}{\phi}
+    - \newcommand{\Pp}{\Phi}
 
     - \newcommand{\lookmarker}[1]{\text{$^{_{#1}}$}}
 

@@ -2,6 +2,8 @@
 tags: proof
 ---
 
+%%Proof of [[Lemma – Leaves from folding]]%%
+
 We prove the two statements separately.
 %%$$
 \begin{aligned}

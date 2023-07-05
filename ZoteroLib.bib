@@ -10,6 +10,24 @@
   file = {/Users/oeb25/Zotero/storage/45G2MX6E/Aho et al. - 1986 - Compilers, principles, techniques, and tools.pdf}
 }
 
+@article{astrauskasLeveragingRustTypes2019,
+  title = {Leveraging Rust Types for Modular Specification and Verification},
+  author = {Astrauskas, Vytautas and Müller, Peter and Poli, Federico and Summers, Alexander J.},
+  date = {2019-10-10},
+  journaltitle = {Proceedings of the ACM on Programming Languages},
+  shortjournal = {Proc. ACM Program. Lang.},
+  volume = {3},
+  pages = {1--30},
+  issn = {2475-1421},
+  doi = {10.1145/3360573},
+  url = {https://dl.acm.org/doi/10.1145/3360573},
+  urldate = {2023-06-30},
+  abstract = {Rust's type system ensures memory safety: well-typed Rust programs are guaranteed to not exhibit problems such as dangling pointers, data races, and unexpected side effects through aliased references. Ensuring correctness properties beyond memory safety, for instance, the guaranteed absence of assertion failures or more-general functional correctness, requires static program verification. For traditional system programming languages, formal verification is notoriously difficult and requires complex specifications and logics to reason about pointers, aliasing, and side effects on mutable state. This complexity is a major obstacle to the more-widespread verification of system software.                            In this paper, we present a novel verification technique that leverages Rust's type system to greatly simplify the specification and verification of system software written in Rust. We analyse information from the Rust compiler and synthesise a corresponding               core proof               for the program in a flavour of separation logic tailored to automation. To verify correctness properties beyond memory safety, users can annotate Rust programs with specifications at the abstraction level of Rust expressions; our technique weaves them into the core proof to verify modularly whether these specifications hold. Crucially, our proofs are constructed and checked automatically without exposing the underlying formal logic, allowing users to work exclusively at the level of abstraction of the programming language. As such, our work enables a new kind of verification tool, with the potential to impact a wide audience and allow the Rust community to benefit from state-of-the-art verification techniques. We have implemented our techniques for a subset of Rust; our evaluation on several thousand functions from widely-used Rust crates demonstrates its effectiveness.},
+  issue = {OOPSLA},
+  langid = {english},
+  file = {/Users/oeb25/Zotero/storage/KCWD944A/Astrauskas et al. - 2019 - Leveraging rust types for modular specification an.pdf;/Users/oeb25/Zotero/storage/WY547PCC/astrauskas2019.pdf.pdf}
+}
+
 @inproceedings{birrellImplementingRemoteProcedure1983,
   title = {Implementing {{Remote}} Procedure Calls},
   booktitle = {Proceedings of the Ninth {{ACM}} Symposium on {{Operating}} Systems Principles  - {{SOSP}} '83},
@@ -40,6 +58,14 @@
   version = {1},
   keywords = {FOS: Computer and information sciences,Programming Languages (cs.PL)},
   file = {/Users/oeb25/Zotero/storage/IGB7J3CB/Blackshear et al. - 2022 - The Move Borrow Checker.pdf}
+}
+
+@inproceedings{Bornholt2021,
+  title = {Using Lightweight Formal Methods to Validate a Key-Value Storage Node in {{Amazon S3}}},
+  booktitle = {{{SOSP}} 2021},
+  author = {Bornholt, James and Joshi, Rajeev and Astrauskas, Vytautas and Cully, Brendan and Kragl, Bernhard and Markle, Seth and Sauri, Kyle and Schleit, Drew and Slatton, Grant and Tasiran, Serdar and Geffen, Jacob Van and Warfield, Andrew},
+  date = {2021},
+  url = {https://www.amazon.science/publications/using-lightweight-formal-methods-to-validate-a-key-value-storage-node-in-amazon-s3}
 }
 
 @book{bourbakiElementsMathematicsChapters2009,
@@ -76,6 +102,18 @@
   isbn = {978-0-429-06774-7},
   langid = {english},
   file = {/Users/oeb25/Zotero/storage/EL78K8QK/Campbell et al. - 2012 - Introduction to Compiler Construction in a Java Wo.pdf}
+}
+
+@software{carboncontributersCarbon2023,
+  title = {Carbon},
+  author = {{Carbon contributers}},
+  date = {2023-03-24T01:20:13Z},
+  origdate = {2020-02-20T10:50:49Z},
+  url = {https://github.com/viperproject/carbon},
+  urldate = {2023-07-03},
+  abstract = {Verification-condition-generation-based verifier for the Viper intermediate verification language.},
+  organization = {{Viper Project}},
+  keywords = {verification,verification-condition-generation,viper}
 }
 
 @inproceedings{comonTreeAutomataTechniques1997,
@@ -191,6 +229,26 @@
   keywords = {Computer-aided design,Data processing,Integrated circuits,Logic design,Verification,Very large scale integration Design Data processing}
 }
 
+@inproceedings{hammerAdaptonComposableDemanddriven2014,
+  title = {Adapton: Composable, Demand-Driven Incremental Computation},
+  shorttitle = {Adapton},
+  booktitle = {Proceedings of the 35th {{ACM SIGPLAN Conference}} on {{Programming Language Design}} and {{Implementation}}},
+  author = {Hammer, Matthew A. and Phang, Khoo Yit and Hicks, Michael and Foster, Jeffrey S.},
+  date = {2014-06-09},
+  pages = {156--166},
+  publisher = {{ACM}},
+  location = {{Edinburgh United Kingdom}},
+  doi = {10.1145/2594291.2594324},
+  url = {https://dl.acm.org/doi/10.1145/2594291.2594324},
+  urldate = {2023-07-03},
+  abstract = {Many researchers have proposed programming languages that support incremental computation (IC), which allows programs to be efficiently re-executed after a small change to the input. However, existing implementations of such languages have two important drawbacks. First, recomputation is oblivious to specific demands on the program output; that is, if a program input changes, all dependencies will be recomputed, even if an observer no longer requires certain outputs. Second, programs are made incremental as a unit, with little or no support for reusing results outside of their original context, e.g., when reordered.},
+  eventtitle = {{{PLDI}} '14: {{ACM SIGPLAN Conference}} on {{Programming Language Design}} and {{Implementation}}},
+  isbn = {978-1-4503-2784-8},
+  langid = {english},
+  keywords = {incremental},
+  file = {/Users/oeb25/Zotero/storage/N3HHLRDM/Hammer et al. - 2014 - Adapton composable, demand-driven incremental com.pdf;/Users/oeb25/Zotero/storage/NQ4EEQG8/hammer2013.pdf.pdf}
+}
+
 @online{hodgesNotesDistributedSystems,
   title = {Notes on {{Distributed Systems}} for {{Young Bloods}} – {{Something Similar}}},
   author = {Hodges, Jeff},
@@ -198,6 +256,14 @@
   urldate = {2022-01-21},
   keywords = {Distributed Systems},
   file = {/Users/oeb25/Zotero/storage/IYQBD2MK/notes-on-distributed-systems-for-young-bloods.html}
+}
+
+@online{kladovResilientLLParsing,
+  title = {Resilient {{LL Parsing Tutorial}}},
+  author = {Kladov, Alex},
+  url = {https://matklad.github.io/2023/05/21/resilient-ll-parsing-tutorial.html},
+  urldate = {2023-07-02},
+  file = {/Users/oeb25/Zotero/storage/LE4C3HJC/resilient-ll-parsing-tutorial.html}
 }
 
 @online{LatticeTheory,
@@ -217,6 +283,36 @@
   urldate = {2022-02-01},
   abstract = {This is an extended version of a talk given at Strange Loop 2019 and Code Mesh London 2019. Isabelle code: https://gist.github.com/ept/b6872fc54... Slides \& more info: https://martin.kleppmann.com/2019/09/... Abstract: Testing systems is great, but tests can only explore a finite set of inputs and behaviours. Many real systems, especially distributed systems, have a potentially infinite state space. If you want to be sure that a program does the right thing in all possible situations, testing is not sufficient: you need proof. Only mathematical proof, e.g. by induction, can cover an infinite state space. Pen-and-paper proofs are well established in mathematics, but they need to be laboriously checked by hand, and humans sometimes make mistakes. Automated theorem provers and computerised proof assistants can help here. This talk introduces Isabelle/HOL, an interactive proof assistant that can be used to formally prove the correctness of algorithms. It is somewhat like a programming language and interactive console for proofs. In this talk we will explore how Isabelle can be used to analyse algorithms for distributed systems, and prove them correct. We will work through some example problems in live demos, and prove real theorems about some simple algorithms. Proof assistants still have a pretty steep learning curve, and this talk won’t be able to teach you everything, but you will get a sense of the style of reasoning, and maybe you will be tempted to try it for yourself.},
   keywords = {Automated Reasoning,Distributed Systems}
+}
+
+@software{matsakisSalsa2023,
+  title = {Salsa},
+  author = {Matsakis, Niko and Kladov, Alex and {Salsa contributers}},
+  date = {2023-06-30T10:28:43Z},
+  origdate = {2018-09-28T14:56:12Z},
+  url = {https://github.com/salsa-rs/salsa},
+  urldate = {2023-07-02},
+  abstract = {A generic framework for on-demand, incrementalized computation. Inspired by adapton, glimmer, and rustc's query system.},
+  organization = {{salsa}},
+  keywords = {incremental,rust}
+}
+
+@incollection{mullerViperVerificationInfrastructure2016,
+  title = {Viper: {{A Verification Infrastructure}} for {{Permission-Based Reasoning}}},
+  shorttitle = {Viper},
+  booktitle = {Verification, {{Model Checking}}, and {{Abstract Interpretation}}},
+  author = {Müller, Peter and Schwerhoff, Malte and Summers, Alexander J.},
+  editor = {Jobstmann, Barbara and Leino, K. Rustan M.},
+  date = {2016},
+  volume = {9583},
+  pages = {41--62},
+  publisher = {{Springer Berlin Heidelberg}},
+  location = {{Berlin, Heidelberg}},
+  doi = {10.1007/978-3-662-49122-5_2},
+  url = {http://link.springer.com/10.1007/978-3-662-49122-5_2},
+  urldate = {2023-07-03},
+  isbn = {978-3-662-49121-8 978-3-662-49122-5},
+  file = {/Users/oeb25/Zotero/storage/F9FLPE27/Müller et al. - 2016 - Viper A Verification Infrastructure for Permissio.pdf}
 }
 
 @online{nielsonProgramAnalysisAppetizer2020,
@@ -269,6 +365,60 @@
   file = {/Users/oeb25/Zotero/storage/E3L2EQRH/Pierce - 2002 - Types and Programming Languages.pdf}
 }
 
+@online{Proptest,
+  title = {Proptest-Rs/Proptest: {{Hypothesis-like}} Property Testing for {{Rust}}},
+  author = {{Proptest Contributers}},
+  url = {https://github.com/proptest-rs/proptest},
+  urldate = {2023-07-04},
+  file = {/Users/oeb25/Zotero/storage/BLV5G4DH/proptest.html}
+}
+
+@software{ronacherMitsuhikoInsta2023,
+  title = {Mitsuhiko/Insta},
+  author = {Ronacher, Armin},
+  date = {2023-06-30T22:38:28Z},
+  origdate = {2019-01-13T22:25:41Z},
+  url = {https://github.com/mitsuhiko/insta},
+  urldate = {2023-07-04},
+  abstract = {A snapshot testing library for rust},
+  keywords = {rust,snapshot-tests,vscode-extension}
+}
+
+@software{RustAnalyzerArchitecture2023,
+  title = {Rust-Lang/Rust-Analyzer – {{Architecture}}},
+  author = {{The rust-analyzer Project Developers}},
+  date = {2023-07-03T19:17:27Z},
+  origdate = {2017-12-21T19:24:42Z},
+  url = {https://github.com/rust-lang/rust-analyzer/blob/0dd2c0d8d3f6aa8ec1079270d65d2ecf1c64ce78/docs/dev/architecture.md},
+  urldate = {2023-07-04},
+  abstract = {A Rust compiler front-end for IDEs},
+  organization = {{The Rust Programming Language}},
+  keywords = {rust}
+}
+
+@software{RustCompilerDevelopment2018,
+  title = {Rust Compiler Development Guide (Rustc-Dev-Guide)},
+  author = {{The Rust Project Developers}},
+  date = {2018-01},
+  url = {https://github.com/rust-lang/rustc-dev-guide},
+  keywords = {rust}
+}
+
+@thesis{schwerhoffAdvancingAutomatedPermissionBased2016,
+  title = {Advancing {{Automated}}, {{Permission-Based Program Verification Using Symbolic Execution}}},
+  author = {Schwerhoff, Malte H.},
+  editora = {{Jacobs, Bart} and {Müller, Peter}},
+  editoratype = {collaborator},
+  date = {2016},
+  pages = {229 p.},
+  institution = {{ETH Zurich}},
+  doi = {10.3929/ETHZ-A-010835519},
+  url = {http://hdl.handle.net/20.500.11850/127711},
+  urldate = {2023-07-03},
+  langid = {english},
+  keywords = {CONCURRENT PROGRAMMING + DISTRIBUTED PROGRAMMING + PARALLEL PROGRAMMING (PROGRAMMING METHODS),CORRECTNESS (THEORY OF PROGRAMMING),{Data processing, computer science},info:eu-repo/classification/ddc/004,KORREKTHEIT (THEORIE DER PROGRAMMIERUNG),VERIFICATION (SOFTWARE ENGINEERING),VERIFIKATION (SOFTWARE ENGINEERING),VERTEILTE PROGRAMMIERUNG + PARALLELE PROGRAMMIERUNG (PROGRAMMIERMETHODEN)}
+}
+
 @article{schwerhoffLightweightSupportMagic2015,
   title = {Lightweight {{Support}} for {{Magic Wands}} in an {{Automatic Verifier}}},
   author = {Schwerhoff, Malte and Summers, Alexander J.},
@@ -282,6 +432,14 @@
   langid = {english},
   keywords = {Automatic Verifiers,Implicit Dynamic Frames,Magic Wand,Separation Logic,Software Verification},
   file = {/Users/oeb25/Zotero/storage/ZEKZ36NZ/Schwerhoﬀ and Summers - Lightweight Support for Magic Wands in an Automati.pdf}
+}
+
+@online{silvercontributersViperprojectSilverDefinition,
+  title = {Viperproject/Silver: {{Definition}} of the {{Viper}} Intermediate Verification Language.},
+  author = {{Silver contributers}},
+  url = {https://github.com/viperproject/silver},
+  urldate = {2023-07-03},
+  file = {/Users/oeb25/Zotero/storage/77K752G2/silver.html}
 }
 
 @online{thomasc.halesFormalProof,
