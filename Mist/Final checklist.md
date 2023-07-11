@@ -1,0 +1,3 @@
+- [ ] All pages are spell-checked
+- [ ] All proofs have $\qed$
+- [ ] Figures/examples do not span page breaks

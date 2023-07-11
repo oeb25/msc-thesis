@@ -85,7 +85,13 @@ One interesting fact about the requires operator, and something that is crucial 
 
 The proof for this lemma is deferred to [[Proof – Requires commutes over compatible]].
 
-For $\requires$ to be helpful, we need to show some properties that it satisfies, but first, we need to establish a notion of leaves remaining after requiring a place.
+We can increase the applicability of $\requires$ by giving a closed-form formulation of the set produced by applying it.
+
+![[Lemma – Requires closed-form]]
+
+The proof of [[Lemma – Requires closed-form]] is deferred to [[Proof – Requires closed-form]].
+
+Next, for $\requires$ to be helpful, we need to show some properties that it satisfies, but first, we need to establish a notion of leaves remaining after requiring a place.
 
 ![[Definition – Cut]]
 

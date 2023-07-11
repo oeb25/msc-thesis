@@ -9,18 +9,12 @@ $$
 The function is defined for each FIR instruction
 $$
 \begin{gathered}
-\bsem{\iuse\;\Rho}(\T)
-= \begin{cases}
-	\T \Requires \Rho & \text{if }\; \Compat\Rho, \\
-	\text{\normalfont undefined} & \text{\normalfont otherwise}
-\end{cases}
+\bsem{\iuse\;\Rho}(\T) = \T \Requires \Rho
 \\[1ex]
 \bsem{\rho := a}(\T)
 = \begin{cases}
-	\T \Requires \pread(a) & \text{if }\; \Compat\pread(a) \land \rho \in \T\Requires\pread(a), \\
-	\T \Requires \pread(a) \cup \{\rho\} & \text{if } \Compat(\pread(a) \cup \{\rho\}) \land \rho \notin \T, \\
-	\text{\normalfont undefined} & \text{if } \exists\rho' \in \pread(a) : \rho' < \rho, \\
-	\text{\normalfont undefined} & \text{\normalfont otherwise}
+	\T \Requires \pread(a) & \text{\normalfont if }\; \rho \in \T\Requires\pread(a), \\
+	\T \Requires (\pread(a) \cup \{\rho\}) & \text{\normalfont otherwise} \\
 \end{cases}
 \\[1ex]
 \bsem{\ifold\;\rho}(\T)

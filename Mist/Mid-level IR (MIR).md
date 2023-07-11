@@ -12,4 +12,6 @@ The MIR representation is a control-flow graph (CFG) with internally branchless 
 
 ![[Definition – Place Prefix]]
 
-![[Definition –Place Partial-order]]
+![[Definition – Place Partial-order]]
+
+![[Definition – Place siblings]]

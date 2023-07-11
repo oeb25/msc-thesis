@@ -1,6 +1,6 @@
 use itertools::Itertools;
 use mist_syntax::{
-    ast::{self, SyntaxKind},
+    ast::{self, Spanned, SyntaxKind},
     AstNode,
 };
 use syntect::{
@@ -35,6 +35,7 @@ const DEFAULT_THEME: Theme = Theme {
 pub struct HighlightingOptions {
     pub ignore_errors: bool,
     pub show_numbers: bool,
+    pub offset_numbers: usize,
     pub viper_compat: bool,
 }
 
@@ -45,13 +46,15 @@ impl HighlightingOptions {
 }
 
 fn highlight_mist(code: &str, opts: &HighlightingOptions) -> String {
-    let s = highlight_mist_inner(code, 0, opts);
+    let s = highlight_mist_inner(code, opts.offset_numbers, opts);
     if opts.viper_compat {
         s.replace("int", "Int")
             .replace("bool", "Bool")
             .replace("invariant", "predicate")
+            .replace("{inv}", "{invariant}")
             .replace("{fn}", "{method}")
             .replace("{let}", "{var}")
+            .replace("{struct}", "{class}")
     } else {
         s
     }
@@ -87,14 +90,22 @@ fn highlight_mist_inner(code: &str, line_offset: usize, opts: &HighlightingOptio
 
         (0..n_max_lines)
             .map(|idx| {
+                let has_fst_line = fst.lines().nth(idx).is_some();
                 let fst_line = fst.lines().nth(idx).unwrap_or_default();
                 let fst_latex = fst_latex.lines().nth(idx).unwrap_or_default();
                 let snd_latex = snd_latex.lines().nth(idx).unwrap_or_default();
 
-                let lgap = " ".repeat(max - fst_line.len() + 1);
+                let lgap = " ".repeat(max - fst_line.len() + 1)
+                    + if has_fst_line {
+                        ""
+                    } else {
+                        r"{\footnotesize\textcolor{white}{00}} "
+                    };
                 let rgap = if opts.show_numbers { "" } else { " " };
 
-                format!(r"{fst_latex}{lgap}\textcolor{{Gray200}}{{|}}{rgap}{snd_latex}")
+                format!(
+                    r"{fst_latex}{lgap}\textcolor{{Gray200}}{{|\footnotesize }}{rgap}{snd_latex}"
+                )
             })
             .join("\n")
     } else {
@@ -175,6 +186,32 @@ fn highlight_actual_mist(code: &str, line_offset: usize, opts: &HighlightingOpti
                             block_label = true;
                             DEFAULT_THEME.block_label
                         }
+                        _ if opts.viper_compat
+                            && [
+                                "acc",
+                                "unfolding",
+                                "old",
+                                "none",
+                                "write",
+                                "Ref",
+                                "Int",
+                                "returns",
+                                "reads",
+                                "modifies",
+                                "define",
+                                "to",
+                            ]
+                            .contains(&&*s) =>
+                        {
+                            DEFAULT_THEME.kw
+                        }
+                        _ if s.starts_with(|c: char| c.is_uppercase()) => DEFAULT_THEME.fun,
+                        SyntaxKind::LET_KW
+                            if opts.viper_compat && !code[0..it.span().offset()].ends_with(' ') =>
+                        {
+                            let latex = as_latex_escaped(&[(DEFAULT_THEME.kw, "field")]);
+                            return Some(latex);
+                        }
                         kind if kind.is_keyword() => DEFAULT_THEME.kw,
                         kind if kind.is_literal() => DEFAULT_THEME.literal,
                         kind if kind.is_punct() => DEFAULT_THEME.punct,
@@ -183,7 +220,9 @@ fn highlight_actual_mist(code: &str, line_offset: usize, opts: &HighlightingOpti
                             let latex = as_latex_escaped(&[(DEFAULT_THEME.trivia, &s)]);
                             return Some(latex);
                         }
-                        _ if ["fold", "unfold", "branch"].contains(&&*s) => DEFAULT_THEME.kw,
+                        _ if ["fold", "unfold", "branch", "proof"].contains(&&*s) => {
+                            DEFAULT_THEME.kw
+                        }
                         _ => Style::default(),
                     };
                     as_latex_escaped(&[(style, &s)])
@@ -195,7 +234,7 @@ fn highlight_actual_mist(code: &str, line_offset: usize, opts: &HighlightingOpti
 
     if opts.show_numbers {
         let line =
-            |ln| format!(r"\textcolor{{Gray300}}{{\raisebox{{.1ex}}{{\footnotesize {ln:>2}}}}}");
+            |ln| format!(r"\textcolor{{Gray300}}{{\raisebox{{.1ex}}{{\footnotesize{{{ln:>2}}}}}}}");
 
         s.lines()
             .enumerate()

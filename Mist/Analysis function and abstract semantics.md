@@ -18,8 +18,10 @@ The main goal of this function, is to compute folding trees satisfying the requi
 
 ![[Proof – FIR Abstract Semantics compute well-defined access]]
 
+As for $\requires$, the abstract semantics function $\bsems$ is also monotone, again crucial for [[Computing solutions]].
+
 ![[Lemma – FIR Abstract Semantics is a monotone function]]
 
-![[Proof – FIR Abstract Semantics is a monotone function]]
+The proof for [[Lemma – FIR Abstract Semantics is a monotone function]] is deferred to [[Proof – FIR Abstract Semantics is a monotone function]].
 
 With $\bsems$ defined, we can begin to reason about complete programs, by applying it to the full FIR.

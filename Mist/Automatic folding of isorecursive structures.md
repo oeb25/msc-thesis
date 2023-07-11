@@ -2,14 +2,6 @@
 tags: chapter
 ---
 
-**Chapter status:**
-
-- Almost completely rewritten since last time.
-- The foundation [[Folding tree structure]] should be mostly complete. Contains a lot of definitions, lemmas, proof, and examples. I tried to motivate everything, and not just be a list of "this and then this and then ...", so any comment on flow would be appreciated.
-- The analysis [[Folding analysis]] is started and written up until [[Semantics]] which for the moment contains a definition without explanation; this is the next step.
-
----
-
 In Mist, types such as `struct`s and `enum`s are named, allowing them to be referenced inside other types, in function arguments, and local variables (see [[Types in Mist]]). In addition to being a collection of fields, they can also carry logical properties with `invariant`s. From a programmer's perspective, these fields and properties can be accessed at any point in the program, and the invariants can usually be assumed to hold without the need for any additional annotation.^[Note: Due to this, we say that the Mist source language has _transparent_ types, but it's not important.]
 
 This property, however, introduces an implicit guarantee about where and when the invariants of a type hold. This is tricky when we, for example, modify the internals of a struct in a sequence of operations, and part way through the mutation, the invariants only partially hold.

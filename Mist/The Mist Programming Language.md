@@ -14,3 +14,5 @@ tags: chapter
 - Supports limited type inference, requiring method signatures to be annotated, but with full inference inside of method bodies.
 - It has an ownership system, which is checked using quantifiable permissions in Viper.
 - Mist uses a _nominal type system_, [[@pierceTypesProgrammingLanguages2002#pp. 251-254]].
+- Mist allows for shadowing.
+- Mist has implicit return.

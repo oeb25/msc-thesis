@@ -49,17 +49,17 @@ The operators allow us to construct new trees, but when doing so, the resulting 
 ![[Lemma – Folding tree join and meet are closed]]
 
 > [!proof]
-> The condition for being a folding tree is that the set must be prefix closed in accordance to [[Definition – Folding tree]]. To show this, let $\T_1$ and $\T_2$ be arbitrary folding trees, then we can assume that
+> The condition for being a folding tree is that the set must be cover-closed in accordance to [[Definition – Folding tree]]. To show this, let $\T_1$ and $\T_2$ be arbitrary folding trees, then we can assume that
 > $$
-> \forall \rho \in \T_1 : \prefix(\rho) \subseteq \T_1, \;\text{ and, }\; \forall \rho \in \T_2 : \prefix(\rho) \subseteq \T_2.
+> \forall \rho \in \T_1 : \cover(\rho) \subseteq \T_1, \;\text{ and, }\; \forall \rho \in \T_2 : \cover(\rho) \subseteq \T_2.
 > $$
 > What we need to show is that
 >  $$
-> \forall \rho \in \T_1 \join \T_2 : \prefix(\rho) \subseteq \T_1 \join \T_2, \;\text{ and, }\; \forall \rho \in \T_1 \meet \T_2 : \prefix(\rho) \subseteq \T_1 \meet \T_2.
+> \forall \rho \in \T_1 \join \T_2 : \cover(\rho) \subseteq \T_1 \join \T_2, \;\text{ and, }\; \forall \rho \in \T_1 \meet \T_2 : \cover(\rho) \subseteq \T_1 \meet \T_2.
 > $$
-> For the first let $\rho_1$ be an element of $\T_1 \join \T_2$, then we know that $\rho_1$ is an element of $\T_1$ or $\T_2$. Without loss of generality assume $\rho_1 \in \T_1$, and we have $\prefix(\rho_1) \subseteq \T_1$ by the initial assumption. Then with the fact that $\T_1 \smaller \T_1 \join \T_2$, we can say that $\prefix(\rho_1) \subseteq \T_1 \join \T_2$ by transitivity.
+> For the first let $\rho_1$ be an element of $\T_1 \join \T_2$, then we know that $\rho_1$ is an element of $\T_1$ or $\T_2$. Without loss of generality assume $\rho_1 \in \T_1$, and we have $\cover(\rho_1) \subseteq \T_1$ by the initial assumption. Then with the fact that $\T_1 \smaller \T_1 \join \T_2$, we can say that $\cover(\rho_1) \subseteq \T_1 \join \T_2$ by transitivity.
 >
-> Next, let $\rho_2$ be an element of $\T_1 \meet \T_2$, which means that $\rho_2$ must be an element of both $\T_1$ and $\T_2$, thus giving us $\prefix(\rho_2) \subseteq \T_1$ and $\prefix(\rho_2) \subseteq \T_2$. Combining these two, we get that $\prefix(\rho_2) \subseteq \T_1 \cap \T_2$, which by [[Definition – Folding tree join and meet]] shows $\prefix(\rho_2) \subseteq \T_1 \meet \T_2$.
+> Next, let $\rho_2$ be an element of $\T_1 \meet \T_2$, which means that $\rho_2$ must be an element of both $\T_1$ and $\T_2$, thus giving us $\cover(\rho_2) \subseteq \T_1$ and $\cover(\rho_2) \subseteq \T_2$. Combining these two, we get that $\cover(\rho_2) \subseteq \T_1 \cap \T_2$, which by [[Definition – Folding tree join and meet]] shows $\cover(\rho_2) \subseteq \T_1 \meet \T_2$.
 
 Additionally, we want some properties of the leaves of produced trees to hold, namely, if a place is a leaf in two trees, then that place will also be a leaf in the meet.
 

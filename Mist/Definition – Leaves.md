@@ -9,7 +9,7 @@ $$%%
 \leaves(\T) = \{ \rho \mid \rho \in \T \land (\unfoldable(\rho) \lor \fields(\rho) \not\subseteq \T) \}.
 $$%%
 $$
-\leaves(\T) = \{ \rho \mid \rho \in \T \land \forall f_i \in \fields(\rho) : \rho.f_i\notin \T \}.
+\leaves(\T) = \{ \rho \in \T \mid \forall \rho' \in \fields(\rho) : \rho' \notin \T \}.
 $$
 
 This is analogous to the definition of _frontier positions_ [[@comonTreeAutomataTechniques1997#p. 14]].

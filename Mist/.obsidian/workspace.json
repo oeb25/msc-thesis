@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "335405d6f561876c",
+        "id": "e648cc543638e400",
         "type": "tabs",
         "children": [
           {
-            "id": "024de8a93aef15a7",
+            "id": "c165641d79ee8fbf",
             "type": "leaf",
             "pane-relief:history-v1": {
               "pos": 0,
@@ -18,125 +18,23 @@
                   "eState": "{}"
                 },
                 {
-                  "title": "Operations on folding trees",
+                  "title": "Snapshot testing",
                   "icon": "lucide-file",
-                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Operations on folding trees.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
-                  "eState": "{\"cursor\":{\"from\":{\"line\":130,\"ch\":0},\"to\":{\"line\":130,\"ch\":0}},\"scroll\":121.23307291666667}"
-                },
-                {
-                  "title": "Computing solutions",
-                  "icon": "lucide-file",
-                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Computing solutions.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
-                  "eState": "{\"cursor\":{\"from\":{\"line\":12,\"ch\":87},\"to\":{\"line\":12,\"ch\":87}},\"scroll\":10.656589147286821}"
-                },
-                {
-                  "title": "Analysis function and abstract semantics",
-                  "icon": "lucide-file",
-                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Analysis function and abstract semantics.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
-                  "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}},\"scroll\":15.7373046875}"
-                },
-                {
-                  "title": "Computing solutions",
-                  "icon": "lucide-file",
-                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Computing solutions.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
-                  "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}},\"scroll\":0}"
-                },
-                {
-                  "title": "Analysis function and abstract semantics",
-                  "icon": "lucide-file",
-                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Analysis function and abstract semantics.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
-                  "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}}}"
-                },
-                {
-                  "title": "Property based and snapshot testing",
-                  "icon": "lucide-file",
-                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Property based and snapshot testing.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
-                  "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}}}"
-                },
-                {
-                  "title": "High-level IR (HIR)",
-                  "icon": "lucide-file",
-                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"High-level IR (HIR).md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
-                  "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}},\"scroll\":0}"
-                },
-                {
-                  "title": "Abstract-syntax tree (AST)",
-                  "icon": "lucide-file",
-                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Abstract-syntax tree (AST).md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
-                  "eState": "{\"cursor\":{\"from\":{\"line\":16,\"ch\":0},\"to\":{\"line\":16,\"ch\":0}},\"scroll\":6.558333333333334}"
-                },
-                {
-                  "title": "The Mist Compiler",
-                  "icon": "lucide-file",
-                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"The Mist Compiler.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
-                  "eState": "{\"cursor\":{\"from\":{\"line\":5,\"ch\":0},\"to\":{\"line\":5,\"ch\":0}}}"
-                },
-                {
-                  "title": "Property based and snapshot testing",
-                  "icon": "lucide-file",
-                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Property based and snapshot testing.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
-                  "eState": "{\"cursor\":{\"from\":{\"line\":7,\"ch\":0},\"to\":{\"line\":7,\"ch\":0}}}"
-                },
-                {
-                  "title": "Verification code generation",
-                  "icon": "lucide-file",
-                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Verification code generation.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
-                  "eState": "{\"cursor\":{\"from\":{\"line\":3,\"ch\":0},\"to\":{\"line\":3,\"ch\":0}}}"
-                },
-                {
-                  "title": "Mid-level IR (MIR)",
-                  "icon": "lucide-file",
-                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Mid-level IR (MIR).md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
-                  "eState": "{\"cursor\":{\"from\":{\"line\":4,\"ch\":69},\"to\":{\"line\":4,\"ch\":69}},\"scroll\":0}"
-                },
-                {
-                  "title": "High-level IR (HIR)",
-                  "icon": "lucide-file",
-                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"High-level IR (HIR).md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
-                  "eState": "{\"cursor\":{\"from\":{\"line\":3,\"ch\":0},\"to\":{\"line\":3,\"ch\":0}},\"scroll\":0}"
-                },
-                {
-                  "title": "Abstract-syntax tree (AST)",
-                  "icon": "lucide-file",
-                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Abstract-syntax tree (AST).md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
-                  "eState": "{\"cursor\":{\"from\":{\"line\":16,\"ch\":0},\"to\":{\"line\":16,\"ch\":0}},\"scroll\":8.803568082155842}"
-                },
-                {
-                  "title": "Automatic folding of isorecursive structures",
-                  "icon": "lucide-file",
-                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Automatic folding of isorecursive structures.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
-                  "eState": "{\"cursor\":{\"from\":{\"line\":48,\"ch\":0},\"to\":{\"line\":48,\"ch\":0}},\"scroll\":36.06163194444444}"
-                },
-                {
-                  "title": "Property based and snapshot testing",
-                  "icon": "lucide-file",
-                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Property based and snapshot testing.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
-                  "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}}}"
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Snapshot testing.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":4,\"ch\":314},\"to\":{\"line\":4,\"ch\":314}},\"scroll\":0}"
                 },
                 {
                   "title": "Language server integration",
                   "icon": "lucide-file",
                   "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Language server integration.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
-                  "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}}}"
-                },
-                {
-                  "title": "Incremental recompilation model",
-                  "icon": "lucide-file",
-                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Incremental recompilation model.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
-                  "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}}}"
-                },
-                {
-                  "title": "High-level IR (HIR)",
-                  "icon": "lucide-file",
-                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"High-level IR (HIR).md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
-                  "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}}}"
+                  "eState": "{\"cursor\":{\"from\":{\"line\":8,\"ch\":153},\"to\":{\"line\":8,\"ch\":153}}}"
                 }
               ]
             },
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Ordering of folding trees.md",
+                "file": "Todo list.md",
                 "mode": "source",
                 "backlinks": true,
                 "source": false
@@ -144,7 +42,7 @@
             }
           },
           {
-            "id": "2f4da7d0c5373bae",
+            "id": "e6d842d153a9f979",
             "type": "leaf",
             "pane-relief:history-v1": {
               "pos": 0,
@@ -158,7 +56,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Theorem – Folding analysis results in well-defined programs.md",
+                "file": "Background.md",
                 "mode": "source",
                 "backlinks": true,
                 "source": false
@@ -166,7 +64,7 @@
             }
           },
           {
-            "id": "0b0722d366f379d9",
+            "id": "4986e413ed84f06f",
             "type": "leaf",
             "pane-relief:history-v1": {
               "pos": 0,
@@ -176,187 +74,48 @@
                   "eState": "{}"
                 },
                 {
-                  "title": "Folding augmented programs",
+                  "title": "Abstraction and modularity",
                   "icon": "lucide-file",
-                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Folding augmented programs.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
-                  "eState": "{\"cursor\":{\"from\":{\"line\":4,\"ch\":184},\"to\":{\"line\":4,\"ch\":184}},\"scroll\":0}"
-                },
-                {
-                  "title": "Folding-level IR (FIR)",
-                  "icon": "lucide-file",
-                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Folding-level IR (FIR).md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
-                  "eState": "{\"cursor\":{\"from\":{\"line\":47,\"ch\":239},\"to\":{\"line\":47,\"ch\":239}},\"scroll\":36.25553885683813}"
-                },
-                {
-                  "title": "Analysis function and abstract semantics",
-                  "icon": "lucide-file",
-                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Analysis function and abstract semantics.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
-                  "eState": "{\"cursor\":{\"from\":{\"line\":6,\"ch\":153},\"to\":{\"line\":6,\"ch\":153}},\"scroll\":0.3691275167785235}"
-                },
-                {
-                  "title": "Ordering of folding trees",
-                  "icon": "lucide-file",
-                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Ordering of folding trees.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
-                  "eState": "{\"cursor\":{\"from\":{\"line\":80,\"ch\":0},\"to\":{\"line\":80,\"ch\":0}},\"scroll\":70.79326099371788}"
-                },
-                {
-                  "title": "Proof – Requires is monotone",
-                  "icon": "lucide-file",
-                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Proof – Requires is monotone.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
-                  "eState": "{\"cursor\":{\"from\":{\"line\":7,\"ch\":8},\"to\":{\"line\":7,\"ch\":8}}}"
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Abstraction and modularity.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":6,\"ch\":84},\"to\":{\"line\":6,\"ch\":84}}}"
                 }
               ]
             },
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Computing solutions.md",
+                "file": "Figure – Reverse sort visualisation.md",
                 "mode": "source",
                 "backlinks": true,
                 "source": false
               }
             }
           }
-        ],
-        "currentTab": 1
+        ]
       },
       {
-        "id": "5bb7bfaad7d8f033",
+        "id": "226676c65d4bcff6",
         "type": "split",
         "children": [
           {
-            "id": "6b5bb7fb398dc8fe",
+            "id": "20d7120b590017a0",
             "type": "tabs",
             "children": [
               {
-                "id": "9bf8bc0391559f63",
+                "id": "965a630cb7c755be",
                 "type": "leaf",
                 "pane-relief:history-v1": {
-                  "pos": 0,
+                  "pos": 1,
                   "stack": [
+                    {
+                      "title": "@minskyTestingExpectations2015",
+                      "icon": "lucide-file",
+                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Reading notes/@minskyTestingExpectations2015.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
+                      "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}},\"scroll\":0}"
+                    },
                     {
                       "state": "{}",
                       "eState": "{}"
-                    },
-                    {
-                      "title": "Definition – Requires",
-                      "icon": "lucide-file",
-                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Definition – Requires.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
-                      "eState": "{\"cursor\":{\"from\":{\"line\":19,\"ch\":2},\"to\":{\"line\":19,\"ch\":2}},\"scroll\":0}"
-                    },
-                    {
-                      "title": "Operations on folding trees",
-                      "icon": "lucide-file",
-                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Operations on folding trees.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
-                      "eState": "{\"cursor\":{\"from\":{\"line\":124,\"ch\":126},\"to\":{\"line\":124,\"ch\":126}},\"scroll\":119.578125}"
-                    },
-                    {
-                      "title": "Analysis function and abstract semantics",
-                      "icon": "lucide-file",
-                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Analysis function and abstract semantics.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
-                      "eState": "{\"cursor\":{\"from\":{\"line\":17,\"ch\":0},\"to\":{\"line\":17,\"ch\":0}},\"scroll\":12.874405311677675}"
-                    },
-                    {
-                      "title": "Abstract-syntax tree (AST)",
-                      "icon": "lucide-file",
-                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Abstract-syntax tree (AST).md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
-                      "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}},\"scroll\":0}"
-                    },
-                    {
-                      "title": "Well-defined access",
-                      "icon": "lucide-file",
-                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Well-defined access.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
-                      "eState": "{\"cursor\":{\"from\":{\"line\":24,\"ch\":0},\"to\":{\"line\":24,\"ch\":0}},\"scroll\":20.38901853122855}"
-                    },
-                    {
-                      "title": "Computing solutions",
-                      "icon": "lucide-file",
-                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Computing solutions.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
-                      "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}}}"
-                    },
-                    {
-                      "title": "Analysis function and abstract semantics",
-                      "icon": "lucide-file",
-                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Analysis function and abstract semantics.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
-                      "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}},\"scroll\":15.7373046875}"
-                    },
-                    {
-                      "title": "Computing solutions",
-                      "icon": "lucide-file",
-                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Computing solutions.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
-                      "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}},\"scroll\":0}"
-                    },
-                    {
-                      "title": "Analysis function and abstract semantics",
-                      "icon": "lucide-file",
-                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Analysis function and abstract semantics.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
-                      "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}}}"
-                    },
-                    {
-                      "title": "Property based and snapshot testing",
-                      "icon": "lucide-file",
-                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Property based and snapshot testing.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
-                      "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}}}"
-                    },
-                    {
-                      "title": "High-level IR (HIR)",
-                      "icon": "lucide-file",
-                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"High-level IR (HIR).md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
-                      "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}},\"scroll\":0}"
-                    },
-                    {
-                      "title": "Abstract-syntax tree (AST)",
-                      "icon": "lucide-file",
-                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Abstract-syntax tree (AST).md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
-                      "eState": "{\"cursor\":{\"from\":{\"line\":16,\"ch\":0},\"to\":{\"line\":16,\"ch\":0}},\"scroll\":6.558333333333334}"
-                    },
-                    {
-                      "title": "The Mist Compiler",
-                      "icon": "lucide-file",
-                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"The Mist Compiler.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
-                      "eState": "{\"cursor\":{\"from\":{\"line\":5,\"ch\":0},\"to\":{\"line\":5,\"ch\":0}}}"
-                    },
-                    {
-                      "title": "Property based and snapshot testing",
-                      "icon": "lucide-file",
-                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Property based and snapshot testing.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
-                      "eState": "{\"cursor\":{\"from\":{\"line\":7,\"ch\":0},\"to\":{\"line\":7,\"ch\":0}}}"
-                    },
-                    {
-                      "title": "Verification code generation",
-                      "icon": "lucide-file",
-                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Verification code generation.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
-                      "eState": "{\"cursor\":{\"from\":{\"line\":3,\"ch\":0},\"to\":{\"line\":3,\"ch\":0}}}"
-                    },
-                    {
-                      "title": "Mid-level IR (MIR)",
-                      "icon": "lucide-file",
-                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Mid-level IR (MIR).md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
-                      "eState": "{\"cursor\":{\"from\":{\"line\":4,\"ch\":69},\"to\":{\"line\":4,\"ch\":69}},\"scroll\":0}"
-                    },
-                    {
-                      "title": "High-level IR (HIR)",
-                      "icon": "lucide-file",
-                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"High-level IR (HIR).md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
-                      "eState": "{\"cursor\":{\"from\":{\"line\":3,\"ch\":0},\"to\":{\"line\":3,\"ch\":0}},\"scroll\":0}"
-                    },
-                    {
-                      "title": "Abstract-syntax tree (AST)",
-                      "icon": "lucide-file",
-                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Abstract-syntax tree (AST).md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
-                      "eState": "{\"cursor\":{\"from\":{\"line\":16,\"ch\":0},\"to\":{\"line\":16,\"ch\":0}},\"scroll\":8.803568082155842}"
-                    },
-                    {
-                      "title": "Automatic folding of isorecursive structures",
-                      "icon": "lucide-file",
-                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Automatic folding of isorecursive structures.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
-                      "eState": "{\"cursor\":{\"from\":{\"line\":48,\"ch\":0},\"to\":{\"line\":48,\"ch\":0}},\"scroll\":36.06163194444444}"
-                    },
-                    {
-                      "title": "Property based and snapshot testing",
-                      "icon": "lucide-file",
-                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Property based and snapshot testing.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
-                      "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}}}"
                     },
                     {
                       "title": "Language server integration",
@@ -365,23 +124,89 @@
                       "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}}}"
                     },
                     {
-                      "title": "Incremental recompilation model",
+                      "title": "Verification code generation",
                       "icon": "lucide-file",
-                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Incremental recompilation model.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
-                      "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}}}"
+                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Verification code generation.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
+                      "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}},\"scroll\":0}"
+                    },
+                    {
+                      "title": "Mid-level IR (MIR)",
+                      "icon": "lucide-file",
+                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Mid-level IR (MIR).md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
+                      "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}},\"scroll\":9.79296875}"
                     },
                     {
                       "title": "High-level IR (HIR)",
                       "icon": "lucide-file",
                       "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"High-level IR (HIR).md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
+                      "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}},\"scroll\":10.116518832329383}"
+                    },
+                    {
+                      "title": "Abstract-syntax tree (AST)",
+                      "icon": "lucide-file",
+                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Abstract-syntax tree (AST).md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
                       "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}}}"
+                    },
+                    {
+                      "title": "Concrete-syntax tree (CST)",
+                      "icon": "lucide-file",
+                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Concrete-syntax tree (CST).md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
+                      "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}}}"
+                    },
+                    {
+                      "title": "Syntax trees",
+                      "icon": "lucide-file",
+                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Syntax trees.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
+                      "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}}}"
+                    },
+                    {
+                      "title": "Compilation stages",
+                      "icon": "lucide-file",
+                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Compilation stages.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
+                      "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}}}"
+                    },
+                    {
+                      "title": "Compilation structure",
+                      "icon": "lucide-file",
+                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Compilation structure.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
+                      "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}}}"
+                    },
+                    {
+                      "title": "Verification code generation",
+                      "icon": "lucide-file",
+                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Verification code generation.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
+                      "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}}}"
+                    },
+                    {
+                      "title": "Mid-level IR (MIR)",
+                      "icon": "lucide-file",
+                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Mid-level IR (MIR).md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
+                      "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}}}"
+                    },
+                    {
+                      "title": "Todo list",
+                      "icon": "lucide-file",
+                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Todo list.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
+                      "eState": "{\"cursor\":{\"from\":{\"line\":19,\"ch\":25},\"to\":{\"line\":19,\"ch\":25}},\"scroll\":0}"
+                    },
+                    {
+                      "title": "Snapshot testing",
+                      "icon": "lucide-file",
+                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Snapshot testing.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
+                      "eState": "{\"cursor\":{\"from\":{\"line\":4,\"ch\":314},\"to\":{\"line\":4,\"ch\":314}},\"scroll\":0}"
+                    },
+                    {
+                      "title": "Language server integration",
+                      "icon": "lucide-file",
+                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Language server integration.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
+                      "eState": "{\"cursor\":{\"from\":{\"line\":8,\"ch\":153},\"to\":{\"line\":8,\"ch\":153}}}"
                     }
                   ]
                 },
                 "state": {
                   "type": "markdown",
                   "state": {
-                    "file": "Computing solutions.md",
+                    "file": "Snapshot and property based testing.md",
                     "mode": "source",
                     "backlinks": true,
                     "source": false
@@ -389,7 +214,7 @@
                 }
               },
               {
-                "id": "85b39455521aa02a",
+                "id": "369dac636ecddb66",
                 "type": "leaf",
                 "pane-relief:history-v1": {
                   "pos": 0,
@@ -399,23 +224,67 @@
                       "eState": "{}"
                     },
                     {
-                      "title": "Proposition – Monotone the computes greatest solution",
+                      "title": "Snapshot testing",
                       "icon": "lucide-file",
-                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Proposition – Monotone the computes greatest solution.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
-                      "eState": "{\"cursor\":{\"from\":{\"line\":4,\"ch\":108},\"to\":{\"line\":4,\"ch\":108}},\"scroll\":0}"
-                    },
-                    {
-                      "title": "Definition – System of constraints",
-                      "icon": "lucide-file",
-                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Definition – System of constraints.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
-                      "eState": "{\"cursor\":{\"from\":{\"line\":12,\"ch\":0},\"to\":{\"line\":12,\"ch\":0}}}"
+                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Snapshot testing.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
+                      "eState": "{\"cursor\":{\"from\":{\"line\":16,\"ch\":278},\"to\":{\"line\":16,\"ch\":278}},\"scroll\":14.003322661590378}"
                     }
                   ]
                 },
                 "state": {
                   "type": "markdown",
                   "state": {
-                    "file": "Computing solutions.md",
+                    "file": "Snapshot and property based testing.md",
+                    "mode": "source",
+                    "backlinks": true,
+                    "source": false
+                  }
+                }
+              },
+              {
+                "id": "c7a1ffacb0a1871a",
+                "type": "leaf",
+                "pane-relief:history-v1": {
+                  "pos": 0,
+                  "stack": [
+                    {
+                      "state": "{}",
+                      "eState": "{}"
+                    }
+                  ]
+                },
+                "state": {
+                  "type": "markdown",
+                  "state": {
+                    "file": "Property based testing.md",
+                    "mode": "source",
+                    "backlinks": true,
+                    "source": false
+                  }
+                }
+              },
+              {
+                "id": "a6bd527c27c3692d",
+                "type": "leaf",
+                "pane-relief:history-v1": {
+                  "pos": 0,
+                  "stack": [
+                    {
+                      "state": "{}",
+                      "eState": "{}"
+                    },
+                    {
+                      "title": "Figure – Proptest example",
+                      "icon": "lucide-file",
+                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Figure – Proptest example.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
+                      "eState": "{\"cursor\":{\"from\":{\"line\":2,\"ch\":3},\"to\":{\"line\":2,\"ch\":3}},\"scroll\":0}"
+                    }
+                  ]
+                },
+                "state": {
+                  "type": "markdown",
+                  "state": {
+                    "file": "Mid-level IR (MIR).md",
                     "mode": "source",
                     "backlinks": true,
                     "source": false
@@ -423,14 +292,14 @@
                 }
               }
             ],
-            "currentTab": 1
+            "currentTab": 3
           },
           {
-            "id": "ca1463e777ebcd48",
+            "id": "5a2c76520af2cec7",
             "type": "tabs",
             "children": [
               {
-                "id": "3ac02e064eafde6b",
+                "id": "886b4b4bea546174",
                 "type": "leaf",
                 "pane-relief:history-v1": {
                   "pos": 0,
@@ -440,179 +309,23 @@
                       "eState": "{}"
                     },
                     {
-                      "title": "Definition – FIR Transition",
+                      "title": "Property based testing",
                       "icon": "lucide-file",
-                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Definition – FIR Transition.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
-                      "eState": "{\"cursor\":{\"from\":{\"line\":15,\"ch\":0},\"to\":{\"line\":15,\"ch\":0}},\"scroll\":1.8541666666666665}"
+                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Property based testing.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
+                      "eState": "{\"cursor\":{\"from\":{\"line\":4,\"ch\":46},\"to\":{\"line\":4,\"ch\":46}},\"scroll\":0}"
                     },
                     {
-                      "title": "@nielsonProgramAnalysisAppetizer2020",
+                      "title": "Figure – Proptest example",
                       "icon": "lucide-file",
-                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Reading notes/@nielsonProgramAnalysisAppetizer2020.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
-                      "eState": "{\"cursor\":{\"from\":{\"line\":21,\"ch\":18},\"to\":{\"line\":21,\"ch\":18}},\"scroll\":16.94921875}"
-                    },
-                    {
-                      "title": "Figure – CFG with annotated analysis",
-                      "icon": "lucide-file",
-                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Figure – CFG with annotated analysis.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
-                      "eState": "{\"cursor\":{\"from\":{\"line\":32,\"ch\":0},\"to\":{\"line\":32,\"ch\":0}},\"scroll\":20.485091937765205}"
-                    },
-                    {
-                      "title": "@nielsonProgramAnalysisAppetizer2020",
-                      "icon": "lucide-file",
-                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Reading notes/@nielsonProgramAnalysisAppetizer2020.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
-                      "eState": "{\"cursor\":{\"from\":{\"line\":12,\"ch\":0},\"to\":{\"line\":12,\"ch\":0}},\"scroll\":6.166666666666667}"
-                    },
-                    {
-                      "title": "Lemma – Requires properties",
-                      "icon": "lucide-file",
-                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Lemma – Requires properties.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
-                      "eState": "{\"cursor\":{\"from\":{\"line\":3,\"ch\":0},\"to\":{\"line\":3,\"ch\":0}},\"scroll\":0}"
-                    },
-                    {
-                      "title": "Definition – Requires",
-                      "icon": "lucide-file",
-                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Definition – Requires.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
-                      "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}}}"
-                    },
-                    {
-                      "title": "Operations on folding trees",
-                      "icon": "lucide-file",
-                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Operations on folding trees.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
-                      "eState": "{\"cursor\":{\"from\":{\"line\":124,\"ch\":126},\"to\":{\"line\":124,\"ch\":126}},\"scroll\":119.578125}"
-                    },
-                    {
-                      "title": "Analysis function and abstract semantics",
-                      "icon": "lucide-file",
-                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Analysis function and abstract semantics.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
-                      "eState": "{\"cursor\":{\"from\":{\"line\":17,\"ch\":0},\"to\":{\"line\":17,\"ch\":0}},\"scroll\":12.874405311677675}"
-                    },
-                    {
-                      "title": "Abstract-syntax tree (AST)",
-                      "icon": "lucide-file",
-                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Abstract-syntax tree (AST).md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
-                      "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}},\"scroll\":0}"
-                    },
-                    {
-                      "title": "Well-defined access",
-                      "icon": "lucide-file",
-                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Well-defined access.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
-                      "eState": "{\"cursor\":{\"from\":{\"line\":24,\"ch\":0},\"to\":{\"line\":24,\"ch\":0}},\"scroll\":20.38901853122855}"
-                    },
-                    {
-                      "title": "Computing solutions",
-                      "icon": "lucide-file",
-                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Computing solutions.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
-                      "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}}}"
-                    },
-                    {
-                      "title": "Analysis function and abstract semantics",
-                      "icon": "lucide-file",
-                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Analysis function and abstract semantics.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
-                      "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}},\"scroll\":15.7373046875}"
-                    },
-                    {
-                      "title": "Computing solutions",
-                      "icon": "lucide-file",
-                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Computing solutions.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
-                      "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}},\"scroll\":0}"
-                    },
-                    {
-                      "title": "Analysis function and abstract semantics",
-                      "icon": "lucide-file",
-                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Analysis function and abstract semantics.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
-                      "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}}}"
-                    },
-                    {
-                      "title": "Property based and snapshot testing",
-                      "icon": "lucide-file",
-                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Property based and snapshot testing.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
-                      "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}}}"
-                    },
-                    {
-                      "title": "High-level IR (HIR)",
-                      "icon": "lucide-file",
-                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"High-level IR (HIR).md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
-                      "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}},\"scroll\":0}"
-                    },
-                    {
-                      "title": "Abstract-syntax tree (AST)",
-                      "icon": "lucide-file",
-                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Abstract-syntax tree (AST).md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
-                      "eState": "{\"cursor\":{\"from\":{\"line\":16,\"ch\":0},\"to\":{\"line\":16,\"ch\":0}},\"scroll\":6.558333333333334}"
-                    },
-                    {
-                      "title": "The Mist Compiler",
-                      "icon": "lucide-file",
-                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"The Mist Compiler.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
-                      "eState": "{\"cursor\":{\"from\":{\"line\":5,\"ch\":0},\"to\":{\"line\":5,\"ch\":0}}}"
-                    },
-                    {
-                      "title": "Property based and snapshot testing",
-                      "icon": "lucide-file",
-                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Property based and snapshot testing.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
-                      "eState": "{\"cursor\":{\"from\":{\"line\":7,\"ch\":0},\"to\":{\"line\":7,\"ch\":0}}}"
-                    },
-                    {
-                      "title": "Verification code generation",
-                      "icon": "lucide-file",
-                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Verification code generation.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
-                      "eState": "{\"cursor\":{\"from\":{\"line\":3,\"ch\":0},\"to\":{\"line\":3,\"ch\":0}}}"
-                    },
-                    {
-                      "title": "Mid-level IR (MIR)",
-                      "icon": "lucide-file",
-                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Mid-level IR (MIR).md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
-                      "eState": "{\"cursor\":{\"from\":{\"line\":4,\"ch\":69},\"to\":{\"line\":4,\"ch\":69}},\"scroll\":0}"
-                    },
-                    {
-                      "title": "High-level IR (HIR)",
-                      "icon": "lucide-file",
-                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"High-level IR (HIR).md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
-                      "eState": "{\"cursor\":{\"from\":{\"line\":3,\"ch\":0},\"to\":{\"line\":3,\"ch\":0}},\"scroll\":0}"
-                    },
-                    {
-                      "title": "Abstract-syntax tree (AST)",
-                      "icon": "lucide-file",
-                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Abstract-syntax tree (AST).md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
-                      "eState": "{\"cursor\":{\"from\":{\"line\":16,\"ch\":0},\"to\":{\"line\":16,\"ch\":0}},\"scroll\":8.803568082155842}"
-                    },
-                    {
-                      "title": "Automatic folding of isorecursive structures",
-                      "icon": "lucide-file",
-                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Automatic folding of isorecursive structures.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
-                      "eState": "{\"cursor\":{\"from\":{\"line\":48,\"ch\":0},\"to\":{\"line\":48,\"ch\":0}},\"scroll\":36.06163194444444}"
-                    },
-                    {
-                      "title": "Property based and snapshot testing",
-                      "icon": "lucide-file",
-                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Property based and snapshot testing.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
-                      "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}}}"
-                    },
-                    {
-                      "title": "Language server integration",
-                      "icon": "lucide-file",
-                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Language server integration.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
-                      "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}}}"
-                    },
-                    {
-                      "title": "Incremental recompilation model",
-                      "icon": "lucide-file",
-                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Incremental recompilation model.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
-                      "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}}}"
-                    },
-                    {
-                      "title": "High-level IR (HIR)",
-                      "icon": "lucide-file",
-                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"High-level IR (HIR).md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
-                      "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}}}"
+                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Figure – Proptest example.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
+                      "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}},\"scroll\":6.619047619047619}"
                     }
                   ]
                 },
                 "state": {
                   "type": "markdown",
                   "state": {
-                    "file": "Folding augmented programs.md",
+                    "file": "Snapshot testing.md",
                     "mode": "source",
                     "backlinks": true,
                     "source": false
@@ -669,7 +382,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "program point",
+                "query": "todo",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -700,8 +413,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
     "id": "eb30b9117306ddb1",
@@ -750,7 +462,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Computing solutions.md",
+                "file": "Mid-level IR (MIR).md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -776,7 +488,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Computing solutions.md",
+                "file": "Mid-level IR (MIR).md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -817,7 +529,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Computing solutions.md"
+                "file": "Mid-level IR (MIR).md"
               }
             }
           }
@@ -838,34 +550,34 @@
       "command-palette:Open command palette": true
     }
   },
-  "active": "85b39455521aa02a",
+  "active": "d2dbbe61f356524d",
   "lastOpenFiles": [
+    "Figure – Proptest example.md",
+    "Snapshot testing.md",
+    "Property based testing.md",
+    "Snapshot and property based testing.md",
     "Outline.md",
-    "Proposition – Monotone the computes greatest solution.md",
-    "Folding augmented programs.md",
-    "Theorem – Folding analysis results in well-defined programs.md",
-    "Computing solutions.md",
-    "Definition – FIR Transition.md",
-    "Reading notes/@nielsonProgramAnalysisAppetizer2020.md",
-    "Definition – System of constraints.md",
-    "Figure – CFG with annotated analysis.md",
-    "Subfigure – CFG with annotated analysis graph.md",
-    "Folding-level IR (FIR).md",
-    "Lemma – Requires properties.md",
-    "Analysis function and abstract semantics.md",
-    "Ordering of folding trees.md",
-    "Definition – Requires.md",
-    "Proof – Requires is monotone.md",
-    "Operations on folding trees.md",
-    "Lemma – Requires is monotone.md",
-    "Abstract-syntax tree (AST).md",
-    "Well-defined access.md",
-    "Property based and snapshot testing.md",
-    "High-level IR (HIR).md",
-    "Figure – AST Fn Sample.md",
-    "The Mist Compiler.md",
+    "Reading notes/@minskyTestingExpectations2015.md",
+    "Language server integration.md",
     "Verification code generation.md",
-    "Incremental recompilation model.md",
+    "Mid-level IR (MIR).md",
+    "High-level IR (HIR).md",
+    "Abstract-syntax tree (AST).md",
+    "Concrete-syntax tree (CST).md",
+    "Syntax trees.md",
+    "Compilation stages.md",
+    "Compilation structure.md",
+    "Todo list.md",
+    "Figure – Reverse sort visualisation.md",
+    "Abstraction and modularity.md",
+    "Background.md",
+    "Figure – Snapshot example.md",
+    "Reading notes/@lsp.md",
+    "Reading notes/@raskSpecificationLanguageServer2021.md",
+    "Reading notes/@viperserver.md",
+    "Reading notes/@raskDecouplingCoreAnalysis2021.md",
+    "Desugaring.md",
+    "Figure – Ascending sum – Viper.md",
     "Templates",
     "Daily notes",
     "Thesis layout.canvas",

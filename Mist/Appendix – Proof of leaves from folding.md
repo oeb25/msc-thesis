@@ -14,6 +14,14 @@ tags: appendix
 
 ![[Proof – Requires commutes over compatible]]
 
+## Proof of [[Lemma – Requires closed-form]]
+
+![[Proof – Requires closed-form]]
+
 ## Proof of [[Lemma – Requires properties]]
 
 ![[Proof – Requires properties]]
+
+## Proof of [[Lemma – FIR Abstract Semantics is a monotone function]]
+
+![[Proof – FIR Abstract Semantics is a monotone function]]

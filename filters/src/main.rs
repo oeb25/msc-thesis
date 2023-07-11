@@ -12,7 +12,7 @@ use std::{
 
 use camino::Utf8PathBuf;
 use highlight::HighlightingOptions;
-use itertools::Itertools;
+use itertools::{Either, Itertools};
 use miette::{Context, IntoDiagnostic, Result};
 use pandoc_types::definition::{Attr, Block, Format, Inline};
 use ungrammar::NodeData;
@@ -134,11 +134,17 @@ fn walk_block(b: &mut Block) -> Result<Vec<Event>, miette::ErrReport> {
             } else if attr.classes.iter().any(|s| s == "mist") {
                 let ignore_errors = attr.classes.iter().any(|s| s == "ignoreErrors");
                 let number_lines = attr.classes.iter().any(|s| s == "numberLines");
+                let offset_numbers = attr_map(&attr.attributes)
+                    .get("offset")
+                    .copied()
+                    .and_then(|s| s.parse().ok())
+                    .unwrap_or_default();
                 let viper_compat = attr.classes.iter().any(|s| s == "viperCompat");
                 let (label, src) = extract_label_and_id(attr, src);
                 let lines = HighlightingOptions {
                     ignore_errors,
                     show_numbers: number_lines,
+                    offset_numbers,
                     viper_compat,
                 }
                 .highlight(src);
@@ -152,6 +158,23 @@ fn walk_block(b: &mut Block) -> Result<Vec<Event>, miette::ErrReport> {
             } else if attr.classes.iter().any(|s| s == "tikz") {
                 let (label, src) = extract_label_and_id(attr, src);
                 let latex = wrap_latex_in_figure(&fmt_tikz(src)?, label);
+                *b = Block::latex(latex)
+            } else if attr.classes.iter().any(|s| s == "times") {
+                let unit = attr_map(&attr.attributes).get("unit").copied();
+                let total = attr.classes.iter().any(|s| s == "total");
+                let percentage = attr.classes.iter().any(|s| s == "percentage");
+                let (label, src) = extract_label_and_id(attr, src);
+                let latex = wrap_latex_in_figure(
+                    &fmt_times(
+                        FmtTimes {
+                            unit,
+                            total,
+                            percentage,
+                        },
+                        src,
+                    )?,
+                    label,
+                );
                 *b = Block::latex(latex)
             }
         }
@@ -255,6 +278,10 @@ fn walk_block(b: &mut Block) -> Result<Vec<Event>, miette::ErrReport> {
                                     raw_latex!(r"\begin{{adjustwidth}}{{-.5in}}{{-.5in}}"),
                                 );
                                 content.push(raw_latex!(r"\end{{adjustwidth}}"));
+                            }
+                            "paragraph" => {
+                                append_to_start(content.first_mut().unwrap(), r"\paragraph{");
+                                append_to_end(content.first_mut().unwrap(), "}");
                             }
                             _ => {}
                         }
@@ -387,20 +414,31 @@ fn walk_inline(inline: &mut Inline) -> Result<(), miette::Report> {
         Inline::Quoted(_, _) => {}
         Inline::Cite(_, _) => {}
         Inline::Code(_, code) => {
-            let (code, viper_compat) = if let Some(code) = code.strip_prefix("@vpr ") {
-                (code, true)
+            let (code, viper_compat, cut_start) = if let Some(code) = code.strip_prefix("@vpr ") {
+                (code.to_string(), true, 0)
+            } else if let Some(code) = code.strip_prefix('@') {
+                let is_struct = code.starts_with(|c: char| c.is_uppercase());
+                if is_struct {
+                    (format!("struct {code}"), false, 36)
+                } else {
+                    (format!("fn {code}"), false, 32)
+                }
             } else {
-                (code.as_str(), false)
+                (code.to_string(), false, 0)
             };
 
-            let latex = HighlightingOptions {
+            let latex = &HighlightingOptions {
                 ignore_errors: true,
                 viper_compat,
                 ..Default::default()
             }
-            .highlight(code)
+            .highlight(&code)
             .replace('&', r"\&")
-            .replace('#', r"\#");
+            .replace('$', r"\$")
+            .replace('#', r"\#")[cut_start..];
+            if cut_start != 0 {
+                dbg!(latex);
+            }
             *inline = Inline::latex(format!(r"\texttt{{{latex}}}"));
         }
         Inline::Space => {}
@@ -699,6 +737,75 @@ fn fmt_tikz(src: &str) -> Result<String> {
     fs::copy(temp_dir.path().join("texput.pdf"), &pdf_path).into_diagnostic()?;
 
     Ok(output)
+}
+
+#[derive(Debug, Clone, Copy)]
+struct FmtTimes<'a> {
+    unit: Option<&'a str>,
+    total: bool,
+    percentage: bool,
+}
+fn fmt_times(cfg: FmtTimes, src: &str) -> Result<String> {
+    let unit = cfg.unit.unwrap_or_default();
+
+    let mut lines = src.lines();
+    let mut raw_headers = lines
+        .next()
+        .unwrap()
+        .split(|c: char| "\t,".contains(c))
+        .collect_vec();
+    if cfg.total {
+        raw_headers.push("Total");
+    }
+
+    let headers = raw_headers
+        .iter()
+        .map(|h| format!(r"\multicolumn{{2}}{{c}}{{\textbf{{{h}}}}}"))
+        .format(" & ");
+    let alignment = raw_headers.iter().map(|_| "rr").format("|");
+    let data = lines
+        .map(|l| {
+            let values = l
+                .split(|c: char| "\t,".contains(c))
+                .map(|x| {
+                    x.trim()
+                        .parse::<f32>()
+                        .map(Either::Left)
+                        .unwrap_or_else(|_| Either::Right(x.to_string()))
+                })
+                .collect_vec();
+            let sum = values.iter().cloned().filter_map(Either::left).sum::<f32>();
+            values
+                .iter()
+                .cloned()
+                .chain(cfg.total.then_some(Either::Right(sum.to_string())))
+                .map(move |v| match v {
+                    Either::Left(v) => {
+                        if cfg.percentage && v != sum {
+                            let p = 100.0 * v / sum;
+                            format!(
+                                r"\textcolor{{Gray700}}{{\footnotesize{p:.1}\%}} & {v:.1}{unit}"
+                            )
+                        } else {
+                            format!(r"\multicolumn{{2}}{{r}}{{{v:.1}{unit}}}")
+                        }
+                    }
+                    Either::Right(s) => format!(r"\multicolumn{{2}}{{c|}}{{{s}}}"),
+                })
+                .join(" & ")
+        })
+        .format("\\\\\n");
+
+    let latex = format!(
+        r"\begin{{center}}
+\begin{{tabular}}{{{alignment}}}
+{headers} \\\hline
+{data}
+\end{{tabular}}
+\end{{center}}
+"
+    );
+    Ok(latex)
 }
 
 fn generate_latex_code_block(lines: &str, label_and_caption: Option<(&str, &str)>) -> String {

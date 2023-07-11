@@ -40,9 +40,10 @@ header-includes:
     # Custom envs
     - \newtheorem{case}{Case}
     # Common notation
-    - \newcommand{\lineref}[1]{{\footnotesize (line {#1})}}
+    - \newcommand{\lineref}[1]{\text{\footnotesize (line {#1})}}
     - \newcommand{\Rho}{\mathrm{P}}
     - \newcommand{\F}{\mathcal{F}}
+    - \newcommand{\keyword}[1]{\textcolor{Teal600}{\texttt{#1}}}
     # - \newcommand{\leafin}[2]{#1\;\varepsilon\;#2}
     - \newcommand{\leaves}{\mathcal{L}}
     - \newcommand{\leafin}[2]{#1 \in \leaves(#2)}
@@ -65,6 +66,8 @@ header-includes:
     - \newcommand{\prefix}{\texttt{prefix}}
     - \newcommand{\parents}{\texttt{parents}}
     - \newcommand{\fields}{\texttt{fields}}
+    - \newcommand{\cover}{\texttt{cover}}
+    - \newcommand{\siblings}{\texttt{siblings}}
     - \newcommand{\cut}{\texttt{cut}}
     - \newcommand{\T}{\mathcal{T}}
     - \newcommand{\Ts}{\mathbf{T}}

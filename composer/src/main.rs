@@ -61,6 +61,7 @@ enum FileKind {
 struct Frontmatter {
     #[serde(rename = "tags")]
     ty: String,
+    title: Option<String>,
     #[serde(default)]
     attrs: HashMap<String, serde_json::Value>,
     #[serde(flatten)]
@@ -85,7 +86,10 @@ enum ProcessedFileContent {
     Markdown(String),
     Embed(Utf8PathBuf),
     Reference(Utf8PathBuf),
-    Cite { key: String, pages: Option<String> },
+    Cite {
+        keys: Vec<String>,
+        pages: Option<String>,
+    },
 }
 
 impl Database {
@@ -238,6 +242,14 @@ impl Database {
 
                     let file_name = f.file_stem().unwrap();
                     let file_label = format!("{}", heck::AsKebabCase(file_name));
+                    let title = if let Some(Frontmatter {
+                        title: Some(title), ..
+                    }) = &frontmatter
+                    {
+                        title.to_string()
+                    } else {
+                        file_name.to_string()
+                    };
 
                     match frontmatter {
                         Some(Frontmatter { ty, .. }) if ty == "figure" => {
@@ -265,22 +277,22 @@ impl Database {
                         }
                         Some(Frontmatter { ty, .. }) if ty == "chapter" => {
                             p_content.push(ProcessedFileContent::Markdown(format!(
-                                "\n# {file_name} {{#{file_label}}}"
+                                "\n# {title} {{#{file_label}}}"
                             )));
                         }
                         Some(Frontmatter { ty, .. }) if ty == "section" => {
                             p_content.push(ProcessedFileContent::Markdown(format!(
-                                "\n## {file_name} {{#{file_label}}}"
+                                "\n## {title} {{#{file_label}}}"
                             )));
                         }
                         Some(Frontmatter { ty, .. }) if ty == "subsection" => {
                             p_content.push(ProcessedFileContent::Markdown(format!(
-                                "\n### {file_name} {{#{file_label}}}"
+                                "\n### {title} {{#{file_label}}}"
                             )));
                         }
                         Some(Frontmatter { ty, .. }) if ty == "subsubsection" => {
                             p_content.push(ProcessedFileContent::Markdown(format!(
-                                "\n#### {file_name} {{#{file_label}}}"
+                                "\n#### {title} {{#{file_label}}}"
                             )));
                         }
                         Some(Frontmatter { ty, .. }) if ty == "appendix" => {
@@ -326,21 +338,22 @@ impl Database {
                     }
 
                     // NOTE: Process references and embeds
-                    let regex = Regex::new(r"(!)?\[\[([^\]]+)\]\]").unwrap();
+                    let regex = Regex::new(r"(!?)\[\[([^\]]+)\]\]").unwrap();
+                    let mut just_cited = false;
 
                     for m in regex.split(&content).map(Either::Left).interleave(
                         regex.captures_iter(&content).map(|c| {
-                            let full = c.get(0).unwrap().as_str();
-                            let embed = c.get(1).is_some();
-                            let inner = c.get(2).unwrap().as_str();
-                            Either::Right((full, embed, inner))
+                            let (_, [embed, inner]) = c.extract();
+                            let embed = !embed.is_empty();
+                            Either::Right((embed, inner))
                         }),
                     ) {
                         match m {
                             Either::Left(md) => {
+                                just_cited = just_cited && md.chars().all(|c| c == ' ');
                                 p_content.push(ProcessedFileContent::Markdown(md.to_string()));
                             }
-                            Either::Right((_, embed, inner)) => {
+                            Either::Right((embed, inner)) => {
                                 let (file, heading) =
                                     if let Some((file, heading)) = inner.split_once('#') {
                                         (file, Some(heading))
@@ -352,17 +365,49 @@ impl Database {
                                 let (_, kind_kind) = self.ingest(None, &path)?;
 
                                 if embed {
+                                    just_cited = false;
                                     p_content.push(ProcessedFileContent::Embed(path))
                                 } else {
-                                    p_content.push(match kind_kind {
+                                    match kind_kind {
                                         FileKindKind::Markdown | FileKindKind::Canvas => {
-                                            ProcessedFileContent::Reference(path)
+                                            just_cited = false;
+                                            p_content.push(ProcessedFileContent::Reference(path))
                                         }
-                                        FileKindKind::Citation => ProcessedFileContent::Cite {
-                                            key: path.file_stem().unwrap().to_string(),
-                                            pages: heading.map(|h| h.to_string()),
-                                        },
-                                    })
+                                        FileKindKind::Citation => {
+                                            let key = path.file_stem().unwrap().to_string();
+                                            let pages = heading.map(|h| h.to_string());
+                                            if just_cited {
+                                                while let Some(c) = p_content.last_mut() {
+                                                    match c {
+                                                        ProcessedFileContent::Markdown(_) => {
+                                                            p_content.pop();
+                                                        }
+                                                        ProcessedFileContent::Cite {
+                                                            keys,
+                                                            pages: prev_pages,
+                                                        } => {
+                                                            if prev_pages.is_none() {
+                                                                *prev_pages = pages;
+                                                            }
+                                                            keys.push(key);
+                                                            break;
+                                                        }
+                                                        ProcessedFileContent::RawLatex(_)
+                                                        | ProcessedFileContent::Embed(_)
+                                                        | ProcessedFileContent::Reference(_) => {
+                                                            todo!()
+                                                        }
+                                                    }
+                                                }
+                                            } else {
+                                                p_content.push(ProcessedFileContent::Cite {
+                                                    keys: vec![key],
+                                                    pages,
+                                                })
+                                            }
+                                            just_cited = true;
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -450,8 +495,8 @@ impl Database {
                         let label = heck::AsKebabCase(p.file_stem().unwrap());
                         write!(buf, r"\cref{{{label}}}").into_diagnostic()?;
                     }
-                    ProcessedFileContent::Cite { key, pages } => {
-                        let key = key.trim_start_matches('@');
+                    ProcessedFileContent::Cite { keys, pages } => {
+                        let key = keys.iter().map(|k| k.trim_start_matches('@')).join(", ");
                         let pages = pages.as_ref().map(|s| s.as_str()).unwrap_or_default();
                         write!(buf, r"\cite[{pages}]{{{key}}}").into_diagnostic()?;
                         // if let Some(pages) = pages {

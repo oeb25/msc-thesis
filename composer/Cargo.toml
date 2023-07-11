@@ -15,7 +15,7 @@ itertools.workspace = true
 camino.workspace = true
 clap = { version = "4.3.2", features = ["derive"] }
 la-arena = "0.3.0"
-regex = "1.8.4"
+regex = "1.9.0"
 petgraph = "0.6.3"
 walkdir = "2.3.3"
 serde_yaml = "0.9.21"

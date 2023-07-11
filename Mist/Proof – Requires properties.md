@@ -4,6 +4,29 @@ tags: proof
 
 %%Proof of [[Lemma – Requires properties]]%%
 
+We start expanding the left-hand side by [[Definition – Cut]] and the right-hand side by [[Lemma – Requires closed-form]]
+$$
+\begin{aligned}
+\cut(\rho, \T) \cup \{ \rho \} &\subseteq \leaves(\T \requires \rho) \\
+ \{ \rho' \in \leaves(\T) \mid \rho \compat \rho' \} \cup \{ \rho \} &\subseteq \leaves(\{ \rho' \in \T \mid \rho \not< \rho' \} \cup \cover(\rho))
+\end{aligned}
+$$
+Immediately we know that $\rho \in \leaves(\T \requires \rho)$ from the fact that all descendants of $\rho$ are removed and $\rho \in \cover(\rho)$, making $\rho$ a leaf. Next, assume for some place $\rho' \in \leaves(\T)$ that $\rho \compat \rho'$, then we have to show $\rho' \in \leaves(\{ \rho' \in \T \mid \rho \not< \rho' \} \cup \cover(\rho))$. By expanding $\leaves$ by [[Definition – Leaves]], we get that we need to show
+$$
+\forall \rho'.f_i \in \fields(\rho') : \rho'.f_i \notin \{ \rho' \in \T \mid \rho \not< \rho' \} \cup \cover(\rho)
+$$
+This amounts to showing two things:
+
+Firstly, $\rho'.f_i \notin \{ \rho' \in \T \mid \rho \not< \rho' \}$ requires $\rho'.f_i \notin \T$, and since $\rho' \in \leaves(\T)$ and $\rho'.f_i \in \fields(\rho')$, then $\rho'.f_i \notin \T$.
+
+Secondly, to show $\rho'.f_i \notin \cover(\rho)$, remember that $\rho'.f_i \in \cover(\rho) \implies \rho' \in \cover(\rho)$, which by contraposition says that if $\rho' \notin \cover(\rho)$, then $\rho'.f_i \notin \cover(\rho)$. Thus we only need to consider cases where $\rho' \in \cover(\rho)$.
+
+Since $\rho' \in \cover(\rho)$ and $\rho' \compat \rho$, then $\rho' \not< \rho$ and thus $\rho'$ must be a sibling of some ancestor of $\rho$. $\rho'.f_i$ will thus be a child of a sibling of a ancestor of $\rho$, which excludes it from being a sibling of a ancestor of $\rho$, showing $\rho'.f_i \notin \cover(\rho)$.
+
+Having shown that a place, $\rho'$ arbitrarily chosen from the left-hand side of the initial equation, satisfies the conditions for being in the right-hand side, then we have showed that all places in the left set are included in the right. $\qed$
+
+%%---
+
 We split the proof goal to show these two properties:
 $$
 \begin{aligned}
@@ -78,7 +101,7 @@ By $(11)$ we have the necessary condition met to perform $\unfold\;\rho^*$, and 
 $$
 \cut(\T, \rho) \cup \{\rho\} \subseteq (\leaves(\T') \setminus \{\rho^*\})\cup\fields(\rho^*).
 $$
-Since $\rho \in \fields(\rho^*)$ we get $(1)$. Next, we look at the two cases of elements $\rho' \in \cut(\T, \rho)$: If $\rho' = \rho^*$, then it will be excluded since $\prefix(\rho^*) \subseteq \prefix(\rho)$, satisfying $\subseteq$ in the right-hand side. Otherwise, $\rho' \neq \rho^*$, then we can use $(12)$ to show that it is included in $\leaves(\T')$. Thus showing $(2)$. \qed
+Since $\rho \in \fields(\rho^*)$ we get $(1)$. Next, we look at the two cases of elements $\rho' \in \cut(\T, \rho)$: If $\rho' = \rho^*$, then it will be excluded since $\prefix(\rho^*) \subseteq \prefix(\rho)$, satisfying $\subseteq$ in the right-hand side. Otherwise, $\rho' \neq \rho^*$, then we can use $(12)$ to show that it is included in $\leaves(\T')$. Thus showing $(2)$. \qed%%
 
 %%---
 
