@@ -6,13 +6,14 @@
     - [ ] [[Compilation stages]]
         - [x] [[Syntax trees]]
         - [x] [[High-level IR (HIR)]]
-        - [ ] [[Mid-level IR (MIR)]]
+        - [x] [[Mid-level IR (MIR)]]
         - [ ] [[Verification code generation]]
     - [x] [[Language server integration]]
     - [x] [[Snapshot and property based testing]]
         - [x] [[Snapshot testing]]
         - [x] [[Property based testing]]
 - [x] [[Automatic folding of isorecursive structures]]
+    - [ ] Fix [[Folding-level IR (FIR)]] example
 - [ ] [[Case studies]]
     - [ ] Chapter introduction
     - [x] [[Case study – Reverse sort]]

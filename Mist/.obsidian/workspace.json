@@ -4,98 +4,207 @@
     "type": "split",
     "children": [
       {
-        "id": "e648cc543638e400",
-        "type": "tabs",
+        "id": "7866680173f483c8",
+        "type": "split",
+        "dimension": 36.17886178861789,
         "children": [
           {
-            "id": "c165641d79ee8fbf",
-            "type": "leaf",
-            "pane-relief:history-v1": {
-              "pos": 0,
-              "stack": [
-                {
-                  "state": "{}",
-                  "eState": "{}"
+            "id": "e648cc543638e400",
+            "type": "tabs",
+            "children": [
+              {
+                "id": "c165641d79ee8fbf",
+                "type": "leaf",
+                "pane-relief:history-v1": {
+                  "pos": 0,
+                  "stack": [
+                    {
+                      "state": "{}",
+                      "eState": "{}"
+                    },
+                    {
+                      "title": "Definition – Place",
+                      "icon": "lucide-file",
+                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Definition – Place.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
+                      "eState": "{\"cursor\":{\"from\":{\"line\":18,\"ch\":0},\"to\":{\"line\":18,\"ch\":0}},\"scroll\":0}"
+                    },
+                    {
+                      "title": "Todo list",
+                      "icon": "lucide-file",
+                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Todo list.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
+                      "eState": "{\"cursor\":{\"from\":{\"line\":23,\"ch\":25},\"to\":{\"line\":23,\"ch\":25}},\"scroll\":0.2135706340378198}"
+                    },
+                    {
+                      "title": "Snapshot testing",
+                      "icon": "lucide-file",
+                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Snapshot testing.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
+                      "eState": "{\"cursor\":{\"from\":{\"line\":4,\"ch\":314},\"to\":{\"line\":4,\"ch\":314}},\"scroll\":0}"
+                    },
+                    {
+                      "title": "Language server integration",
+                      "icon": "lucide-file",
+                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Language server integration.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
+                      "eState": "{\"cursor\":{\"from\":{\"line\":8,\"ch\":153},\"to\":{\"line\":8,\"ch\":153}}}"
+                    }
+                  ]
                 },
-                {
-                  "title": "Snapshot testing",
-                  "icon": "lucide-file",
-                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Snapshot testing.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
-                  "eState": "{\"cursor\":{\"from\":{\"line\":4,\"ch\":314},\"to\":{\"line\":4,\"ch\":314}},\"scroll\":0}"
-                },
-                {
-                  "title": "Language server integration",
-                  "icon": "lucide-file",
-                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Language server integration.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
-                  "eState": "{\"cursor\":{\"from\":{\"line\":8,\"ch\":153},\"to\":{\"line\":8,\"ch\":153}}}"
+                "state": {
+                  "type": "markdown",
+                  "state": {
+                    "file": "Todo list.md",
+                    "mode": "source",
+                    "backlinks": true,
+                    "source": false
+                  }
                 }
-              ]
-            },
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Todo list.md",
-                "mode": "source",
-                "backlinks": true,
-                "source": false
+              },
+              {
+                "id": "e6d842d153a9f979",
+                "type": "leaf",
+                "pane-relief:history-v1": {
+                  "pos": 0,
+                  "stack": [
+                    {
+                      "state": "{}",
+                      "eState": "{}"
+                    }
+                  ]
+                },
+                "state": {
+                  "type": "markdown",
+                  "state": {
+                    "file": "Background.md",
+                    "mode": "source",
+                    "backlinks": true,
+                    "source": false
+                  }
+                }
+              },
+              {
+                "id": "4986e413ed84f06f",
+                "type": "leaf",
+                "pane-relief:history-v1": {
+                  "pos": 0,
+                  "stack": [
+                    {
+                      "state": "{}",
+                      "eState": "{}"
+                    },
+                    {
+                      "title": "Abstraction and modularity",
+                      "icon": "lucide-file",
+                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Abstraction and modularity.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
+                      "eState": "{\"cursor\":{\"from\":{\"line\":6,\"ch\":84},\"to\":{\"line\":6,\"ch\":84}}}"
+                    }
+                  ]
+                },
+                "state": {
+                  "type": "markdown",
+                  "state": {
+                    "file": "Figure – Reverse sort visualisation.md",
+                    "mode": "source",
+                    "backlinks": true,
+                    "source": false
+                  }
+                }
               }
-            }
+            ]
           },
           {
-            "id": "e6d842d153a9f979",
-            "type": "leaf",
-            "pane-relief:history-v1": {
-              "pos": 0,
-              "stack": [
-                {
-                  "state": "{}",
-                  "eState": "{}"
-                }
-              ]
-            },
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Background.md",
-                "mode": "source",
-                "backlinks": true,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "4986e413ed84f06f",
-            "type": "leaf",
-            "pane-relief:history-v1": {
-              "pos": 0,
-              "stack": [
-                {
-                  "state": "{}",
-                  "eState": "{}"
+            "id": "3b6a6713f50f2e00",
+            "type": "tabs",
+            "children": [
+              {
+                "id": "7e42baaed527b504",
+                "type": "leaf",
+                "pane-relief:history-v1": {
+                  "pos": 0,
+                  "stack": [
+                    {
+                      "state": "{}",
+                      "eState": "{}"
+                    },
+                    {
+                      "title": "@nielsonPrinciplesProgramAnalysis1999",
+                      "icon": "lucide-file",
+                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Reading notes/@nielsonPrinciplesProgramAnalysis1999.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
+                      "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":3},\"to\":{\"line\":0,\"ch\":3}}}"
+                    },
+                    {
+                      "title": "@matsakisIntroducingMIRRust2016",
+                      "icon": "lucide-file",
+                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Reading notes/@matsakisIntroducingMIRRust2016.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
+                      "eState": "{\"cursor\":{\"from\":{\"line\":5,\"ch\":5},\"to\":{\"line\":4,\"ch\":5}}}"
+                    },
+                    {
+                      "title": "@allenControlFlowAnalysis1970",
+                      "icon": "lucide-file",
+                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Reading notes/@allenControlFlowAnalysis1970.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
+                      "eState": "{\"cursor\":{\"from\":{\"line\":1,\"ch\":14},\"to\":{\"line\":1,\"ch\":14}}}"
+                    },
+                    {
+                      "title": "Definition – Place siblings",
+                      "icon": "lucide-file",
+                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Definition – Place siblings.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
+                      "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}}}"
+                    },
+                    {
+                      "title": "Definition – Place",
+                      "icon": "lucide-file",
+                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Definition – Place.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
+                      "eState": "{\"cursor\":{\"from\":{\"line\":1,\"ch\":16},\"to\":{\"line\":1,\"ch\":16}}}"
+                    },
+                    {
+                      "title": "Definition – Place Fields",
+                      "icon": "lucide-file",
+                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Definition – Place Fields.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
+                      "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}}}"
+                    },
+                    {
+                      "title": "Definition – Place",
+                      "icon": "lucide-file",
+                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Definition – Place.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false},\"popstate\":true,\"active\":true}",
+                      "eState": "{\"cursor\":{\"from\":{\"line\":12,\"ch\":0},\"to\":{\"line\":12,\"ch\":0}},\"scroll\":0}"
+                    },
+                    {
+                      "title": "Todo list",
+                      "icon": "lucide-file",
+                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Todo list.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
+                      "eState": "{\"cursor\":{\"from\":{\"line\":23,\"ch\":25},\"to\":{\"line\":23,\"ch\":25}},\"scroll\":0.2135706340378198}"
+                    },
+                    {
+                      "title": "Snapshot testing",
+                      "icon": "lucide-file",
+                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Snapshot testing.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
+                      "eState": "{\"cursor\":{\"from\":{\"line\":4,\"ch\":314},\"to\":{\"line\":4,\"ch\":314}},\"scroll\":0}"
+                    },
+                    {
+                      "title": "Language server integration",
+                      "icon": "lucide-file",
+                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Language server integration.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
+                      "eState": "{\"cursor\":{\"from\":{\"line\":8,\"ch\":153},\"to\":{\"line\":8,\"ch\":153}}}"
+                    }
+                  ]
                 },
-                {
-                  "title": "Abstraction and modularity",
-                  "icon": "lucide-file",
-                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Abstraction and modularity.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
-                  "eState": "{\"cursor\":{\"from\":{\"line\":6,\"ch\":84},\"to\":{\"line\":6,\"ch\":84}}}"
+                "state": {
+                  "type": "markdown",
+                  "state": {
+                    "file": "Reading notes/@midtgaardControlflowAnalysisFunctional2012.md",
+                    "mode": "source",
+                    "backlinks": true,
+                    "source": false
+                  }
                 }
-              ]
-            },
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Figure – Reverse sort visualisation.md",
-                "mode": "source",
-                "backlinks": true,
-                "source": false
               }
-            }
+            ]
           }
-        ]
+        ],
+        "direction": "horizontal"
       },
       {
-        "id": "226676c65d4bcff6",
+        "id": "70c808d30c7b29a1",
         "type": "split",
+        "dimension": 63.82113821138211,
         "children": [
           {
             "id": "20d7120b590017a0",
@@ -224,17 +333,23 @@
                       "eState": "{}"
                     },
                     {
+                      "title": "Mid-level IR (MIR)",
+                      "icon": "lucide-file",
+                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Mid-level IR (MIR).md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
+                      "eState": "{\"cursor\":{\"from\":{\"line\":62,\"ch\":0},\"to\":{\"line\":62,\"ch\":0}},\"scroll\":56.356770833333336}"
+                    },
+                    {
                       "title": "Snapshot testing",
                       "icon": "lucide-file",
                       "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Snapshot testing.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
-                      "eState": "{\"cursor\":{\"from\":{\"line\":16,\"ch\":278},\"to\":{\"line\":16,\"ch\":278}},\"scroll\":14.003322661590378}"
+                      "eState": "{\"cursor\":{\"from\":{\"line\":16,\"ch\":278},\"to\":{\"line\":16,\"ch\":278}},\"scroll\":16.156819661458332}"
                     }
                   ]
                 },
                 "state": {
                   "type": "markdown",
                   "state": {
-                    "file": "Snapshot and property based testing.md",
+                    "file": "Verification code generation.md",
                     "mode": "source",
                     "backlinks": true,
                     "source": false
@@ -298,14 +413,14 @@
                 }
               }
             ],
-            "currentTab": 3
+            "currentTab": 1
           },
           {
-            "id": "5a2c76520af2cec7",
+            "id": "7949ab45a1e124d3",
             "type": "tabs",
             "children": [
               {
-                "id": "886b4b4bea546174",
+                "id": "4f4fc4ff84f18df1",
                 "type": "leaf",
                 "pane-relief:history-v1": {
                   "pos": 0,
@@ -313,6 +428,30 @@
                     {
                       "state": "{}",
                       "eState": "{}"
+                    },
+                    {
+                      "title": "Example – Desugaring for loop",
+                      "icon": "lucide-file",
+                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Example – Desugaring for loop.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
+                      "eState": "{\"cursor\":{\"from\":{\"line\":4,\"ch\":45},\"to\":{\"line\":4,\"ch\":45}},\"scroll\":0}"
+                    },
+                    {
+                      "title": "Definition – Locals",
+                      "icon": "lucide-file",
+                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Definition – Locals.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
+                      "eState": "{\"cursor\":{\"from\":{\"line\":1,\"ch\":16},\"to\":{\"line\":1,\"ch\":16}}}"
+                    },
+                    {
+                      "title": "Mid-level IR (MIR)",
+                      "icon": "lucide-file",
+                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Mid-level IR (MIR).md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
+                      "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}}}"
+                    },
+                    {
+                      "title": "Snapshot testing",
+                      "icon": "lucide-file",
+                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Snapshot testing.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
+                      "eState": "{\"cursor\":{\"from\":{\"line\":8,\"ch\":105},\"to\":{\"line\":8,\"ch\":105}},\"scroll\":6.95}"
                     },
                     {
                       "title": "Property based testing",
@@ -331,7 +470,7 @@
                 "state": {
                   "type": "markdown",
                   "state": {
-                    "file": "Snapshot testing.md",
+                    "file": "Figure – Loop CFG.md",
                     "mode": "source",
                     "backlinks": true,
                     "source": false
@@ -388,7 +527,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "todo",
+                "query": "https://doi.org/10.1145/2187671.2187672",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -419,7 +558,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "right": {
     "id": "eb30b9117306ddb1",
@@ -468,7 +608,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Definition – Locals.md",
+                "file": "Verification code generation.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -494,7 +634,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Definition – Locals.md",
+                "file": "Verification code generation.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -535,7 +675,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Definition – Locals.md"
+                "file": "Verification code generation.md"
               }
             }
           }
@@ -556,14 +696,27 @@
       "command-palette:Open command palette": true
     }
   },
-  "active": "a6bd527c27c3692d",
+  "active": "369dac636ecddb66",
   "lastOpenFiles": [
     "Mid-level IR (MIR).md",
-    "Figure – Proptest example.md",
+    "Todo list.md",
+    "Definition – Place.md",
+    "Reading notes/@midtgaardControlflowAnalysisFunctional2012.md",
+    "Reading notes/@nielsonPrinciplesProgramAnalysis1999.md",
+    "Reading notes/@matsakisIntroducingMIRRust2016.md",
+    "Reading notes/@allenControlFlowAnalysis1970.md",
     "Snapshot testing.md",
-    "Property based testing.md",
     "Snapshot and property based testing.md",
+    "@.md",
+    "Definition – Place siblings.md",
     "Outline.md",
+    "Definition – Place Fields.md",
+    "Figure – Loop CFG.md",
+    "Example – Desugaring for loop.md",
+    "Definition – FIR well-defined access rules.md",
+    "Definition – Locals.md",
+    "Figure – Proptest example.md",
+    "Property based testing.md",
     "Reading notes/@minskyTestingExpectations2015.md",
     "Language server integration.md",
     "Verification code generation.md",
@@ -571,19 +724,6 @@
     "Abstract-syntax tree (AST).md",
     "Concrete-syntax tree (CST).md",
     "Syntax trees.md",
-    "Compilation stages.md",
-    "Compilation structure.md",
-    "Todo list.md",
-    "Figure – Reverse sort visualisation.md",
-    "Abstraction and modularity.md",
-    "Background.md",
-    "Figure – Snapshot example.md",
-    "Reading notes/@lsp.md",
-    "Reading notes/@raskSpecificationLanguageServer2021.md",
-    "Reading notes/@viperserver.md",
-    "Reading notes/@raskDecouplingCoreAnalysis2021.md",
-    "Desugaring.md",
-    "Figure – Ascending sum – Viper.md",
     "Templates",
     "Daily notes",
     "Thesis layout.canvas",

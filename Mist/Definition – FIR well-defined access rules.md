@@ -31,4 +31,4 @@ $$
 \end{array}
 \end{gathered}
 $$
-Additionally, FIR assumes that both $\Compat\Rho$, for $\iuse\;\Rho$ and $\Compat(\pread(a) \cup \{\rho\})$ for $\rho := a$.
+Additionally, FIR assumes that $\Compat\Rho$, for $\iuse\;\Rho$ and $\Compat(\pread(a) \cup \{\rho\})$ for $\rho := a$.

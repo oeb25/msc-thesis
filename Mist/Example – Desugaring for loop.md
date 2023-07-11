@@ -22,6 +22,7 @@ fn f() {
   while i < 10
     inv 0 <= i <= 10
     inv sum == i * (i - 1) / 2
+    dec 10 - i
   {
     sum = sum + i;
     i = i + 1;
@@ -29,4 +30,4 @@ fn f() {
   assert sum == 45;
 }
 ```
-The `inv`ariants of the first loop are kept $\lineref{5, 17}$, and a new is added to bound `i` $\lineref{16}$, which is incremented at the end of the loop body $\lineref{20}$.
+The `inv`ariants of the first loop are kept $\lineref{5, 17}$, and a new is added to bound `i` $\lineref{16}$ and one for termination $\lineref{28}$, which is incremented at the end of the loop body $\lineref{21}$.

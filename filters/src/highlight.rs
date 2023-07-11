@@ -220,7 +220,17 @@ fn highlight_actual_mist(code: &str, line_offset: usize, opts: &HighlightingOpti
                             let latex = as_latex_escaped(&[(DEFAULT_THEME.trivia, &s)]);
                             return Some(latex);
                         }
-                        _ if ["fold", "unfold", "branch", "proof"].contains(&&*s) => {
+                        _ if [
+                            "fold",
+                            "unfold",
+                            "branch",
+                            "proof",
+                            "switch",
+                            "goto",
+                            "otherwise",
+                        ]
+                        .contains(&&*s) =>
+                        {
                             DEFAULT_THEME.kw
                         }
                         _ => Style::default(),

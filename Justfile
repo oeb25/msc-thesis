@@ -21,7 +21,7 @@ compile-filters:
 
 generate-pdf:
     just FINAL_PDF="debug.tex" pandoc
-    # -xelatex -interaction=batchmode debug
+    # xelatex debug
     (xelatex -interaction=batchmode debug || xelatex -interaction=batchmode debug) && cp debug.pdf {{FINAL_PDF}}
     # cp debug.pdf {{FINAL_PDF}}
     biber debug
