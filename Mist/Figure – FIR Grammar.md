@@ -10,14 +10,14 @@ Instruction = Place ':=' Expr_
             | 'fold' Place
             | 'unfold' Place
 
-Place = Slot_ Projection*
+Place = Local_ Projection*
 
-Projection = '.' Field_ // | '[' Slot_ ']'
+Projection = '.' Field_ // | '[' Local_ ']'
 
 BlockId_ = '...'
 Expr_ = '...'
 Field_ = '...'
-Slot_ = '...'
+Local_ = '...'
 ```
 
 > [!caption] BNF style grammar for FIR.

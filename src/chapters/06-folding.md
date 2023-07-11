@@ -475,15 +475,15 @@ BorrowKind = '&' | '&mut'
 
 Operand = 'copy' Place | 'move' Place
 
-Place = Slot_ Projection*
+Place = Local_ Projection*
 
-Projection = '.' Field_ // | '[' Slot_ ']'
+Projection = '.' Field_ // | '[' Local_ ']'
 
 BinaryOp_ = '...'
 Field_ = '...'
 Mutable_ = '...'
 Shared_ = '...'
-Slot_ = '...'
+Local_ = '...'
 UnaryOp_ = '...'
 ```
 

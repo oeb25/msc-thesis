@@ -19,7 +19,7 @@ In Mist, _temporary invalidation_ of invariants is allowed, and we let the compi
 
 The goal is thus for the compiler to infer what we call _folding points_, which are locations in a function where we either can assume the properties of an invariant (an _unfold_) or where we must assert that an invariant holds (a _fold_).
 
-Each folding is associated with a place (as a reminder, a place is a slot and sequence of fields, see [[Definition – Place]]). We say that when we unfold a place, it becomes unfolded and so becomes its type; conversely, the same is true for fold. Additionally, only folded places can be unfolded, and only unfolded places can be folded.
+Each folding is associated with a place (as a reminder, a place is a local and sequence of fields, see [[Definition – Place]]). We say that when we unfold a place, it becomes unfolded and so becomes its type; conversely, the same is true for fold. Additionally, only folded places can be unfolded, and only unfolded places can be folded.
 
 Conceptually, this means that all places and types have two states, folded and unfolded, and such types are called _isorecursive types_.
 
@@ -34,7 +34,7 @@ In addition to controlling invariants, folding also limits field access such tha
 > assert s.x.v + s.x.u == 0;
 > ```
 > This means that not only do `s` need to be unfolded, but also `s.x`. Incidentally, `.x.u` is also accessed, which requires the same unfolded places.
-> 
+>
 > Moreover, the argument `s: &mut S` requires that upon returning, `s` and anything it might contain will be folded. This ensures that invariants of `s`, and any nested invariants hold when the function exits.
 
 In this chapter we will introduce a formal definition of _folding trees_ in [[Folding tree structure]] as the foundation for precisely describing folding requirements, then go on to describe the semantics of the language with respect to foldings and an analysis for computing sufficient foldings in [[Folding analysis]], and finish with a proof that we can augment any program to be sound in terms of foldings in [[Folding augmented programs]].
