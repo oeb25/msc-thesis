@@ -295,6 +295,11 @@ impl Database {
                                 "\n#### {title} {{#{file_label}}}"
                             )));
                         }
+                        Some(Frontmatter { ty, .. }) if ty == "paragraph" => {
+                            p_content.push(ProcessedFileContent::Markdown(format!(
+                                "\n\\paragraph{{{title}}}"
+                            )));
+                        }
                         Some(Frontmatter { ty, .. }) if ty == "appendix" => {
                             let stripped_file_name = file_name
                                 .split_once(" – ")
@@ -306,6 +311,16 @@ impl Database {
                         }
                         Some(Frontmatter { ty, .. }) if ty == "citation" => {
                             p_content.clear();
+                        }
+                        Some(Frontmatter { ty, .. }) if ty == "abstract" => {
+                            p_content.push(ProcessedFileContent::RawLatex(
+                                r"\chapter*{\centering Abstract}".to_string(),
+                            ));
+                        }
+                        Some(Frontmatter { ty, .. }) if ty == "acknowledgements" => {
+                            p_content.push(ProcessedFileContent::RawLatex(
+                                r"\chapter*{\centering Acknowledgements}".to_string(),
+                            ));
                         }
                         Some(Frontmatter { ty, .. })
                             if [

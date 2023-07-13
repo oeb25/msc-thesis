@@ -6,7 +6,7 @@ _Snapshot testing_, sometimes also referred to as _expect testing_, [[@minskyTes
 
 During development, we often refactor or add new features and, in the process, unwillingly influence some adjacent part of the compiler. Snapshot testing makes such unintentional changes much easier to account for and lowers the burden of adding new tests since we do not have to compute and insert the results manually.
 
-Additionally, when we want to change the behavior of a subsystem, old test cases relying on past behavior will fail. In these scenarios, manually updating tests becomes a hindrance to the development pace rather than an aid. However, With snapshot testing, existing snapshots will catch this divergence as expected, allowing us to update all snapshots to the new behavior easily.
+Additionally, when we want to change the behavior of a subsystem, old test cases relying on past behavior will fail. In these scenarios, manually updating tests becomes a hindrance to the development pace rather than an aid. However, with snapshot testing, existing snapshots will catch this divergence as expected, allowing us to update all snapshots to the new behavior easily.
 
 In Mist, we use Insta [[@ronacherMitsuhikoInsta2023]] for snapshot testing, which with `cargo insta`, gives us an interactive CLI to test and review snapshot tests.
 

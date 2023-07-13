@@ -1,4 +1,4 @@
 ---
-tags: chapter
+tags: section
 ---
 

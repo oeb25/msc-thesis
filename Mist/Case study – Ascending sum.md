@@ -3,9 +3,9 @@ tags: section
 title: "Case study 2: Ascending sum"
 ---
 
-![[Figure – Ascending sum – Mist]]
-
 The second program we will examine, is one computing the sum of a sorted list of integers stored in a struct. The Mist implementation is presented in [[Figure – Ascending sum – Mist]].
+
+![[Figure – Ascending sum – Mist]]
 
 ### Program outline
 

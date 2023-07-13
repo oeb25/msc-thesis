@@ -139,6 +139,7 @@ fn walk_block(b: &mut Block) -> Result<Vec<Event>, miette::ErrReport> {
                     .copied()
                     .and_then(|s| s.parse().ok())
                     .unwrap_or_default();
+                let width = attr_map(&attr.attributes).get("width").copied();
                 let viper_compat = attr.classes.iter().any(|s| s == "viperCompat");
                 let (label, src) = extract_label_and_id(attr, src);
                 let lines = HighlightingOptions {
@@ -148,7 +149,7 @@ fn walk_block(b: &mut Block) -> Result<Vec<Event>, miette::ErrReport> {
                     viper_compat,
                 }
                 .highlight(src);
-                *b = Block::latex(generate_latex_code_block(&lines, label))
+                *b = Block::latex(generate_latex_code_block(&lines, width, label))
             } else if attr.classes.iter().any(|s| s == "folding-tree") {
                 let title = attr_map(&attr.attributes).get("title").copied();
                 let root = attr_map(&attr.attributes).get("root").copied();
@@ -808,9 +809,17 @@ fn fmt_times(cfg: FmtTimes, src: &str) -> Result<String> {
     Ok(latex)
 }
 
-fn generate_latex_code_block(lines: &str, label_and_caption: Option<(&str, &str)>) -> String {
+fn generate_latex_code_block(
+    lines: &str,
+    width: Option<&str>,
+    label_and_caption: Option<(&str, &str)>,
+) -> String {
+    let width = width.unwrap_or_default();
     let latex = format!(
-        r"\makeatletter
+        r"
+\begin{{center}}
+%\begin{{minipage}}{{{width}\textwidth}}
+\makeatletter
 \def\verbatim@nolig@list{{\do\`\do\<\do\>\do\'\do\-}}
 \makeatother
 \vspace{{-1ex}}
@@ -818,6 +827,8 @@ fn generate_latex_code_block(lines: &str, label_and_caption: Option<(&str, &str)
 {lines}
 \end{{Verbatim}}
 \vspace{{-1ex}}
+%\end{{minipage}}
+\end{{center}}
 "
     );
     wrap_latex_in_figure(&latex, label_and_caption)

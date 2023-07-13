@@ -1,5 +1,5 @@
 ---
-tags: section
+tags: subsection
 ---
 
 - https://dafny.org/latest/DafnyRef/DafnyRef

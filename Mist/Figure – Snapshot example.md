@@ -40,4 +40,4 @@ fn f() {
 ```
 
 > [!caption]
-> A `#[test]` function extracted from the Mist codebase, testing back tracing in generated Viper program.
+> A `#[test]` function extracted from the Mist codebase, testing backtracing in generated Viper program.

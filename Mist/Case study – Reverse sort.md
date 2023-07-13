@@ -25,9 +25,9 @@ The idea of the sorting algorithm, is to have sorted progressively larger and la
 
 Roughly computing the complexity for sorting a list of size $n$, this algorithm performs two nested loops with $O(n^2)$ iterations of the inner loop, each iteration potentially performing a reversal in $O(n)$, totalling in a runtime of $O(n^3)$. So to be clear, we in no way claim this algorithm to be _efficient_, but we do claim it to be _correct_, as proved by the implementation.
 
-The `fn rev_sort` is implemented as two loops. The compiler can assert this terminates as the loops are over bounded finite intervals, and all calls, namely to `lemma_reverse_same_elements` and `reverse`, are terminating functions.
+The `fn rev_sort` is implemented as two loops. The compiler can assert this terminates as the loops are over bounded finite intervals, and all calls, namely to `@lemma_reverse_same_elements` and `@reverse`, are terminating functions.
 
-The two loops contain invariants which maintains that the elements of the in-progress sorted list `res` contains the same elements as `s` and is sorted up to some index, and that all elements of this prefix are smaller than the remainder of the list. The inner loop also maintains that the first element not in the prefix, is the largest seen so far in this iteration. To help the verifier show that the elements are preserved, the `lemma_reverse_same_elements` is invoked on the reversed list.
+The two loops contain invariants which maintains that the elements of the in-progress sorted list `res` contains the same elements as `s` and is sorted up to some index, and that all elements of this prefix are smaller than the remainder of the list. The inner loop also maintains that the first element not in the prefix, is the largest seen so far in this iteration. To help the verifier show that the elements are preserved, the `@lemma_reverse_same_elements` is invoked on the reversed list.
 
 ![[Figure – Reverse sort (Part 2) – Mist]]
 

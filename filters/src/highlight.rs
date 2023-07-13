@@ -96,7 +96,7 @@ fn highlight_mist_inner(code: &str, line_offset: usize, opts: &HighlightingOptio
                 let snd_latex = snd_latex.lines().nth(idx).unwrap_or_default();
 
                 let lgap = " ".repeat(max - fst_line.len() + 1)
-                    + if has_fst_line {
+                    + if has_fst_line || !opts.show_numbers {
                         ""
                     } else {
                         r"{\footnotesize\textcolor{white}{00}} "
@@ -199,6 +199,7 @@ fn highlight_actual_mist(code: &str, line_offset: usize, opts: &HighlightingOpti
                                 "reads",
                                 "modifies",
                                 "define",
+                                "function",
                                 "to",
                             ]
                             .contains(&&*s) =>
@@ -224,7 +225,7 @@ fn highlight_actual_mist(code: &str, line_offset: usize, opts: &HighlightingOpti
                             "fold",
                             "unfold",
                             "branch",
-                            "proof",
+                            "old",
                             "switch",
                             "goto",
                             "otherwise",

@@ -33,7 +33,7 @@ tags: figure
     },
     almost/.style={
       color=white,
-      fill=violet,
+      fill=teal!25!darkgray,
       opacity=1,
     },
     sorted/.style={
@@ -160,4 +160,4 @@ tags: figure
 ```
 
 > [!caption]
-> A visualisation of the 12 sublist reversals performed in the execution of `rev_sort([8,6,5,7,9,4])`, where each column going left to right is a step in the algorithm. The $\text{\textcolor{teal}{teal}}$ nodes are those in the sorted prefix, $\text{\textcolor{violet}{violet}}$ nodes are candidates to join the sorted prefix, and the arrows indicate which elements are swapped as sublists are reversed.
+> A visualisation of the 12 sublist reversals performed in the execution of `@rev_sort([8,6,5,7,9,4])`, where each column going left to right is a step in the algorithm. The $\text{\textcolor{teal}{light colored}}$ nodes are those in the sorted prefix, $\text{\textcolor{teal!25!darkgray}{dark colored}}$ nodes are candidates to join the sorted prefix, and the arrows indicate which elements are swapped as sublists are reversed.

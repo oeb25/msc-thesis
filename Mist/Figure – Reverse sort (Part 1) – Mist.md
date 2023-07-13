@@ -2,7 +2,7 @@
 tags: figure
 ---
 
-```{.mist .numberLines}
+```{.mist .numberLines .ignoreErrors}
 pure ghost fn reversed(a: [int], b: [int]) -> bool
   req a.len == b.len
 { forall idx in 0..a.len { a[a.len - idx - 1] == b[idx] } }
