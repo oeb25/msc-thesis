@@ -4,324 +4,331 @@
     "type": "split",
     "children": [
       {
-        "id": "c52a17aec4d1dc6a",
-        "type": "tabs",
+        "id": "2db38359aae7f84f",
+        "type": "split",
         "dimension": 48.539944903581265,
         "children": [
           {
-            "id": "1393543cd9c51a12",
-            "type": "leaf",
-            "pane-relief:history-v1": {
-              "pos": 1,
-              "stack": [
-                {
-                  "title": "Figure – Reverse sort (Part 1) – Mist",
-                  "icon": "lucide-file",
-                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Figure – Reverse sort (Part 1) – Mist.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
-                  "eState": "{\"cursor\":{\"from\":{\"line\":4,\"ch\":36},\"to\":{\"line\":4,\"ch\":36}}}"
+            "id": "c52a17aec4d1dc6a",
+            "type": "tabs",
+            "dimension": 54.166666666666664,
+            "children": [
+              {
+                "id": "1393543cd9c51a12",
+                "type": "leaf",
+                "pane-relief:history-v1": {
+                  "pos": 1,
+                  "stack": [
+                    {
+                      "title": "Figure – Reverse sort (Part 1) – Mist",
+                      "icon": "lucide-file",
+                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Figure – Reverse sort (Part 1) – Mist.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
+                      "eState": "{\"cursor\":{\"from\":{\"line\":4,\"ch\":36},\"to\":{\"line\":4,\"ch\":36}}}"
+                    },
+                    {
+                      "state": "{}",
+                      "eState": "{}"
+                    }
+                  ]
                 },
-                {
-                  "state": "{}",
-                  "eState": "{}"
+                "state": {
+                  "type": "markdown",
+                  "state": {
+                    "file": "The Mist Programming Language.md",
+                    "mode": "source",
+                    "backlinks": true,
+                    "source": false
+                  }
                 }
-              ]
-            },
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "The Mist Programming Language.md",
-                "mode": "source",
-                "backlinks": true,
-                "source": false
+              },
+              {
+                "id": "9599e9fe42ba22c7",
+                "type": "leaf",
+                "pane-relief:history-v1": {
+                  "pos": 0,
+                  "stack": [
+                    {
+                      "state": "{}",
+                      "eState": "{}"
+                    },
+                    {
+                      "title": "Future work",
+                      "icon": "lucide-file",
+                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Future work.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
+                      "eState": "{\"cursor\":{\"from\":{\"line\":11,\"ch\":70},\"to\":{\"line\":11,\"ch\":70}}}"
+                    },
+                    {
+                      "title": "Example – Add Mist example",
+                      "icon": "lucide-file",
+                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Example – Add Mist example.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
+                      "eState": "{\"cursor\":{\"from\":{\"line\":22,\"ch\":3},\"to\":{\"line\":22,\"ch\":3}}}"
+                    }
+                  ]
+                },
+                "state": {
+                  "type": "markdown",
+                  "state": {
+                    "file": "Types in Mist.md",
+                    "mode": "source",
+                    "backlinks": true,
+                    "source": false
+                  }
+                }
+              },
+              {
+                "id": "71e4c0d060d16ee9",
+                "type": "leaf",
+                "pane-relief:history-v1": {
+                  "pos": 0,
+                  "stack": [
+                    {
+                      "state": "{}",
+                      "eState": "{}"
+                    }
+                  ]
+                },
+                "state": {
+                  "type": "markdown",
+                  "state": {
+                    "file": "Example – BTree – Height.md",
+                    "mode": "source",
+                    "backlinks": true,
+                    "source": false
+                  }
+                }
+              },
+              {
+                "id": "39ab153c87e52675",
+                "type": "leaf",
+                "pane-relief:history-v1": {
+                  "pos": 0,
+                  "stack": [
+                    {
+                      "state": "{}",
+                      "eState": "{}"
+                    },
+                    {
+                      "title": "Example – BTree – Ghost clone",
+                      "icon": "lucide-file",
+                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Example – BTree – Ghost clone and flip.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
+                      "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}},\"scroll\":0}"
+                    },
+                    {
+                      "title": "Types in Mist",
+                      "icon": "lucide-file",
+                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Types in Mist.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
+                      "eState": "{\"cursor\":{\"from\":{\"line\":17,\"ch\":0},\"to\":{\"line\":17,\"ch\":0}},\"scroll\":10.551106770833334}"
+                    },
+                    {
+                      "title": "Example – BTree – Height",
+                      "icon": "lucide-file",
+                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Example – BTree – Height.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
+                      "eState": "{\"cursor\":{\"from\":{\"line\":4,\"ch\":44},\"to\":{\"line\":4,\"ch\":44}}}"
+                    },
+                    {
+                      "title": "Example – BTree – Struct",
+                      "icon": "lucide-file",
+                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Example – BTree – Struct.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
+                      "eState": "{\"cursor\":{\"from\":{\"line\":17,\"ch\":29},\"to\":{\"line\":17,\"ch\":29}}}"
+                    }
+                  ]
+                },
+                "state": {
+                  "type": "markdown",
+                  "state": {
+                    "file": "Modes and modularity.md",
+                    "mode": "source",
+                    "backlinks": true,
+                    "source": false
+                  }
+                }
+              },
+              {
+                "id": "00a42d7c43e7b3c4",
+                "type": "leaf",
+                "pane-relief:history-v1": {
+                  "pos": 0,
+                  "stack": [
+                    {
+                      "state": "{}",
+                      "eState": "{}"
+                    },
+                    {
+                      "title": "Todo list",
+                      "icon": "lucide-file",
+                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Todo list.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
+                      "eState": "{\"cursor\":{\"from\":{\"line\":39,\"ch\":26},\"to\":{\"line\":36,\"ch\":28}},\"scroll\":0}"
+                    },
+                    {
+                      "title": "Modes and modularity",
+                      "icon": "lucide-file",
+                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Modes and modularity.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
+                      "eState": "{\"cursor\":{\"from\":{\"line\":8,\"ch\":667},\"to\":{\"line\":8,\"ch\":667}},\"scroll\":1.5416666666666665}"
+                    },
+                    {
+                      "title": "Example – BTree – Increment",
+                      "icon": "lucide-file",
+                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Example – BTree – Increment.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
+                      "eState": "{\"cursor\":{\"from\":{\"line\":5,\"ch\":33},\"to\":{\"line\":5,\"ch\":33}}}"
+                    }
+                  ]
+                },
+                "state": {
+                  "type": "markdown",
+                  "state": {
+                    "file": "Prusti comparison.md",
+                    "mode": "source",
+                    "backlinks": true,
+                    "source": false
+                  }
+                }
+              },
+              {
+                "id": "98b35047c5230d96",
+                "type": "leaf",
+                "pane-relief:history-v1": {
+                  "pos": 0,
+                  "stack": [
+                    {
+                      "state": "{}",
+                      "eState": "{}"
+                    },
+                    {
+                      "title": "Why3 comparison",
+                      "icon": "lucide-file",
+                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Why3 comparison.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
+                      "eState": "{\"cursor\":{\"from\":{\"line\":7,\"ch\":50},\"to\":{\"line\":7,\"ch\":50}}}"
+                    }
+                  ]
+                },
+                "state": {
+                  "type": "markdown",
+                  "state": {
+                    "file": "Introduction.md",
+                    "mode": "source",
+                    "backlinks": true,
+                    "source": false
+                  }
+                }
+              },
+              {
+                "id": "ac6c0f146aa23425",
+                "type": "leaf",
+                "pane-relief:history-v1": {
+                  "pos": 0,
+                  "stack": [
+                    {
+                      "state": "{}",
+                      "eState": "{}"
+                    }
+                  ]
+                },
+                "state": {
+                  "type": "markdown",
+                  "state": {
+                    "file": "Example – BTree – Height.md",
+                    "mode": "source",
+                    "backlinks": true,
+                    "source": false
+                  }
+                }
+              },
+              {
+                "id": "8e4b67a100fe197c",
+                "type": "leaf",
+                "pane-relief:history-v1": {
+                  "pos": 0,
+                  "stack": [
+                    {
+                      "state": "{}",
+                      "eState": "{}"
+                    }
+                  ]
+                },
+                "state": {
+                  "type": "markdown",
+                  "state": {
+                    "file": "Example – BTree – Height.md",
+                    "mode": "source",
+                    "backlinks": true,
+                    "source": false
+                  }
+                }
+              },
+              {
+                "id": "95db9496b00b138c",
+                "type": "leaf",
+                "pane-relief:history-v1": {
+                  "pos": 0,
+                  "stack": [
+                    {
+                      "state": "{}",
+                      "eState": "{}"
+                    }
+                  ]
+                },
+                "state": {
+                  "type": "markdown",
+                  "state": {
+                    "file": "Example – BTree – Struct.md",
+                    "mode": "source",
+                    "backlinks": true,
+                    "source": false
+                  }
+                }
               }
-            }
+            ],
+            "currentTab": 5
           },
           {
-            "id": "9599e9fe42ba22c7",
-            "type": "leaf",
-            "pane-relief:history-v1": {
-              "pos": 0,
-              "stack": [
-                {
-                  "state": "{}",
-                  "eState": "{}"
+            "id": "d47e48c66036c017",
+            "type": "tabs",
+            "dimension": 45.83333333333333,
+            "children": [
+              {
+                "id": "376ecb9014a5167d",
+                "type": "leaf",
+                "pane-relief:history-v1": {
+                  "pos": 0,
+                  "stack": [
+                    {
+                      "state": "{}",
+                      "eState": "{}"
+                    },
+                    {
+                      "title": "@filliatreSpiritGhostCode2016",
+                      "icon": "lucide-file",
+                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Reading notes/@filliatreSpiritGhostCode2016.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
+                      "eState": "{\"cursor\":{\"from\":{\"line\":13,\"ch\":0},\"to\":{\"line\":13,\"ch\":0}}}"
+                    },
+                    {
+                      "title": "@why3",
+                      "icon": "lucide-file",
+                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Reading notes/@why3.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
+                      "eState": "{\"cursor\":{\"from\":{\"line\":5,\"ch\":5},\"to\":{\"line\":5,\"ch\":5}}}"
+                    },
+                    {
+                      "title": "Why3 comparison",
+                      "icon": "lucide-file",
+                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Why3 comparison.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
+                      "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}}}"
+                    }
+                  ]
                 },
-                {
-                  "title": "Future work",
-                  "icon": "lucide-file",
-                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Future work.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
-                  "eState": "{\"cursor\":{\"from\":{\"line\":11,\"ch\":70},\"to\":{\"line\":11,\"ch\":70}}}"
-                },
-                {
-                  "title": "Example – Add Mist example",
-                  "icon": "lucide-file",
-                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Example – Add Mist example.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
-                  "eState": "{\"cursor\":{\"from\":{\"line\":22,\"ch\":3},\"to\":{\"line\":22,\"ch\":3}}}"
+                "state": {
+                  "type": "markdown",
+                  "state": {
+                    "file": "Todo list.md",
+                    "mode": "source",
+                    "backlinks": true,
+                    "source": false
+                  }
                 }
-              ]
-            },
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Types in Mist.md",
-                "mode": "source",
-                "backlinks": true,
-                "source": false
               }
-            }
-          },
-          {
-            "id": "71e4c0d060d16ee9",
-            "type": "leaf",
-            "pane-relief:history-v1": {
-              "pos": 0,
-              "stack": [
-                {
-                  "state": "{}",
-                  "eState": "{}"
-                }
-              ]
-            },
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Example – BTree – Height.md",
-                "mode": "source",
-                "backlinks": true,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "39ab153c87e52675",
-            "type": "leaf",
-            "pane-relief:history-v1": {
-              "pos": 0,
-              "stack": [
-                {
-                  "state": "{}",
-                  "eState": "{}"
-                },
-                {
-                  "title": "Example – BTree – Ghost clone",
-                  "icon": "lucide-file",
-                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Example – BTree – Ghost clone and flip.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
-                  "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}},\"scroll\":0}"
-                },
-                {
-                  "title": "Types in Mist",
-                  "icon": "lucide-file",
-                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Types in Mist.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
-                  "eState": "{\"cursor\":{\"from\":{\"line\":17,\"ch\":0},\"to\":{\"line\":17,\"ch\":0}},\"scroll\":10.551106770833334}"
-                },
-                {
-                  "title": "Example – BTree – Height",
-                  "icon": "lucide-file",
-                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Example – BTree – Height.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
-                  "eState": "{\"cursor\":{\"from\":{\"line\":4,\"ch\":44},\"to\":{\"line\":4,\"ch\":44}}}"
-                },
-                {
-                  "title": "Example – BTree – Struct",
-                  "icon": "lucide-file",
-                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Example – BTree – Struct.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
-                  "eState": "{\"cursor\":{\"from\":{\"line\":17,\"ch\":29},\"to\":{\"line\":17,\"ch\":29}}}"
-                }
-              ]
-            },
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Modes and modularity.md",
-                "mode": "source",
-                "backlinks": true,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "00a42d7c43e7b3c4",
-            "type": "leaf",
-            "pane-relief:history-v1": {
-              "pos": 0,
-              "stack": [
-                {
-                  "state": "{}",
-                  "eState": "{}"
-                },
-                {
-                  "title": "Example – BTree – Increment",
-                  "icon": "lucide-file",
-                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Example – BTree – Increment.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
-                  "eState": "{\"cursor\":{\"from\":{\"line\":5,\"ch\":33},\"to\":{\"line\":5,\"ch\":33}}}"
-                }
-              ]
-            },
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Modes and modularity.md",
-                "mode": "source",
-                "backlinks": true,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "7abc80372ceb01de",
-            "type": "leaf",
-            "pane-relief:history-v1": {
-              "pos": 0,
-              "stack": [
-                {
-                  "state": "{}",
-                  "eState": "{}"
-                },
-                {
-                  "title": "@denningCertificationProgramsSecure1977",
-                  "icon": "lucide-file",
-                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Reading notes/@denningCertificationProgramsSecure1977.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
-                  "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}}}"
-                },
-                {
-                  "title": "@kladovResilientLLParsing",
-                  "icon": "lucide-file",
-                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Reading notes/@kladovResilientLLParsing.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
-                  "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}}}"
-                },
-                {
-                  "title": "@carboncontributersCarbon2023",
-                  "icon": "lucide-file",
-                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Reading notes/@carboncontributersCarbon2023.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
-                  "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}}}"
-                },
-                {
-                  "title": "@pierceTypesProgrammingLanguages2002",
-                  "icon": "lucide-file",
-                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Reading notes/@pierceTypesProgrammingLanguages2002.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
-                  "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}}}"
-                },
-                {
-                  "title": "The Mist Programming Language",
-                  "icon": "lucide-file",
-                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"The Mist Programming Language.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
-                  "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}}}"
-                },
-                {
-                  "title": "Type checking and name resolution",
-                  "icon": "lucide-file",
-                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Type checking and name resolution.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
-                  "eState": "{\"cursor\":{\"from\":{\"line\":4,\"ch\":110},\"to\":{\"line\":4,\"ch\":110}}}"
-                },
-                {
-                  "title": "Lemma – Folding tree join and meet are closed",
-                  "icon": "lucide-file",
-                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Lemma – Folding tree join and meet are closed.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
-                  "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":9,\"ch\":105}}}"
-                },
-                {
-                  "title": "Figure – Snapshot example",
-                  "icon": "lucide-file",
-                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Figure – Snapshot example.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
-                  "eState": "{\"cursor\":{\"from\":{\"line\":42,\"ch\":104},\"to\":{\"line\":42,\"ch\":104}}}"
-                },
-                {
-                  "title": "Definition – Folding tree",
-                  "icon": "lucide-file",
-                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Definition – Folding tree.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
-                  "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":9,\"ch\":0}},\"scroll\":0}"
-                },
-                {
-                  "title": "Case study – Reverse sort",
-                  "icon": "lucide-file",
-                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Case study – Reverse sort.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
-                  "eState": "{\"cursor\":{\"from\":{\"line\":25,\"ch\":355},\"to\":{\"line\":25,\"ch\":355}},\"scroll\":17.592524575996542}"
-                },
-                {
-                  "title": "Example – BTree – Increment",
-                  "icon": "lucide-file",
-                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Example – BTree – Increment.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
-                  "eState": "{\"cursor\":{\"from\":{\"line\":19,\"ch\":0},\"to\":{\"line\":19,\"ch\":0}}}"
-                }
-              ]
-            },
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Proof – Requires is monotone.md",
-                "mode": "source",
-                "backlinks": true,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "ac6c0f146aa23425",
-            "type": "leaf",
-            "pane-relief:history-v1": {
-              "pos": 0,
-              "stack": [
-                {
-                  "state": "{}",
-                  "eState": "{}"
-                }
-              ]
-            },
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Example – BTree – Height.md",
-                "mode": "source",
-                "backlinks": true,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "8e4b67a100fe197c",
-            "type": "leaf",
-            "pane-relief:history-v1": {
-              "pos": 0,
-              "stack": [
-                {
-                  "state": "{}",
-                  "eState": "{}"
-                }
-              ]
-            },
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Example – BTree – Height.md",
-                "mode": "source",
-                "backlinks": true,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "95db9496b00b138c",
-            "type": "leaf",
-            "pane-relief:history-v1": {
-              "pos": 0,
-              "stack": [
-                {
-                  "state": "{}",
-                  "eState": "{}"
-                }
-              ]
-            },
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Example – BTree – Struct.md",
-                "mode": "source",
-                "backlinks": true,
-                "source": false
-              }
-            }
+            ]
           }
         ],
-        "currentTab": 5
+        "direction": "horizontal"
       },
       {
         "id": "d3bafd6f91a3f81c",
@@ -546,6 +553,24 @@
                       "eState": "{}"
                     },
                     {
+                      "title": "Case study – Ascending sum",
+                      "icon": "lucide-file",
+                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Case study – Ascending sum.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
+                      "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}},\"scroll\":107.89894558063831}"
+                    },
+                    {
+                      "title": "Case studies",
+                      "icon": "lucide-file",
+                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Case studies.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
+                      "eState": "{\"cursor\":{\"from\":{\"line\":4,\"ch\":473},\"to\":{\"line\":4,\"ch\":473}},\"scroll\":0}"
+                    },
+                    {
+                      "title": "Case study – Ascending sum",
+                      "icon": "lucide-file",
+                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Case study – Ascending sum.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
+                      "eState": "{\"cursor\":{\"from\":{\"line\":59,\"ch\":398},\"to\":{\"line\":59,\"ch\":398}},\"scroll\":53.958197195720764}"
+                    },
+                    {
                       "title": "Case studies",
                       "icon": "lucide-file",
                       "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Case studies.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
@@ -562,7 +587,87 @@
                 "state": {
                   "type": "markdown",
                   "state": {
-                    "file": "Case study – Ascending sum.md",
+                    "file": "Timings.md",
+                    "mode": "source",
+                    "backlinks": true,
+                    "source": false
+                  }
+                }
+              },
+              {
+                "id": "b5b8dd1e2639f90e",
+                "type": "leaf",
+                "pane-relief:history-v1": {
+                  "pos": 0,
+                  "stack": [
+                    {
+                      "state": "{}",
+                      "eState": "{}"
+                    },
+                    {
+                      "title": "Figure – Complication pipeline",
+                      "icon": "lucide-file",
+                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Figure – Complication pipeline.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
+                      "eState": "{\"cursor\":{\"from\":{\"line\":241,\"ch\":0},\"to\":{\"line\":241,\"ch\":0}},\"scroll\":3.8333333333333335}"
+                    },
+                    {
+                      "title": "Modes and modularity",
+                      "icon": "lucide-file",
+                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Modes and modularity.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
+                      "eState": "{\"cursor\":{\"from\":{\"line\":40,\"ch\":605},\"to\":{\"line\":40,\"ch\":605}},\"scroll\":38.02250744047619}"
+                    },
+                    {
+                      "title": "Case studies",
+                      "icon": "lucide-file",
+                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Case studies.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
+                      "eState": "{\"cursor\":{\"from\":{\"line\":4,\"ch\":413},\"to\":{\"line\":4,\"ch\":413}}}"
+                    }
+                  ]
+                },
+                "state": {
+                  "type": "markdown",
+                  "state": {
+                    "file": "Automatic folding of isorecursive structures.md",
+                    "mode": "source",
+                    "backlinks": true,
+                    "source": false
+                  }
+                }
+              },
+              {
+                "id": "d42d4178bdefc098",
+                "type": "leaf",
+                "pane-relief:history-v1": {
+                  "pos": 0,
+                  "stack": [
+                    {
+                      "state": "{}",
+                      "eState": "{}"
+                    },
+                    {
+                      "title": "Case study – Reverse sort",
+                      "icon": "lucide-file",
+                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Case study – Reverse sort.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
+                      "eState": "{\"cursor\":{\"from\":{\"line\":7,\"ch\":42},\"to\":{\"line\":7,\"ch\":0}},\"scroll\":5.333333333333333}"
+                    },
+                    {
+                      "title": "Case study – Ascending sum",
+                      "icon": "lucide-file",
+                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Case study – Ascending sum.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
+                      "eState": "{\"cursor\":{\"from\":{\"line\":57,\"ch\":117},\"to\":{\"line\":57,\"ch\":117}},\"scroll\":53.43776255110995}"
+                    },
+                    {
+                      "title": "Figure – Breaking invariant",
+                      "icon": "lucide-file",
+                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Figure – Breaking invariant.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
+                      "eState": "{\"cursor\":{\"from\":{\"line\":22,\"ch\":0},\"to\":{\"line\":22,\"ch\":0}},\"scroll\":1.25}"
+                    }
+                  ]
+                },
+                "state": {
+                  "type": "markdown",
+                  "state": {
+                    "file": "Prusti comparison.md",
                     "mode": "source",
                     "backlinks": true,
                     "source": false
@@ -682,7 +787,7 @@
                 }
               }
             ],
-            "currentTab": 4
+            "currentTab": 6
           },
           {
             "id": "1fb0e925241910ce",
@@ -698,6 +803,30 @@
                     {
                       "state": "{}",
                       "eState": "{}"
+                    },
+                    {
+                      "title": "@Wolff2020ExtendedPC",
+                      "icon": "lucide-file",
+                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Reading notes/@Wolff2020ExtendedPC.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
+                      "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}}}"
+                    },
+                    {
+                      "title": "Dafny comparison",
+                      "icon": "lucide-file",
+                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Dafny comparison.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
+                      "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":3},\"to\":{\"line\":0,\"ch\":3}}}"
+                    },
+                    {
+                      "title": "Related work",
+                      "icon": "lucide-file",
+                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Related work.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
+                      "eState": "{\"cursor\":{\"from\":{\"line\":4,\"ch\":0},\"to\":{\"line\":4,\"ch\":0}},\"scroll\":0}"
+                    },
+                    {
+                      "title": "Todo list",
+                      "icon": "lucide-file",
+                      "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"Todo list.md\",\"mode\":\"source\",\"backlinks\":true,\"source\":false}}",
+                      "eState": "{\"cursor\":{\"from\":{\"line\":22,\"ch\":20},\"to\":{\"line\":22,\"ch\":20}},\"scroll\":2.0082889283599763}"
                     },
                     {
                       "title": "Example – BTree – Complete lemma",
@@ -746,7 +875,7 @@
                 "state": {
                   "type": "markdown",
                   "state": {
-                    "file": "Todo list.md",
+                    "file": "Dafny comparison.md",
                     "mode": "source",
                     "backlinks": true,
                     "source": false
@@ -905,7 +1034,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Proof – Requires is monotone.md",
+                "file": "Dafny comparison.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -931,7 +1060,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Proof – Requires is monotone.md",
+                "file": "Dafny comparison.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -972,7 +1101,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Proof – Requires is monotone.md"
+                "file": "Dafny comparison.md"
               }
             }
           }
@@ -993,8 +1122,27 @@
       "command-palette:Open command palette": true
     }
   },
-  "active": "7abc80372ceb01de",
+  "active": "98bfe4a594477871",
   "lastOpenFiles": [
+    "Introduction.md",
+    "Why3 comparison.md",
+    "Dafny comparison.md",
+    "Prusti comparison.md",
+    "Reading notes/@Wolff2020ExtendedPC.md",
+    "Todo list.md",
+    "Reading notes/@filliatreSpiritGhostCode2016.md",
+    "Reading notes/@why3.md",
+    "Case study – Reverse sort.md",
+    "Related work.md",
+    "Outline.md",
+    "Modes and modularity.md",
+    "Case study – Ascending sum.md",
+    "Figure – Breaking invariant.md",
+    "Automatic folding of isorecursive structures.md",
+    "Figure – Complication pipeline.md",
+    "Case studies.md",
+    "Proof – Requires is monotone.md",
+    "Timings.md",
     "Reading notes/@denningCertificationProgramsSecure1977.md",
     "Reading notes/@kladovResilientLLParsing.md",
     "Reading notes/@carboncontributersCarbon2023.md",
@@ -1002,25 +1150,6 @@
     "The Mist Programming Language.md",
     "Type checking and name resolution.md",
     "Lemma – Folding tree join and meet are closed.md",
-    "Figure – Snapshot example.md",
-    "Definition – Folding tree.md",
-    "Case study – Reverse sort.md",
-    "Case study – Ascending sum.md",
-    "Outline.md",
-    "Case studies.md",
-    "Example – BTree – Increment.md",
-    "Todo list.md",
-    "MAINMATTER.md",
-    "Acknowledgements.md",
-    "Modes and modularity.md",
-    "Example – BTree – Complete lemma.md",
-    "Abstract.md",
-    "Final checklist.md",
-    "Example – BTree – Unsoundness.md",
-    "Example – BTree – Ghost clone and flip.md",
-    "Types in Mist.md",
-    "Introduction.md",
-    "Reading notes/@volpanoSoundTypeSystem1996.md",
     "Templates",
     "Daily notes",
     "Thesis layout.canvas",

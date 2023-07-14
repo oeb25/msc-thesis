@@ -6,9 +6,9 @@ In the previous section, we saw the functions `@values` and `@height` marked wit
 
 ![[Example – BTree – Size]]
 
-[[Example – BTree – Size]] introduces another pure function and new concept. The `dec` annotation on `@size` requires that the function _terminates_by requiring any recursive call to `@size` to be _smaller_ than this call. The notion of smaller is given by the accompanying `height(b)` to mean that any tree passed in a recursive call to `@size` must have a height less than `b`. `@height` is a pure function and thus can be called in `dec`. As the tree's height is never negative, and the height of recursive calls forever decreases, we know any recursive call sequence must end. Additionally, any other expression in the function must also be terminating for the function to be decreasing.
+[[Example – BTree – Size]] introduces another pure function and new concept. The `dec` annotation on `@size` requires that the function _terminates_ by requiring any recursive call to `@size` to be _smaller_ than this call. The notion of smaller is given by the accompanying `height(b)` to mean that any tree passed in a recursive call to `@size` must have a height less than `b`. `@height` is a pure function and thus can be called in `dec`. As the tree's height is never negative, and the height of recursive calls forever decreases, we know any recursive call sequence must end. Additionally, any other expression in the function must also be terminating for the function to be decreasing.
 
-All functions so far have taken immutable references. However, Mist allows passing _mutable references_ as well. These are references where the function may change the contents, but at the end, the object must still be intact at the end of the function body.
+All functions so far have taken immutable references. However, Mist allows passing _mutable references_ as well. These are references where the function may change the contents, but ultimately, the object must still be intact at the end of the function body.
 
 The function `@increment` found in [[Example – BTree – Increment]], takes such a mutable reference to a `BTree` and recursively increments all values by some `amount`.
 
@@ -16,7 +16,7 @@ The function `@increment` found in [[Example – BTree – Increment]], takes su
 
 The postcondition of `@increment` ensures that all values previously in the tree will now be in the mutated tree but offset by `amount`. The keyword `old` in `old(values(b))` is critical here, as it refers to the value of `b` _before execution_ of the function. 
 
-Non-pure functions, like `@increment`, are opaque in that as long as their body satisfies the postcondition, then its implementation cannot influence other parts of the code. The _mirroring of the tree_ exemplifies this at the end of the function $\lineref{55}$. Nothing about the internals of a non-pure function can be assumed externally, and nothing states that `@increment` must preserve the order in the tree, so while perhaps unexpected, it satisfies its contract.
+Non-pure functions, like `@increment`, are opaque in that as long as their body satisfies the postcondition, then its implementation cannot influence other parts of the code. The _mirroring of the tree_ exemplifies this at the end of the function $\lineref{55}$. Nothing about the internals of a non-pure function can be assumed externally, and nothing states that `@increment` must preserve the order in the tree, so mirroring the tree is completely fine as it satisfies the contract, while perhaps unexpected.
 
 We have now defined quite a few functions for `BTree`, which come together in one final property.
 

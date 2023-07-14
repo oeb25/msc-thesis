@@ -15,8 +15,8 @@
         - [x] [[Property based testing]]
 - [x] [[Automatic folding of isorecursive structures]]
     - [x] Fix [[Folding-level IR (FIR)]] example
-- [ ] [[Case studies]]
-    - [ ] Chapter introduction
+- [x] [[Case studies]]
+    - [x] Chapter introduction
     - [x] [[Case study – Reverse sort]]
     - [x] [[Case study – Ascending sum]]
     - [ ] Semi-conclusion
@@ -32,13 +32,13 @@
 
 ## Thursday
 - [x] Write [[The Mist Programming Language]]
-- [ ] Finish [[Case studies]]
+- [x] Finish [[Case studies]]
     - [x] Fix color
-- [ ] Start [[Related work]]
+- [x] Start [[Related work]]
+
+## Friday
 - [ ] Finish [[Related work]]
 - [ ] Second draft of [[Introduction]]
 - [ ] Write [[Conclusion]]
-
-## Friday
 - [ ] Write [[Abstract]]
 - [ ] Proof read + corrections

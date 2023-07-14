@@ -1,5 +1,15 @@
 ---
-tags: subsection
+tags: paragraph
+title: Prusti
 ---
 
-Mist and Prusti [[@astrauskasLeveragingRustTypes2019]] both use Viper for verification, and are both written in Rust. Prusti is a verifier for an existing language (Rust) and is thus constrained to work within that environment. Mist, however, has the liberty to explore designs outside of these constraints ...
+[[@astrauskasLeveragingRustTypes2019]] is a verification frontend for Rust. Mist's and Prusti's overlap is quite considerable: both use Viper for verification, are written in Rust, and use a MIR CFG representation for lowering. What sets Prusti apart is that it is a verifier for an existing language (Rust) and is thus constrained to work within that environment. Mist, however, has the liberty to explore designs outside of these constraints but does not get to leverage the ecosystem that comes from integrating an existing compiler and community. Prusti uses _Place Capability Sets_ (PCS), which are almost isomorphic to Mist folding trees [[Folding tree structure]] and are used to compute necessary PCS operations to satisfy constraints a different program points as was done in [[Folding analysis]]. What we do, in addition, is formalize the analysis and procedure for this transformation. In a later paper, Dylan Wolff [[@Wolff2020ExtendedPC]] introduced _Extended Place Capabilities Summary_ (EPCS), formalizing PCS and EPCS and exposing them programmatically for other analyses to ingest.
+
+%%
+| Prusti | Mist |
+|:---:|:-----------:|
+| PCS | $\leaves$ |
+| sub-place | (strict) $\prefix$ |
+| _pack_ | $\fold$ |
+| _unpack_ | $\unfold$ |
+%%
