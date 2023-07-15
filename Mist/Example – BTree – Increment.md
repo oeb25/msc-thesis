@@ -13,6 +13,9 @@ fn increment(b: &mut BTree, amount: int)
   b.value = b.value + amount;
   if b.left != null {
     increment(b.left!, amount); increment(b.right!, amount);
+    assert old(values(b) == [t.value].to_set()
+                             .union(values(t.left!))
+                             .union(values(t.right!)));
   }
   let tmp = b.left; b.left = b.right; b.right = tmp;
 }

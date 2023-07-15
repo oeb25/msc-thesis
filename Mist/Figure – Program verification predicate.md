@@ -18,4 +18,4 @@ fn works(s: Seq[int]) requires |s| == 3 && s[0] > 0 && Sorted(s) {
 ```
 
 > [!caption]
-> A `@vpr invariant` for a sorted list in psuedo-Viper, and two functions: one fails verification, the other does not.
+> A `@vpr invariant` for a sorted list in pseudo-Viper, and two functions: one fails verification, and the other does not.

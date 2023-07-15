@@ -4,7 +4,7 @@ tags: example
 
 A display of what becomes possible when `@flip` is involved.
 
-```{.mist .numberLines offset="79"}
+```{.mist .numberLines offset="82"}
 ghost fn unsoundness(b: &BTree)
   req height(b) != 0
 {

@@ -20,9 +20,9 @@
     - [x] [[Case study – Reverse sort]]
     - [x] [[Case study – Ascending sum]]
     - [ ] Semi-conclusion
-- [ ] [[Conclusion]]
-    - [ ] [[Related work]]
-    - [ ] [[Future work]]
+- [x] [[Conclusion]]
+    - [x] [[Related work]]
+    - [x] [[Future work]]
 
 ## Tuesday
 - [x] Finish [[The Mist Compiler]]
@@ -37,8 +37,19 @@
 - [x] Start [[Related work]]
 
 ## Friday
-- [ ] Finish [[Related work]]
-- [ ] Second draft of [[Introduction]]
-- [ ] Write [[Conclusion]]
-- [ ] Write [[Abstract]]
-- [ ] Proof read + corrections
+- [x] Finish [[Related work]]
+- [x] Second draft of [[Introduction]]
+- [x] Write [[Conclusion]]
+
+## Saturday
+- [x] Write [[Future work]]
+    - [x] Write [[Compiler improvements]]
+- [x] Write [[Abstract]]
+- [x] Write [[Acknowledgements]]
+- [x] Fix #feedback and #todo
+    - [ ] Perhaps fix the last in intro.
+- [ ] Proof read + corrections: [[Spell check]]
+- [ ] Complete [[Final checklist]]
+- [ ] Submit
+    - [ ] Thesis
+    - [ ] Project plan

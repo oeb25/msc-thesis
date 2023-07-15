@@ -24,4 +24,4 @@ Modularity benefits programmers, as they can focus on the final results and igno
 
 Additionally, this allows functions to be verified independently, speeding up total verification time and allowing for caching of intermediary results.
 
-How modularity plays a role in Mist, is covered more in-depth in [[Modes and modularity]].
+How modularity plays a role in Mist is covered more in-depth in [[Modes and modularity]].

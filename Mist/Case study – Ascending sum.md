@@ -101,7 +101,7 @@ Another verification language is Dafny [[@leinoDafnyAutomaticProgram2010]], disc
 
 > [!paragraph] Classes and predicates
 >
-> In the Dafny program, we use `@vpr struct Sorted` to define the structure with fields. The declaration `@vpr ghost let min: int` highlights that _Dafny does have ghost code analysis_. Structural invariants, however, are described in a separate `@vpr ghost invariant`, quite similar to Viper. This separation means that anytime we expect an instance `s` of `Sorted` to be sorted, we have to require `IsSorted(s)`.
+> In the Dafny program, we use `@vpr struct Sorted` to define the structure with fields. The declaration `@vpr ghost let min: int` highlights that _Dafny does have ghost code analysis_. Structural invariants, however, are described in a separate `@vpr ghost invariant`, quite similar to Viper. This separation means that anytime we expect an instance `s` of `Sorted` to be sorted, we have to require `s.IsSorted()`.
 
 > [!paragraph] Access
 >

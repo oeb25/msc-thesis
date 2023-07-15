@@ -13,7 +13,7 @@ We define `@reverse` in a particular way, such that it is callable in a pure con
 
 By separating the implementation of the specification, we get to express the function contract in the most natural and efficient way, while deferring the proof burden to a distinct step. Thus, callers of the function will completely ignore the proof the function, and trust the function specification.
 
-The remaining two functions allow us to relate the elements of reversed lists. The first, `pure ghost fn same_elements`, is a property, similarly to `reversed`, checking that two lists contain the same elements, by converting them to `MultiSet`'s. The second, `ghost fn lemma_reverse_same_elements`, is a lemma, which checks that a reversed list, contains the same elements as the original. For this lemma, an empty `proof {}` body is given, letting the verifier proof this automatically.
+The remaining two functions allow us to relate the elements of reversed lists. The first, `pure ghost fn same_elements`, is a property, similarly to `reversed`, checking that two lists contain the same elements, by converting them to `MultiSet`'s. The second, `ghost fn lemma_reverse_same_elements`, is a lemma, which checks that a reversed list, contains the same elements as the original. For this lemma, an empty `proof {}` body is given, letting the verifier prove this automatically.
 
 ![[Figure – Reverse sort visualisation]]
 

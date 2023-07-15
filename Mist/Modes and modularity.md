@@ -2,11 +2,11 @@
 tags: section
 ---
 
-In the previous section, we saw the functions `@values` and `@height` marked with _pure_, which limits and requires them to satisfy specific properties but enables them to be used in more contexts than non-pure functions, such as `req`, `ens`, or `inv`. We can summarise constraints to these: _The result of the function must be computed without any side effects or mutations_ and _the function cannot perform any external mutations_.
+In the previous section, we saw the functions `@values` and `@height` marked with _pure_, which limits and requires them to satisfy specific properties but enables them to be used in more contexts, such as `req`, `ens`, and `inv`, where non-pure functions are not allowed. We can summarise constraints to these: _The result of the function must be computed without any side effects or mutations_ and _the function cannot perform any external mutations_.
 
 ![[Example – BTree – Size]]
 
-[[Example – BTree – Size]] introduces another pure function and new concept. The `dec` annotation on `@size` requires that the function _terminates_ by requiring any recursive call to `@size` to be _smaller_ than this call. The notion of smaller is given by the accompanying `height(b)` to mean that any tree passed in a recursive call to `@size` must have a height less than `b`. `@height` is a pure function and thus can be called in `dec`. As the tree's height is never negative, and the height of recursive calls forever decreases, we know any recursive call sequence must end. Additionally, any other expression in the function must also be terminating for the function to be decreasing.
+[[Example – BTree – Size]] introduces another pure function and new concept. The `dec` annotation on `@size` requires the function _terminates_ by requiring any recursive call to `@size` to be _smaller_ than this call. The notion of smaller is given by the accompanying `height(b)` to mean that any tree passed in a recursive call to `@size` must have a height less than `b`. `@height` is a pure function and thus can be called in `dec`. As the tree's height is never negative, and the height of recursive calls forever decreases, we know any recursive call sequence must end. Additionally, any other expression in the function must also be terminating for the function to be decreasing.
 
 All functions so far have taken immutable references. However, Mist allows passing _mutable references_ as well. These are references where the function may change the contents, but ultimately, the object must still be intact at the end of the function body.
 
@@ -38,7 +38,7 @@ Ghost code is also more powerful in that it can express properties _without_ giv
 
 [[Example – BTree – Ghost clone and flip]] is an example of how abstract ghost code can be used. The first function, `@clone`, takes a `BTree` and produces a new one containing the same values. We _could_ write the implementation for `@clone`, but we can also choose not to if all we care about is satisfied by its postcondition. The function `@flip` intends to flip a `BTree` on its head and satisfies many of the same things as `@clone`; however, _cannot be implemented_ in general since flipping a binary tree is not within the capabilities of `BTree`, since the height of a `BTree` can never be negative.
 
-To illustrate the effects of introducing unsound code in the form of abstract ghost functions, consider [[Example – BTree – Unsoundness]]. Here, the function aptly named `@unsoundess` takes a tree of non-zero height, flips it, and suddenly enters a world where everything is possible, highlighted by the non-failing assertion that $1=2$ $\lineref{84}$. If we were to remove the call `@flip(b)` $\lineref{83}$, the assertion would have failed as expected, but invoking the function allows us to believe in the postcondition of the function, that the height of `p` in-fact the negative of the height of `b`.
+To illustrate the effects of introducing unsound code in the form of abstract ghost functions, consider [[Example – BTree – Unsoundness]]. Here, the function aptly named `@unsoundess` takes a tree of non-zero height, flips it, and suddenly enters a world where everything is possible, highlighted by the non-failing assertion that $1=2$ $\lineref{87}$. If we were to remove the call `@flip(b)` $\lineref{86}$, the assertion would have failed as expected, but invoking the function allows us to believe in the postcondition of the function, that the height of `p` in-fact the negative of the height of `b`.
 
 ![[Example – BTree – Unsoundness]]
 

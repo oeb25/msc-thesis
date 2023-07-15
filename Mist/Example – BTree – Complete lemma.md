@@ -4,7 +4,7 @@ tags: example
 
 A function, `@pow2`, for computing $2^n$, and a lemma to show that the size of a complete binary-tree is given by $2^{h+1}-1$ where $h$ is the height of the tree.
 
-```{.mist .numberLines offset="56"}
+```{.mist .numberLines offset="59"}
 pure fn pow2(n: int) -> int
   req n >= 0
   dec n
