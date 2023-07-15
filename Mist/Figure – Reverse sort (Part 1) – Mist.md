@@ -24,4 +24,4 @@ ghost fn lemma_reverse_same_elements(a: [int])
 ```
 
 > [!caption]
-> First part of a Mist program sorting a list by reversing sublists. Second part is found in [[Figure – Reverse sort (Part 2) – Mist]].
+> First part of a Mist program sorting a list by reversing sublists, continuing in [[Figure – Reverse sort (Part 2) – Mist]].

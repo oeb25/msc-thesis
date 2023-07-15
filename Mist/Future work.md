@@ -2,7 +2,7 @@
 tags: section
 ---
 
-The seed for the Mist language and compiler has been planted, but there is still a long way to go for Mist to become a viable choice for serious verification work. The following sections cover some of the current limitations, and potential future capabilities.
+We have planted the seed for the Mist language and compiler, but there is quite way to go for Mist to become a competitive choice for serious verification. The following sections cover current limitations and potential future capabilities.
 
 %%
 

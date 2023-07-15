@@ -2,7 +2,7 @@
 tags: definition
 ---
 
-Let $\T \in \Ts$ be a folding tree, and $\inst \in \Inst$ an FIR instruction, then we say that _$\inst$ is well-defined in terms of folding access for $\T$_, denoted by $\T \vdash \inst$, iff it is derivable from the following inference rules.
+Let $\T \in \Ts$ be a folding tree, and $\inst \in \Inst$ an FIR instruction; then we say that _$\inst$ is well-defined in terms of folding access for $\T$_, denoted by $\T \vdash \inst$, iff it is derivable from the following inference rules.
 $$
 \begin{gathered}
 \begin{array}{cc}

@@ -2,7 +2,7 @@
 tags: definition
 ---
 
-Let $\Value$ be the set of concrete values and let
+Let $\Value$ be the set of concrete values, and let
 $$\sigma : \places \hookrightarrow \Value$$
 be a memory giving values to certain places, where $\dom(\sigma) \subseteq \places$ is the domain of $\sigma$, and $\Mem$ is the set of all memories.
 

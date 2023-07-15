@@ -6,7 +6,7 @@ Let $\pp_i \in \Pp$ be the program point immediately before $\inst_i \in \Inst$,
 $$
 \A(\pp_i) \smaller \bsem{\inst_i}(\A(\pp_j)).
 $$
-Additionally let $\T_\diamond \in \Ts$ be the initial element that must be satisfied at the exit of the final block $\pp_\blacktriangleleft$, i.e.
+Additionally, let $\T_\diamond \in \Ts$ be the initial element that must be satisfied at the exit of the final block $\pp_\blacktriangleleft$, i.e.
 $$
 \A(\pp_\blacktriangleleft) \smaller \T_\diamond.
 $$

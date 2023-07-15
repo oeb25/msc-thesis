@@ -1,6 +1,7 @@
 ---
-title: The Mist Programming Langauge
-author: Oliver Bøving
+title: Designing a modern program verification frontend
+subtitle: The Mist Programming Langauge
+author: Oliver Emil Bøving
 toc: true
 date: 15th July
 year: 2023

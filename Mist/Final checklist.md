@@ -1,6 +1,6 @@
-- [ ] All pages are spell-checked
-- [ ] All proofs have $\qed$
-- [ ] Figures/examples do not span page breaks
-- [ ] Fix excessive whitespace
-- [ ] Update [[Appendix – The Mist Grammar]] to latest version
-- [ ] Include link to repo somewhere
+- [x] All pages are spell-checked
+- [x] All proofs have $\qed$
+- [x] Figures/examples do not span page breaks
+- [x] Fix excessive whitespace
+- [x] Update [[Appendix – The Mist Grammar]] to latest version
+- [x] Include link to repo somewhere

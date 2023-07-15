@@ -21,7 +21,7 @@ B4: use { r } ;
     branch { }
 ```
 
-The basic-block `B0` \lineref{22 in [[Figure – SumFac Program]]} is the initialisation of the result `r`, containing one outgoing edge to `B1` \lineref{24 in [[Figure – SumFac Program]]} which is the condition-block for the loop. This block as three outgoing edges:
+The basic block `B0` \lineref{22 in [[Figure – SumFac Program]]} is the initialization of the result `r`, containing one outgoing edge to `B1` \lineref{24 in [[Figure – SumFac Program]]} which is the condition-block for the loop. This block has three outgoing edges:
 
 - `B2` is the loop invariant \lineref{25 in [[Figure – SumFac Program]]} and has no out-going edges.
 - `B3` is the loop body \lineref{26 in [[Figure – SumFac Program]]} and has an edge back to `B1`.

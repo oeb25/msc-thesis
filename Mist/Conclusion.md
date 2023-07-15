@@ -4,6 +4,17 @@ tags: chapter
 
 In this thesis, we presented a new programming language, Mist, for program verification designed with developer ergonomics as the primary focus. We presented the architecture of and implemented a compiler for Mist, built on incremental computation principles to support demand-driven editor feedback for the accompanying language server implementation. The compiler targets the Viper infrastructure for verification through a series of internal representations. As a part of that compilation pipeline, we formalized an analysis for automatically determining necessary unfoldings of isorecursive structures at every program point and for transitions between them. Throughout the thesis, we gave examples of Mist programs, supported by a detailed case study of two exemplifying programs. We found the Mist language and compiler effective at verifying simple programs, but still at the early stages with much work left to do.
 
+
+```{=tex}
+\vspace{2ex}
+\begin{minipage}{\textwidth}
+The source code of the compiler can be found at
+\begin{center}
+\large https://github.com/oeb25/mist
+\end{center}
+\end{minipage}
+```
+
 %%
 
 ---

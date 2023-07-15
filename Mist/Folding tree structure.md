@@ -2,16 +2,16 @@
 tags: section
 ---
 
-A _folding tree_ is a data structure, denoted by $\T$, that maintains the folding state of places. It works by representing data types as a tree, where nodes are fields of potentially nested `struct`s. The leaves of the tree are all the places that are _folded_, while the internal nodes are _unfolded_ places, both uniquely described by paths from the root.
+A _folding tree_ is a data structure, denoted by $\T$, that maintains the folding state of places. It represents data types as trees, where nodes are fields of potentially nested `struct`s. The leaves of the tree are all the places that are _folded_, while the internal nodes are _unfolded_ places, both uniquely described by paths from the root.
 
 ![[Figure – A visualization of the maximally unfolded tree given by `S`]]
 
-These folding trees must satisfy some certain properties with regards to structure. At the core of these, are sets called the _cover_ sets, which encapsulates all ancestors of a place, like $\prefix$, but extends to siblings of ancestors as well.
+These folding trees must satisfy specific properties concerning structure. At the core of these are sets called the _cover_ sets, which encapsulate all ancestors of a place, like $\prefix$, but extend to siblings of ancestors as well.
 
 ![[Definition – Place cover]]
 
 > [!example]
-> To get a grasp for which places are in which $\cover$ sets, we compute the $\cover$ set for all places in [[Figure – A visualization of the maximally unfolded tree given by `S`]]. In the table below, the group of places in the first column all have the same $\cover$ set, and in the second column that $\cover$ set is listed.
+> To get a grasp for which places are in which $\cover$ sets, we compute the $\cover$ set for all places in [[Figure – A visualization of the maximally unfolded tree given by `S`]]. In the table below, the group of places in the first column all have the same $\cover$ set; in the second column, that $\cover$ set is listed.
 > $$
 > \begin{array}{l|l}
 > \rho \in \places & \cover(\rho) \\ \hline
@@ -23,17 +23,17 @@ These folding trees must satisfy some certain properties with regards to structu
 > \end{array}
 > $$
 
-What really defines a folding tree, is a tree of places where if a place $\rho$ is present, then so is $\cover(\rho)$.
+What defines a folding tree is a tree of places where if a place $\rho$ is present, then so is $\cover(\rho)$.
 
 ![[Definition – Folding tree]]
 
 ![[Example – Folding tree]]
 
-In addition to nodes being folded and unfolded, nodes can also be _foldable_ and _unfoldable_.
+In addition to being folded and unfolded, nodes can be _foldable_ and _unfoldable_.
 
 ![[Definition – Foldable]]
 
-When working with folding trees, it is useful to be able to refer to the set of folded places. We introduce a function $\leaves$, which computes this.
+When working with folding trees, referring to the set of folded places is helpful. We introduce a function $\leaves$, which computes this.
 
 ![[Definition – Leaves]]
 
@@ -41,7 +41,7 @@ When working with folding trees, it is useful to be able to refer to the set of 
 > Consider again `struct S` from [[Figure – Breaking invariant]] and $\T_s$ from [[Example – Folding tree]], then we can compute the folded places in $\T_s$ as:
 > $$\leaves(\T_s) = \{ s.x.u,\; s.x.v\;, s.y.a.f,\; s.y.a.g,\; s.y.a.h,\; s.y.b \}.$$
 
-Something we can derive from the definition of $\leaves$, is that the places in the leaves of any folding tree will never be ancestors or decedents of each other. We call this property _compatible_.
+Something we can derive from the definition of $\leaves$ is that the places in the leaves of any folding tree will never be ancestors or decedents of each other. We call this property _compatible_.
 
 ![[Definition – Compatible]]
 

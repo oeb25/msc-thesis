@@ -37,4 +37,4 @@ fn compute(m: int) -> SumFac req n > 1, ens result.n == m {
 ```
 
 > [!caption]
-> A Mist program containing `struct SumFac` \lineref{1-5} with three fields constrained by an `invariant SumFac` \lineref{6-10}, ensuring that `self.sum` is the sum from `1` to `self.n` and `self.fac` is the product of the same range. These use the two function `pure fn sum` \lineref{11} and `pure fn fac` \lineref{16}, which compute the sum and factorial respectively. Finally, `fn compute` \lineref{21} takes `m` and produces a `struct SumFac` with `result.n == m`.
+> A Mist program containing `struct SumFac` \lineref{1-5} with three fields constrained by an `invariant SumFac` \lineref{6-10}, ensuring that `self.sum` is the sum from `1` to `self.n` and `self.fac` is the product of the same range. These use the functions `pure fn sum` \lineref{11} and `pure fn fac` \lineref{16}, which compute the sum and factorial, respectively. Finally, `fn compute` \lineref{21} takes `m` and produces a `struct SumFac` with `result.n == m`.

@@ -3,6 +3,8 @@ tags: appendix
 ---
 
 ```{.ungram .noNames}
+// Mist Un-Grammar.
+
 SourceFile =
   Item*
 
@@ -11,6 +13,7 @@ Item =
 | Fn
 | Struct
 | TypeInvariant
+| Macro
 
 Name = 'ident' | 'self'
 
@@ -19,16 +22,17 @@ NameRef = 'ident' | 'self'
 Const =
   Attrs
   'const' Name ':' Type
-  ('=' Expr)?
+  ('=' initializer:Expr)?
   ';'
 
 Fn =
   Attrs
  'fn' Name ParamList
- ('->' Type)?
+ ('->' ret:Type)?
  Condition*
  Decreases?
- (BlockExpr | ';')
+ 'proof'?
+ (body:BlockExpr | ';')
 
 Attr =
   'ghost'
@@ -76,8 +80,8 @@ GenericParam =
 
 BlockExpr =
  '{'
-   Stmt*
-   Expr?
+   statements:Stmt*
+   tail_expr:Expr?
  '}'
 
 Type =
@@ -121,8 +125,8 @@ Stmt =
 | AssumeStmt
 
 LetStmt =
- 'let' Name (':' Type)?
- ('=' Expr)?
+ 'let' 'mut'? Name (':' Type)?
+ ('=' initializer:Expr)?
  ';'
 
 ExprStmt =
@@ -164,8 +168,8 @@ Expr =
 | QuantifierExpr
 
 IfExpr =
-  'if' Expr BlockExpr
-  ('else' IfExprElse)?
+  'if' condition:Expr then_branch:BlockExpr
+  ('else' else_branch:IfExprElse)?
 
 IfExprElse =
   IfExpr | BlockExpr
@@ -182,22 +186,22 @@ ForExpr =
   BlockExpr
 
 PrefixExpr =
-  ('-' | '!') Expr
+  op:('-' | '!') Expr
 
 BinExpr =
-  Expr
-  (
+  lhs:Expr
+  op:(
     '||' | '&&'
   | '==' | '!=' | '<=' | '>=' | '<' | '>'
   | '+' | '*' | '-' | '/' | '%' | '<<' | '>>' | '^' | '|' | '&'
   | '=' | '+=' | '/=' | '*=' | '%=' | '>>=' | '<<=' | '-=' | '|=' | '&=' | '^='
   )
-  Expr
+  rhs:Expr
 
 RangeExpr =
-  Expr?
+  (lhs:Expr)?
   '..'
-  Expr?
+  (rhs:Expr)?
 
 CallExpr =
   Expr ArgList
@@ -241,14 +245,18 @@ ResultExpr = 'result'
 
 QuantifierExpr = Quantifier QuantifierOver Expr
 
-QuantifierOver = ParamList | NameInExpr
+QuantifierOver = ParamList | NameInExprs
 
-NameInExpr = Name 'in' Expr
+NameInExpr = Name 'in' Expr ','?
+
+NameInExprs = NameInExpr*
 
 Quantifier =
   'forall' | 'exists'
 
 Literal =
+  (
     'int_number'
   | 'true' | 'false'
+  )
 ```

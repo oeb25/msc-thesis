@@ -4,7 +4,7 @@ tags: proof
 
 %%Proof of [[Lemma – Fold and unfold commute over compatible]]%%
 
-Let $\rho_1 \compat \rho_2$, and derive that $\fields(\rho_1) \cap \fields(\rho_2) = \emptyset$. Then we have two choses for foldings for each, leading to four cases:
+Let $\rho_1 \compat \rho_2$, and derive that $\fields(\rho_1) \cap \fields(\rho_2) = \emptyset$. Then we have two choices for foldings for each, leading to four cases:
 
 **Case 1:** Let $\F_1 = \fold\;\rho_1$ and $\F_2 = \fold\;\rho_2$, and assume that $\fields(\rho_1) \subseteq \leaves(\T)$ and $\fields(\rho_2) \subseteq \leaves(\T)$. Performing $\fold(\rho_2, \fold(\rho_1, \T))$ requires $\fields(\rho_1) \subseteq \leaves(\T)$, which holds by assumption, and $\fields(\rho_2) \subseteq \leaves(\fold(\rho_1, \T))$, which by expansion is $\fields(\rho_2) \subseteq \leaves(\T \setminus \fields(\rho_1))$. Since $\fields(\rho_1) \cap \fields(\rho_2) = \emptyset$, we can simplify to $\fields(\rho_2) \subseteq \leaves(\T)$ which holds by assumption, and thus
 $$

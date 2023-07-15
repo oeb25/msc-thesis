@@ -31,3 +31,4 @@ $$
 	&= \T \requires \rho_2 \requires \rho_1 \\
 \end{aligned}
 $$
+\qed

@@ -2,7 +2,7 @@
 tags: example
 ---
 
-Two abstract ghost functions, `@clone` and `@flip`.
+The code below contains two abstract ghost functions, `@clone` and `@flip`.
 
 ```{.mist .numberLines offset="76"}
 ghost fn clone(b: &BTree) -> BTree

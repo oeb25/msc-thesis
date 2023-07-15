@@ -97,7 +97,7 @@ Mist generates one or more Viper programs which it sends to `viperserver` for ve
 
 ### Comparative Dafny program
 
-Another verification language is Dafny [[@leinoDafnyAutomaticProgram2010]], discussed further in [[Dafny comparison]], which carries many syntactic similarities to Viper. [[Figure – Ascending sum – Dafny]] shows an implementation of the [[Figure – Ascending sum – Mist]] program again.
+Another verification language is Dafny [[@leinoDafnyAutomaticProgram2010]], discussed further in [[Related work]], which carries many syntactic similarities to Viper. [[Figure – Ascending sum – Dafny]] shows an implementation of the [[Figure – Ascending sum – Mist]] program again.
 
 > [!paragraph] Classes and predicates
 >

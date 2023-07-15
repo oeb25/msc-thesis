@@ -11,3 +11,4 @@ $$
 \end{aligned}
 $$
 Since the condition for being in the set is the same and $\T_1 \subseteq \T_2$, we know the final equality holds and finish the proof.
+\qed

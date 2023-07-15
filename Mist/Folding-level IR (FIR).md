@@ -12,7 +12,7 @@ Although FIR is defined as a separate set of constructs from MIR, it is, in fact
 
 Like MIR, FIR is a CFG with basic blocks being a sequence of instructions. Each block in FIR ends with a set of blocks that could potentially be branched to; these form the edges in the CFG.
 
-FIR blocks consists of four kinds of abstract instructions, the first instruction being an amalgamation of all read and write instructions of MIR, namely $\langle Place \rangle := \langle Expr \rangle$, also denoted by $\rho := a$, where $a$ is the expression whose result is written to $\rho$. For the most part, the actual value of $a$ is unimportant since the only thing folding considers are the _places mentioned_, which we refer to by $\pread(a)$. The next instruction $\iuse\; \langle Place \rangle^*$, denoted by $\iuse\;\Rho$, represents MIR instructions where a set of places $\Rho$ are read, but nothing is written to.
+FIR blocks consist of four kinds of abstract instructions; the first instruction is an amalgamation of all read and write instructions of MIR, namely $\langle Place \rangle := \langle Expr \rangle$, also denoted by $\rho := a$, where $a$ is the expression whose result is written to $\rho$. For the most part, the actual value of $a$ is unimportant since the only thing folding considers are the _places mentioned_, which we refer to by $\pread(a)$. The next instruction $\iuse\; \langle Place \rangle^*$, denoted by $\iuse\;\Rho$, represents MIR instructions where a set of places $\Rho$ are read, but nothing is written.
 
 %%
 > [!example]

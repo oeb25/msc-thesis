@@ -23,7 +23,7 @@ Secondly, to show $\rho'.f_i \notin \cover(\rho)$, remember that $\rho'.f_i \in 
 
 Since $\rho' \in \cover(\rho)$ and $\rho' \compat \rho$, then $\rho' \not< \rho$ and thus $\rho'$ must be a sibling of some ancestor of $\rho$. $\rho'.f_i$ will thus be a child of a sibling of a ancestor of $\rho$, which excludes it from being a sibling of a ancestor of $\rho$, showing $\rho'.f_i \notin \cover(\rho)$.
 
-Having shown that a place, $\rho'$ arbitrarily chosen from the left-hand side of the initial equation, satisfies the conditions for being in the right-hand side, then we have showed that all places in the left set are included in the right. $\qed$
+Having shown that a place, $\rho'$ arbitrarily chosen from the left-hand side of the initial equation, satisfies the conditions for being in the right-hand side, we have shown that all places in the left set are included in the right. $\qed$
 
 %%---
 
@@ -129,7 +129,7 @@ If we use $\{ \rho' \mid \rho' \in \leaves(\T) \land \rho.f_i \notin \prefix(\rh
 $$
 \{ \rho' \mid \rho' \in \leaves(\T) \land \rho \notin \prefix(\rho') \} \subseteq \{ \rho' \mid \rho' \in \leaves(\T) \land \rho.f_i \notin \prefix(\rho') \} \setminus \fields(\rho).
 $$
-By expanding this to universal quantification form we get
+By expanding this to a universal quantification form, we get
 $$
 \forall \rho' \in \leaves(\T), \rho.f_i \in \fields(\rho) : \rho \notin \prefix(\rho') \implies \rho.f_i \notin \prefix(\rho') \land \rho' \notin \fields(\rho).
 $$
@@ -143,7 +143,7 @@ Since $\T'$ will have $\rho^*$ folded, we know that $\T'$ meets the requirements
 $$
 \{ \rho' \mid \rho' \in \leaves(\T) \land \rho \notin \prefix(\rho') \} \cup \{ \rho \} \subseteq (\leaves(\T') \setminus \{\rho^*\}) \cup \fields(\rho^*).
 $$
-As $\rho \in \fields(\rho^*)$, we can remove both from each side of the equation, and insert the in-equality given by induction to get
+As $\rho \in \fields(\rho^*)$, we can remove both from each side of the equation and insert the in-equality given by induction to get
 $$
 \{ \rho' \mid \rho' \in \leaves(\T) \land \rho \notin \prefix(\rho') \} \subseteq \{ \rho' \mid \rho' \in \leaves(\T) \land \rho^* \notin \prefix(\rho') \} \setminus \{\rho^*\}.
 $$

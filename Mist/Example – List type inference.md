@@ -9,4 +9,4 @@ fn f() -> [int] {
   [1] + list + [2]
 }
 ```
-When the compiler type checks the list declaration $\lineref{2}$, the variable has no explicit type, and must thus be determined from the expression. The expression `[]`, however, does not have enough context (yet) to completely figure out what type it has, so it instantiates a new _free_ type, call this `'a`. Then `list` is given the type `['a]`, that is a list of `'a`, where `'a` is an unconstrained free type.
+When the compiler type checks the list declaration $\lineref{2}$, the variable has no explicit type, and the compiler must thus determine it from the expression. The expression `[]`, however, does not have enough context (yet) to completely figure out what type it has, so it instantiates a new _free_ type, call this `'a`. Then `list` is given the type `['a]`, that is a list of `'a`, where `'a` is a so far unconstrained free type.

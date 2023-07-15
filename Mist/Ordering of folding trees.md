@@ -25,9 +25,9 @@ With an ordering established, we define how to combine two trees by creating a n
 ![[Definition – Folding tree join and meet]]
 
 > [!remark]
-> $\meet$ and $\join$ can also be applied to potentially infinite sets, and thus potentially produce infinite folding trees.
+> $\meet$ and $\join$ can also be applied to potentially infinite sets and thus potentially produce infinite folding trees.
 > 
-> It is impractical to represent such trees in memory completely. Luckily, $\meet$ and $\join$ satisfies two algebraic properties which make feasable to in most cases:
+> It is impractical to represent such trees in memory completely. Luckily, $\meet$ and $\join$ satisfy two algebraic properties, which make it feasible in most cases:
 > $$
 > \begin{array}{ccc}
 > \;\;\;\;&\top \join \T = \top, \text{ and, } \top \meet \T = \T & \forall \T \in \Ts.
@@ -42,14 +42,14 @@ With an ordering established, we define how to combine two trees by creating a n
 ![[Figure – Folding meet join]]
 
 > [!example]
-> Consider the trees in [[Figure – Folding meet join]]. The tree $\T_1$ is more unfolded than $\T_2$ on $.x$ while being more folded on $.y.a$. On the left side, $\T_1 \meet \T_2$ is the most unfolded tree, which is still less unfolded than both $\T_1$ and $\T_2$. Similarly, on the right side, $\T_1 \join \T_2$ is the most folded tree, which does not fold any unfolded places of either $\T_1$ or $\T_2$.
+> Consider the trees in [[Figure – Folding meet join]]. The tree $\T_1$ is more unfolded than $\T_2$ on $.x$ while more folded on $.y.a$. On the left side, $\T_1 \meet \T_2$ is the most unfolded tree, which is still less unfolded than both $\T_1$ and $\T_2$. Similarly, on the right side, $\T_1 \join \T_2$ is the most folded tree, which does not fold any unfolded places of either $\T_1$ or $\T_2$.
 
 The operators allow us to construct new trees, but when doing so, the resulting trees must still be folding trees.
 
 ![[Lemma – Folding tree join and meet are closed]]
 
 > [!proof]
-> The condition for being a folding tree is that the set must be cover-closed in accordance to [[Definition – Folding tree]]. To show this, let $\T_1$ and $\T_2$ be arbitrary folding trees, then we can assume that
+> The condition for being a folding tree is that the set must be cover-closed per [[Definition – Folding tree]]. To show this, let $\T_1$ and $\T_2$ be arbitrary folding trees, then we can assume that
 > $$
 > \forall \rho \in \T_1 : \cover(\rho) \subseteq \T_1, \;\text{ and, }\; \forall \rho \in \T_2 : \cover(\rho) \subseteq \T_2.
 > $$
@@ -61,7 +61,7 @@ The operators allow us to construct new trees, but when doing so, the resulting 
 >
 > Next, let $\rho_2$ be an element of $\T_1 \meet \T_2$, which means that $\rho_2$ must be an element of both $\T_1$ and $\T_2$, thus giving us $\cover(\rho_2) \subseteq \T_1$ and $\cover(\rho_2) \subseteq \T_2$. Combining these two, we get that $\cover(\rho_2) \subseteq \T_1 \cap \T_2$, which by [[Definition – Folding tree join and meet]] shows $\cover(\rho_2) \subseteq \T_1 \meet \T_2$.
 
-Additionally, we want some properties of the leaves of produced trees to hold, namely, if a place is a leaf in two trees, then that place will also be a leaf in the meet.
+Additionally, we want some properties of the leaves of produced trees to hold; namely, if a place is a leaf in two trees, then that place will also be a leaf in the meet.
 
 ![[Lemma – Meet preserves leaves]]
 
@@ -116,7 +116,7 @@ This leads us to the final bit of notation for folding trees: computing the mini
 > \end{gathered}
 > $$
 
-With $\tinto$ we can reason about transitioning foldings from one program point into those at another, but it also allows us to go backward due to the invertible property of $\fold$ and $\unfold$.
+With $\tinto$, we can reason about transitioning foldings from one program point into those at another, but it also allows us to go backward due to the invertible property of $\fold$ and $\unfold$.
 
 > [!lemma]
 > The function $\tinto$ is _anticommutative_ [[@bourbakiElementsMathematicsChapters2009#pp. 482]]:

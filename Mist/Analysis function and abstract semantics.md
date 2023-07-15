@@ -22,6 +22,4 @@ As for $\requires$, the abstract semantics function $\bsems$ is also monotone, a
 
 ![[Lemma – FIR Abstract Semantics is a monotone function]]
 
-We defer the proof for [[Lemma – FIR Abstract Semantics is a monotone function]] to [[Proof – FIR Abstract Semantics is a monotone function]].
-
-With $\bsems$ defined, we can begin to reason about complete programs by applying it to the full FIR.
+We defer the proof for [[Lemma – FIR Abstract Semantics is a monotone function]] to [[Proof – FIR Abstract Semantics is a monotone function]]. With $\bsems$ defined, we can begin to reason about complete programs by applying it to the full FIR.

@@ -16,7 +16,7 @@ Fundamentally, a folding tree has two operations: $\unfold$ and $\fold$, which b
 >
 > We see that unfolding $s.y$ makes all of the fields of $s.y$ available and folded, while the last fold of $s.y$  removes the fields to have $s.y$ folded. A similar thing happens for the unfolding and folding of $s.y.a$.
 
-As $\fold$ and $\unfold$ are the building blocks for further analysis, it is helpful to formalize some of their properties. The first property characterises how leaves of a tree change as folds and unfolds are performed.
+As $\fold$ and $\unfold$ are the building blocks for further analysis, it is helpful to formalize some of their properties. The first property characterizes how the leaves of a tree change as folds and unfolds are performed.
 
 ![[Lemma – Leaves from folding]]
 
@@ -46,7 +46,7 @@ The following property is that the two functions, $\fold$ and $\unfold$, allow u
 > \end{aligned}
 > $$
 
-Another neat property is that $\fold$ and $\unfold$ commutes under the inverse, allowing us to undo chains of foldings by reversing the chain and inverting every folding.
+Another neat property is that $\fold$ and $\unfold$ commute under the inverse, allowing us to undo chains of foldings by reversing the chain and inverting every folding.
 
 ![[Proposition – Fold and unfold commute under inverse]]
 
@@ -66,7 +66,7 @@ As well as commuting under the inverse, they also commute when folding or unfold
 
 The proof of this [[Lemma – Fold and unfold commute over compatible]] is deferred to [[Proof – Fold and unfold commute over compatible]].
 
-A typical operation on folding trees is transforming an existing tree into a new one with a desired place folded. To do so, a sequence of folds and unfolds must be performed to arrive at the desired tree. We call this operation _requires_ and use the notation $\T \requires \rho$ to say that we want the tree $\T$ but with minimal folds and unfolds performed to have $\rho$ folded.
+A typical operation on folding trees is transforming an existing tree into a new one with a desired place folded. A sequence of folds and unfolds must be performed to arrive at the desired tree. We call this operation _requires_ and use the notation $\T \requires \rho$ to say that we want the tree $\T$ but with minimal folds and unfolds performed to have $\rho$ folded.
 
 ![[Definition – Requires]]
 
@@ -79,7 +79,7 @@ A typical operation on folding trees is transforming an existing tree into a new
 >
 > The last two transitions show the folding up to make $.x$ and $.y$ folded.
 
-One interesting fact about the requires operator, and something that is crucial for $\Requires$, is that if two places are compatible, it does not matter in which order we require them.
+One interesting fact about the requires operator, and something crucial for $\Requires$, is that if two places are compatible, it does not matter in which order we require them.
 
 ![[Lemma – Requires commutative over compatible]]
 
@@ -106,7 +106,7 @@ Next, for $\requires$ to be helpful, we need to show some properties that it sat
 > \end{aligned}
 > $$
 
-Intuitively, $\cut$ can be thought of as removing all leaves leading up to $\rho$ and all leaves which are children of $\rho$. This also means that if we cut a field, it will not remove more than cutting its parent will. In the extreme case, cutting the root of the tree always _removes all leaves_, while cutting anywhere else does not necessarily do so.
+Intuitively, $\cut$ can be thought of as removing all leaves leading up to $\rho$ and all leaves which are children of $\rho$. This also means that cutting a field will not remove more than cutting its parent will. In the extreme case, cutting the root of the tree always _removes all leaves_, while cutting anywhere else does not necessarily do so.
 
 ![[Lemma – Folding tree weaken cut]]
 
@@ -122,15 +122,15 @@ Intuitively, $\cut$ can be thought of as removing all leaves leading up to $\rho
 > $$
 > \{ \rho' \in \T \mid \rho \incompat \rho' \} \supseteq \{ \rho' \in \T \mid \rho.f_i \incompat \rho' \}.
 > $$
-> From here, let $\rho' \in \T$ be arbitrarily chosen (as a reminder $\rho' \neq \rho$,) then we must show $\rho' \incompat \rho.f_i \implies \rho' \incompat \rho$. By assuming $\rho' \incompat \rho.f_i$ we get that $\rho' < \rho.f_i$ or $\rho.f_i < \rho'$ from [[Definition – Compatible]]. By transitivity we get that $\rho' < \rho$ from the first case, or $\rho < \rho'$ from the second. These give us $\rho \incompat \rho'$, which concludes the proof.
+> From here, let $\rho' \in \T$ be arbitrarily chosen (as a reminder $\rho' \neq \rho$,) then we must show $\rho' \incompat \rho.f_i \implies \rho' \incompat \rho$. By assuming $\rho' \incompat \rho.f_i$ we get that $\rho' < \rho.f_i$ or $\rho.f_i < \rho'$ from [[Definition – Compatible]]. By transitivity, we get that $\rho' < \rho$ from the first case or $\rho < \rho'$ from the second. These give us $\rho \incompat \rho'$, which concludes the proof.
 
-One point of interest regarding $\cut$ is that the set of places it produces removes everything that would violate having $\rho$ be a leaf and thus is quite valuable for specifying an essential property of $\requires$.
+One point of interest regarding $\cut$ is that the set of places it produces removes everything that would violate having $\rho$ be a leaf. Thus, it is quite valuable for specifying an essential property of $\requires$.
 
 ![[Lemma – Requires properties]]
 
-The proof for this is deferred to [[Proof – Requires properties]]. With this lemma we can ensure that requiring some place in one subtree does not alter the folded places of any unrelated subtree.
+The proof for this is deferred to [[Proof – Requires properties]]. With this lemma, we can ensure that requiring some place in one subtree does not alter the folded places of any unrelated subtree.
 
 > [!example]
 > Consider `struct S` from [[Figure – Breaking invariant]] once again. If we require some (potentially nested) field of `s.y,` then it will never fold nor unfold the fields of `s.x`.
 >
-> This ensures that folding is local to the part the tree for which it is relevant.
+> This ensures that folding is local to the part of the tree for which it is relevant.

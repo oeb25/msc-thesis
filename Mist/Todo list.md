@@ -1,4 +1,4 @@
-- [ ] [[Abstract]]
+- [x] [[Abstract]]
 - [x] [[Introduction]]
     - [x] [[Contributions]]
 - [x] [[Background]]
@@ -47,9 +47,9 @@
 - [x] Write [[Abstract]]
 - [x] Write [[Acknowledgements]]
 - [x] Fix #feedback and #todo
-    - [ ] Perhaps fix the last in intro.
-- [ ] Proof read + corrections: [[Spell check]]
-- [ ] Complete [[Final checklist]]
+    - [x] Perhaps fix the last in intro.
+- [x] Proof read + corrections: [[Spell check]]
+- [x] Complete [[Final checklist]]
 - [ ] Submit
     - [ ] Thesis
     - [ ] Project plan

@@ -2,7 +2,7 @@
 tags: example
 ---
 
-Pairwise sum of two lists to produce a new of equal length.
+A pairwise sum of two lists produces a new of equal length.
 
 ```{.mist .numberLines}
 fn add(x: [int], y: [int]) -> [int]

@@ -6,7 +6,7 @@ Let $\inst \in \Inst$ be a FIR instruction and $\T \in \Ts$ be a folding tree, t
 $$
 \bsems : \Inst \to \Ts \to \Ts.
 $$
-The function is defined for each FIR instruction
+The function is defined for each FIR instruction like so:
 $$
 \begin{gathered}
 \bsem{\iuse\;\Rho}(\T) = \T \Requires \Rho

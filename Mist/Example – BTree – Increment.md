@@ -2,7 +2,7 @@
 tags: example
 ---
 
-A function, `@increment`, which increases the value of each node a given `amount`.
+A function, `@increment`, increases each node's value by a given `amount`.
 
 ```{.mist .numberLines offset="45"}
 fn increment(b: &mut BTree, amount: int)

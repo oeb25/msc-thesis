@@ -2,7 +2,7 @@
 tags: example
 ---
 
-A continuation of [[Example – BTree – Height]]
+The code below is a continuation of [[Example – BTree – Height]].
 
 ```{.mist .numberLines offset="28"}
 invariant BTree {

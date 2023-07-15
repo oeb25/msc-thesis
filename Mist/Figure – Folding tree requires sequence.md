@@ -60,4 +60,4 @@ tags: figure
 > ```
 
 > [!caption]
-> A sequence of folding trees showing how $\requires$ can perform the necessary foldings for making fields accessible. Each successive tree operates on the previous one, where the operation performed is indicated by arrow between them.
+> A sequence of folding trees showing how $\requires$ can perform the necessary foldings for making fields accessible. Each successive tree operates on the previous one, where the operation performed is indicated by the arrow between them.
